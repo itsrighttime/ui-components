@@ -1,0 +1,216 @@
+/* Code: ABAB009 */
+
+.mainBox.horizontal {
+  height: 300px;
+  max-width: 500px;
+}
+
+.mainBox.vertical {
+  max-width: 300px;
+  height: 500px;
+}
+
+.mainBox.square {
+  height: 300px;
+  width: 300px;
+}
+
+.mainBox{
+  margin: auto;
+}
+
+.cardTitle {
+  font-size: 1.4rem;
+  color: var(--colorWhite);
+  line-height: 1.1;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--colorGray1);
+  text-align: left;
+  font-weight: var(--boldL1);
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space, 1em);
+}
+
+/* CARD COMPONENT */
+.card {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.card > * {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.cardBackground {
+  object-fit: cover;
+  max-width: 100%;
+  height: 100%;
+}
+
+.cardContent {
+  --flow-space: 0.9375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: flex-end;
+}
+
+.horizontal .cardContent {
+  height: 80%;
+  padding: 8% 1.25rem 1.875rem;
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 0%, 0) 0%,
+    hsla(0, 0%, 0%, 0.3) 20%,
+    hsl(0, 0%, 0%) 100%
+  );
+}
+
+.vertical .cardContent {
+  height: 60%;
+  padding: 12% 1.25rem 1.875rem;
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 0%, 0) 0%,
+    hsla(0, 0%, 0%, 0.3) 20%,
+    hsl(0, 0%, 0%) 100%
+  );
+}
+
+.square .cardContent {
+  height: 80%;
+  padding: 8% 1.25rem 1.875rem;
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 0%, 0) 0%,
+    hsla(0, 0%, 0%, 0.3) 25%,
+    hsl(0, 0%, 0%) 100%
+  );
+}
+
+.cardContentContainer {
+  --flow-space: 1.25rem;
+}
+
+.cardTitle {
+  position: relative;
+  width: fit-content;
+  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+}
+
+.cardTitle::after {
+  content: "";
+  position: absolute;
+  height: 0.3125rem;
+  width: calc(100% + 1.25rem);
+  bottom: calc((1.25rem - 0.5rem) * -1);
+  left: -1.25rem;
+}
+
+.bgLineBlue::after {
+  background-color: var(--colorBlue);
+}
+.bgLineRed::after {
+  background-color: var(--colorRed);
+}
+.bgLineYellow::after {
+  background-color: var(--colorYellow);
+}
+.bgLineGreen::after {
+  background-color: var(--colorGreen);
+}
+.bgLineCyan::after {
+  background-color: var(--colorCyan);
+}
+.bgLineGray::after {
+  background-color: var(--colorGray);
+}
+
+
+.cardButton {
+  display: flex;
+  justify-content: center;
+}
+
+.productID {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 10px;
+  gap: 10px;
+}
+.productID p {
+  display: flex;
+  align-items: flex-end;
+  color: var(--colorGray6);
+}
+
+@media (any-hover: hover) and (any-pointer: fine) {
+  .cardContent {
+    transform: translateY(62%);
+    transition: transform 500ms ease-out;
+    transition-delay: 500ms;
+  }
+
+  .cardTitle::after {
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 1000ms ease-in, transform 500ms ease-out;
+    transition-delay: 500ms;
+    transform-origin: right;
+  }
+
+  .cardBackground {
+    transition: transform 500ms ease-in;
+  }
+
+  .cardContentContainer > :not(.cardTitle),
+  .cardButton {
+    opacity: 0;
+    transition: transform 500ms ease-out, opacity 500ms ease-out;
+  }
+
+  .card:hover .cardContent,
+  .card:focus-within .cardContent {
+    transform: translateY(0);
+    transition: transform 500ms ease-in;
+  }
+
+  .card:focus-within .cardContent {
+    transition-duration: 0ms;
+  }
+
+  .card:hover .cardBackground,
+  .card:focus-within .cardBackground {
+    transform: scale(1.3);
+  }
+
+  .card:hover .cardContentContainer > :not(.cardTitle),
+  .card:hover .cardButton,
+  .card:focus-within .cardContentContainer > :not(.cardTitle),
+  .card:focus-within .cardButton {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+    transition-delay: 1000ms;
+  }
+
+  .card:hover .cardTitle::after,
+  .card:focus-within .cardTitle::after {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: opacity 500ms ease-in, transform 500ms ease-in;
+    transition-delay: 500ms;
+  }
+}

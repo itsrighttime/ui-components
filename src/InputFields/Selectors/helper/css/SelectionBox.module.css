@@ -1,0 +1,53 @@
+.selectionGroup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.horizontal {
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.label {
+    font-weight: var(--boldL2);
+    text-align: left;
+}
+
+.selectionItem {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    position: relative;
+    gap: 10px;
+    cursor: pointer;
+}
+
+
+
+.selectionLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selectionLabel.disabled,
+.selectionItem.disabled {
+    cursor: not-allowed;
+}
+
+.selected {
+    color: var(--color);
+}
+
+.inlineHelp {
+    opacity: 0.7;
+}
+
+.disabled {
+    color: var(--colorGray4);
+}

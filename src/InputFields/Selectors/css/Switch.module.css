@@ -1,0 +1,53 @@
+.switchContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.switchLabel {
+    font-weight: var(--boldL2);
+}
+
+.switch {
+    position: relative;
+    width: 40px;
+    height: 16px;
+    background-color: var(--colorGray);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.switch.checked {
+    background-color: var(--color);
+}
+
+.switch.unchecked {
+    background-color: var(--colorGray4);
+}
+
+.switch.disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+    background-color: var(--colorGray4);
+}
+
+.switchHandle {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--colorWhite);
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.switch.checked .switchHandle {
+    transform: translateX(25px);
+}
+
+.switch.disabled .switchHandle {
+    background-color: var(--colorGray3);
+}

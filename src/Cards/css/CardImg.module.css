@@ -1,0 +1,67 @@
+/* Code: ABAB007 */
+
+.articleContainer {
+  --img-scale: 1.001;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  border-radius: 16px;
+  box-shadow: none;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  background: var(--colorWhite);
+  border: 1px solid var(--colorGray1);
+
+  overflow: hidden;
+  width: 300px;
+}
+
+.articles {
+  display: flex;
+}
+
+/* basic .articleContainer elements styling */
+.articleContainer h2 {
+  margin: 0 0 18px 0;
+  font-size: calc(var(--size) * 1.8);
+  letter-spacing: 0.06em;
+  color: var(--colorRed);
+  transition: color 0.3s ease-out;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.articleContainer img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+.articleBody {
+  padding: 24px;
+}
+
+.articleContainer a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--colorCyan);
+}
+
+.articleContainer a:hover {
+  font-weight: var(--boldL2);
+}
+
+/* using the has() relational pseudo selector to update our custom properties */
+.articleContainer:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}

@@ -1,0 +1,56 @@
+/* Code: ABAB020 */
+
+#title {
+  font-size: calc(1.5 * var(--size));
+  fill: var(--colorGray4);
+}
+.svgMap{
+    width: 650px;
+    padding-top: 40px;
+    padding-left: 15px;
+}
+
+.land {
+  fill: var(--colorGray1);
+  stroke: var(--colorGray4);
+  stroke-width: 1;
+  stroke-miterlimit: 1;
+}
+
+.land:hover {
+  fill: var(--colorBlue);
+  stroke: var(--colorGray5);
+  stroke-width: 1;
+  stroke-miterlimit: 1;
+}
+
+.label {
+  font-size: calc(1.5 * var(--size));
+}
+
+.tooltip_bg:hover {
+  visibility: visible;
+}
+
+.tooltip {
+    color: white;
+}
+
+.land:hover .tooltip {
+  visibility: visible;
+  border: 1px solid red;
+}
+
+
+/* IndiaMap.module.css */
+.tooltip {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 12px;
+    color: black;
+    z-index: 10;
+    pointer-events: none; /* Ensures the tooltip does not interfere with mouse events */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }

@@ -1,0 +1,33 @@
+.videoPreview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.videoPlayer {
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid var(--colorGray3);
+}
+
+.resetRemove {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.error {
+    color: var(--colorRed);
+    text-align: center;
+}
+
+.noVideo{
+    width: 100%;
+    color: var(--color);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

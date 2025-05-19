@@ -1,0 +1,21 @@
+.repeaterField {
+    border: 1px solid red;
+    padding: 10px;
+
+}
+
+.btnComp {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+}
+
+.component {
+    width: 100%;
+}
+
+.addMorebtn{
+    width: 100%;
+    padding: 10px;
+}

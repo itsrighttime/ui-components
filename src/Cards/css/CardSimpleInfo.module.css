@@ -1,0 +1,64 @@
+
+/* Code: ABAB008 */
+
+.img {
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+}
+
+.containerCard {
+  max-width: 450px;
+  min-width: 200px;
+  position: relative;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cyan {
+  border: 1px solid var(--colorCyan);
+}
+
+.red {
+  border: 1px solid var(--colorRed);
+}
+
+.yellow {
+  border: 1px solid var(--colorYellow);
+}
+.green {
+  border: 1px solid var(--colorGreen);
+}
+.gray {
+  border: 1px solid var(--colorGray4);
+}
+.blue {
+  border: 1px solid var(--colorBlue);
+}
+
+.grayImg {
+  filter: grayscale(100%);
+}
+
+
+.position{
+  text-align: left;
+}
+
+.desc {
+  margin-top: 5px;
+  border-top: 2px solid var(--colorGray4);
+  font-size: calc(var(--size) * 0.82);
+  text-align: justify;
+}
+
+@media screen and (max-width: 315px) {
+  .containerCard {
+    flex-direction: column;
+    align-items: start;
+  }
+}

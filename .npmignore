@@ -1,0 +1,11 @@
+# .git
+# .gitignore
+# node_modules/
+# tests/
+# docs/
+# public/
+
+# App.js
+# App.css
+# index.js
+# index.css

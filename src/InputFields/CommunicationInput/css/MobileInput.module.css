@@ -1,0 +1,14 @@
+.mobileInput {
+    display: flex;
+    width: 100%;
+}
+
+.code {
+    width: 50px;
+    margin: 10px 10px 0 0;
+}
+
+.number {
+    margin-top: 10px;
+    width: calc(100% - 50px);
+}

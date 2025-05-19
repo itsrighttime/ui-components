@@ -1,0 +1,52 @@
+.iconButton {
+    position: relative;
+}
+
+.label {
+    position: absolute;
+    top: -25px;
+    left: var(--labelLeft);
+    font-size: calc(var(--size) * 0.8);
+    background-color: var(--colorBackground);
+    padding: 1px 7px;
+    border: 1px solid var(--colorGray3);
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+    text-wrap: nowrap;
+}
+
+.iconButton:hover .label {
+    opacity: 1;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    border: 1px solid var(--iconColor);
+    padding: 2px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    background-color: var(--colorBackground);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn svg path {
+    color: var(--iconColor);
+}
+
+.btn svg {
+    font-size: var(--iconSize);
+}
+
+.btn:hover {
+    background-color: var(--iconColor);
+}
+
+.btn:hover svg path {
+    color: var(--colorWhite);
+}

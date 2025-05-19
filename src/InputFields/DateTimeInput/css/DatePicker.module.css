@@ -1,0 +1,26 @@
+.datePicker {
+    width: 100%;
+    position: relative;
+}
+
+.dateInput {
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 5px;
+    border-top: var(--borderTop);
+    border-left: var(--borderLeft);
+    border-right: var(--borderRight);
+    border-bottom: var(--borderBottom);
+    border-radius: var(--borderRadius);
+    width: 100%;
+}
+
+.calendar {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: 100%;
+    background-color: var(--colorBackground);
+    z-index: 1000;
+}

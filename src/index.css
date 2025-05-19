@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700&display=swap");
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Wix Madefor Display", sans-serif;
+  color: var(--colorSimple);
+  font-size: var(--size);
+}
+
+body {
+  background-color: var(--colorBackground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  --colorSimple: #404040;
+  --colorBlue: #00b0f0;
+  --colorYellow: #dbac2b;
+  --colorRed: #ff5969;
+  --colorCyan: #52c9bd;
+  --colorGreen: #92d050;
+  --colorSkyBlue: #05e1e7;
+  --colorGray1: #f2f2f2;
+  --colorGray2: #f7f7f7;
+  --colorGray3: #d9d9d9;
+  --colorGray4: #bbb9b9;
+  --colorGray5: #7f7f7f;
+  --colorGray6: #404040;
+
+  --boldL1: 500;
+  --boldL2: 600;
+  --boldL3: 700;
+  --boldL4: 800;
+  --boldL5: 900;
+  --bold: 400;
+  --boldX1: 300;
+  --boldX2: 200;
+  --boldX3: 100;
+
+  --size: 1rem;
+  --size1x: 0.1rem;
+  --size2x: 0.2rem;
+  --size3x: 0.3rem;
+  --size4x: 0.4rem;
+  --size5x: 0.5rem;
+
+  --colorSkyBlueAlpha: #50b7e7cc;
+  --colorSkyBlueHover: #6dc3eb;
+  --colorBlueHover: #55cffc;
+  --colorYellowHover: #fadd8e;
+  --colorRedHover: #ff8d98;
+  --colorCyanHover: #6fddd2;
+  --colorGreenHover: #add87e;
+  --colorWhite: #fff;
+  --colorBlack: #000;
+  --colorBackground: #fff;
+}
+
+::selection {
+  color: #ffffff;
+  /* Selected text color */
+  background-color: var(--colorBlueHover);
+  /* Highlight color */
+}
+
+/* For Firefox */
+::-moz-selection {
+  color: #ffffff;
+  background-color: var(--colorBlueHover);
+}
+
+
+/* ***************************************************************** */
+
+/* Scrollbar styles */
+/* Code: ABAB015 */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--colorGray3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--colorRed);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--colorGray3);
+}

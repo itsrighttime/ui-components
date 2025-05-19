@@ -1,0 +1,30 @@
+.numberFieldContainer {
+  width: 100%;
+  margin-top: 9px;
+  position: relative;
+}
+
+.numberFieldInput {
+  width: 100%;
+  padding: 5px 5px;
+  border: none;
+  outline: none;
+  border-top: var(--borderTop);
+  border-left: var(--borderLeft);
+  border-right: var(--borderRight);
+  border-radius: var(--borderRadius);
+  border-bottom: var(--borderBottom);
+}
+
+.numberFieldInput:focus {
+  color: var(--color);
+  font-weight: var(--boldL2);
+}
+
+.textFieldLabel {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  font-size: calc(var(--size) * 0.8);
+  color: var(--colorGray5);
+}
