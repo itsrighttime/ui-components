@@ -1,7 +1,25 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import styles from "../css/DroppableArea.module.css";
 
-const DroppableArea = ({ items, onDrop }) => {
+/**
+ * DroppableArea component
+ *
+ * A rectangular area that accepts dragged items and places them at the dropped position.
+ * Also shows the live mouse coordinates within the area.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Array<{id: string|number, name: string, x: number, y: number}>} props.items - List of items already dropped.
+ * @param {function} props.onDrop - Callback triggered when an item is dropped.
+ *        It receives three arguments: `id`, `x`, `y` indicating item identifier and its position.
+ *
+ * @example
+ * <DroppableArea
+ *   items={[{ id: "1", name: "Table", x: 100, y: 150 }]}
+ *   onDrop={(id, x, y) => console.log("Dropped:", id, "at", x, y)}
+ * />
+ */
+export const DroppableArea = ({ items, onDrop }) => {
   const droppableRef = useRef(null); // Reference to the droppable area
   const [cursorPoint, setCursorPoint] = useState(["-", "-"]);
 
@@ -61,5 +79,3 @@ const DroppableArea = ({ items, onDrop }) => {
     </>
   );
 };
-
-export default DroppableArea;

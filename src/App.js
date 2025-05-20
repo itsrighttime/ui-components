@@ -1,6 +1,6 @@
 import "./App.css";
 import "./export.js";
-import { UseCardsExample } from "./Usecases/Misc/UseCardsExample.jsx";
+import { UseDragAndDropExample } from "./Usecases/Misc/UseDragAndDropExample.jsx";
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
           padding: "100px",
         }}
       >
-        <UseCardsExample />
+        <UseDragAndDropExample />
       </div>
     </div>
   );
