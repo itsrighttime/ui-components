@@ -4,6 +4,8 @@ import { CardImg } from "./Cards/js/CardImg";
 import { CardSimpleInfo } from "./Cards/js/CardSimpleInfo";
 import { CardTextOn } from "./Cards/js/CardTextOn";
 import { CardTextSliding } from "./Cards/js/CardTextSliding";
+import IndiaMap from "./ExtraThings/js/IndiaMap";
+import Tooltip from "./ExtraThings/js/Tooltip";
 import { useAlerts } from "./Hooks/useAlert";
 
 export const UIAlert = {
@@ -17,4 +19,9 @@ export const UICards = {
   CardSimpleInfo,
   CardTextOn,
   CardTextSliding,
+};
+
+export const UIExtra = {
+  IndiaMap,
+  Tooltip,
 };
