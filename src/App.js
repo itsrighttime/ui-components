@@ -1,6 +1,6 @@
 import "./App.css";
 import "./export.js";
-import UseAlertsExample from "./Usecases/Misc/UseAlertsExample.jsx";
+import { UseCardsExample } from "./Usecases/Misc/UseCardsExample.jsx";
 
 const App = () => {
   return (
@@ -11,10 +11,12 @@ const App = () => {
           // height: "100vh",
           display: "flex",
           // justifyContent: "end",
+          gap: "20px",
           alignItems: "end",
+          padding: "100px",
         }}
       >
-        <UseAlertsExample />
+        <UseCardsExample />
       </div>
     </div>
   );

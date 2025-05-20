@@ -1,17 +1,36 @@
-
-import React from "react";
+import { Button } from "../../InputFields/Actions/jsx/Button";
+import { getColorCode } from "../../utils/COLOR";
 import style from "../css/CardTextSliding.module.css";
-import { Button } from "../../InputFields";
+// import { Button } from "../../InputFields";
 
+/**
+ * CardTextSliding Component
+ *
+ * A modern card with animated text overlay and CTA button.
+ * Suitable for products, promotions, or interactive storytelling.
+ *
+ * @component
+ * @param {string} imgP - Background image source.
+ * @param {string} productName - Title or name of the product/content.
+ * @param {string} desc - Description or details.
+ * @param {Function|string} [setResult="#"] - Callback function or link to handle CTA click.
+ * @param {string|null} [productID=null] - Optional product ID.
+ * @param {'cyan'|'red'|'yellow'|'green'|'blue'|'gray' | 'white' | 'black'} [colorName="white"] - The border theme color.
+ * @param {'H'|'V'|'S'} [orientation="V"] - Orientation type: Horizontal, Vertical, Square.
+ * @param {string} [borderRadius="10px"] - Border Radius.
+ *
+ * @returns {JSX.Element}
+ */
 
-const CardTextSliding = ({
-  imgPath,
+export const CardTextSliding = ({
+  img,
   productName,
   desc,
   setResult = "#",
   productID = null,
-  color,
-  orientation = "S",
+  colorName,
+  orientation = "V",
+  borderRadius = "10px",
 }) => {
   const cardContentCss = `${style.cardContent} | ${style.flow}`;
   const cardContentContainerCss = `${style.cardContentContainer} | ${style.flow}`;
@@ -22,8 +41,10 @@ const CardTextSliding = ({
       ? "horizontal"
       : "square";
 
+  const color = getColorCode(colorName);
+
   const cssVariable = {
-    "--color": color || `var(--colorCyan)`,
+    "--color": color,
   };
 
   return (
@@ -33,22 +54,20 @@ const CardTextSliding = ({
         style={cssVariable}
       >
         {/* Main Card Continer */}
-        <article className={style.card}>
+        <article className={style.card} style={{ borderRadius }}>
           {/* Background Image */}
           <img
             className={style.cardBackground}
-            src={imgPath}
+            src={img}
             alt=""
-            width="1920"
-            height="2193"
+            // width="1920"
+            // height="2193"
           />
 
           {/* Content Section */}
           <div className={cardContentCss}>
             <div className={cardContentContainerCss}>
-              <h2 className={`${style.cardTitle}`}>
-                {productName}
-              </h2>
+              <h2 className={`${style.cardTitle}`}>{productName}</h2>
               <p className={style.cardDescription}>{desc}</p>
             </div>
             <div className={style.cardButton}>
@@ -65,13 +84,9 @@ const CardTextSliding = ({
         {productID == null ? (
           <></>
         ) : (
-          <div className={`${style.productID} textHeadSmall2`}>
-            <p className="textHeadSmall2">~ Product ID: {productID}</p>
-          </div>
+          <p className={style.productID}>~ Product ID: {productID}</p>
         )}
       </div>
     </>
   );
 };
-
-export default CardTextSliding;

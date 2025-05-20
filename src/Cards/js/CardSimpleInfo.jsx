@@ -1,62 +1,59 @@
-// Code : ABAB008
-
-import React from "react";
+import { getColorCode } from "../../utils/COLOR";
 import style from "../css/CardSimpleInfo.module.css";
 
-const CardSimpleInfo = ({
-  imgPath,
+/**
+ * CardSimpleInfo Component
+ *
+ * Displays a compact profile/info card with optional border colors and title.
+ * Ideal for showcasing team members, speakers, or clients.
+ *
+ * @component
+ * @param {string} img - Image path to be shown.
+ * @param {string} name - Primary name to display.
+ * @param {string} desc - Description or details about the person.
+ * @param {string|null} [title=null] - Optional position or role title.
+ * @param {'cyan'|'red'|'yellow'|'green'|'blue'|'gray'} [colorName="cyan"] - The border theme color.
+ * @param {string} [borderRadius="10px"] - Border Radius.
+ 
+ * @returns {JSX.Element}
+ */
+
+export const CardSimpleInfo = ({
+  img,
   name,
   desc,
   title = null,
-  borderCol = "cyan",
+  colorName = "cyan",
+  borderRadius = "10px",
 }) => {
-  // Selecting Border Color according the prop passed through the Component
-  const classA =
-    borderCol === "cyan"
-      ? `${style.containerCard} ${style.cyan}`
-      : borderCol === "red"
-      ? `${style.containerCard} ${style.red}`
-      : borderCol === "yellow"
-      ? `${style.containerCard} ${style.yellow}`
-      : borderCol === "green"
-      ? `${style.containerCard} ${style.green}`
-      : borderCol === "blue"
-      ? `${style.containerCard} ${style.blue}`
-      : `${style.containerCard} ${style.gray}`;
-
-  // Selecting User Name Color according the prop passed through the Component
-  const nameCss =
-    borderCol === "cyan"
-      ? `${style.name} textHead3 colorCyan`
-      : borderCol === "red"
-      ? `${style.name} textHead3 colorRed`
-      : borderCol === "yellow"
-      ? `${style.name} textHead3 colorYellow`
-      : borderCol === "green"
-      ? `${style.name} textHead3 colorGreen`
-      : borderCol === "blue"
-      ? `${style.name} textHead3 colorBlue`
-      : `${style.name} textHead3 colorGray5`;
+  const finalColor = getColorCode(colorName);
 
   //   Making Inage Grayscale if user pass gray color of the border
   const imgCss =
-    borderCol === "gray" ? `${style.img} ${style.grayImg}` : `${style.img}`;
+    colorName === "gray" ? `${style.img} ${style.grayImg}` : `${style.img}`;
 
-  //
-  // Making the Component
-  const positionCss = `${style.position} textHeadSmall1`;
   return (
     <>
-      <div className={classA}>
-        <img src={imgPath} className={imgCss} alt="" />
-        <div className={style.namePos}>
-          <p className={nameCss}>{name}</p>
-          {title === null ? <></> : <p className={positionCss}>{title}</p>}
-          <p className={style.desc}>{desc}</p>
+      <div
+        className={style.containerCard}
+        style={{ border: `1px solid ${finalColor}`, borderRadius }}
+      >
+        <img src={img} className={imgCss} alt="" />
+        <div>
+          <div className={style.namePos}>
+            <p className={style.name} style={{ color: `${finalColor}` }}>
+              {name}
+            </p>
+            {title === null ? <></> : <p className={style.position}>{title}</p>}
+          </div>
+          <p
+            className={style.desc}
+            style={{ borderTop: `2px solid ${finalColor}` }}
+          >
+            {desc}
+          </p>
         </div>
       </div>
     </>
   );
 };
-
-export default CardSimpleInfo;

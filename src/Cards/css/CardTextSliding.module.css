@@ -1,5 +1,3 @@
-/* Code: ABAB009 */
-
 .mainBox.horizontal {
   height: 300px;
   max-width: 500px;
@@ -7,7 +5,7 @@
 
 .mainBox.vertical {
   max-width: 300px;
-  height: 500px;
+  max-height: 500px;
 }
 
 .mainBox.square {
@@ -15,7 +13,7 @@
   width: 300px;
 }
 
-.mainBox{
+.mainBox {
   margin: auto;
 }
 
@@ -44,8 +42,11 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 0.625rem;
   box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+  width: 100%;
 }
 
 .card > * {
@@ -138,7 +139,6 @@
   background-color: var(--colorGray);
 }
 
-
 .cardButton {
   display: flex;
   justify-content: center;
@@ -147,13 +147,10 @@
 .productID {
   display: flex;
   justify-content: flex-end;
-  padding: 0 10px;
-  gap: 10px;
-}
-.productID p {
-  display: flex;
-  align-items: flex-end;
-  color: var(--colorGray6);
+  padding-right: 15px;
+  font-size: calc(var(--size) * 0.6);
+  font-weight: var(--boldL3);
+  color: var(--colorGray5);
 }
 
 @media (any-hover: hover) and (any-pointer: fine) {

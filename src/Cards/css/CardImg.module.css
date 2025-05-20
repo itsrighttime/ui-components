@@ -4,15 +4,13 @@
   --img-scale: 1.001;
   --link-icon-translate: -20px;
   --link-icon-opacity: 0;
-  border-radius: 16px;
   box-shadow: none;
   transform-origin: center;
   transition: all 0.4s ease-in-out;
   background: var(--colorWhite);
   border: 1px solid var(--colorGray1);
-
   overflow: hidden;
-  width: 300px;
+  max-width: 300px;
 }
 
 .articles {
@@ -21,10 +19,9 @@
 
 /* basic .articleContainer elements styling */
 .articleContainer h2 {
-  margin: 0 0 18px 0;
-  font-size: calc(var(--size) * 1.8);
+  margin: 0 0 10px 0;
+  font-size: calc(var(--size) * 1.6);
   letter-spacing: 0.06em;
-  color: var(--colorRed);
   transition: color 0.3s ease-out;
 }
 
@@ -64,4 +61,21 @@ figure {
   --link-icon-opacity: 1;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+@media screen and (max-width: 290px) {
+  /* basic .articleContainer elements styling */
+  .articleContainer h2 {
+    font-size: calc(var(--size) * 1.3);
+    letter-spacing: 0.05em;
+    margin: 0 0 7px 0;
+  }
+
+  .articleBody {
+    padding: 10px;
+  }
+  .articleContainer p {
+    text-align: justify;
+    font-size: calc(var(--size) * 0.9);
+  }
 }
