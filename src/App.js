@@ -1,7 +1,6 @@
-import React from "react";
 import "./App.css";
 import "./export.js";
-import Tooltip from "./ExtraThings/js/Tooltip.jsx";
+import UseAlertsExample from "./Usecases/Misc/UseAlertsExample.jsx";
 
 const App = () => {
   return (
@@ -11,13 +10,11 @@ const App = () => {
           border: "1px solid red",
           // height: "100vh",
           display: "flex",
-          justifyContent: "end",
+          // justifyContent: "end",
           alignItems: "end",
         }}
       >
-        <Tooltip content="Dansiahn">
-          <button>Hover me</button>
-        </Tooltip>
+        <UseAlertsExample />
       </div>
     </div>
   );

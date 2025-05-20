@@ -1,34 +1,64 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import style from "../css/Alert.module.css";
+import { crossIcon } from "../../utils/icons";
+import IconButton from "../../InputFields/Actions/jsx/IconButton";
 
-const Alert = ({ message, type, onDismiss }) => {
-  const TIME_LIMIT = 10; // Adjusted to 10 seconds for clarity
+/**
+ * Alert Component - Displays a single alert message with a countdown bar and dismiss transition.
+ *
+ * @component
+ * @param {Object} props
+ * @param {string} props.message - The alert message text.
+ * @param {"success"|"error"|"info"} props.type - Type of alert, determines styling.
+ * @param {Function} props.onDismiss - Callback when alert is removed.
+ */
+export const Alert = ({ message, type, onDismiss }) => {
+  const TIME_LIMIT = 10;
   const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
   const [width, setWidth] = useState(100);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Decrease the timeLeft at regular intervals
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
-    }, 1000); // 1 second interval
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
 
-    // Update the progress bar width
     setWidth((timeLeft / TIME_LIMIT) * 100);
 
-    // If time runs out, dismiss the alert
-    if (timeLeft <= -1) {
-      onDismiss();
+    if (timeLeft <= 0) {
+      setIsVisible(false); // Trigger fade-out
     }
 
-    return () => clearInterval(timer);
-  }, [timeLeft, onDismiss]);
+    return () => clearInterval(interval);
+  }, [timeLeft]);
+
+  // Delay unmount after animation
+  useEffect(() => {
+    if (!isVisible) {
+      const timeout = setTimeout(() => onDismiss(), 400); // Match CSS transition
+      return () => clearTimeout(timeout);
+    }
+  }, [isVisible, onDismiss]);
+
+  const handleManualDismiss = () => setIsVisible(false); // Handle icon click
 
   return (
-    <div className={`${style.alert} ${style[type]}`}>
+    <div
+      className={`${style.alert} ${style[type]} ${
+        !isVisible ? style.fadeOut : ""
+      }`}
+    >
       {message}
       <div className={style.statusBar} style={{ width: `${width}%` }}></div>
+      <div className={style.crossIcon}>
+        <IconButton
+          icon={crossIcon}
+          onClick={handleManualDismiss}
+          color="#fff"
+          style={{ borderRadius: "50%", backgroundColor: "#ff5969" }}
+          size="0.5"
+        />
+      </div>
     </div>
   );
 };
-
-export default Alert;
