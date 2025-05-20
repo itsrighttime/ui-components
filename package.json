@@ -1,16 +1,24 @@
 {
-  "name": "letscreate",
+  "name": "ui-components",
   "version": "0.0.1",
-  "description": "A powerful and intuitive FormBuilder tool for creating, managing, and sharing customizable forms for businesses, projects, and surveys.",
+  "description": "A reusable and customizable UI component library including inputs, buttons, notifications, cards, icons, and special pages for rapid frontend development.",
   "keywords": [
-    "form builder",
-    "online forms",
-    "form management",
-    "surveys",
-    "customizable forms",
-    "drag-and-drop",
-    "form creation",
-    "form builder tool"
+    "react",
+    "ui-components",
+    "component-library",
+    "design-system",
+    "react-components",
+    "buttons",
+    "inputs",
+    "cards",
+    "icons",
+    "tooltip",
+    "notifications",
+    "pages",
+    "frontend",
+    "reusable-components",
+    "styled-components",
+    "ui-library"
   ],
   "author": {
     "name": "Danishan",
@@ -19,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/itsrighttime/letscreate_ui"
+    "url": "https://github.com/itsrighttime/ui-components"
   },
   "scripts": {
     "start": "react-scripts start",
