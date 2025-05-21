@@ -4,26 +4,25 @@ export const __logger = (serviceName) => {
   const logWithLevel =
     (level) =>
     ({ message, context = null, code = "NA" }) => {
-      const formatted = formatMessage({
+      const { message: baseMsg, information } = formatMessage({
         level,
         serviceName,
         message,
         context,
         code,
       });
-      console.log(formatted);
+      console.log(baseMsg, information);
     };
 
   const logWithError = ({ message, context = null, code = "NA", error }) => {
-    const formatted = formatMessage({
+    const { information, message: baseMsg } = formatMessage({
       level: "error",
       serviceName,
       message: message,
-      stack: error?.stack || null,
       context,
       code,
     });
-    console.error(formatted);
+    console.error(baseMsg, information, error);
   };
 
   return {

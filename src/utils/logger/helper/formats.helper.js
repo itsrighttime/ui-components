@@ -7,7 +7,6 @@ export const formatMessage = ({
   message,
   context = null,
   code = "NA",
-  stack = null,
 }) => {
   const time = `${COLORS.timestamp}${getTime()}${COLORS.reset}`;
   const service = `${COLORS.service}${serviceName}${COLORS.reset}`;
@@ -15,12 +14,15 @@ export const formatMessage = ({
 
   const base = `[${service} - ${time}] ${levelColor}${level.toUpperCase()}${
     COLORS.reset
-  }: ${message}`;
-  const codeLine = `| Code: ${code}`;
-  const contextLine = context
-    ? `| Context: ${JSON.stringify(context, null, 2)}`
-    : "";
-  const stackLine = stack ? `|- ${stack}` : "";
+  }: ${message}\n`;
 
-  return [base, codeLine, contextLine, stackLine].filter(Boolean).join("\n");
+  const contextLine = {
+    context,
+    code,
+  };
+
+  return {
+    message: base,
+    information: contextLine,
+  };
 };
