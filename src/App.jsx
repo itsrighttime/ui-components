@@ -1,6 +1,7 @@
 import "./App.css";
 import "./export.js";
 import { UseDragAndDropExample } from "./Usecases/Misc/UseDragAndDropExample.jsx";
+import { UseHookAPIExample } from "./Usecases/Misc/UseHookAPIExample.jsx";
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
           padding: "100px",
         }}
       >
-        <UseDragAndDropExample />
+        <UseHookAPIExample />
       </div>
     </div>
   );
