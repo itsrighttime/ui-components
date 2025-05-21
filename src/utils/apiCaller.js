@@ -54,7 +54,7 @@ export const apiCaller = async ({
 
     logger.info({
       message: `API Success → ${method} ${url}`,
-      context: { status: response?.status },
+      context: { status: response?.status, data },
       code: "00003",
     });
 
