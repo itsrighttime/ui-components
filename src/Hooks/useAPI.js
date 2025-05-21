@@ -1,63 +1,49 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { apiCaller } from "../utils/apiCaller";
 
 /**
- * 
- * @param {*} endpoint 
- * @param {*} method 'GET'
- * @param {*} body null
- * @returns 
+ * React hook for automatic data fetching with dependency safety.
  */
-const useAPI = (endpoint, method = 'GET', body = null, activeTab = '', printEndpoint = false) => {
+export const useAPI = ({
+  endpoint = "/",
+  method = "GET",
+  body = null,
+  headers = {},
+  params = {},
+  activeTab = null,
+}) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  useEffect(() => {
+    let isMounted = true;
 
-    const apiUrl = `${process.env.REACT_APP_SERVER_API_PROXY}${endpoint}`;
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const result = await apiCaller({
+          endpoint,
+          method,
+          body,
+          headers,
+          params,
+        });
+        if (isMounted) setData(result);
+      } catch (err) {
+        if (isMounted) setError(err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            setError(null);
-            setData(null); // Reset data when the endpoint changes
+    fetchData();
 
-            // Handle case when no endpoint is provided (like "home" or "units")
-            if (!endpoint) {
-                setLoading(false);
-                return;
-            }
+    return () => {
+      isMounted = false;
+    };
+  }, [endpoint, activeTab]);
 
-            try {
-                let response;
-
-                // Handle GET vs POST/PUT methods
-                if (method.toUpperCase() === 'GET') {
-                    response = await axios.get(apiUrl, {
-                        params: body, // Use body as params for GET requests
-                    });
-                } else {
-                    response = await axios({
-                        method,
-                        url: apiUrl,
-                        data: body, // Use data for POST/PUT requests
-                    });
-                }
-                printEndpoint && console.log("SUCCESS - API Call to:", apiUrl);
-                setData(response.data);
-            } catch (error) {
-                printEndpoint && console.log("ERROR - API Call to:", apiUrl);
-                console.error(`Error fetching data (Endpoint): ${apiUrl}`, error);
-                setError(error.response ? error.response.data : `An error occurred while fetching API (Endpoint: ${apiUrl}).`);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [endpoint, method, apiUrl, body, activeTab, printEndpoint]);
-
-    return { response: data, loading, error };
+  return { data, loading, error };
 };
-
-export default useAPI;

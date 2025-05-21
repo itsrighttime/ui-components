@@ -7,6 +7,8 @@ import { CardTextSliding } from "./Cards/js/CardTextSliding";
 import IndiaMap from "./ExtraThings/js/IndiaMap";
 import Tooltip from "./ExtraThings/js/Tooltip";
 import { useAlerts } from "./Hooks/useAlert";
+import { useAPI } from "./Hooks/useAPI";
+import { apiCaller } from "./utils/apiCaller";
 import { UtilsLogger } from "./utils/logger/logger.util";
 
 export const UIAlert = {
@@ -31,4 +33,6 @@ export const UIEssentials = {
   logger: UtilsLogger.logger,
   codeTypes: UtilsLogger.codeTypes,
   getTrackingCode: UtilsLogger.getTrackingCode,
+  useAPI,
+  apiCaller,
 };
