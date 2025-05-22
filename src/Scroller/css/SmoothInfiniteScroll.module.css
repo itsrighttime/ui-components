@@ -1,0 +1,36 @@
+.scrollContainer {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 16px;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  /* Optional: custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.scrollItem {
+  background-color: #fff;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s ease-in-out;
+}
+
+.scrollItem:hover {
+  background-color: #f0f0f0;
+}
