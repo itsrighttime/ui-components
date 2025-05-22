@@ -1,7 +1,6 @@
-import React from "react";
-import TextField from "../../TextInput/jsx/TextField";
+import { TextField } from "../../TextInput/jsx/TextField";
 
-const EmailField = ({
+export const EmailField = ({
   label = "Email",
   placeholder = "Enter your email",
   color,
@@ -27,12 +26,10 @@ const EmailField = ({
       color={color}
       pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
       errorMessage="Please enter a valid email address."
-      style={{ marginTop: "12px", ...style }}
+      style={style}
       setIsFieldValid={setIsFieldValid}
       isApplyStrictPattern={false}
       showLabelAlways={showLabelAlways}
     />
   );
 };
-
-export default EmailField;

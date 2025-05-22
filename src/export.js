@@ -12,6 +12,12 @@ import { Button } from "./InputFields/Actions/jsx/Button";
 import { IconButton } from "./InputFields/Actions/jsx/IconButton";
 import { ImageButton } from "./InputFields/Actions/jsx/ImageButton";
 import { Link } from "./InputFields/Actions/jsx/Link";
+import { EmailField } from "./InputFields/CommunicationInput/jsx/EmailInput";
+import { MobileField } from "./InputFields/CommunicationInput/jsx/MobileInput";
+import { JsonField } from "./InputFields/TextInput/jsx/JsonField";
+import { Label } from "./InputFields/TextInput/jsx/Label";
+import { TextArea } from "./InputFields/TextInput/jsx/TextArea";
+import { TextField } from "./InputFields/TextInput/jsx/TextField";
 import { apiCaller } from "./utils/apiCaller";
 import { UtilsLogger } from "./utils/logger/logger.util";
 
@@ -47,5 +53,13 @@ export const UIInputs = {
     IconButton,
     ImageButton,
     Link,
+  },
+  Text: {
+    TextField,
+    TextArea,
+    Label,
+    JsonField,
+    MobileField,
+    EmailField,
   },
 };

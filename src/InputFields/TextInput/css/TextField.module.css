@@ -46,7 +46,7 @@
 
 .textFieldLabel {
     position: absolute;
-    top: -16px;
+    top: -12px;
     left: 0;
     font-size: calc(var(--size) * 0.8);
     color: var(--colorGray5);

@@ -1,44 +1,20 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../css/TextField.module.css";
-import { crossIcon } from "../../../utils/index.js";
-import IconButton from "../../Actions/jsx/IconButton";
+import { crossIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton";
 
-/**
- * TextField Component
- *
- * Features:
- * - **Customizable Input Type**: Supports various input types like `text`, `password`, `email`, etc.
- * - **Label and Placeholder**: Allows optional `label` and `placeholder` for better UX.
- * - **Dynamic Pattern Support**: Allows users to choose between strict and lenient validation modes for Regex-based `pattern` validation.
- *      - **Lenient mode**: Lets users type freely and validates the input against the pattern, including length restrictions on loosing the focus.
- *      - **Strict mode**: Prevents users from typing characters that don't match the pattern. Length restrictions must be explicitly defined using the minLength and maxLength props.
- * - **Dynamic Error Messaging**: Displays custom error messages using the errorMessage prop. If the value "Invalid" is provided, it is treated as a special case, and "Invalid" will always be shown as the error message, regardless of the actual validation issue.
- * - **Real-Time Input Handling**: Sends input value and validity to the parent via `setResult` and `setIsFieldValid`.
- * - **Character Count Display**: Optionally shows current character count with `showCharacterCount`.
- * - **Styling Options**: Fully customizable styles via `color`, `isBorder`, `style`, and `className` props.
- * - **Prefix and Suffix**: Adds prefix/suffix elements inside the input box for advanced input styling.
- * - **Accessibility Features**: Includes `aria-label` for screen readers and supports `autoFocus`.
- * - **Event Handling**: Provides `onBlur`, `onFocus`, and `onClear` callbacks for custom behaviors.
- * - **Clear Input**: Offers a clear button with `onClear` prop for quick reset.
- * - **Error State Management**: Highlights invalid inputs with visual cues and error messages.
- * - **Spell Check**: Includes optional spell-checking via the `spellCheck` prop.
- * - **Disabled and Read-Only States**: Supports `disabled` and `required` attributes for flexibility.
- * - **Icon Support**: Allows integration of custom icons via `icon` prop.
- * - **Validation Guidance**: Logs errors in development for patterns with length restrictions, guiding proper use.
- */
-
-const TextField = ({
+export const TextField = ({
   type = "text",
   label,
   placeholder,
   value = "",
   setResult,
+  setIsFieldValid = () => {},
   color,
   required = false,
   minLength,
   maxLength,
   pattern,
-  setIsFieldValid = () => {},
   errorMessage = "Invalid Input",
   autoComplete = "off",
   disabled = false,
@@ -48,7 +24,6 @@ const TextField = ({
   spellCheck = false,
   ariaLabel,
   autoFocus = false,
-  className = "",
   style = {},
   isBorder = false,
   isApplyStrictPattern = true,
@@ -63,109 +38,95 @@ const TextField = ({
   const [isValid, setIsValid] = useState(true);
   const [errorMsg, setErrorMsg] = useState(errorMessage);
 
-  // Check for exact length, range, or minimum length quantifiers in the regex pattern
-  const hasLengthRestriction = (pattern) => {
-    const lengthPattern = /{(\d+)(,(\d+))?}/;
-    return lengthPattern.test(pattern);
+  useEffect(() => {
+    setInputValue(value); // Sync with external value
+  }, [value]);
+
+  const handleError = (msg) => {
+    const finalMsg = errorMessage === "Invalid" ? "Invalid" : msg;
+    setErrorMsg(finalMsg);
+    setIsValid(false);
+    setIsFieldValid(false);
   };
 
-  const handleErrorMsgSetter = (msg) => {
-    setErrorMsg(errorMessage === "Invalid" ? "Invalid" : msg);
-  };
-
-  const validateMaxLenRestriction = (value) => {
-    if (maxLength && value.length > maxLength) {
-      if (minLength === maxLength)
-        handleErrorMsgSetter(`Length must be ${minLength}.`);
-      else handleErrorMsgSetter(`Length must be less than ${maxLength}.`);
-      setIsValid(false);
-      setInputValue(inputValue);
+  const validateLength = (val) => {
+    if (minLength && val.length < minLength) {
+      handleError(
+        minLength === maxLength
+          ? `Length must be ${minLength}.`
+          : `Length must be greater than ${minLength}.`
+      );
+      return false;
+    }
+    if (maxLength && val.length > maxLength) {
+      handleError(
+        minLength === maxLength
+          ? `Length must be ${minLength}.`
+          : `Length must be less than ${maxLength}.`
+      );
       return false;
     }
     return true;
   };
 
-  const validateRegExWithOutLenRestriction = (value) => {
-    const regex = new RegExp(pattern);
-
-    if (!regex.test(value)) {
-      setIsValid(false);
-      setInputValue(inputValue);
-      handleErrorMsgSetter(errorMessage || "Invalid Input");
-      return false;
+  const validatePattern = (val) => {
+    if (pattern) {
+      const regex = new RegExp(pattern);
+      if (!regex.test(val)) {
+        handleError(errorMessage || "Invalid Input");
+        return false;
+      }
     }
     return true;
   };
 
-  // Handle input value change
+  const hasRegexLength = (pattern) =>
+    typeof pattern === "string" && /{(\d+)(,(\d+))?}/.test(pattern);
+
+  if (isApplyStrictPattern && hasRegexLength(pattern)) {
+    console.error(
+      "Length should be controlled using minLength and maxLength, not regex quantifiers."
+    );
+    return (
+      <p className={styles.textFieldErrorMessage}>Error: Check console log</p>
+    );
+  }
+
   const handleChange = (e) => {
-    const newValue = e.target.value;
-
+    const newVal = e.target.value;
     if (isApplyStrictPattern) {
-      if (pattern && !validateRegExWithOutLenRestriction(newValue)) return;
-      if (!validateMaxLenRestriction(newValue)) return;
-
-      // If the input is valid, update the value
-      setIsValid(true);
-      setInputValue(newValue);
-    } else {
-      setInputValue(newValue);
+      if (!validatePattern(newVal) || !validateLength(newVal)) return;
     }
+    setIsValid(true);
+    setInputValue(newVal);
   };
 
-  // Clear the input value
+  const handleBlur = () => {
+    const trimmedValue = inputValue.trim();
+    const valid =
+      (!minLength || trimmedValue.length >= minLength) &&
+      (!maxLength || trimmedValue.length <= maxLength) &&
+      (!pattern || new RegExp(pattern).test(trimmedValue));
+
+    setIsValid(valid);
+    setIsFieldValid(valid);
+    if (valid) setResult(trimmedValue);
+    onBlur?.();
+    setIsFocused(false);
+  };
+
+  const handleFocus = () => {
+    setIsValid(true);
+    setIsFocused(true);
+    onFocus?.();
+  };
+
   const handleClear = () => {
     setInputValue("");
-    onClear && onClear();
+    onClear?.();
   };
 
-  // Handle blur event to validate the input pattern and set validity
-  const handleBlur = () => {
-    if (isApplyStrictPattern) {
-      if (minLength && inputValue.length < minLength) {
-        if (minLength === maxLength)
-          handleErrorMsgSetter(`Length must be ${minLength}.`);
-        else handleErrorMsgSetter(`Length must be greater than ${minLength}`);
-
-        setIsValid(false);
-        setIsFieldValid(false); // Pass the validity to parent component
-      } else {
-        // Final Check to make sure the validity
-        if (
-          !validateMaxLenRestriction(inputValue) ||
-          !validateRegExWithOutLenRestriction(inputValue)
-        ) {
-          setIsFieldValid(false);
-        } else {
-          setIsValid(true)
-          setIsFieldValid(true);
-          setResult(inputValue);
-        }
-      }
-    } else {
-      if (pattern) {
-        const regex = new RegExp(pattern);
-        const isInputValid = regex.test(inputValue);
-        setIsValid(isInputValid);
-        setIsFieldValid(isInputValid);
-      }
-
-      setResult(inputValue);
-    }
-
-    setIsFocused(false);
-    onBlur && onBlur(); // Call onBlur if it exists
-  };
-
-  // Handle focus event, reset validation state
-  const handleFocus = () => {
-    setIsValid(true); // Reset validity on focus
-    setIsFocused(true);
-    onFocus && onFocus();
-  };
-
-  // Define CSS for the border and other style variables
-  const cssBorder = `1px solid ${color || `var(--colorCyan)`}`;
+  const cssBorder = `1px solid ${color || "var(--colorCyan)"}`;
   const cssVariable = {
     "--color": color || "var(--colorCyan)",
     "--borderRadius": style?.borderRadius || "initial",
@@ -174,25 +135,12 @@ const TextField = ({
     "--borderRight": isBorder ? cssBorder : "none",
     "--borderBottom": isBorder
       ? cssBorder
-      : `2px solid ${color || "var(--colorCyan"}`,
+      : `2px solid ${color || "var(--colorCyan)"}`,
   };
 
-  // If the pattern contains a length restriction, log an error
-  if (isApplyStrictPattern && hasLengthRestriction(pattern)) {
-    console.error(
-      `Your pattern should not include length restrictions. If length restrictions are necessary, please use the 'minLength' and 'maxLength' props instead.`
-    );
-    return (
-      <p className={styles.textFieldErrorMessage}>Error: Check console log</p>
-    );
-  }
-
   return (
-    <div
-      className={`${styles.textField} ${className}`}
-      style={{ ...style, ...cssVariable }}
-    >
-      {(showLabelAlways || (isFocused && inputValue !== "")) && label && (
+    <div className={styles.textField} style={{ ...style, ...cssVariable }}>
+      {(showLabelAlways || (isFocused && inputValue)) && label && (
         <label
           htmlFor={ariaLabel || label}
           className={`${styles.textFieldLabel} ${
@@ -216,7 +164,6 @@ const TextField = ({
           aria-label={ariaLabel || label}
           autoFocus={autoFocus}
           disabled={disabled}
-          title=""
           className={`${styles.textFieldInput} ${
             isValid ? "" : styles.invalid
           }`}
@@ -230,24 +177,21 @@ const TextField = ({
           <IconButton icon={crossIcon} onClick={handleClear} color="#FF5969" />
         )}
       </div>
-
-      {/* Error message and character count */}
       <div className={styles.errorNumCount}>
         {!isValid && (
-          <div className={styles.textFieldErrorMessage}>{`${errorMsg}`}</div>
+          <div className={styles.textFieldErrorMessage}>{errorMsg}</div>
         )}
-        {showCharacterCount && maxLength && (
+        {showCharacterCount && (
           <div
             className={`${styles.textFieldCharacterCount} ${
               isValid ? styles.isValid : ""
             }`}
           >
-            {inputValue.length}/{maxLength}
+            {inputValue.length}
+            {maxLength ? `/${maxLength}` : ""}
           </div>
         )}
       </div>
     </div>
   );
 };
-
-export default TextField;

@@ -1,5 +1,5 @@
 import styles from "../css/ImageButton.module.css";
-import Label from "../../TextInput/jsx/Label";
+import { Label } from "../../TextInput/jsx/Label";
 
 /**
  * A button with an image background and optional text label.

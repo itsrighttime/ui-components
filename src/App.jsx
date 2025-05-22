@@ -1,6 +1,6 @@
 import "./App.css";
 import "./export.js";
-import { UseActionExample } from "./Usecases/Input/UseActionExample.jsx";
+import { UseCommunicationExample } from "./Usecases/Input/UseCommunicationExample.jsx";
 
 const App = () => {
   return (
@@ -10,11 +10,11 @@ const App = () => {
           border: "1px solid red",
           display: "flex",
           justifyContent: "center",
-          alignItems: "end",
+          alignItems: "center",
           height: "100vh",
         }}
       >
-        <UseActionExample />
+        <UseCommunicationExample />
       </div>
     </div>
   );

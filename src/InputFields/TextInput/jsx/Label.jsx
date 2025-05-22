@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "../css/Label.module.css";
 
-const Label = ({
+export const Label = ({
   text,
   color,
   fontSize,
@@ -31,5 +30,3 @@ const Label = ({
     </div>
   );
 };
-
-export default Label;

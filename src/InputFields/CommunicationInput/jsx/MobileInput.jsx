@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import TextField from "../../TextInput/jsx/TextField";
+import { useEffect, useState } from "react";
+import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/MobileInput.module.css";
 
-const MobileField = ({
+export const MobileField = ({
   required = false,
   color,
   code = "+91",
-  className = "",
   setResult,
   setIsFieldValid,
   noOfDigits = 10,
@@ -23,7 +22,7 @@ const MobileField = ({
   const errorMessage = "Numbers Only";
 
   return (
-    <div className={`${styles.mobileInput} ${styles[className]}`} style={style}>
+    <div className={styles.mobileInput} style={style}>
       <div className={styles.code}>
         <TextField
           type="text"
@@ -59,5 +58,3 @@ const MobileField = ({
     </div>
   );
 };
-
-export default MobileField;

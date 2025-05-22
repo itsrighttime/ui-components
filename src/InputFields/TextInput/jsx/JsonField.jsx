@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
-import TextArea from "./TextArea";
+import { useEffect, useState } from "react";
+import { TextArea } from "./TextArea";
 import { Button } from "../../Actions/jsx/Button";
 import styles from "../css/JsonField.module.css";
 
-const JsonField = ({
+export const JsonField = ({
   label,
   setResult,
   setIsFieldValid,
   color,
   hideOnSave = false,
+  showCharacterCount = false,
+  showWordCount = false,
 }) => {
   const [jsonInput, setJsonInput] = useState("");
   const [error, setError] = useState("");
@@ -29,8 +31,10 @@ const JsonField = ({
       const prettyJson = JSON.stringify(parsedJson, null, 2);
       setFormattedJson(prettyJson);
       setJsonInput(prettyJson);
+      console.log("Formatted JSON:", prettyJson);
       hideOnSave && setOnSave(false);
     } catch (err) {
+      console.error("Invalid JSON format:", err);
       setError("Invalid JSON format");
       setFormattedJson("");
       setIsFieldValid(false);
@@ -46,8 +50,12 @@ const JsonField = ({
             <TextArea
               color={color}
               label={label}
+              value={jsonInput}
               setResult={setJsonInput}
               placeholder="Please input the JSON data here..."
+              showCharacterCount={showCharacterCount}
+              showWordCount={showWordCount}
+              
             />
           </div>
 
@@ -62,6 +70,7 @@ const JsonField = ({
                 text={"Validate & Save"}
                 color={color}
                 onClick={handleValidateJson}
+                width={"150px"}
               />
             </div>
           </div>
@@ -72,5 +81,3 @@ const JsonField = ({
     </div>
   );
 };
-
-export default JsonField;

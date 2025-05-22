@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "../css/TextArea.module.css";
 
-const TextArea = ({
+export const TextArea = ({
   label,
   value,
   setResult,
@@ -14,7 +14,6 @@ const TextArea = ({
   showCharacterCount = false,
   showWordCount = false,
   disabled = false,
-  className = "",
   style = {},
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
@@ -73,7 +72,7 @@ const TextArea = ({
 
   return (
     <div
-      className={`${styles.textAreaContainer} ${className}`}
+      className={styles.textAreaContainer}
       style={{ ...style, ...cssVariable }}
     >
       {label && isFocused && inputValue !== "" && (
@@ -123,5 +122,3 @@ const TextArea = ({
     </div>
   );
 };
-
-export default TextArea;
