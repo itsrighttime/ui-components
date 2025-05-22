@@ -1,8 +1,6 @@
 import "./App.css";
 import "./export.js";
-import { UseDragAndDropExample } from "./Usecases/Misc/UseDragAndDropExample.jsx";
-import { UseHookAPIExample } from "./Usecases/Misc/UseHookAPIExample.jsx";
-import { UseSmoothScrollerExample } from "./Usecases/Misc/UseSmoothScrollerExample.jsx";
+import { UseActionExample } from "./Usecases/Input/UseActionExample.jsx";
 
 const App = () => {
   return (
@@ -10,9 +8,13 @@ const App = () => {
       <div
         style={{
           border: "1px solid red",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "end",
+          height: "100vh",
         }}
       >
-        <UseSmoothScrollerExample />
+        <UseActionExample />
       </div>
     </div>
   );

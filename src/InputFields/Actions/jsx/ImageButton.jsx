@@ -1,36 +1,49 @@
-import React from "react";
 import styles from "../css/ImageButton.module.css";
 import Label from "../../TextInput/jsx/Label";
+
+/**
+ * A button with an image background and optional text label.
+ *
+ * @component
+ * @param {string} text - Optional text displayed on the button.
+ * @param {Function} onClick - Function called when clicked.
+ * @param {Object} imageStyle - Custom styles for the button image.
+ * @param {string} backgroundImage - Image URL for the button background.
+ * @param {string} height - Button height.
+ * @param {string} width - Button width.
+ * @param {string} borderRadius - Rounded corners.
+ * @param {string} textColor - Color of the label text.
+ * @param {Object} textStyle - Inline styles for the label.
+ *
+ * @example
+ * <ImageButton
+ *   text="Gallery"
+ *   backgroundImage="/images/gallery.jpg"
+ *   onClick={() => console.log('Image Button Clicked')}
+ * />
+ */
 
 export const ImageButton = ({
   text,
   onClick,
-  style,
+  imageStyle,
   backgroundImage,
-  radius,
-  padding,
-  color,
-  fontSize,
-  fontWeight,
-  textAlign,
-  textTransform,
-  letterSpacing,
-  lineHeight,
-  fontFamily,
+  height = "100px",
+  width = "100px",
+  borderRadius = "5px",
+  textColor = "#52C9BD",
   textStyle,
 }) => {
   const cssVariable = {
-    "--radius": radius,
-    "--padding": padding,
+    "--height": height,
+    "--width": width,
   };
 
   const buttonStyle = {
-    ...style,
     ...cssVariable,
     backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none",
-    backgroundSize: "cover", // Ensure the background image covers the entire button
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
+    borderRadius,
+    ...imageStyle,
   };
 
   return (
@@ -40,20 +53,7 @@ export const ImageButton = ({
       onClick={onClick}
       style={buttonStyle}
     >
-      {text && (
-        <Label
-          text={text}
-          color={color}
-          fontSize={fontSize}
-          fontWeight={fontWeight}
-          textAlign={textAlign}
-          textTransform={textTransform}
-          letterSpacing={letterSpacing}
-          lineHeight={lineHeight}
-          fontFamily={fontFamily}
-          style={textStyle}
-        />
-      )}
+      {text && <Label text={text} color={textColor} style={textStyle} />}
     </button>
   );
 };

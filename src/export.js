@@ -8,6 +8,10 @@ import IndiaMap from "./ExtraThings/js/IndiaMap";
 import Tooltip from "./ExtraThings/js/Tooltip";
 import { useAlerts } from "./Hooks/useAlert";
 import { useAPI } from "./Hooks/useAPI";
+import { Button } from "./InputFields/Actions/jsx/Button";
+import { IconButton } from "./InputFields/Actions/jsx/IconButton";
+import { ImageButton } from "./InputFields/Actions/jsx/ImageButton";
+import { Link } from "./InputFields/Actions/jsx/Link";
 import { apiCaller } from "./utils/apiCaller";
 import { UtilsLogger } from "./utils/logger/logger.util";
 
@@ -35,4 +39,13 @@ export const UIEssentials = {
   getTrackingCode: UtilsLogger.getTrackingCode,
   useAPI,
   apiCaller,
+};
+
+export const UIInputs = {
+  Actions: {
+    Button,
+    IconButton,
+    ImageButton,
+    Link,
+  },
 };

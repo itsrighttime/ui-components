@@ -1,7 +1,26 @@
-import React from "react";
 import styles from "../css/Link.module.css";
 
-const Link = ({
+/**
+ * A styled hyperlink component with customizable typography.
+ *
+ * @component
+ * @param {string} text - The display text of the link.
+ * @param {string} url - The URL the link points to.
+ * @param {string} color - Text color.
+ * @param {string} fontSize - Font size of the link.
+ * @param {string} fontWeight - Font weight.
+ * @param {string} textAlign - Text alignment.
+ * @param {string} textTransform - Text transformation (uppercase, lowercase, etc.).
+ * @param {string} letterSpacing - Letter spacing.
+ * @param {string} lineHeight - Line height.
+ * @param {string} fontFamily - Font family.
+ * @param {Object} style - Additional custom styles.
+ *
+ * @example
+ * <Link text="Visit Site" url="https://example.com" color="blue" fontWeight="bold" />
+ */
+
+export const Link = ({
   text,
   url = "#",
   color = "#00b0f0",
@@ -29,7 +48,7 @@ const Link = ({
   return (
     <a
       href={url}
-      className={`${styles.link}`}
+      className={styles.link}
       style={dynamicStyle}
       target="_blank"
       rel="noopener noreferrer"
@@ -38,5 +57,3 @@ const Link = ({
     </a>
   );
 };
-
-export default Link;

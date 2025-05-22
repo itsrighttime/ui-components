@@ -1,6 +1,7 @@
 .link{
     cursor: pointer;
     text-decoration: underline;
+    border: 1px solid red;
 }
 
 .link:hover {

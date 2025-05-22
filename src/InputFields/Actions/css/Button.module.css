@@ -1,17 +1,19 @@
 .btn {
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
+  height: var(--height);
+  width: var(--width);
+  border-radius: var(--borderRadius);
   padding: 5px 10px;
   margin: 0;
   cursor: pointer;
-  color: var(--colorWhite);
-  background-color: var(--color);
-  border: none;
+  color: var(--color);
+  background-color: var(--background);
+  border: var(--border);
   font-weight: var(--boldL2);
   outline: none;
 }
 
 .btn:hover {
   opacity: 0.7;
+  background-color: var(--hoverBackground);
+  color: var(--hoverColor);
 }
