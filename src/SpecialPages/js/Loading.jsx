@@ -30,7 +30,7 @@ const LoadingChat = lazy(() => import("./LoadingChat"));
  * @param windowWidth Loading page Width
  * @returns jsx
  */
-const Loading = ({
+export const Loading = ({
   type = "CubesLoader",
   display = "top",
   position = "relative",
@@ -104,4 +104,3 @@ const Loading = ({
   );
 };
 
-export default Loading;

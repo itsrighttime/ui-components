@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import Calendar from "./Calendar"; // Assuming Calendar is your existing component
+import { useEffect, useRef, useState } from "react";
+import { Calendar } from "./Calendar"; // Assuming Calendar is your existing component
 import styles from "../css/DatePicker.module.css";
 
-const DatePicker = ({
+export const DatePicker = ({
   label,
   initialDate = null,
   restrictionStartDate = null,
@@ -11,6 +11,7 @@ const DatePicker = ({
   setResult,
   isSmall = true,
   isBorder = false,
+  width = "200px",
 }) => {
   const [selectedDate, setSelectedDate] = useState(
     initialDate === null ? label || "Select a Date" : initialDate
@@ -49,6 +50,7 @@ const DatePicker = ({
     "--borderBottom": isBorder
       ? cssBorder
       : `2px solid ${color || "var(--colorCyan"}`,
+    "--width": width,
   };
   return (
     <div className={styles.datePicker} ref={pickerRef} style={cssVariable}>
@@ -69,5 +71,3 @@ const DatePicker = ({
     </div>
   );
 };
-
-export default DatePicker;

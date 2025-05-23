@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../css/TimePicker.module.css";
-import CustomDropdown from "../helper/CustomDropdown";
+import { CustomDropdown } from "../helper/CustomDropdown";
 
-const TimePicker = ({ label, setResult, color }) => {
+export const TimePicker = ({ label, setResult, color, width = "200px" }) => {
   const [hours, setHours] = useState("--");
   const [minutes, setMinutes] = useState("--");
   const [period, setPeriod] = useState("--");
@@ -38,7 +38,7 @@ const TimePicker = ({ label, setResult, color }) => {
   const periodOptions = ["AM", "PM"];
 
   return (
-    <div className={styles.timeInputContainer}>
+    <div className={styles.timeInputContainer} style={{ maxWidth: width }}>
       {label && <label className={styles.label}>{label}</label>}
       <div className={styles.timeSelectors}>
         <CustomDropdown
@@ -66,5 +66,3 @@ const TimePicker = ({ label, setResult, color }) => {
     </div>
   );
 };
-
-export default TimePicker;

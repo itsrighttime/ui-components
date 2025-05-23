@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./css/CustomDropdown.module.css";
 
-const CustomDropdown = ({
+export const CustomDropdown = ({
   options,
   value,
   onChange,
@@ -73,5 +73,3 @@ const CustomDropdown = ({
     </div>
   );
 };
-
-export default CustomDropdown;

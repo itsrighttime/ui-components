@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from "react";
 import styles from "../css/CalendarBox.module.css";
-import { leftArrowIcon, rightArrowIcon } from "../../../utils/index.js";
+import { leftArrowIcon, rightArrowIcon } from "../../../utils/icons";
 import { convertStrDate2Date } from "../helper/handleDateChange";
 import { isAfterDate } from "../helper/handleDateCompare";
 import {
@@ -13,11 +13,14 @@ import {
   handleViewChange,
   handleYearSelection,
 } from "../helper/helperCalnedar";
+import { IconButton } from "../../Actions/jsx/IconButton";
+import { Loading } from "../../../SpecialPages/js/Loading";
 
-// Dynamically import components
+// // Dynamically import components
 const RenderCalendar = React.lazy(() => import("../helper/RenderDates"));
 const RenderMonths = React.lazy(() => import("../helper/RenderMonths"));
 const RenderYears = React.lazy(() => import("../helper/RenderYears"));
+
 
 export const Calendar = ({
   isSmall = false,
@@ -25,6 +28,8 @@ export const Calendar = ({
   color,
   restrictionStartDate = null, // 05-05-2024
   restrictionEndDate = null,
+  height = "100%",
+  width = "100%",
 }) => {
   // Convert string dates to Date objects
   if (restrictionStartDate)
@@ -57,6 +62,8 @@ export const Calendar = ({
 
   const cssVariable = {
     "--color": color || "var(--colorCyan)",
+    "--height": height,
+    "--width": width,
   };
 
   return (
@@ -67,8 +74,8 @@ export const Calendar = ({
       <div className={styles.calendarHeader}>
         {!restrictionStartDate ||
         canMovePrev(view, currentDate, restrictionStartDate) ? (
-          <div
-            className={styles.iconBtn}
+          <IconButton
+            icon={leftArrowIcon}
             onClick={() =>
               handlePrev(
                 currentDate,
@@ -77,9 +84,9 @@ export const Calendar = ({
                 view
               )
             }
-          >
-            {leftArrowIcon}
-          </div>
+            color={color}
+            label="Previous"
+          />
         ) : (
           <div></div>
         )}
@@ -89,20 +96,20 @@ export const Calendar = ({
         </h2>
         {!restrictionEndDate ||
         canMoveNext(view, currentDate, restrictionEndDate) ? (
-          <div
-            className={styles.iconBtn}
+          <IconButton
+            icon={rightArrowIcon}
             onClick={() =>
               handleNext(currentDate, setCurrentDate, restrictionEndDate, view)
             }
-          >
-            {rightArrowIcon}
-          </div>
+            color={color}
+            label="Next"
+          />
         ) : (
           <div></div>
         )}
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading windowHeight="100%" windowWidth="100%" />}>
         {view === "calendar" && (
           <RenderCalendar
             isSmall={isSmall}
@@ -145,5 +152,3 @@ export const Calendar = ({
     </div>
   );
 };
-
-export default Calendar;
