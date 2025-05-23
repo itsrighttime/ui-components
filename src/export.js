@@ -14,6 +14,9 @@ import { ImageButton } from "./InputFields/Actions/jsx/ImageButton";
 import { Link } from "./InputFields/Actions/jsx/Link";
 import { EmailField } from "./InputFields/CommunicationInput/jsx/EmailInput";
 import { MobileField } from "./InputFields/CommunicationInput/jsx/MobileInput";
+import { Calendar } from "./InputFields/DateTimeInput/jsx/Calendar";
+import { DatePicker } from "./InputFields/DateTimeInput/jsx/DatePicker";
+import { TimePicker } from "./InputFields/DateTimeInput/jsx/TimePicker";
 import { JsonField } from "./InputFields/TextInput/jsx/JsonField";
 import { Label } from "./InputFields/TextInput/jsx/Label";
 import { TextArea } from "./InputFields/TextInput/jsx/TextArea";
@@ -61,5 +64,10 @@ export const UIInputs = {
     JsonField,
     MobileField,
     EmailField,
+  },
+  DateTime: {
+    DatePicker,
+    TimePicker,
+    Calendar,
   },
 };
