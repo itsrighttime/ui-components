@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../css/FileUpload.module.css";
-import { crossIcon, resetFieldIcon } from "../../../utils/index.js";
+import { crossIcon, resetFieldIcon } from "../../../utils/icons";
 import { getFileTypeLabel } from "../helper/getFileType";
-import IconButton from "../../Actions/jsx/IconButton";
+import { IconButton } from "../../Actions/jsx/IconButton";
 
-const FileUpload = ({
+export const FileUpload = ({
   label = "Upload File",
   setResult,
   color,
@@ -13,6 +13,8 @@ const FileUpload = ({
   maxSize = Infinity,
   multiple = false,
   maxFiles = Infinity,
+  width = "500px",
+  height = "200px",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState([]);
@@ -24,25 +26,91 @@ const FileUpload = ({
       return false;
     }
     if (file.size > maxSize) {
-      setError(`File size exceeds limit of ${maxSize / 1024 / 1024} MB`);
+      setError(
+        `File size exceeds limit of ${(maxSize / 1024 / 1024).toFixed(2)} MB`
+      );
       return false;
     }
     return true;
   };
 
   const handleFileChange = (selectedFiles) => {
-    let validFiles = Array.from(selectedFiles).filter(validateFile);
-    if (validFiles.length + files.length > maxFiles) {
+    let newFileArray = Array.from(selectedFiles).filter(validateFile);
+
+    // Prevent duplicates
+    newFileArray = newFileArray.filter(
+      (newFile) =>
+        !files.some((f) => f.name === newFile.name && f.size === newFile.size)
+    );
+
+    if (newFileArray.length + files.length > maxFiles) {
       setError(`You can only upload up to ${maxFiles} files.`);
       return;
     }
-    if (validFiles.length > 0) {
-      const newFiles = [...files, ...validFiles];
-      setFiles(newFiles);
-      setResult(newFiles);
+
+    if (newFileArray.length > 0) {
+      const updatedFiles = [...files, ...newFileArray];
+      setFiles(updatedFiles);
+      setResult(updatedFiles);
       setIsFieldValid(true);
       setError(null);
-    } else setIsFieldValid(false);
+    } else {
+      setIsFieldValid(false);
+    }
+  };
+
+  const createFileInput = ({ multiple = false, onChange }) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = allowedTypes.join(",");
+    input.multiple = multiple;
+    input.onchange = onChange;
+    input.click();
+  };
+
+  const handleReupload = (index) => {
+    createFileInput({
+      onChange: (e) => {
+        const selectedFile = e.target.files[0];
+        if (validateFile(selectedFile)) {
+          const newFiles = [...files];
+          newFiles[index] = selectedFile;
+          setFiles(newFiles);
+          setResult(newFiles);
+          setIsFieldValid(true);
+          setError(null);
+        } else {
+          setIsFieldValid(false);
+        }
+      },
+    });
+  };
+
+  const handleRemoveFile = (index) => {
+    const updated = files.filter((_, i) => i !== index);
+    setFiles(updated);
+    setResult(updated);
+    setIsFieldValid(updated.length > 0);
+  };
+
+  const handleResetFile = () => {
+    setFiles([]);
+    setResult([]);
+    setIsFieldValid(false);
+    setError(null);
+  };
+
+  const handleAddMoreFiles = () => {
+    createFileInput({
+      multiple: true,
+      onChange: (e) => handleFileChange(e.target.files),
+    });
+  };
+
+  const handleFilePreview = (file) => {
+    const fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+    setTimeout(() => URL.revokeObjectURL(fileURL), 1000); // cleanup
   };
 
   const handleDragEnter = (e) => {
@@ -66,7 +134,7 @@ const FileUpload = ({
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+    if (e.dataTransfer.files?.length) {
       handleFileChange(e.dataTransfer.files);
       e.dataTransfer.clearData();
     }
@@ -74,61 +142,17 @@ const FileUpload = ({
 
   const handleInputChange = (e) => {
     handleFileChange(e.target.files);
-  };
-
-  const handleReupload = (index) => {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.accept = allowedTypes.join(",");
-    fileInput.onchange = (e) => {
-      const selectedFile = e.target.files[0];
-      if (validateFile(selectedFile)) {
-        const newFiles = [...files];
-        newFiles[index] = selectedFile;
-        setFiles(newFiles);
-        setResult(newFiles);
-        setIsFieldValid(true);
-      } else setIsFieldValid(false);
-    };
-    fileInput.click();
-  };
-
-  const handleRemoveFile = (index) => {
-    const newFiles = files.filter((_, i) => i !== index);
-    setFiles(newFiles);
-    setResult(newFiles);
-    setIsFieldValid(true);
-  };
-
-  const handleResetFile = () => {
-    setResult([]);
-    setIsFieldValid(null);
-    setFiles([]);
-    setError(null);
-  };
-
-  const handleAddMoreFiles = () => {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.accept = allowedTypes.join(",");
-    fileInput.multiple = true;
-    fileInput.onchange = (e) => {
-      handleFileChange(e.target.files);
-    };
-    fileInput.click();
-  };
-
-  const handleFilePreview = (file) => {
-    const fileURL = URL.createObjectURL(file);
-    window.open(fileURL);
+    e.target.value = null; // reset for re-selection
   };
 
   const cssVariable = {
-    "--color": color ? color : "var(--colorCyan)",
+    "--color": color || "var(--colorCyan)",
+    "--width": width,
+    "--height": height,
   };
 
   return (
-    <>
+    <div className={styles.fileUploadContainer} style={cssVariable}>
       {files.length === 0 && (
         <div
           className={`${styles.fileUpload} ${
@@ -138,56 +162,61 @@ const FileUpload = ({
           onDragLeave={handleDragLeave}
           onDragOver={handleDragOver}
           onDrop={handleDrop}
-          style={cssVariable}
         >
           <input
             type="file"
             onChange={handleInputChange}
             className={styles.formControl}
             title=""
+            aria-label={label}
             multiple={multiple}
           />
-          <span className={styles.label}>{`${label}`}</span>
+          <span className={styles.label}>{label}</span>
         </div>
       )}
+
       {files.length > 0 && (
         <div className={styles.infor} style={cssVariable}>
-          {files.map((file, index) => (
-            <div key={index} className={styles.fileInfo}>
-              <p
-                onClick={() => handleFilePreview(file)}
-                className={styles.fileName}
-              >
-                {`${getFileTypeLabel(file.type)}: ${file.name}`}
-              </p>
-              <div className={styles.uploadRemove}>
-                <p>{`(${(file.size / 1024 / 1024).toFixed(2)} MB)`}</p>
-
-                <IconButton
-                  icon={resetFieldIcon}
-                  onClick={() => handleReupload(index)}
-                  color={color || "#52C9BD"}
-                />
-                <IconButton
-                  icon={crossIcon}
-                  onClick={() => handleRemoveFile(index)}
-                  color="#FF5969"
-                />
+          <div className={styles.inforDiv}>
+            {files.map((file, index) => (
+              <div key={index} className={styles.fileInfo}>
+                <p
+                  onClick={() => handleFilePreview(file)}
+                  className={styles.fileName}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) =>
+                    e.key === "Enter" && handleFilePreview(file)
+                  }
+                >
+                  {`${getFileTypeLabel(file.type) || "File"}: ${file.name}`}
+                </p>
+                <div className={styles.uploadRemove}>
+                  <p>{`(${(file.size / 1024 / 1024).toFixed(2)} MB)`}</p>
+                  <IconButton
+                    icon={resetFieldIcon}
+                    onClick={() => handleReupload(index)}
+                    color={color || "#52C9BD"}
+                  />
+                  <IconButton
+                    icon={crossIcon}
+                    onClick={() => handleRemoveFile(index)}
+                    color="#FF5969"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
           <div className={styles.actions}>
             <p className={styles.fileCount}>
               {maxFiles === Infinity
-                ? `(File Uploaded: ${files.length})`
-                : `(File Uploaded: ${files.length} / ${maxFiles})`}
+                ? `(Files Uploaded: ${files.length})`
+                : `(Files Uploaded: ${files.length} / ${maxFiles})`}
             </p>
-
             <p className={styles.buttonLink} onClick={handleResetFile}>
               Reset All
             </p>
-
             {multiple && files.length < maxFiles && (
               <p className={styles.buttonLink} onClick={handleAddMoreFiles}>
                 Add More Files
@@ -196,9 +225,8 @@ const FileUpload = ({
           </div>
         </div>
       )}
+
       {error && <p className={styles.error}>{error}</p>}
-    </>
+    </div>
   );
 };
-
-export default FileUpload;
