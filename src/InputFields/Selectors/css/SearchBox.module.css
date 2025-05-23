@@ -40,7 +40,7 @@
 
 .suggestionsList {
   position: absolute;
-  top: var(--width);
+  top: 30px;
   left: 0;
   right: 0;
   background-color: var(--colorBackground);
@@ -51,6 +51,7 @@
   list-style: none;
   text-align: left;
   border: 1px solid var(--colorGray3);
+  z-index: 999;
 }
 
 .suggestionItem {

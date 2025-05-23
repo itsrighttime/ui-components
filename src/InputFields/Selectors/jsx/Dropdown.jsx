@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import styles from "../css/Dropdown.module.css"; // Import your CSS module for styling
 import { downArrowIcon, upArrowIcon } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
+import { Button } from "../../Actions/jsx/Button";
 
 export const Dropdown = ({
   options = [],
@@ -121,45 +122,48 @@ export const Dropdown = ({
             className={styles.searchInput}
           />
 
-          <ul className={styles.optionList}>
-            {filteredOptions.length ? (
-              filteredOptions.map((option) => (
-                <li
-                  key={option}
-                  className={`${styles.optionItem} ${
-                    selectedOptions.includes(option) ? styles.selected : ""
-                  }`}
-                  onClick={() => handleSelectOption(option)}
-                >
-                  {option}
-                </li>
-              ))
-            ) : (
-              <li className={styles.optionItem}>No Options Available</li>
-            )}
-          </ul>
+          <div className={styles.dropdownOptions}>
+            <ul className={styles.optionList}>
+              {filteredOptions.length ? (
+                filteredOptions.map((option) => (
+                  <li
+                    key={option}
+                    className={`${styles.optionItem} ${
+                      selectedOptions.includes(option) ? styles.selected : ""
+                    }`}
+                    onClick={() => handleSelectOption(option)}
+                  >
+                    {option}
+                  </li>
+                ))
+              ) : (
+                <li className={styles.optionItem}>No Options Available</li>
+              )}
+            </ul>
 
-          {addNew && (
-            <div className={styles.addNewOption}>
-              <input
-                type="text"
-                value={newOption}
-                onChange={(e) => {
-                  setNewOption(e.target.value);
-                }}
-                placeholder="Add new option"
+            {addNew && (
+              <div className={styles.addNewOption}>
+                <input
+                  type="text"
+                  value={newOption}
+                  onChange={(e) => {
+                    setNewOption(e.target.value);
+                  }}
+                  placeholder="Add new option"
+                />
+                {/* <button onClick={handleAddOption}>Add</button> */}
+                <Button text={"Add"} onClick={handleAddOption} color={color} />
+              </div>
+            )}
+            {multiple && selectedOptions.length > 0 && (
+              <Button
+                onClick={handleClearSelection}
+                text={"Clear Selection"}
+                width={"90%"}
+                color={color}
               />
-              <button onClick={handleAddOption}>Add</button>
-            </div>
-          )}
-          {multiple && selectedOptions.length > 0 && (
-            <button
-              className={styles.clearButton}
-              onClick={handleClearSelection}
-            >
-              Clear Selection
-            </button>
-          )}
+            )}
+          </div>
         </div>
       )}
     </div>

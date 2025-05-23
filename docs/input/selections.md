@@ -99,6 +99,216 @@ export const CheckboxExample = () => {
 };
 ```
 
+## ColorPicker
+
+### Purpose:
+
+A simple color input element that allows users to select a color value. Returns the selected hex color.
+
+### Props:
+
+| Prop        | Type     | Required | Description                              |
+| ----------- | -------- | -------- | ---------------------------------------- |
+| `color`     | `string` | No       | Initial color value (hex format).        |
+| `setResult` | `func`   | Yes      | Callback to return selected color value. |
+
+### Usage:
+
+```jsx
+<ColorPicker color="#ff0000" setResult={(color) => console.log(color)} />
+```
+
+### Styling:
+
+- Uses `ColorPicker.module.css`.
+- Includes a wrapper div and a color input styled with class `.input`.
+
+## SearchBox
+
+### Purpose:
+
+A live-search input that shows matching suggestions based on user input. Returns a selected item's `code`.
+
+### Props:
+
+| Prop          | Type     | Required | Description                                                            |
+| ------------- | -------- | -------- | ---------------------------------------------------------------------- |
+| `suggestions` | `array`  | Yes      | Array of objects `{ name, code }` used for search.                     |
+| `setResult`   | `func`   | Yes      | Callback to return the `code` of the selected suggestion.              |
+| `color`       | `string` | No       | Optional color for accenting the input and suggestions (CSS variable). |
+| `placeholder` | `string` | No       | Placeholder text (default: `"Search..."`).                             |
+| `width`       | `string` | No       | Width of the input box (default: `"300px"`).                           |
+
+### Suggestion Logic:
+
+- Input must be **at least 3 characters** long.
+- Uses helper `filterSuggestions` to find matches.
+- Keyboard support: Up/Down arrow navigation + Enter to select.
+
+### Usage:
+
+```jsx
+const suggestions = [
+  { name: "Apple", code: "APL" },
+  { name: "Banana", code: "BNN" },
+];
+
+<SearchBox
+  suggestions={suggestions}
+  setResult={(code) => console.log(code)}
+  placeholder="Search fruits..."
+  color="#52c9bd"
+  width="400px"
+/>;
+```
+
+### Keyboard Support:
+
+- `↑` / `↓`: Navigate suggestions.
+- `Enter`: Select current suggestion.
+- `Esc`: Dismiss suggestions (handled via click outside).
+
+### Styling:
+
+- Controlled via `SearchBox.module.css`.
+- Accessible with `aria-*` tags and focus management.
+- Includes `IconButton` with a search icon.
+
+## Switch
+
+### Purpose:
+
+A toggle component (like a checkbox) that switches between `true`/`false`.
+
+### Props:
+
+| Prop           | Type     | Required | Description                                          |
+| -------------- | -------- | -------- | ---------------------------------------------------- |
+| `initialValue` | `bool`   | Yes      | The default switch state (`true` or `false`).        |
+| `setResult`    | `func`   | Yes      | Callback that returns the new switch state.          |
+| `color`        | `string` | No       | Custom color (CSS variable, default: `--colorCyan`). |
+| `label`        | `string` | No       | Optional label shown before the switch.              |
+| `disabled`     | `bool`   | No       | Disables interaction if set to `true`.               |
+| `customStyles` | `object` | No       | Custom styles for `.container` and `.label`.         |
+
+### Usage:
+
+```jsx
+<Switch
+  initialValue={false}
+  setResult={(state) => console.log("Switch is", state)}
+  label="Enable dark mode"
+  color="#222"
+  customStyles={{
+    container: { marginBottom: "1rem" },
+    label: { fontWeight: "bold" },
+  }}
+/>
+```
+
+### Interaction:
+
+- Click or press `Enter` / `Space` toggles the state.
+- Accessible using `role="switch"` and `aria-checked`.
+
+# **`Dropdown` Component**
+
+## **Component Overview**
+
+The `Dropdown` is a reusable and customizable React component that supports:
+
+- Single or multiple selection
+- Searchable options
+- Dynamic option addition (optional)
+- Customizable color and width
+
+## **Usage Example**
+
+```jsx
+const MyComponent = () => {
+  const [selected, setSelected] = useState([]);
+
+  return (
+    <Dropdown
+      label="Choose Option(s)"
+      options={["Apple", "Banana", "Orange"]}
+      multiple={true}
+      placeholder="Select fruits"
+      value={selected}
+      setResult={setSelected}
+      addNew={true}
+      setAddedOptions={(newOptions) =>
+        console.log("Updated Options:", newOptions)
+      }
+      color="#3498db"
+      width="350px"
+    />
+  );
+};
+```
+
+## **Props Reference**
+
+| Prop              | Type            | Default            | Description                                                      |
+| ----------------- | --------------- | ------------------ | ---------------------------------------------------------------- |
+| `options`         | `Array<string>` | `[]`               | List of dropdown options.                                        |
+| `multiple`        | `boolean`       | `false`            | Enables multiple selection if true.                              |
+| `placeholder`     | `string`        | `"Select..."`      | Placeholder text for the dropdown header.                        |
+| `label`           | `string`        | `undefined`        | Optional label above the dropdown.                               |
+| `value`           | `Array<string>` | `[]`               | Initial selected value(s).                                       |
+| `setResult`       | `Function`      | **Required**       | Callback for sending selected values to the parent.              |
+| `addNew`          | `boolean`       | `false`            | Allows the user to add new options.                              |
+| `setAddedOptions` | `Function`      | `undefined`        | Callback triggered when a new option is added.                   |
+| `color`           | `string`        | `var(--colorCyan)` | Sets the primary color of the dropdown (CSS variable `--color`). |
+| `width`           | `string`        | `"300px"`          | Sets the width of the dropdown (CSS variable `--width`).         |
+
+## **Features**
+
+### Single & Multiple Selection
+
+- Use `multiple={true}` for check-box-like multi-select functionality.
+- Selected items display as a comma-separated list.
+
+### Searchable
+
+- A search input filters the list of options based on the entered text.
+
+### Add New Option (Optional)
+
+- If `addNew={true}`, users can add a new option using the input field.
+- Prevents adding duplicates.
+
+### Clear Selection
+
+- Only visible if `multiple` is enabled and selections exist.
+- Resets selection to an empty array.
+
+## **Customization**
+
+### Color and Width
+
+CSS variables are used to allow easy customization:
+
+```css
+--color: #00bcd4;
+--width: 300px;
+```
+
+You can override these via props (`color`, `width`).
+
+## **Considerations**
+
+- **Uniqueness**: Ensure all option strings are unique for reliable behavior.
+- **Controlled Component**: `Dropdown` doesn't manage external state; always use `value` + `setResult`.
+- **Accessibility**: Basic keyboard accessibility via `tabIndex`, but you can enhance ARIA support if needed.
+
+## Integration Notes:
+
+- All components follow **controlled state** patterns using `setResult`.
+- Designed to work seamlessly with custom themes via CSS variables.
+- Ensure to import appropriate CSS modules per component.
+- Components are reusable, modular, and accessibility-friendly.
+
 ## Best Practices
 
 - Use `inlineHelp` to give more context for each option.
