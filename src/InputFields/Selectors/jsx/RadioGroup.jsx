@@ -1,7 +1,6 @@
-import React from "react";
-import SelectionBox from "../helper/SelectionBox";
+import { SelectionBox } from "../helper/SelectionBox";
 
-const RadioGroup = ({
+export const RadioGroup = ({
   options = [],
   initialSelectedValue, // Single value for initial selection
   setResult,
@@ -10,7 +9,7 @@ const RadioGroup = ({
   color,
   disabled = false,
   customStyles = {}, // { customStyle.group = {}, customStyle.item = {} }
-  inlineHelp = [],
+  width = "300px",
 }) => {
   return (
     <SelectionBox
@@ -22,10 +21,8 @@ const RadioGroup = ({
       color={color}
       disabled={disabled}
       customStyles={customStyles}
-      inlineHelp={inlineHelp}
       multiple={false}
+      width={width}
     />
   );
 };
-
-export default RadioGroup;

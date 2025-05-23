@@ -5,13 +5,15 @@ export const EmailField = ({
   placeholder = "Enter your email",
   color,
   value,
-  required = true,
+  required = false,
   autoComplete = "email",
   disabled = false,
   setResult,
   setIsFieldValid,
   showLabelAlways = false,
   style = {},
+  width = "300px",
+  isBorder = false,
 }) => {
   return (
     <TextField
@@ -30,6 +32,8 @@ export const EmailField = ({
       setIsFieldValid={setIsFieldValid}
       isApplyStrictPattern={false}
       showLabelAlways={showLabelAlways}
+      isBorder={isBorder}
+      width={width}
     />
   );
 };

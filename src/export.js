@@ -4,8 +4,8 @@ import { CardImg } from "./Cards/js/CardImg";
 import { CardSimpleInfo } from "./Cards/js/CardSimpleInfo";
 import { CardTextOn } from "./Cards/js/CardTextOn";
 import { CardTextSliding } from "./Cards/js/CardTextSliding";
-import IndiaMap from "./ExtraThings/js/IndiaMap";
-import Tooltip from "./ExtraThings/js/Tooltip";
+import { IndiaMap } from "./ExtraThings/js/IndiaMap";
+import { Tooltip } from "./ExtraThings/js/Tooltip";
 import { useAlerts } from "./Hooks/useAlert";
 import { useAPI } from "./Hooks/useAPI";
 import { Button } from "./InputFields/Actions/jsx/Button";
@@ -17,6 +17,19 @@ import { MobileField } from "./InputFields/CommunicationInput/jsx/MobileInput";
 import { Calendar } from "./InputFields/DateTimeInput/jsx/Calendar";
 import { DatePicker } from "./InputFields/DateTimeInput/jsx/DatePicker";
 import { TimePicker } from "./InputFields/DateTimeInput/jsx/TimePicker";
+import { AddressField } from "./InputFields/Location/jsx/AddressField";
+import { NumberField } from "./InputFields/NumericInput.jsx/jsx/NumberField";
+import { Slider } from "./InputFields/NumericInput.jsx/jsx/Slider";
+import { Stepper } from "./InputFields/NumericInput.jsx/jsx/Stepper";
+import { OtpField } from "./InputFields/Security/jsx/OtpField";
+import { PasswordField } from "./InputFields/Security/jsx/PasswordField";
+import { SecurityQuestion } from "./InputFields/Security/jsx/SecurityQuestion";
+import { CheckboxGroup } from "./InputFields/Selectors/jsx/CheckboxGroup";
+import { ColorPicker } from "./InputFields/Selectors/jsx/ColorPicker";
+import { Dropdown } from "./InputFields/Selectors/jsx/Dropdown";
+import { RadioGroup } from "./InputFields/Selectors/jsx/RadioGroup";
+import { SearchBox } from "./InputFields/Selectors/jsx/SearchBox";
+import { Switch } from "./InputFields/Selectors/jsx/Switch";
 import { JsonField } from "./InputFields/TextInput/jsx/JsonField";
 import { Label } from "./InputFields/TextInput/jsx/Label";
 import { TextArea } from "./InputFields/TextInput/jsx/TextArea";
@@ -64,10 +77,29 @@ export const UIInputs = {
     JsonField,
     MobileField,
     EmailField,
+    AddressField,
+    NumberField,
+    Stepper,
+    Slider,
   },
   DateTime: {
     DatePicker,
     TimePicker,
     Calendar,
+  },
+
+  Security: {
+    OtpField,
+    PasswordField,
+    SecurityQuestion,
+  },
+
+  Selectors: {
+    Dropdown,
+    SearchBox,
+    ColorPicker,
+    RadioGroup,
+    Switch,
+    CheckboxGroup,
   },
 };

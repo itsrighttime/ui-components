@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Dropdown from "../../Selectors/jsx/Dropdown";
-import TextField from "../../TextInput/jsx/TextField";
+import { useEffect, useState } from "react";
+import { Dropdown } from "../../Selectors/jsx/Dropdown";
+import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/SecurityQuestion.module.css";
 
-const SecurityQuestion = ({
+export const SecurityQuestion = ({
   questions = [],
   setResult,
   color,
   placeholder = "Select a question",
+  width = "300px",
 }) => {
   const [selectedQuestion, setSelectedQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -21,7 +22,7 @@ const SecurityQuestion = ({
   }, [answer, selectedQuestion, setResult]);
 
   return (
-    <div className={styles.securityQuestion}>
+    <div className={styles.securityQuestion} style={{ width }}>
       <Dropdown
         options={questions}
         placeholder={placeholder}
@@ -48,5 +49,3 @@ const SecurityQuestion = ({
     </div>
   );
 };
-
-export default SecurityQuestion;

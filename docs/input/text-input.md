@@ -7,7 +7,7 @@ The `TextField` component is a highly customizable input field designed for form
 ```jsx
 import { UIInputs } from "@itsrighttime/ui-components";
 
-const { TextField } = UIInputs.text;
+const { TextField } = UIInputs.Text;
 ```
 
 ---
@@ -44,6 +44,7 @@ const { TextField } = UIInputs.text;
 | `onFocus`              | `function`  | —                    | Callback on focus                                                |
 | `onClear`              | `function`  | —                    | Renders a clear (X) icon when provided                           |
 | `icon`                 | `ReactNode` | —                    | Adds a right-side icon inside the input                          |
+| `width`                | `string`    | `300px`              | to adjust the width of the Field                                 |
 
 ---
 

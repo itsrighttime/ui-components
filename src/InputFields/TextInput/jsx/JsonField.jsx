@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TextArea } from "./TextArea";
 import { Button } from "../../Actions/jsx/Button";
 import styles from "../css/JsonField.module.css";
+import { getCommonCssVariables } from "../../helper/getCommonCssVariables";
 
 export const JsonField = ({
   label,
@@ -11,6 +12,8 @@ export const JsonField = ({
   hideOnSave = false,
   showCharacterCount = false,
   showWordCount = false,
+  width = "300px",
+  isBorder = false,
 }) => {
   const [jsonInput, setJsonInput] = useState("");
   const [error, setError] = useState("");
@@ -42,8 +45,13 @@ export const JsonField = ({
     }
   };
 
+    const cssVariable = {
+      ...getCommonCssVariables(isBorder, color, width),
+    };
+  
+
   return (
-    <div className={styles.jsonField}>
+    <div className={styles.jsonField} style={{ width: width, ...cssVariable }}>
       {onSave ? (
         <>
           <div className={styles.textInput}>
@@ -55,7 +63,6 @@ export const JsonField = ({
               placeholder="Please input the JSON data here..."
               showCharacterCount={showCharacterCount}
               showWordCount={showWordCount}
-              
             />
           </div>
 

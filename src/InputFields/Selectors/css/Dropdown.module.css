@@ -1,128 +1,127 @@
 .dropdown {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: var(--width);
 }
 
 .dropdownHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    border: 1px solid var(--colorGray3);
-    border-radius: 5px;
-    cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid var(--colorGray3);
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .dropdownHeader.open {
-    border-bottom: none;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .dropdownToggle {
-    border: none;
-    background: none;
-    cursor: pointer;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 .label {
-    font-size: calc(var(--size) * 0.8);
-    color: var(--colorGray5);
-    text-align: left;
-    padding-left: 10px;
+  font-size: calc(var(--size) * 0.8);
+  color: var(--colorGray5);
+  text-align: left;
+  padding-left: 10px;
 }
 
 .dropdownMenu {
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
-    max-height: 300px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--colorGray3);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: var(--colorBackground);
-    padding-bottom: 10px;
-
+  position: absolute;
+  width: var(--width);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--colorGray3);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: var(--colorBackground);
+  padding-bottom: 10px;
 }
 
 .searchInput {
-    border: none;
-    outline: none;
-    width: 95%;
-    padding: 8px;
-    box-sizing: border-box;
-    margin: 5px 0;
-    border-bottom: 2px solid var(--color);
+  border: none;
+  outline: none;
+  width: 95%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin: 5px 0;
+  border-bottom: 2px solid var(--color);
 }
 
 .searchInput:focus {
-    color: var(--color);
-    font-weight: var(--boldL2);
+  color: var(--color);
+  font-weight: var(--boldL2);
 }
 
 .addNewOption {
-    padding: 8px;
-    width: 95%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  padding: 8px;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .addNewOption input {
-    border: none;
-    outline: none;
-    width: 100%;
-    height: 100%;
-    border-bottom: 2px solid var(--color);
-    padding: 3px 2px;
+  border: none;
+  outline: none;
+  width: var(--width);
+  height: var(--width);
+  border-bottom: 2px solid var(--color);
+  padding: 3px 2px;
 }
 
 .addNewOption button {
-    border: none;
-    outline: none;
-    background-color: var(--color);
-    color: var(--colorWhite);
-    padding: 2px 10px;
-    border-radius: 2px;
-    cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: var(--color);
+  color: var(--colorWhite);
+  padding: 2px 10px;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .optionList {
-    width: 95%;
-    list-style: none;
-    margin: 10px 0;
-    padding: 0;
+  width: 95%;
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
 }
 
 .optionItem {
-    padding: 8px;
-    cursor: pointer;
-    border: 1px solid var(--colorBackground);
-    text-align: left;
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid var(--colorBackground);
+  text-align: left;
 }
 
 .optionItem:hover {
-    background: var(--color);
-    color: var(--colorWhite);
-    opacity: 0.7;
+  background: var(--color);
+  color: var(--colorWhite);
+  opacity: 0.7;
 }
 
 .optionItem.selected {
-    background: var(--color);
-    font-weight: var(--boldL2);
-    color: var(--colorWhite);
+  background: var(--color);
+  font-weight: var(--boldL2);
+  color: var(--colorWhite);
 }
 
 .clearButton {
-    width: 95%;
-    padding: 8px;
-    border: none;
-    background: var(--colorRed);
-    color: var(--colorWhite);
-    cursor: pointer;
+  width: 95%;
+  padding: 8px;
+  border: none;
+  background: var(--colorRed);
+  color: var(--colorWhite);
+  cursor: pointer;
 }

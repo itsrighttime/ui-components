@@ -11,6 +11,7 @@ export const Label = ({
   lineHeight,
   fontFamily,
   style = {},
+  width = "300px",
 }) => {
   const dynamicStyle = {
     color,
@@ -25,7 +26,7 @@ export const Label = ({
   };
 
   return (
-    <div className={`${styles.label}`} style={dynamicStyle}>
+    <div className={`${styles.label}`} style={{ width, ...dynamicStyle }}>
       {text}
     </div>
   );

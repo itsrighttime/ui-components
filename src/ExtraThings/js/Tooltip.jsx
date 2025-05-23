@@ -3,7 +3,7 @@ import styles from "../css/ToolTip.module.css";
 
 const OFFSET = 12;
 
-const Tooltip = ({
+export const Tooltip = ({
   children,
   content,
   color = "#272626",
@@ -80,8 +80,6 @@ const Tooltip = ({
     </span>
   );
 };
-
-export default Tooltip;
 
 /*
 

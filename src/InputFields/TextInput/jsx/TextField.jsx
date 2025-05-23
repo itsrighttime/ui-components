@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../css/TextField.module.css";
 import { crossIcon } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
+import { getCommonCssVariables } from "../../helper/getCommonCssVariables";
 
 export const TextField = ({
   type = "text",
@@ -32,6 +33,7 @@ export const TextField = ({
   onFocus,
   onClear,
   icon,
+  width = "300px",
 }) => {
   const [inputValue, setInputValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
@@ -126,16 +128,8 @@ export const TextField = ({
     onClear?.();
   };
 
-  const cssBorder = `1px solid ${color || "var(--colorCyan)"}`;
   const cssVariable = {
-    "--color": color || "var(--colorCyan)",
-    "--borderRadius": style?.borderRadius || "initial",
-    "--borderTop": isBorder ? cssBorder : "none",
-    "--borderLeft": isBorder ? cssBorder : "none",
-    "--borderRight": isBorder ? cssBorder : "none",
-    "--borderBottom": isBorder
-      ? cssBorder
-      : `2px solid ${color || "var(--colorCyan)"}`,
+    ...getCommonCssVariables(isBorder, color, width),
   };
 
   return (

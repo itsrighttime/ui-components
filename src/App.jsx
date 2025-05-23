@@ -1,6 +1,6 @@
 import "./App.css";
 import "./export.js";
-import { UseDateTimeExample } from "./Usecases/Input/UseDateTimeExample.jsx";
+import { UseSelectorExample } from "./Usecases/Input/UseSelectorExample.jsx";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
           height: "100vh",
         }}
       >
-        <UseDateTimeExample />
+        <UseSelectorExample />
       </div>
     </div>
   );

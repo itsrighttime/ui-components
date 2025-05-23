@@ -11,6 +11,8 @@ export const MobileField = ({
   noOfDigits = 10,
   showLabelAlways = false,
   style = {},
+  width = "300px",
+  isBorder = false,
 }) => {
   const [countryCode, setCountryCode] = useState(code);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -22,7 +24,7 @@ export const MobileField = ({
   const errorMessage = "Numbers Only";
 
   return (
-    <div className={styles.mobileInput} style={style}>
+    <div className={styles.mobileInput} style={{ width, ...style }}>
       <div className={styles.code}>
         <TextField
           type="text"
@@ -36,6 +38,7 @@ export const MobileField = ({
           pattern="^\+\d*$"
           errorMessage="Invalid"
           showLabelAlways={showLabelAlways}
+          isBorder={isBorder}
         />
       </div>
       <div className={styles.number}>
@@ -53,6 +56,7 @@ export const MobileField = ({
           pattern="^\d*$" // Allow numbers only
           errorMessage={errorMessage}
           showLabelAlways={showLabelAlways}
+          isBorder={isBorder}
         />
       </div>
     </div>

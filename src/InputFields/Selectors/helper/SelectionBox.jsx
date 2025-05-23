@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./css/SelectionBox.module.css";
-import IconButton from "../../Actions/jsx/IconButton";
-import { singleTick } from "../../../utils/index.js";
+import { IconButton } from "../../Actions/jsx/IconButton";
+import { singleTick } from "../../../utils/icons";
 
-const SelectionBox = ({
+export const SelectionBox = ({
   options = [],
   initialSelectedValues = [],
   setResult,
@@ -13,7 +13,7 @@ const SelectionBox = ({
   color,
   disabled = false,
   customStyles = {}, // { customStyle.group = {}, customStyle.item = {} }
-  inlineHelp = [],
+  width = "300px",
 }) => {
   const [selectedValues, setSelectedValues] = useState(
     multiple ? initialSelectedValues : initialSelectedValues || null
@@ -45,6 +45,7 @@ const SelectionBox = ({
 
   const cssVariable = {
     "--color": color ? color : "var(--colorCyan)",
+    "--width": width,
   };
 
   const setIconColor = (option) => {
@@ -78,7 +79,7 @@ const SelectionBox = ({
         const selectedOption = isValueSelected(option.value);
         return (
           <div
-            key={option.value}
+            key={option.value || index}
             className={`${styles.selectionItem} ${
               disabled || option.disabled ? styles.disabled : ""
             }`}
@@ -109,13 +110,13 @@ const SelectionBox = ({
               {option.label}
             </label>
 
-            {inlineHelp[index] && (
+            {option.help && (
               <div
                 className={`${styles.inlineHelp}  ${
                   (disabled || option.disabled) && styles.disabled
                 } ${selectedOption && styles.selected}`}
               >
-                {inlineHelp[index]}
+                {option.help}
               </div>
             )}
           </div>
@@ -124,5 +125,3 @@ const SelectionBox = ({
     </div>
   );
 };
-
-export default SelectionBox;

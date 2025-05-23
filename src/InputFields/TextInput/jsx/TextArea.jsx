@@ -15,6 +15,7 @@ export const TextArea = ({
   showWordCount = false,
   disabled = false,
   style = {},
+  width = "300px",
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
   const [isFocused, setIsFocused] = useState(false);
@@ -59,6 +60,7 @@ export const TextArea = ({
 
   const cssVariable = {
     "--color": color ? color : "var(--colorCyan)",
+    "--width": width,
   };
 
   const handleOnBlur = () => {

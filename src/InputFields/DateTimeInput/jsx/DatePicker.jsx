@@ -39,18 +39,8 @@ export const DatePicker = ({
     };
   }, [pickerRef]);
 
-  const cssBorder = `1px solid ${color || `var(--colorCyan)`}`;
   const cssVariable = {
-    "--color": color ? color : "var(--colorCyan)",
-
-    "--borderRadius": isBorder ? "5px" : "initial",
-    "--borderTop": isBorder ? cssBorder : "none",
-    "--borderLeft": isBorder ? cssBorder : "none",
-    "--borderRight": isBorder ? cssBorder : "none",
-    "--borderBottom": isBorder
-      ? cssBorder
-      : `2px solid ${color || "var(--colorCyan"}`,
-    "--width": width,
+    ...getCommonCssVariables(isBorder, color, width),
   };
   return (
     <div className={styles.datePicker} ref={pickerRef} style={cssVariable}>

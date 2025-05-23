@@ -1,7 +1,4 @@
-.addressField{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 10px;
-    width: 100%;
+.addressField {
+  display: flex;
+  flex-direction: column;
 }

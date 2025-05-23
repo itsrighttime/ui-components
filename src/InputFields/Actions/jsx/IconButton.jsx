@@ -1,4 +1,4 @@
-import Tooltip from "../../../ExtraThings/js/Tooltip";
+import { Tooltip } from "../../../ExtraThings/js/Tooltip";
 import styles from "../css/IconButton.module.css";
 
 /**
@@ -23,10 +23,12 @@ export const IconButton = ({
   style = {},
   size = "1",
   label = null,
+  isBorder = false,
 }) => {
   const colorStyle = {
     "--iconColor": color,
     "--iconSize": `calc(var(--size) * ${size})`,
+    "--border": isBorder ? `1px solid ${color}` : "none",
   };
 
   return (

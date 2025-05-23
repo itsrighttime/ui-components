@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../css/Switch.module.css"; // Import your CSS module for styling
 
-const Switch = ({
+export const Switch = ({
   initialValue,
   setResult,
   color,
@@ -52,5 +52,3 @@ const Switch = ({
     </div>
   );
 };
-
-export default Switch;

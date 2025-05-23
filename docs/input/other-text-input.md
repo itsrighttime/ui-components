@@ -13,20 +13,22 @@
 ```jsx
 import { UIInputs } from "@itsrighttime/ui-components";
 
-const { JsonField } = UIInputs.text;
+const { JsonField } = UIInputs.Text;
 ```
 
 ### Props
 
-| Prop                 | Type     | Default | Description                                                                              |
-| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------- |
-| `label`              | string   | —       | Label text for the JSON input area.                                                      |
-| `setResult`          | function | —       | Callback to receive the formatted JSON string on every successful validation/save.       |
-| `setIsFieldValid`    | function | —       | Callback to notify parent component about the validation status (true if JSON is valid). |
-| `color`              | string   | —       | Color theme for the input and button (used internally).                                  |
-| `hideOnSave`         | boolean  | false   | If `true`, hides the input after successful save and shows a confirmation message.       |
-| `showCharacterCount` | boolean  | false   | Show character count below the textarea.                                                 |
-| `showWordCount`      | boolean  | false   | Show word count below the textarea.                                                      |
+| Prop                 | Type      | Default | Description                                                                              |
+| -------------------- | --------- | ------- | ---------------------------------------------------------------------------------------- |
+| `label`              | string    | —       | Label text for the JSON input area.                                                      |
+| `setResult`          | function  | —       | Callback to receive the formatted JSON string on every successful validation/save.       |
+| `setIsFieldValid`    | function  | —       | Callback to notify parent component about the validation status (true if JSON is valid). |
+| `color`              | string    | —       | Color theme for the input and button (used internally).                                  |
+| `hideOnSave`         | boolean   | false   | If `true`, hides the input after successful save and shows a confirmation message.       |
+| `showCharacterCount` | boolean   | false   | Show character count below the textarea.                                                 |
+| `showWordCount`      | boolean   | false   | Show word count below the textarea.                                                      |
+| `width`              | `string`  | `300px` | to adjust the width of the Field                                                         |
+| `isBorder`           | `boolean` | `false` | Applies full border instead of bottom border only                                        |
 
 ### Behavior
 
@@ -85,6 +87,7 @@ const { TextArea } = UIInputs.text;
 | `showWordCount`      | boolean  | false                | Show word count below the textarea.                                                         |
 | `disabled`           | boolean  | false                | Disable the textarea input.                                                                 |
 | `style`              | object   | {}                   | Additional inline styles applied to the container.                                          |
+| `width`              | `string` | `300px`              | to adjust the width of the Field                                                            |
 
 ### Behavior
 
@@ -131,18 +134,19 @@ const { Label } = UIInputs.text;
 
 ### Props
 
-| Prop            | Type   | Default | Description                                      |
-| --------------- | ------ | ------- | ------------------------------------------------ |
-| `text`          | string | —       | Text content to display inside the label.        |
-| `color`         | string | —       | Text color.                                      |
-| `fontSize`      | string | —       | CSS font-size (e.g., "16px", "1.5rem").          |
-| `fontWeight`    | string | —       | CSS font-weight (e.g., "bold", "400").           |
-| `textAlign`     | string | —       | CSS text-align property.                         |
-| `textTransform` | string | —       | CSS text-transform property (e.g., "uppercase"). |
-| `letterSpacing` | string | —       | CSS letter-spacing property.                     |
-| `lineHeight`    | string | —       | CSS line-height property.                        |
-| `fontFamily`    | string | —       | CSS font-family property.                        |
-| `style`         | object | {}      | Additional inline styles to merge with defaults. |
+| Prop            | Type     | Default | Description                                      |
+| --------------- | -------- | ------- | ------------------------------------------------ |
+| `text`          | string   | —       | Text content to display inside the label.        |
+| `color`         | string   | —       | Text color.                                      |
+| `fontSize`      | string   | —       | CSS font-size (e.g., "16px", "1.5rem").          |
+| `fontWeight`    | string   | —       | CSS font-weight (e.g., "bold", "400").           |
+| `textAlign`     | string   | —       | CSS text-align property.                         |
+| `textTransform` | string   | —       | CSS text-transform property (e.g., "uppercase"). |
+| `letterSpacing` | string   | —       | CSS letter-spacing property.                     |
+| `lineHeight`    | string   | —       | CSS line-height property.                        |
+| `fontFamily`    | string   | —       | CSS font-family property.                        |
+| `style`         | object   | {}      | Additional inline styles to merge with defaults. |
+| `width`         | `string` | `300px` | to adjust the width of the Field                 |
 
 ### Usage Example
 
@@ -184,6 +188,8 @@ const { MobileField } = UIInputs.text;
 | `noOfDigits`      | `number`  | `10`    | Expected number of digits in the phone number.                    |
 | `showLabelAlways` | `boolean` | `false` | If true, always shows the label above the input field.            |
 | `style`           | `object`  | `{}`    | Inline style object applied to the root container.                |
+| `width`           | `string`  | `300px` | to adjust the width of the Field                                  |
+| `isBorder`        | `boolean` | `false` | Applies full border instead of bottom border only                 |
 
 ### Validation
 
@@ -232,6 +238,8 @@ const { EmailField } = UIInputs.text;
 | `setIsFieldValid` | `func`    | `-`                  | Callback to indicate whether the email is valid.       |
 | `showLabelAlways` | `boolean` | `false`              | If true, always shows the label above the input field. |
 | `style`           | `object`  | `{}`                 | Inline style for the component.                        |
+| `width`           | `string`  | `300px`              | to adjust the width of the Field                       |
+| `isBorder`        | `boolean` | `false`              | Applies full border instead of bottom border only      |
 
 ### Validation
 

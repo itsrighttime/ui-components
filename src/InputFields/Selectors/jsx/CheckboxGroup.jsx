@@ -1,7 +1,7 @@
 import React from "react";
-import SelectionBox from "../helper/SelectionBox";
+import { SelectionBox } from "../helper/SelectionBox";
 
-const CheckboxGroup = ({
+export const CheckboxGroup = ({
   options = [],
   initialSelectedValues = [],
   setResult,
@@ -10,7 +10,7 @@ const CheckboxGroup = ({
   color,
   disabled = false,
   customStyles = {}, // {customStyle.group = {}, customStyle.item}
-  inlineHelp = [],
+  width = "300px",
 }) => {
   return (
     <SelectionBox
@@ -22,10 +22,8 @@ const CheckboxGroup = ({
       color={color}
       disabled={disabled}
       customStyles={customStyles}
-      inlineHelp={inlineHelp}
       multiple
+      width={width}
     />
   );
 };
-
-export default CheckboxGroup;

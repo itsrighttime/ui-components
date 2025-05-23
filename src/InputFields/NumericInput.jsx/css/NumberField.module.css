@@ -1,11 +1,11 @@
 .numberFieldContainer {
-  width: 100%;
+  width: var(--width);
   margin-top: 9px;
   position: relative;
 }
 
 .numberFieldInput {
-  width: 100%;
+  width: var(--width);
   padding: 5px 5px;
   border: none;
   outline: none;

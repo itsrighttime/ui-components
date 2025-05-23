@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "../css/OtpField.module.css";
 
-const OtpField = ({ length = 6, setResult, color }) => {
+export const OtpField = ({ length = 6, setResult, color, width = "300px" }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
 
   const handleChange = (element, index) => {
@@ -42,6 +42,7 @@ const OtpField = ({ length = 6, setResult, color }) => {
 
   const cssVariable = {
     "--color": color ? color : "var(--colorCyan)",
+    "--width": width,
   };
 
   return (
@@ -62,5 +63,3 @@ const OtpField = ({ length = 6, setResult, color }) => {
     </div>
   );
 };
-
-export default OtpField;

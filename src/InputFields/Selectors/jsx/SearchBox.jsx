@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "../css/SearchBox.module.css";
-import { searchIcon } from "../../../utils/index.js";
+import { searchIcon } from "../../../utils/icons";
 import {
   filterSuggestions,
   handleKeyDown,
   handleClickOutside,
 } from "../helper/searchBoxHelper";
+import { IconButton } from "../../Actions/jsx/IconButton";
 
-const SearchBox = ({
+export const SearchBox = ({
   suggestions,
   setResult,
   color,
   placeholder = "Search...",
+  width = "300px",
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
@@ -77,6 +79,7 @@ const SearchBox = ({
 
   const cssVariable = {
     "--color": color ? color : "var(--colorCyan)",
+    "--width": width,
   };
 
   return (
@@ -107,12 +110,12 @@ const SearchBox = ({
             highlightedIndex >= 0 ? `suggestion-${highlightedIndex}` : undefined
           }
         />
-        <div
-          className={styles.search}
-          onMouseDown={(e) => e.preventDefault()} // Prevent blur event
-          onClick={handleIconClick}
-        >
-          {searchIcon}
+        <div className={styles.search} onMouseDown={(e) => e.preventDefault()}>
+          <IconButton
+            icon={searchIcon}
+            onClick={handleIconClick}
+            label={"Search"}
+          />
         </div>
       </div>
       {showSuggestions && (
@@ -144,5 +147,3 @@ const SearchBox = ({
     </div>
   );
 };
-
-export default SearchBox;

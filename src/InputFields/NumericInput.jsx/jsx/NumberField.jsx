@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../css/NumberField.module.css"; // Make sure to create this CSS file for styling
+import { getCommonCssVariables } from "../../helper/getCommonCssVariables";
 
-const NumberField = ({
+export const NumberField = ({
   value,
   setResult,
   label = "Number",
@@ -13,6 +14,7 @@ const NumberField = ({
   showLabelAlways = false,
   min,
   max,
+  width = "300px",
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
   const [isFocused, setIsFocused] = useState(false);
@@ -37,17 +39,8 @@ const NumberField = ({
     }
   };
 
-  const cssBorder = `1px solid ${color || `var(--colorCyan)`}`;
   const cssVariable = {
-    "--color": color ? color : "var(--colorCyan)",
-
-    "--borderRadius": isBorder ? "5px" : "initial",
-    "--borderTop": isBorder ? cssBorder : "none",
-    "--borderLeft": isBorder ? cssBorder : "none",
-    "--borderRight": isBorder ? cssBorder : "none",
-    "--borderBottom": isBorder
-      ? cssBorder
-      : `2px solid ${color || "var(--colorCyan"}`,
+    ...getCommonCssVariables(isBorder, color, width),
   };
 
   return (
@@ -77,5 +70,3 @@ const NumberField = ({
     </div>
   );
 };
-
-export default NumberField;

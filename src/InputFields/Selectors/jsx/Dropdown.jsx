@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "../css/Dropdown.module.css"; // Import your CSS module for styling
-import { downArrowIcon, upArrowIcon } from "../../../utils/index.js";
+import { downArrowIcon, upArrowIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton";
 
-const Dropdown = ({
+export const Dropdown = ({
   options = [],
   multiple = false,
   placeholder = "Select...",
@@ -11,9 +12,9 @@ const Dropdown = ({
   color,
   value = [],
   addNew = false,
-  setAddedOptions
+  setAddedOptions,
+  width = "300px",
 }) => {
-
   // console.log(options)
   const [isOpen, setIsOpen] = useState(false);
   const [allOptions, setAllOptions] = useState(options);
@@ -66,7 +67,7 @@ const Dropdown = ({
       const updatedOptions = [...allOptions, newOption];
       setAllOptions(updatedOptions);
       setFilteredOptions(updatedOptions);
-      setAddedOptions(updatedOptions)
+      setAddedOptions(updatedOptions);
       setNewOption("");
       setSearchTerm("");
       // handleSelectOption(newOption);
@@ -85,6 +86,7 @@ const Dropdown = ({
 
   const cssVariable = {
     "--color": color ? color : "var(--colorCyan)",
+    "--width": width,
   };
 
   return (
@@ -102,9 +104,12 @@ const Dropdown = ({
         <span>
           {selectedOptions.length ? selectedOptions.join(", ") : placeholder}
         </span>
-        <button className={styles.dropdownToggle}>
-          {isOpen ? upArrowIcon : downArrowIcon}
-        </button>
+
+        {isOpen ? (
+          <IconButton icon={upArrowIcon} label={"Open Dropdown"} />
+        ) : (
+          <IconButton icon={downArrowIcon} label={"Close Dropdown"} />
+        )}
       </div>
       {isOpen && (
         <div className={styles.dropdownMenu}>
@@ -160,5 +165,3 @@ const Dropdown = ({
     </div>
   );
 };
-
-export default Dropdown;

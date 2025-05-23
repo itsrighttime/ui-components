@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../css/Stepper.module.css"; // Ensure to create this CSS file for styling
 
-const Stepper = ({
+export const Stepper = ({
   value,
   setResult,
-  color, 
+  color,
   min = 0,
   max = 100,
   step = 5,
   label = "",
+  width = "300px",
 }) => {
   const [stepperValue, setStepperValue] = useState(value || 0);
 
@@ -30,6 +31,7 @@ const Stepper = ({
 
   const cssVariable = {
     "--color": color ? color : "var(--colorCyan)",
+    "--width": width,
   };
 
   return (
@@ -55,5 +57,3 @@ const Stepper = ({
     </div>
   );
 };
-
-export default Stepper;

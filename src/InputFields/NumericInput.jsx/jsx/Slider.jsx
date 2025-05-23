@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "../css/Slider.module.css";
-import { minusIcon, plusIcon } from "../../../utils/index.js";
-import IconButton from "../../Actions/jsx/IconButton";
+import { minusIcon, plusIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton";
 
-const Slider = ({
+export const Slider = ({
   value,
   setResult,
   color,
@@ -14,6 +14,7 @@ const Slider = ({
   showRange = true,
   showValueSide = "none",
   precision = 10,
+  width = "300px",
 }) => {
   const [sliderValue, setSlidervalue] = useState(value || 0);
 
@@ -21,7 +22,9 @@ const Slider = ({
     const updateSliderBackground = (value) => {
       const percentage = ((value - min) / (max - min)) * 100;
       const slider = document.getElementById("slider");
-      slider.style.background = `linear-gradient(to right, ${color || `var(--colorCyan)`} ${percentage}%, var(--colorGray3) ${percentage}%)`;
+      slider.style.background = `linear-gradient(to right, ${
+        color || `var(--colorCyan)`
+      } ${percentage}%, var(--colorGray3) ${percentage}%)`;
     };
 
     updateSliderBackground(sliderValue);
@@ -41,6 +44,7 @@ const Slider = ({
 
   const cssVariable = {
     "--color": color ? color : "var(--colorCyan)",
+    "--width": width,
   };
 
   const handlePlus = () => {
@@ -105,5 +109,3 @@ const Slider = ({
     </div>
   );
 };
-
-export default Slider;

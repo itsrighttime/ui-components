@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "../css/ColorPicker.module.css";
 
-const ColorPicker = ({ color, setResult }) => {
+export const ColorPicker = ({ color, setResult }) => {
   return (
     <div className={styles.colorPicker}>
       <input
@@ -14,4 +13,3 @@ const ColorPicker = ({ color, setResult }) => {
   );
 };
 
-export default ColorPicker;

@@ -1,84 +1,81 @@
 .searchBox {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: var(--width);
 }
 
 .input {
-    width: calc(100% - 30px);
-    padding: 3px 5px;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 1px solid var(--color);
+  width: calc(100% - 30px);
+  padding: 3px 5px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid var(--color);
 }
 
 .nameIcon {
-    display: flex;
-    padding: 0 4px;
+  display: flex;
+  padding: 0 4px;
 }
 
 .search {
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search svg path {
-    color: var(--colorBlue);
+  color: var(--colorBlue);
 }
 
 .input::placeholder {
-    color: var(--color);
+  color: var(--color);
 }
 
 .input:focus {
-    border: none;
-    border-bottom: 2px solid var(--colorBlue);
-    outline: none;
-    color: var(--colorBlue);
+  border: none;
+  border-bottom: 2px solid var(--colorBlue);
+  outline: none;
+  color: var(--colorBlue);
 }
 
 .suggestionsList {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--colorBackground);
-    max-height: 250px;
-    overflow-y: auto;
-    margin: 3px 10px;
-    padding: 0;
-    list-style: none;
-    text-align: left;
-    border: 1px solid var(--colorGray3);
+  position: absolute;
+  top: var(--width);
+  left: 0;
+  right: 0;
+  background-color: var(--colorBackground);
+  max-height: 250px;
+  overflow-y: auto;
+  margin: 3px 10px;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  border: 1px solid var(--colorGray3);
 }
 
 .suggestionItem {
-    padding: 6px;
-    cursor: pointer;
+  padding: 6px;
+  cursor: pointer;
 }
 
 .highlighted,
 .suggestionItem:hover {
-    text-decoration: underline;
-    color: var(--colorBlue);
-    font-weight: var(--boldL2);
+  text-decoration: underline;
+  color: var(--colorBlue);
+  font-weight: var(--boldL2);
 }
 
 @media (max-width: 690px) {
-    .searchBox {
-        position: static;
-        width: 100%;
-    }
+  .searchBox {
+    position: static;
+    width: var(--width);
+  }
 
-    .suggestionsList {
-        top: 50px;
+  .suggestionsList {
+    top: 50px;
+  }
 
-    }
-
-
-    /* .suggestionsList {
+  /* .suggestionsList {
         top: 50px;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         width: 300px;

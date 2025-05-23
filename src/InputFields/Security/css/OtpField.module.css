@@ -1,26 +1,26 @@
 /* OTPInput.module.css */
 
 .otpInputContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 20px 0;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  width: var(--width);
 }
 
 .otpInput {
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    border: 1px solid var(--color);
-    border-radius: 4px;
-    outline: none;
-    transition: border-color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid var(--color);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
 .otpInput:focus {
-    color: var(--color);
-    font-weight: var(--boldL2);
+  color: var(--color);
+  font-weight: var(--boldL2);
 }
