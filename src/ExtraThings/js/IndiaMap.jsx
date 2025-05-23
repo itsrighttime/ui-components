@@ -11,7 +11,7 @@ const Tooltip = ({ title, x, y }) => {
   );
 };
 
-const IndiaMap = ({ mapTitle = "Our Loactions" }) => {
+export const IndiaMap = ({ mapTitle = "Our Loactions" }) => {
   const [tooltip, setTooltip] = useState({
     visible: false,
     title: "",
@@ -334,5 +334,3 @@ const IndiaMap = ({ mapTitle = "Our Loactions" }) => {
     </>
   );
 };
-
-export default IndiaMap;

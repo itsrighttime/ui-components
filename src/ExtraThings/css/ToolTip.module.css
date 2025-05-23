@@ -6,13 +6,13 @@
   white-space: nowrap;
 }
 
-.tooltip::after {
+/* .tooltip::after {
   content: "";
   position: absolute;
   width: 0;
   height: 0;
   border: 6px solid transparent;
-}
+} 
 
 .tooltip.bottom::after {
   top: -12px;
@@ -26,4 +26,4 @@
   left: 50%;
   transform: translateX(-50%);
   border-top-color: #eceaea;
-}
+} */
