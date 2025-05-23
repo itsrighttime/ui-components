@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-import style from "../css/AudioPlayer.module.css"; // Adjust the path as necessary
+import { useRef, useState, useEffect, useMemo } from "react";
+import style from "../css/AudioPlayer.module.css";
 import {
   crossIcon,
   muteIcon,
@@ -7,104 +7,114 @@ import {
   playIcon,
   resetFieldIcon,
   speakerIcon,
-} from "../../../utils/index.js";
-import IconButton from "../../Actions/jsx/IconButton";
-import Slider from "../../NumericInput.jsx/jsx/Slider";
+} from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton";
+import { Slider } from "../../NumericInput.jsx/jsx/Slider";
 
-const AudioPlayer = ({
+export const AudioPlayer = ({
   audioSrc,
   onRemove = null,
   color,
   onReupload = null,
+  width = "500px",
 }) => {
   const audioRef = useRef(null);
+
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(1); // Default volume (range from 0 to 1)
+  const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [hoverTime, setHoverTime] = useState(null);
 
-  // Handle play/pause functionality
-  const handlePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
+  const isMuted = volume === 0;
 
-  // Handle mute/unmute
-  const handleMute = () => {
-    const audio = audioRef.current;
-    setIsMuted(!isMuted);
-    audio.volume = isMuted ? volume : 0; // Set volume to 0 if muted
-  };
-
-  const handleVolume = (value) => {
-    setVolume(value);
-    audioRef.current.volume = value;
-
-    if (value === 0) {
-      setIsMuted(true);
-    } else {
-      setIsMuted(false);
-    }
-  };
-
-  // Update current time and duration
   useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
     const updateTime = () => {
-      setCurrentTime(audioRef.current.currentTime);
-      setDuration(audioRef.current.duration);
+      setCurrentTime(audio.currentTime);
+      setDuration(audio.duration || 0);
     };
 
-    const audio = audioRef.current;
     audio.addEventListener("timeupdate", updateTime);
-
     return () => {
       audio.removeEventListener("timeupdate", updateTime);
     };
-  }, [isPlaying]);
+  }, []);
 
-  // Format time in minutes and seconds
+  useEffect(() => {
+    return () => {
+      URL.revokeObjectURL(audioSrc);
+    };
+  }, [audioSrc]);
+
   const formatTime = (time) => {
+    if (!time) return "0:00";
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   };
 
-  // Calculate the percentage of the track completed
-  const calculateTrackWidth = () => {
-    return (currentTime / duration) * 100;
+  const handlePlayPause = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying((prev) => !prev);
   };
 
-  // Handle seeking to a point in the audio
+  const handleMute = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const newVolume = isMuted ? 0.5 : 0;
+    setVolume(newVolume);
+    audio.volume = newVolume;
+  };
+
+  const handleVolumeChange = (value) => {
+    const vol = value / 100;
+    setVolume(vol);
+    if (audioRef.current) {
+      audioRef.current.volume = vol;
+    }
+  };
+
   const handleSeek = (e) => {
-    const newTime = (e.nativeEvent.offsetX / e.target.clientWidth) * duration;
-    audioRef.current.currentTime = newTime;
-    setCurrentTime(newTime);
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left; // position within the seekbar
+    const newTime = (clickX / rect.width) * duration;
+
+    if (audioRef.current) {
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
   };
 
-  // Handle hover over the track to show time at that point
   const handleHover = (e) => {
-    const newTime = (e.nativeEvent.offsetX / e.target.clientWidth) * duration;
-    setHoverTime(newTime);
+    const rect = e.currentTarget.getBoundingClientRect();
+    const hoverX = e.clientX - rect.left;
+    const time = (hoverX / rect.width) * duration;
+    setHoverTime(time);
   };
 
-  // Reset hover time when not hovering
-  const handleHoverOut = () => {
-    setHoverTime(null);
-  };
+  const trackWidth = useMemo(() => {
+    return duration ? (currentTime / duration) * 100 : 0;
+  }, [currentTime, duration]);
 
-  const cssVariable = {
-    "--color": color ? color : "var(--colorCyan)",
+  const cssVars = {
+    "--color": color || "var(--colorCyan)",
+    "--width": width,
   };
 
   return (
-    <div className={style.audioPreview} style={cssVariable}>
+    <div className={style.audioPreview} style={cssVars}>
       <audio ref={audioRef} src={audioSrc} />
+
       <div className={style.customControls}>
         <div className={style.player}>
           <IconButton
@@ -126,15 +136,12 @@ const AudioPlayer = ({
             className={style.trackContainer}
             onClick={handleSeek}
             onMouseMove={handleHover}
-            onMouseLeave={handleHoverOut}
+            onMouseLeave={() => setHoverTime(null)}
           >
-            <div
-              className={style.track}
-              style={{ width: `${calculateTrackWidth()}%` }}
-            />
+            <div className={style.track} style={{ width: `${trackWidth}%` }} />
             <div
               className={style.progressCircle}
-              style={{ left: `${calculateTrackWidth()}%` }}
+              style={{ left: `${trackWidth}%` }}
             />
           </div>
 
@@ -148,13 +155,12 @@ const AudioPlayer = ({
               onClick={handleMute}
               color={color || "#52C9BD"}
             />
-
             <Slider
-              setResult={(value) => handleVolume(value / 100)}
+              setResult={handleVolumeChange}
+              value={volume * 100}
               showValueSide="left"
               color={color}
               showRange={false}
-              value={0.3}
             />
           </div>
 
@@ -175,5 +181,3 @@ const AudioPlayer = ({
     </div>
   );
 };
-
-export default AudioPlayer;

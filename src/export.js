@@ -34,6 +34,8 @@ import { JsonField } from "./InputFields/TextInput/jsx/JsonField";
 import { Label } from "./InputFields/TextInput/jsx/Label";
 import { TextArea } from "./InputFields/TextInput/jsx/TextArea";
 import { TextField } from "./InputFields/TextInput/jsx/TextField";
+import { AudioPlayer } from "./InputFields/Uploads/jsx/AudioPlayer";
+import { AudioUpload } from "./InputFields/Uploads/jsx/AudioUpload";
 import { FileUpload } from "./InputFields/Uploads/jsx/FileUpload";
 import { apiCaller } from "./utils/apiCaller";
 import { UtilsLogger } from "./utils/logger/logger.util";
@@ -106,5 +108,7 @@ export const UIInputs = {
 
   Upload: {
     FileUpload,
+    AudioPlayer,
+    AudioUpload,
   },
 };

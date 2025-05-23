@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import style from "../css/AudioUpload.module.css"; // Adjust the path as necessary
-import AudioPlayer from "./AudioPlayer";
+import { useState } from "react";
+import style from "../css/AudioUpload.module.css";
+import { AudioPlayer } from "./AudioPlayer";
 
-const AudioUpload = ({
+export const AudioUpload = ({
   label,
   setResult,
   color,
   setIsFieldValid = () => {},
   allowedTypes = ["audio/mpeg", "audio/wav"],
-  maxSizeMB = 10, // Default to 10 MB
+  maxSizeMB = 10,
+  width = "500px",
+  height = "100px",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [audio, setAudio] = useState(null);
   const [error, setError] = useState(null);
 
-  const maxSize = maxSizeMB * 1024 * 1024; // Convert MB to bytes
+  const maxSize = maxSizeMB * 1024 * 1024;
 
   const validateAudio = (file) => {
     if (!allowedTypes.includes(file.type)) {
@@ -25,49 +27,42 @@ const AudioUpload = ({
       setError(`Audio size exceeds limit of ${maxSizeMB} MB`);
       return false;
     }
+    setError(null);
     return true;
   };
 
-  const handleFileChange = (selectedFile) => {
-    if (validateAudio(selectedFile)) {
-      setAudio(URL.createObjectURL(selectedFile));
-      setResult(selectedFile);
-      setIsFieldValid(true);
-      setError(null);
-    } else {
+  const processFile = (file) => {
+    if (!file || !validateAudio(file)) {
       setIsFieldValid(false);
+      return;
     }
+
+    setAudio(URL.createObjectURL(file));
+    setResult(file);
+    setIsFieldValid(true);
   };
 
-  const handleDragEnter = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
+  const handleFileInput = (e) => processFile(e.target.files[0]);
 
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      handleFileChange(e.dataTransfer.files[0]);
-      e.dataTransfer.clearData();
-    }
+    processFile(e.dataTransfer.files[0]);
   };
 
-  const handleInputChange = (e) => {
-    handleFileChange(e.target.files[0]);
+  const handleDragState = (state) => (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(state);
+  };
+
+  const handleReupload = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = allowedTypes.join(",");
+    input.onchange = (e) => processFile(e.target.files[0]);
+    input.click();
   };
 
   const handleRemoveAudio = () => {
@@ -76,56 +71,43 @@ const AudioUpload = ({
     setIsFieldValid(false);
   };
 
-  const handleReupload = () => {
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.accept = allowedTypes.join(",");
-    fileInput.onchange = (e) => {
-      const selectedFile = e.target.files[0];
-      if (selectedFile && validateAudio(selectedFile)) {
-        handleFileChange(selectedFile);
-      }
-    };
-    fileInput.click();
-  };
-
   const cssVariable = {
-    "--color": color ? color : "var(--colorCyan)",
+    "--color": color || "var(--colorCyan)",
+    "--width": width,
+    "--height": height,
   };
 
   return (
-    <>
-      {!audio && (
+    <div className={style.audioUploadContainer} style={cssVariable}>
+      {!audio ? (
         <div
           className={`${style.audioUpload} ${isDragging ? style.dragging : ""}`}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
+          onDragEnter={handleDragState(true)}
+          onDragLeave={handleDragState(false)}
+          onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
           style={cssVariable}
         >
           <input
             type="file"
-            onChange={handleInputChange}
+            onChange={handleFileInput}
             className={style.formControl}
-            title=""
             accept={allowedTypes.join(",")}
+            title=""
           />
           <span className={style.label}>{label}</span>
           <span className={style.label}>{`(Max Size: ${maxSizeMB}MB)`}</span>
         </div>
-      )}
-      {audio && (
+      ) : (
         <AudioPlayer
           audioSrc={audio}
           onRemove={handleRemoveAudio}
           onReupload={handleReupload}
           color={color}
+          width={width}
         />
       )}
       {error && <p className={style.error}>{error}</p>}
-    </>
+    </div>
   );
 };
-
-export default AudioUpload;

@@ -16,34 +16,28 @@ It supports:
 - rich UI feedback
 - keyboard accessibility
 
-### Installation
-
-If you're using a component library or internal package, just import:
+### Import
 
 ```jsx
-import { FileUpload } from "your-package-path";
-```
+import { UIInputs } from "@itsrighttime/ui-components";
 
-Or directly:
-
-```jsx
-import { FileUpload } from "../components/FileUpload/jsx/FileUpload";
+const { FileUpload } = UIInputs.Upload;
 ```
 
 ### Props & Configuration
 
-| Prop | Type | Default | Description |
-| -- | - | | -- |
-| `label` | `string` | `"Upload File"` | Label shown inside upload box. |
-| `setResult` | `function` | _required_ | Function to receive uploaded file list. |
-| `setIsFieldValid` | `function` | `() => {}` | Called with `true`/`false` to validate form state. |
-| `allowedTypes` | `string[]` | `[]` | Accepted MIME types (e.g. `["image/png", "application/pdf"]`). |
-| `maxSize` | `number` | `Infinity` | Maximum file size in **bytes**. |
-| `multiple` | `boolean` | `false` | Allow multiple files. |
-| `maxFiles` | `number` | `Infinity` | Max number of files allowed. |
-| `color` | `string` | `"#52C9BD"` | Base accent color (for buttons & borders). |
-| `width` | `string` | `"500px"` | Width of the component. |
-| `height` | `string` | `"100px"` | Height of the component. |
+| Prop              | Type       | Default         | Description                                                    |
+| ----------------- | ---------- | --------------- | -------------------------------------------------------------- |
+| `label`           | `string`   | `"Upload File"` | Label shown inside upload box.                                 |
+| `setResult`       | `function` | _required_      | Function to receive uploaded file list.                        |
+| `setIsFieldValid` | `function` | `() => {}`      | Called with `true`/`false` to validate form state.             |
+| `allowedTypes`    | `string[]` | `[]`            | Accepted MIME types (e.g. `["image/png", "application/pdf"]`). |
+| `maxSize`         | `number`   | `Infinity`      | Maximum file size in **bytes**.                                |
+| `multiple`        | `boolean`  | `false`         | Allow multiple files.                                          |
+| `maxFiles`        | `number`   | `Infinity`      | Max number of files allowed.                                   |
+| `color`           | `string`   | `"#52C9BD"`     | Base accent color (for buttons & borders).                     |
+| `width`           | `string`   | `"500px"`       | Width of the component.                                        |
+| `height`          | `string`   | `"100px"`       | Height of the component.                                       |
 
 ### Example Usage
 

@@ -1,4 +1,3 @@
-
 ## Component: `Calendar`
 
 ### Purpose
@@ -25,37 +24,13 @@ The `Calendar` component is a **fully-featured, customizable, and dynamic calend
 | `height`               | `string`             | `"100%"` | Sets the height of the calendar container.            |
 | `width`                | `string`             | `"100%"` | Sets the width of the calendar container.             |
 
+### Import
 
+```jsx
+import { UIInputs } from "@itsrighttime/ui-components";
 
-## State Management
-
-- `currentDate`: Stores the current active date (defaults to today or a mid-point between restriction dates).
-- `view`: `"calendar"`, `"months"`, or `"years"` – used to toggle between views.
-
-
-## Logic Breakdown
-
-###. **Date Restrictions**
-
-- `restrictionStartDate` and `restrictionEndDate` are **converted from string to `Date` objects** using `convertStrDate2Date`.
-- A sanity check ensures **start date is not after end date**.
-- If the current date is **outside the restriction**, a **central fallback date** is calculated.
-
-###. **Navigation (Prev/Next)**
-
-- Navigation is disabled based on view and restriction boundaries using `canMovePrev()` and `canMoveNext()`.
-- Navigation logic (month/year switching) is handled using `handlePrev()` and `handleNext()`.
-
-###. **View Switching**
-
-- Click on the header toggles between calendar → months → years.
-- Month and year clicks use `handleMonthSelection()` and `handleYearSelection()` to set new state.
-
-###. **Lazy Loading**
-
-- `RenderCalendar`, `RenderMonths`, and `RenderYears` are dynamically imported for **performance optimization**.
-- Wrapped in `React.Suspense` with a fallback loader.
-
+const { Calendar, TimePicker, DatePicker } = UIInputs.DateTime;
+```
 
 ## Use Case Scenarios
 
@@ -82,7 +57,6 @@ Useful in:
 - Applications where the year and month need to be selected separately.
 - Compact UIs (e.g., mobile apps, embedded popups).
 
-
 ## Example Usage
 
 ```jsx
@@ -95,8 +69,6 @@ Useful in:
 />
 ```
 
-
-
 ## Highlights
 
 - **Highly customizable UI** via CSS variables (`--color`, `--height`, `--width`).
@@ -104,29 +76,27 @@ Useful in:
 - **Optimized with lazy loading** for performance.
 - **Scalable and extensible**: Clean separation of logic via helper functions (`helperCalendar.js`).
 
-
-
 ## `DatePicker` Component
 
 The `DatePicker` is a customizable, reusable date selection component built in React. It combines visual flexibility with functionality and encapsulates behavior like opening/closing on user interaction, outside click detection, and date restrictions.
 
 ### Features:
 
-* **Initial State Handling:**
+- **Initial State Handling:**
   Displays either a provided initial date, a label, or a placeholder text like `"Select a Date"`.
 
-* **Calendar Integration:**
+- **Calendar Integration:**
   Integrates a custom `Calendar` component, passing props like size, color, and restriction ranges (`restrictionStartDate`, `restrictionEndDate`).
 
-* **Click Outside Detection:**
+- **Click Outside Detection:**
   Uses a `useRef` (`pickerRef`) with `useEffect` to detect and close the calendar when a user clicks outside the date picker.
 
-* **Styling via CSS Variables:**
+- **Styling via CSS Variables:**
   Dynamic inline styles are used for customizable themes including:
 
-  * `--color` for accent color,
-  * `--borderRadius`, `--border*` for border styles,
-  * `--width` to control component width.
+  - `--color` for accent color,
+  - `--borderRadius`, `--border*` for border styles,
+  - `--width` to control component width.
 
 ### Props:
 
@@ -142,27 +112,26 @@ The `DatePicker` is a customizable, reusable date selection component built in R
 | `isBorder`             | `boolean`          | Toggle border visibility             |
 | `width`                | `string`           | CSS width for layout flexibility     |
 
-
 ## `TimePicker` Component
 
 The `TimePicker` allows users to manually select time by choosing **hour**, **minutes**, and **AM/PM** from dropdowns. It is cleanly separated into three controls and is fully controlled via internal state.
 
 ### Features:
 
-* **Three-Step Selection:**
+- **Three-Step Selection:**
   Users select:
 
-  * Hours (01–12),
-  * Minutes (00–59),
-  * Period (AM/PM).
+  - Hours (01–12),
+  - Minutes (00–59),
+  - Period (AM/PM).
 
-* **Dynamic Formatting:**
+- **Dynamic Formatting:**
   Once all three fields are selected, it composes and returns a formatted time string like `08:45 PM` via the `setResult` callback.
 
-* **Dropdown UI:**
+- **Dropdown UI:**
   Uses a shared `CustomDropdown` component for consistent styling and interaction.
 
-* **Default Display:**
+- **Default Display:**
   Defaults to `"--"` until the user makes selections, ensuring visual clarity.
 
 ### Props:
@@ -174,16 +143,14 @@ The `TimePicker` allows users to manually select time by choosing **hour**, **mi
 | `color`     | `string`   | Custom accent color                            |
 | `width`     | `string`   | Max width of the input container               |
 
-
 ## Styling Notes
 
 Both components rely on **modular CSS**:
 
-* `DatePicker.module.css`
-* `TimePicker.module.css`
+- `DatePicker.module.css`
+- `TimePicker.module.css`
 
 This modular approach keeps the components isolated in terms of design and easier to maintain across large projects.
-
 
 ## Integration Example
 
@@ -203,7 +170,6 @@ Here’s how you might use both in a form:
   setResult={(time) => console.log("Selected Time:", time)}
 />
 ```
-
 
 ## Summary
 
