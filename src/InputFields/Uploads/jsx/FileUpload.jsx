@@ -145,6 +145,18 @@ export const FileUpload = ({
     e.target.value = null; // reset for re-selection
   };
 
+  const formatFileSize = (sizeInBytes) => {
+    if (sizeInBytes < 1024) {
+      return `${sizeInBytes} B`;
+    } else if (sizeInBytes < 1024 * 1024) {
+      return `${(sizeInBytes / 1024).toFixed(2)} KB`;
+    } else if (sizeInBytes < 1024 * 1024 * 1024) {
+      return `${(sizeInBytes / (1024 * 1024)).toFixed(2)} MB`;
+    } else {
+      return `${(sizeInBytes / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+    }
+  };
+
   const cssVariable = {
     "--color": color || "var(--colorCyan)",
     "--width": width,
@@ -192,7 +204,7 @@ export const FileUpload = ({
                   {`${getFileTypeLabel(file.type) || "File"}: ${file.name}`}
                 </p>
                 <div className={styles.uploadRemove}>
-                  <p>{`(${(file.size / 1024 / 1024).toFixed(2)} MB)`}</p>
+                  <p>{formatFileSize(file.size)}</p>
                   <IconButton
                     icon={resetFieldIcon}
                     onClick={() => handleReupload(index)}

@@ -34,6 +34,7 @@ import { JsonField } from "./InputFields/TextInput/jsx/JsonField";
 import { Label } from "./InputFields/TextInput/jsx/Label";
 import { TextArea } from "./InputFields/TextInput/jsx/TextArea";
 import { TextField } from "./InputFields/TextInput/jsx/TextField";
+import { FileUpload } from "./InputFields/Uploads/jsx/FileUpload";
 import { apiCaller } from "./utils/apiCaller";
 import { UtilsLogger } from "./utils/logger/logger.util";
 
@@ -101,5 +102,9 @@ export const UIInputs = {
     RadioGroup,
     Switch,
     CheckboxGroup,
+  },
+
+  Upload: {
+    FileUpload,
   },
 };
