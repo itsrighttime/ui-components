@@ -1,0 +1,40 @@
+.iconGrid {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  gap: 1rem;
+  padding: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  border: 1px solid red;
+}
+
+.iconCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.iconCard:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.iconName {
+  font-size: 0.9rem;
+  color: #666;
+  word-break: break-all;
+  text-align: center;
+}

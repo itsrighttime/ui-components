@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import SecondaryLoading from "./SecondaryLoading";
+import { SecondaryLoading } from "./SecondaryLoading";
 import styles from "../css/Loading.module.css";
 
 const CubesLoader = lazy(() =>
@@ -34,9 +34,11 @@ export const Loading = ({
   type = "CubesLoader",
   display = "top",
   position = "relative",
-  windowHeight = "100vh",
-  windowWidth = "100vw",
+  windowHeight = "100%",
+  windowWidth = "100%",
   color,
+  showText = false,
+  text = "Loading",
 }) => {
   const [loadingText, setLoadingText] = useState("Loading");
 
@@ -45,7 +47,7 @@ export const Loading = ({
     let index = 0;
 
     const intervalId = setInterval(() => {
-      setLoadingText(`Loading${dots[index]}`);
+      setLoadingText(`${text}${dots[index]}`);
       index = (index + 1) % dots.length;
     }, 500);
 
@@ -98,9 +100,8 @@ export const Loading = ({
     >
       <Suspense fallback={<SecondaryLoading />}>
         {LoaderComponent}
-        <p className={styles.text}>{loadingText}</p>
+        {showText && <p className={styles.text}>{loadingText}</p>}
       </Suspense>
     </div>
   );
 };
-

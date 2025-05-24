@@ -43,6 +43,11 @@ import { VideoPlayer } from "./InputFields/Uploads/jsx/VideoPlayer";
 import { VideoUpload } from "./InputFields/Uploads/jsx/VideoUpload";
 import { apiCaller } from "./utils/apiCaller";
 import { UtilsLogger } from "./utils/logger/logger.util";
+import * as Icons from "./utils/icons";
+import { Loading } from "./SpecialPages/js/Loading";
+import { ErrorPage } from "./SpecialPages/js/ErrorPage";
+import { IconError } from "./SpecialPages/js/IconError";
+import { LoadingChat } from "./SpecialPages/js/LoadingChat";
 
 export const UIAlert = {
   Alert,
@@ -68,6 +73,17 @@ export const UIEssentials = {
   getTrackingCode: UtilsLogger.getTrackingCode,
   useAPI,
   apiCaller,
+};
+
+export const UIIcons = {
+  Icons,
+};
+
+export const UIPages = {
+  Loading,
+  ErrorPage,
+  IconError,
+  LoadingChat,
 };
 
 export const UIInputs = {

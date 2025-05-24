@@ -1,7 +1,7 @@
 import React from "react";
 import { CubesLoader } from "./LoadingStyle";
 
-const SecondaryLoading = () => {
+export const SecondaryLoading = () => {
   return (
     <div
       style={{
@@ -16,5 +16,3 @@ const SecondaryLoading = () => {
     </div>
   );
 };
-
-export default SecondaryLoading;

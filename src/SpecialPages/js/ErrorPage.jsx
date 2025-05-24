@@ -1,19 +1,12 @@
-import React from "react";
 import styles from "../css/ErrorPage.module.css";
 import { useNavigate } from "react-router-dom";
 
-const ErrorPage = ({ statusCode = "404", responseCode = null }) => {
-  let statusDetail = statusCode;
-
-  if (!statusDetail) {
-    statusDetail = {
-      statusCode: statusCode,
-      statusError: "Given Wrong Status Code",
-      statusDetail:
-        "The Status Code is invalid. Kindly contact to organization.",
-    };
-  }
-
+export const ErrorPage = ({
+  statusCode = "404",
+  ErrorMsg = "not found",
+  statusDetail = null,
+  responseCode = null,
+}) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/");
@@ -40,28 +33,30 @@ const ErrorPage = ({ statusCode = "404", responseCode = null }) => {
                 d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
               />
             </svg>
-            <span className={styles.titleText}>
-              Oops! Page {statusDetail.statusCode}.
-            </span>
+            <span className={styles.titleText}>Oops! Page {statusCode}.</span>
           </h1>
           <p className={styles.description}>
-            The page you are looking for was {statusDetail.statusError}.
+            The page you are looking for was {ErrorMsg}.
           </p>
-          <p className={styles.description}>
-            <span className="boldL2">Detail:</span> {statusDetail.statusDetail}
-          </p>
-          {responseCode !== null ? (
+          {statusDetail && (
+            <p className={styles.description}>
+              <span className="boldL2">Detail:</span> {statusDetail}
+            </p>
+          )}
+          {responseCode !== null && (
             <p className={styles.description}>
               <span className="boldL2">Response Code:</span> {responseCode}
             </p>
-          ) : (
-            <></>
           )}
           <p className={styles.instruction}>
             You may return to{" "}
-            <span className={styles.link} onClick={handleClick}>
+            <button
+              className={styles.link}
+              style={{ border: "none", background: "none", cursor: "pointer" }}
+              onClick={handleClick}
+            >
               Home Page
-            </span>{" "}
+            </button>{" "}
             or try using the correct URL.
           </p>
         </div>
@@ -69,5 +64,3 @@ const ErrorPage = ({ statusCode = "404", responseCode = null }) => {
     </div>
   );
 };
-
-export default ErrorPage;

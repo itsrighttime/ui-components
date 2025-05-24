@@ -1,9 +1,10 @@
-import React from "react";
 import styles from "../css/LoadingChat.module.css";
 
-const LoadingChat = ({ color }) => {
+export const LoadingChat = ({ color, height = "100%", width = "100%" }) => {
   const cssVariables = {
     "--color": color || "var(--colorCyan)",
+    "--height": height,
+    "--width": width,
   };
   return (
     <div className={styles.blobs} style={cssVariables}>
@@ -39,5 +40,3 @@ const LoadingChat = ({ color }) => {
     </div>
   );
 };
-
-export default LoadingChat;
