@@ -2,11 +2,11 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import style from "../css/AudioPlayer.module.css";
 import {
   crossIcon,
-  muteIcon,
+  speakerOffIcon,
   pauseIcon,
   playIcon,
   resetFieldIcon,
-  speakerIcon,
+  speakerOnIcon,
 } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
 import { Slider } from "../../NumericInput.jsx/jsx/Slider";
@@ -151,7 +151,7 @@ export const AudioPlayer = ({
         <div className={style.controlers}>
           <div className={style.volumeControls}>
             <IconButton
-              icon={isMuted ? muteIcon : speakerIcon}
+              icon={isMuted ? speakerOffIcon : speakerOnIcon}
               onClick={handleMute}
               color={color || "#52C9BD"}
             />

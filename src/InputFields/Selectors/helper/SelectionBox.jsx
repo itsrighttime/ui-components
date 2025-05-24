@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./css/SelectionBox.module.css";
 import { IconButton } from "../../Actions/jsx/IconButton";
-import { singleTick } from "../../../utils/icons";
+import { tickSingleIcon } from "../../../utils/icons";
 
 export const SelectionBox = ({
   options = [],
@@ -89,7 +89,7 @@ export const SelectionBox = ({
             }
           >
             <IconButton
-              icon={selectedOption ? singleTick : ""}
+              icon={selectedOption ? tickSingleIcon : ""}
               color={setIconColor(option)}
               style={setIconStyle(option)}
               onClick={(e) => {

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "../css/Dropdown.module.css"; // Import your CSS module for styling
-import { downArrowIcon, upArrowIcon } from "../../../utils/icons";
+import { arrowDownIcon, arrowUpIcon } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
 import { Button } from "../../Actions/jsx/Button";
 
@@ -107,9 +107,9 @@ export const Dropdown = ({
         </span>
 
         {isOpen ? (
-          <IconButton icon={upArrowIcon} label={"Open Dropdown"} />
+          <IconButton icon={arrowUpIcon} label={"Open Dropdown"} />
         ) : (
-          <IconButton icon={downArrowIcon} label={"Close Dropdown"} />
+          <IconButton icon={arrowDownIcon} label={"Close Dropdown"} />
         )}
       </div>
       {isOpen && (

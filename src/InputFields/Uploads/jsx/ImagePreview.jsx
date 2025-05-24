@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { IconError } from "../../../SpecialPages/js/IconError";
-import { noImageIcon } from "../../../utils/icons";
+import { imageNotIcon } from "../../../utils/icons";
 
 export const ImagePreview = ({
   image,
@@ -60,7 +60,7 @@ export const ImagePreview = ({
         />
       ) : (
         <IconError
-          icon={noImageIcon}
+          icon={imageNotIcon}
           messgae="Ah! Looks like the image is not found."
           size={2}
         />

@@ -28,8 +28,9 @@
 }
 .crossIcon {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: 3px;
+  opacity: 0.8;
 }
 
 .alert.success {

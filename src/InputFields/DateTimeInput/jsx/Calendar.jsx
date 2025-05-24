@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from "react";
 import styles from "../css/CalendarBox.module.css";
-import { leftArrowIcon, rightArrowIcon } from "../../../utils/icons";
+import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
 import { convertStrDate2Date } from "../helper/handleDateChange";
 import { isAfterDate } from "../helper/handleDateCompare";
 import {
@@ -75,7 +75,7 @@ export const Calendar = ({
         {!restrictionStartDate ||
         canMovePrev(view, currentDate, restrictionStartDate) ? (
           <IconButton
-            icon={leftArrowIcon}
+            icon={arrowLeftIcon}
             onClick={() =>
               handlePrev(
                 currentDate,
@@ -97,7 +97,7 @@ export const Calendar = ({
         {!restrictionEndDate ||
         canMoveNext(view, currentDate, restrictionEndDate) ? (
           <IconButton
-            icon={rightArrowIcon}
+            icon={arrowRightIcon}
             onClick={() =>
               handleNext(currentDate, setCurrentDate, restrictionEndDate, view)
             }

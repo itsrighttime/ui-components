@@ -1,5 +1,5 @@
 import style from "../css/VideoPlayer.module.css";
-import { crossIcon, noVideoIcon, resetFieldIcon } from "../../../utils/icons";
+import { crossIcon, videoNotIcon, resetFieldIcon } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
 import { IconError } from "../../../SpecialPages/js/IconError";
 
@@ -53,7 +53,7 @@ export const VideoPlayer = ({
         </div>
       ) : (
         <IconError
-          icon={noVideoIcon}
+          icon={videoNotIcon}
           messgae={"Ah!! Looks live video not fount"}
           size={2.5}
         />
