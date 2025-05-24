@@ -20,6 +20,14 @@ import { CardTextOn } from "your-library/Cards/js/CardTextOn";
 import { CardTextSliding } from "your-library/Cards/js/CardTextSliding";
 ```
 
+## Importing
+
+```js
+import { UICards } from "@itsrighttime/ui-components";
+
+const { CardImg, CardSimpleInfo, CardTextOn, CardTextSliding } = UICards;
+```
+
 Also import or place images as needed:
 
 ```jsx

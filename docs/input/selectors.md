@@ -2,6 +2,15 @@
 
 These two components provide a consistent and accessible way to render single and multiple choice selection inputs with built-in styling, help text, and customizability.
 
+### Import
+
+```jsx
+import { UIInputs } from "@itsrighttime/ui-components";
+
+const { Dropdown, SearchBox, ColorPicker, RadioGroup, Switch, CheckboxGroup } =
+  UIInputs.Selectors;
+```
+
 ## Components Overview
 
 ### **RadioGroup**

@@ -2,6 +2,14 @@
 
 This guide explains the features, props, and usage examples of the `ImageUpload` and `ImagePreview` components. These components are designed to work together for a smooth image input and preview experience in React applications.
 
+### Import
+
+```jsx
+import { UIInputs } from "@itsrighttime/ui-components";
+
+const { ImageUpload, ImagePreview } = UIInputs.Upload;
+```
+
 ## `ImageUpload` Component
 
 ### Purpose

@@ -22,11 +22,12 @@ You only need to **use `useAlerts` and `AlertContainer`** in your feature compon
 
 ## Step-by-Step Usage
 
-### 1. Import the Hook and Container
+### 1. Importing
 
 ```js
-import { useAlerts } from "../path/to/useAlerts";
-import { AlertContainer } from "../path/to/AlertContainer";
+import { UIAlert } from "@itsrighttime/ui-components";
+
+const { Alert, AlertContainer, useAlerts } = UIAlert;
 ```
 
 ### 2. Set Up Alerts in Your Component
@@ -92,7 +93,6 @@ You **don’t need to handle this yourself** — it's baked in via `Alert.jsx`.
 | Temporary info like "Coming Soon" | `info`                        |
 | Form field validation?            | No, Use inline errors instead |
 
-
 ## Design System Guidelines
 
 As a component developer:
@@ -102,13 +102,11 @@ As a component developer:
 - **Customize**: Use consistent alert types to match UX expectations.
 - **Clean Up**: The system handles timer cleanup automatically.
 
-
 ## Tips for Consistent Integration
 
 - Place `<AlertContainer />` **once per page or layout**, preferably near the root of your component tree.
 - Avoid duplicate alerts for the same message; de-dupe if necessary.
 - If you want to add different durations or custom transitions, the base `Alert` supports internal logic and can be extended.
-
 
 ## Final Words
 
