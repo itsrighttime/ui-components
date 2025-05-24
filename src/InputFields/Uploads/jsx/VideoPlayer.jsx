@@ -1,42 +1,63 @@
-import React from "react";
-import style from "../css/VideoPlayer.module.css"; // Adjust the path as necessary
-import { crossIcon, resetFieldIcon } from "../../../utils/index.js";
-import IconButton from "../../Actions/jsx/IconButton";
+import style from "../css/VideoPlayer.module.css";
+import { crossIcon, noVideoIcon, resetFieldIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton";
+import { IconError } from "../../../SpecialPages/js/IconError";
 
-const VideoPlayer = ({
+export const VideoPlayer = ({
   videoFile,
   onRemove = null,
   onReupload = null,
   color,
+  width = "400px",
+  height = "200px",
 }) => {
-  const videoSrc = videoFile ? URL.createObjectURL(videoFile) : null;
+  let videoSrc = null;
+  if (videoFile) {
+    if (videoFile instanceof Blob) {
+      videoSrc = URL.createObjectURL(videoFile);
+    } else if (typeof videoFile === "string") {
+      videoSrc = videoFile;
+    }
+  }
 
   const cssVariable = {
-    "--color": color ? color : "var(--colorCyan)",
+    "--color": color || "var(--colorCyan)",
+    "--width": width,
+    "--height": height,
   };
 
-  return videoSrc ? (
-    <div className={style.videoPreview} style={cssVariable}>
-      <video controls src={videoSrc} className={style.videoPlayer} />
-      <div className={style.resetRemove}>
-        {onRemove && (
-          <IconButton
-            icon={resetFieldIcon}
-            onClick={onReupload}
-            color={color || "#52C9BD"}
+  return (
+    <div className={style.videoContainer} style={cssVariable}>
+      {videoSrc ? (
+        <div className={style.videoPreview}>
+          <video
+            controls
+            controlsList="nodownload"
+            muted
+            autoplay
+            src={videoSrc}
+            className={style.videoPlayer}
           />
-        )}
-        {onReupload && (
-          <IconButton icon={crossIcon} onClick={onRemove} color="#FF5969" />
-        )}
-      </div>
-    </div>
-  ) : (
-    <div className={style.noVideo} style={cssVariable}>
-      {" "}
-      Upload Video
+          <div className={style.resetRemove}>
+            {onReupload && (
+              <IconButton
+                icon={resetFieldIcon}
+                onClick={onReupload}
+                color={color || "#52C9BD"}
+              />
+            )}
+            {onRemove && (
+              <IconButton icon={crossIcon} onClick={onRemove} color="#FF5969" />
+            )}
+          </div>
+        </div>
+      ) : (
+        <IconError
+          icon={noVideoIcon}
+          messgae={"Ah!! Looks live video not fount"}
+          size={2.5}
+        />
+      )}
     </div>
   );
 };
-
-export default VideoPlayer;

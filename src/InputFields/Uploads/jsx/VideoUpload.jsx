@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import style from "../css/VideoUpload.module.css"; // Adjust the path as necessary
-import VideoPlayer from "./VideoPlayer";
+import { VideoPlayer } from "./VideoPlayer";
+import { crossIcon, resetFieldIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton";
+import { formatFileSize } from "../helper/formatFileSize";
 
-const VideoUpload = ({
+export const VideoUpload = ({
   label = "Upload Video",
   color,
   setResult,
@@ -10,12 +13,15 @@ const VideoUpload = ({
   allowedTypes = ["video/mp4", "video/webm"],
   maxSizeMB = 50, // Default to 50 MB
   preview = false,
+  width = "400px",
+  height = "200px",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [video, setVideo] = useState(null);
   const [error, setError] = useState(null);
 
   const maxSize = maxSizeMB * 1024 * 1024; // Convert MB to bytes
+  const formattedMaxSize = formatFileSize(maxSize);
 
   const validateVideo = (file) => {
     if (!allowedTypes.includes(file.type)) {
@@ -23,7 +29,7 @@ const VideoUpload = ({
       return false;
     }
     if (file.size > maxSize) {
-      setError(`Video size exceeds limit of ${maxSizeMB} MB`);
+      setError(`Video size exceeds limit of ${formattedMaxSize}`);
       return false;
     }
     return true;
@@ -90,10 +96,12 @@ const VideoUpload = ({
 
   const cssVariable = {
     "--color": color ? color : "var(--colorCyan)",
+    "--width": width,
+    "--height": height,
   };
 
   return (
-    <>
+    <div className={style.videoUploadContainer} style={cssVariable}>
       {!video && (
         <div
           className={`${style.videoUpload} ${isDragging ? style.dragging : ""}`}
@@ -101,7 +109,6 @@ const VideoUpload = ({
           onDragLeave={handleDragLeave}
           onDragOver={handleDragOver}
           onDrop={handleDrop}
-          style={cssVariable}
         >
           <input
             type="file"
@@ -111,14 +118,26 @@ const VideoUpload = ({
             accept={allowedTypes.join(",")}
           />
           <span className={style.label}>{label}</span>
-          <span className={style.label}>{`(Max Size: ${maxSizeMB}MB)`}</span>
+          <span
+            className={style.label}
+          >{`(Max Size: ${formattedMaxSize})`}</span>
         </div>
       )}
       {video && !preview && (
         <div className={style.uploadDetails}>
           <p>Video Uploaded: {video.name}</p>
           <div className={style.videoSizeIcon}>
-            <p>{(video.size / 1024 / 1024).toFixed(2)}MB</p>
+            <p>{formatFileSize(video.size)}</p>
+            <IconButton
+              icon={resetFieldIcon}
+              onClick={handleReupload}
+              color={color || "#52C9BD"}
+            />
+            <IconButton
+              icon={crossIcon}
+              onClick={handleRemoveVideo}
+              color="#FF5969"
+            />
           </div>
         </div>
       )}
@@ -128,11 +147,11 @@ const VideoUpload = ({
           onRemove={handleRemoveVideo}
           onReupload={handleReupload}
           color={color}
+          width={width}
+          height={height}
         />
       )}
       {error && <p className={style.error}>{error}</p>}
-    </>
+    </div>
   );
 };
-
-export default VideoUpload;

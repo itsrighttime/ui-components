@@ -5,7 +5,7 @@ export const IconError = ({
   messgae,
   height = "100%",
   width = "100%",
-  size = 1,
+  size = 2,
 }) => {
   const cssVariable = {
     "--iconSize": `${size}rem`,

@@ -3,6 +3,7 @@ import styles from "../css/FileUpload.module.css";
 import { crossIcon, resetFieldIcon } from "../../../utils/icons";
 import { getFileTypeLabel } from "../helper/getFileType";
 import { IconButton } from "../../Actions/jsx/IconButton";
+import { formatFileSize } from "../helper/formatFileSize";
 
 export const FileUpload = ({
   label = "Upload File",
@@ -143,18 +144,6 @@ export const FileUpload = ({
   const handleInputChange = (e) => {
     handleFileChange(e.target.files);
     e.target.value = null; // reset for re-selection
-  };
-
-  const formatFileSize = (sizeInBytes) => {
-    if (sizeInBytes < 1024) {
-      return `${sizeInBytes} B`;
-    } else if (sizeInBytes < 1024 * 1024) {
-      return `${(sizeInBytes / 1024).toFixed(2)} KB`;
-    } else if (sizeInBytes < 1024 * 1024 * 1024) {
-      return `${(sizeInBytes / (1024 * 1024)).toFixed(2)} MB`;
-    } else {
-      return `${(sizeInBytes / (1024 * 1024 * 1024)).toFixed(2)} GB`;
-    }
   };
 
   const cssVariable = {

@@ -70,10 +70,8 @@ export const UseUploadExample = () => {
         requireSquare={true}
       />
 
-      {/* 
-      <ImageUpload />
-      <VideoPlayer />
-      <VideoUpload /> */}
+      {/* <VideoPlayer videoFile={video} /> */}
+      <VideoUpload  />
     </div>
   );
 };
