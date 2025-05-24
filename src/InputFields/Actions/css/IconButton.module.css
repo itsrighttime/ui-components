@@ -25,6 +25,8 @@
 
 .btn svg {
   font-size: var(--iconSize);
+  height: var(--iconSize);
+  width: var(--iconSize);
 }
 
 .btn:hover {

@@ -1,6 +1,6 @@
 import "./App.css";
 import "./export.js";
-import { UseSelectorExample } from "./Usecases/Input/UseSelectorExample.jsx";
+import { UseUploadExample } from "./Usecases/Input/UseUploadExample.jsx";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
           height: "100vh",
         }}
       >
-        <UseSelectorExample />
+        <UseUploadExample />
       </div>
     </div>
   );

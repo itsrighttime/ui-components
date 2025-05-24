@@ -33,7 +33,7 @@ export const UseUploadExample = () => {
       />
 
       <AudioPlayer
-        audioSrc={audio} 
+        audioSrc={audio}
         setIsFieldValid={setIsValid}
         color="#4CAF50"
       />
@@ -50,7 +50,27 @@ export const UseUploadExample = () => {
         width="600px"
         // height="220px"
       />
-      {/* <ImagePreview />
+
+      {/* <ImagePreview
+        image={image} // File or string URL
+        width="450px"
+        height="450px"
+        // radius="50%"
+      /> */}
+
+      <ImageUpload
+        label="Profile Picture"
+        color="#FFB400"
+        setResult={(file) => console.log("Image file:", file)}
+        setIsFieldValid={(valid) =>
+          setFieldStatus({ ...fieldStatus, profilePic: valid })
+        }
+        allowedTypes={["image/png", "image/jpeg"]}
+        maxSizeMB={3}
+        requireSquare={true}
+      />
+
+      {/* 
       <ImageUpload />
       <VideoPlayer />
       <VideoUpload /> */}

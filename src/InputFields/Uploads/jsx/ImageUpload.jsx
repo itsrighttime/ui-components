@@ -1,22 +1,35 @@
-import React, { useState } from "react";
-import style from "../css/ImageUpload.module.css"; // Adjust the path as necessary
-import { crossIcon, resetFieldIcon } from "../../../utils/index.js";
-import IconButton from "../../Actions/jsx/IconButton";
+import { useState, useEffect } from "react";
+import style from "../css/ImageUpload.module.css"; // Adjust the path as needed
+import { crossIcon, resetFieldIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton";
 
-const ImageUpload = ({
+export const ImageUpload = ({
   label = "Upload Image",
   setResult,
   color,
   setIsFieldValid = () => {},
   allowedTypes = ["image/jpeg", "image/png", "image/gif"],
-  maxSizeMB = 5, // Default to 5 MB
-  requireSquare = true, // Flag to specify if image must be square
+  maxSizeMB = 5,
+  requireSquare = true,
+  width = "200px",
+  height = "200px",
+  previewBorderRadius = "0%",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null); // image URL for preview
+  const [file, setFile] = useState(null); // actual File object
   const [error, setError] = useState(null);
 
-  const maxSize = maxSizeMB * 1024 * 1024; // Convert MB to bytes
+  const maxSize = maxSizeMB * 1024 * 1024;
+
+  useEffect(() => {
+    // Cleanup the previous object URL to prevent memory leak
+    return () => {
+      if (image) {
+        URL.revokeObjectURL(image);
+      }
+    };
+  }, [image]);
 
   const validateImage = (file) => {
     if (!allowedTypes.includes(file.type)) {
@@ -30,131 +43,118 @@ const ImageUpload = ({
     return true;
   };
 
-  const checkIfSquare = (image) => {
-    const img = new Image();
-    img.src = image;
+  const checkIfSquare = (url) => {
     return new Promise((resolve) => {
-      img.onload = () => {
-        resolve(img.width === img.height);
-      };
+      const img = new Image();
+      img.onload = () => resolve(img.width === img.height);
+      img.onerror = () => resolve(false);
+      img.src = url;
     });
   };
 
   const handleFileChange = async (selectedFile) => {
-    if (validateImage(selectedFile)) {
-      const imageURL = URL.createObjectURL(selectedFile);
-      const isSquare = await checkIfSquare(imageURL);
+    if (!selectedFile || !validateImage(selectedFile)) return;
 
-      if (requireSquare && !isSquare) {
-        setError("Image must be square. Please reupload.");
-        setImage(null);
-        setResult(null);
-        setIsFieldValid(false);
-      } else {
-        setImage(imageURL);
-        setResult(selectedFile);
-        setIsFieldValid(true);
-        setError(null);
-      }
+    const url = URL.createObjectURL(selectedFile);
+    const isSquare = await checkIfSquare(url);
+
+    if (requireSquare && !isSquare) {
+      setError("Image must be square. Please reupload.");
+      URL.revokeObjectURL(url);
+      resetAll();
+    } else {
+      setImage(url);
+      setFile(selectedFile);
+      setResult(selectedFile);
+      setIsFieldValid(true);
+      setError(null);
     }
   };
 
-  const handleDragEnter = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
+  const resetAll = () => {
+    if (image) URL.revokeObjectURL(image);
+    setImage(null);
+    setFile(null);
+    setResult(null);
+    setIsFieldValid(false);
   };
 
-  const handleDragLeave = (e) => {
+  const handleDrag = (e, dragging) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragging(false);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    setIsDragging(dragging);
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+    if (e.dataTransfer.files.length > 0) {
       handleFileChange(e.dataTransfer.files[0]);
       e.dataTransfer.clearData();
     }
-  };
-
-  const handleInputChange = (e) => {
-    handleFileChange(e.target.files[0]);
-  };
-
-  const handleRemoveImage = () => {
-    setImage(null);
-    setResult(null);
-    setIsFieldValid(null);
   };
 
   const handleReupload = () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = allowedTypes.join(",");
-    fileInput.onchange = (e) => {
-      const selectedFile = e.target.files[0];
-      if (selectedFile && validateImage(selectedFile)) {
-        handleFileChange(selectedFile);
-      }
-    };
+    fileInput.onchange = (e) => handleFileChange(e.target.files[0]);
     fileInput.click();
   };
 
   const cssVariable = {
-    "--color": color ? color : "var(--colorCyan)",
+    "--color": color || "var(--colorCyan)",
+    "--width": width,
+    "--height": height,
   };
 
   return (
     <>
-      {!image && (
-        <div
-          className={`${style.imageUpload} ${isDragging ? style.dragging : ""}`}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-          style={cssVariable}
-        >
-          <input
-            type="file"
-            onChange={handleInputChange}
-            className={style.formControl}
-            title=""
-            accept={allowedTypes.join(",")}
-          />
-          <span className={style.label}>{label}</span>
-          <span className={style.label}>{`(Max Size: ${maxSizeMB}MB)`}</span>
-        </div>
-      )}
-      {image && (
-        <div className={style.imagePreview} style={cssVariable}>
-          <img src={image} alt="Preview" className={style.image} />
-          <div className={style.resetRemove}>
-            <IconButton
-              icon={resetFieldIcon}
-              onClick={handleReupload}
-              color={color || "#52C9BD"}
+      <div className={style.imageUploadContainer} style={cssVariable}>
+        {!image && (
+          <label
+            className={`${style.imageUpload} ${
+              isDragging ? style.dragging : ""
+            }`}
+            onDragEnter={(e) => handleDrag(e, true)}
+            onDragLeave={(e) => handleDrag(e, false)}
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={handleDrop}
+          >
+            <input
+              type="file"
+              onChange={(e) => handleFileChange(e.target.files[0])}
+              className={style.formControl}
+              title=""
+              accept={allowedTypes.join(",")}
             />
-            <IconButton
-              icon={crossIcon}
-              onClick={handleRemoveImage}
-              color="#FF5969"
+            <span className={style.label}>{label}</span>
+            <span className={style.label}>{`(Max Size: ${maxSizeMB}MB)`}</span>
+          </label>
+        )}
+
+        {image && (
+          <div className={style.imagePreview}>
+            <img
+              src={image}
+              alt="Preview"
+              className={style.image}
+              style={{ borderRadius: previewBorderRadius }}
             />
+            <div className={style.resetRemove}>
+              <IconButton
+                icon={resetFieldIcon}
+                onClick={handleReupload}
+                color={color || "#52C9BD"}
+              />
+              <IconButton icon={crossIcon} onClick={resetAll} color="#FF5969" />
+            </div>
           </div>
-        </div>
-      )}
-      {error && <p className={style.error}>{error}</p>}
+        )}
+
+        {error && <p className={style.error}>{error}</p>}
+      </div>
     </>
   );
 };
-
-export default ImageUpload;

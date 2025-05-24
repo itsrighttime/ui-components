@@ -37,6 +37,8 @@ import { TextField } from "./InputFields/TextInput/jsx/TextField";
 import { AudioPlayer } from "./InputFields/Uploads/jsx/AudioPlayer";
 import { AudioUpload } from "./InputFields/Uploads/jsx/AudioUpload";
 import { FileUpload } from "./InputFields/Uploads/jsx/FileUpload";
+import { ImagePreview } from "./InputFields/Uploads/jsx/ImagePreview";
+import { ImageUpload } from "./InputFields/Uploads/jsx/ImageUpload";
 import { apiCaller } from "./utils/apiCaller";
 import { UtilsLogger } from "./utils/logger/logger.util";
 
@@ -110,5 +112,7 @@ export const UIInputs = {
     FileUpload,
     AudioPlayer,
     AudioUpload,
+    ImagePreview,
+    ImageUpload,
   },
 };
