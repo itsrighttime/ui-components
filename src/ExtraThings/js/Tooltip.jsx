@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
+import ReactDOM from "react-dom";
 import styles from "../css/ToolTip.module.css";
 
-const OFFSET = 12;
+const OFFSET = 15;
 
 export const Tooltip = ({
   children,
@@ -12,7 +13,7 @@ export const Tooltip = ({
   const tooltipRef = useRef(null);
   const [visible, setVisible] = useState(false);
   const [style, setStyle] = useState({});
-  const [position, setPosition] = useState("bottom"); // "top" or "bottom"
+  const [position, setPosition] = useState("bottom");
 
   const updateTooltipPosition = (x, y) => {
     const tooltip = tooltipRef.current;
@@ -47,7 +48,6 @@ export const Tooltip = ({
       left,
       zIndex: 9999,
       pointerEvents: "none",
-      opacity: 1,
       color,
       backgroundColor,
     });
@@ -61,23 +61,32 @@ export const Tooltip = ({
   };
 
   return (
-    <span
-      onMouseEnter={() => setVisible(true)}
-      onMouseLeave={() => setVisible(false)}
-      onMouseMove={handleMouseMove}
-      style={{ position: "relative" }}
-    >
-      {children}
-      {visible && content && (
+    <>
+      <span
+        onMouseEnter={() => setVisible(true)}
+        onMouseLeave={() => setVisible(false)}
+        onMouseMove={handleMouseMove}
+        style={{ display: "inline-block" }}
+      >
+        {children}
+      </span>
+
+      {ReactDOM.createPortal(
         <div
           ref={tooltipRef}
-          style={style}
+          style={{
+            ...style,
+            opacity: visible ? 1 : 0,
+            visibility: visible ? "visible" : "hidden",
+            transition: "opacity 0.15s ease, visibility 0.15s ease",
+          }}
           className={`${styles.tooltip} ${styles[position]}`}
         >
           {content}
-        </div>
+        </div>,
+        document.body
       )}
-    </span>
+    </>
   );
 };
 

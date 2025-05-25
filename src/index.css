@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700&display=swap");
 
-
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +13,11 @@ body {
   background-color: var(--colorBackground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  overflow: hidden;
 }
 
 a {
@@ -76,7 +80,6 @@ a {
   color: #ffffff;
   background-color: var(--colorBlueHover);
 }
-
 
 /* ***************************************************************** */
 
