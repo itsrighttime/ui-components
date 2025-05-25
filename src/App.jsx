@@ -1,9 +1,6 @@
-// import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import "./export.js";
-import { UsePagesExample } from "./Usecases/Misc/UsePagesExample.jsx";
-import IconGallery from "./Usecases/Misc/IconGallery.jsx";
-import { UseContainerExample } from "./Usecases/Misc/UseContainerExample.jsx";
+import { Navigator } from "./Layout/Workspace/jsx/Navigator.jsx";
 
 const App = () => {
   return (
@@ -17,9 +14,13 @@ const App = () => {
           height: "100vh",
         }}
       >
-        {/* <Router> */}
-          <UseContainerExample />
-        {/* </Router> */}
+        <Navigator
+          tabs={{
+            left: [{ key: "home", value: "Home" }, { key: "home1", value: "Home3" }, { key: "home2", value: "Home2" }],
+            mid: [{ key: "about", value: "About" }, { key: "about1", value: "About1" }, { key: "about2", value: "About2" }],
+            right: [{ key: "contact", value: "Contact" }, { key: "contact1", value: "Contact1" }, { key: "contact2", value: "Contact2" }],
+          }}
+        />
       </div>
     </div>
   );
