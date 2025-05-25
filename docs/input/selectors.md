@@ -7,8 +7,15 @@ These two components provide a consistent and accessible way to render single an
 ```jsx
 import { UIInputs } from "@itsrighttime/ui-components";
 
-const { Dropdown, SearchBox, ColorPicker, RadioGroup, Switch, CheckboxGroup } =
-  UIInputs.Selectors;
+const {
+  Dropdown,
+  DropdownSimple,
+  SearchBox,
+  ColorPicker,
+  RadioGroup,
+  Switch,
+  CheckboxGroup,
+} = UIInputs.Selectors;
 ```
 
 ## Components Overview
@@ -219,6 +226,91 @@ A toggle component (like a checkbox) that switches between `true`/`false`.
 
 - Click or press `Enter` / `Space` toggles the state.
 - Accessible using `role="switch"` and `aria-checked`.
+
+## **DropdownSimple Component **
+
+### Overview
+
+`DropdownSimple` is a smart and responsive dropdown component that:
+
+- Renders a list of selectable items.
+- Automatically detects and avoids **viewport overflow**.
+- Adjusts **vertical** (top/bottom) and **horizontal** (left/right) placement dynamically.
+- Provides optional **description text** for each item.
+- Closes automatically when clicking outside.
+
+### **Usage**
+
+#### **Define Dropdown Items**
+
+Each item should have the following structure:
+
+```js
+const dropdownItems = [
+  {
+    key: "editProject",
+    value: "Edit Project",
+    description: "Ctrl + E",
+  },
+  {
+    key: "deleteProject",
+    value: "Delete Project",
+    description: "Del",
+  },
+  {
+    key: "duplicateProject",
+    value: "Duplicate",
+  },
+];
+```
+
+#### **Render the Dropdown**
+
+Wrap it in a container (`relative`) and render when needed:
+
+```jsx
+<div className="tabWithDropdown">
+  <button onClick={() => setShowDropdown(!showDropdown)}>Options</button>
+
+  {showDropdown && (
+    <DropdownSimple
+      items={dropdownItems}
+      onSelect={(key) => {
+        console.log("Selected:", key);
+        setShowDropdown(false);
+      }}
+    />
+  )}
+</div>
+```
+
+### **Features & Behaviors**
+
+#### 1. **Viewport-Aware Positioning**
+
+- **Vertical:** If there’s not enough space below the trigger element, it renders **above**.
+- **Horizontal:** If the dropdown would overflow on the right, it shifts **left**.
+
+#### 2. **Click Outside to Close**
+
+- The dropdown automatically closes when the user clicks outside its area.
+
+#### 3. **Custom Descriptions**
+
+- Items can include a `description` (e.g., keyboard shortcuts) displayed on the right side.
+
+### Example with `useRef` + `useClickOutside`
+
+Use it in a complex tab system or icon button, e.g.:
+
+```jsx
+<Tab
+  mykey="settings"
+  value="Settings"
+  icon={<GearIcon />}
+  dropdown={dropdownItems}
+/>
+```
 
 # **`Dropdown` Component**
 
