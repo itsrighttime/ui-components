@@ -12,6 +12,7 @@ export const Tab = ({ mykey, value, icon, onClick, color }) => {
     customStyle = {
       textDecoration: "none",
       color: "var(--colorRed)",
+      fontWeight: "700",
     };
 
   return icon ? (
