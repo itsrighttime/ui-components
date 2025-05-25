@@ -48,6 +48,8 @@ import { Loading } from "./SpecialPages/js/Loading";
 import { ErrorPage } from "./SpecialPages/js/ErrorPage";
 import { IconError } from "./SpecialPages/js/IconError";
 import { LoadingChat } from "./SpecialPages/js/LoadingChat";
+import { FlexContainer } from "./Layout/Containers/jsx/FlexContainer";
+import { GridContainer } from "./Layout/Containers/jsx/GridContainer";
 
 export const UIAlert = {
   Alert,
@@ -135,4 +137,9 @@ export const UIInputs = {
     VideoUpload,
     VideoPlayer,
   },
+};
+
+export const UILayout = {
+  FlexContainer,
+  GridContainer,
 };

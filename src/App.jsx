@@ -1,8 +1,9 @@
-import { BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import "./export.js";
 import { UsePagesExample } from "./Usecases/Misc/UsePagesExample.jsx";
 import IconGallery from "./Usecases/Misc/IconGallery.jsx";
+import { UseContainerExample } from "./Usecases/Misc/UseContainerExample.jsx";
 
 const App = () => {
   return (
@@ -16,9 +17,9 @@ const App = () => {
           height: "100vh",
         }}
       >
-        <Router>
-          <UsePagesExample />
-        </Router>
+        {/* <Router> */}
+          <UseContainerExample />
+        {/* </Router> */}
       </div>
     </div>
   );
