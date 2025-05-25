@@ -50,6 +50,7 @@ import { IconError } from "./SpecialPages/js/IconError";
 import { LoadingChat } from "./SpecialPages/js/LoadingChat";
 import { FlexContainer } from "./Layout/Containers/jsx/FlexContainer";
 import { GridContainer } from "./Layout/Containers/jsx/GridContainer";
+import { PlainButton } from "./InputFields/Actions/jsx/PlainButton";
 
 export const UIAlert = {
   Alert,
@@ -90,6 +91,7 @@ export const UIPages = {
 
 export const UIInputs = {
   Actions: {
+    PlainButton,
     Button,
     IconButton,
     ImageButton,

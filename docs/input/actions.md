@@ -2,6 +2,7 @@
 
 This guide explains how to use the following reusable React components:
 
+- [`<PlainButton />`](#button-component)
 - [`<Button />`](#button-component)
 - [`<IconButton />`](#iconbutton-component)
 - [`<ImageButton />`](#imagebutton-component)
@@ -16,10 +17,39 @@ Make sure the relevant component files and CSS modules are correctly imported:
 ```jsx
 import { UIInputs } from "@itsrighttime/ui-components";
 
-const { Button, IconButton, ImageButton, Link } = UIInputs.Actions;
+const { PlainButton, Button, IconButton, ImageButton, Link } = UIInputs.Actions;
 ```
 
 Each component’s CSS should also be included via module imports (e.g., `../css/Button.module.css`).
+
+## PlainButton Component
+
+### Description
+
+A customizable standard button with dynamic styles using CSS variables.
+
+### Props
+
+| Prop          | Type     | Default    | Description                           |
+| ------------- | -------- | ---------- | ------------------------------------- |
+| `onClick`     | function | —          | Function executed on click.           |
+| `text`        | string   | "Click Me" | The button's label.                   |
+| `color`       | string   | "#52C9BD"  | Primary color for background or text. |
+| `fontSize`    | number   | `1`        | Font size.                            |
+| `fontWeight`  | number   | 400        | To set the boldness of the label.     |
+| `isUnderline` | boolean  | false      | underline on hover                    |
+| `style`       | object   | `{}`       | Additional inline styles.             |
+
+### Example
+
+```jsx
+<PlainButton
+  text="Submit"
+  color="#007bff"
+  onClick={() => alert("Submitted")}
+  isUnderline={true}
+/>
+```
 
 ## Button Component
 
