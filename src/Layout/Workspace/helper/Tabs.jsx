@@ -2,9 +2,9 @@ import styles from "../css/Navigator.module.css";
 import { FlexContainer } from "../../Containers/jsx/FlexContainer";
 import { Tab } from "./Tab";
 
-export const Tabs = ({ tabs }) => {
+export const Tabs = ({ tabs, direction }) => {
   return (
-    <FlexContainer className={styles.navigatorSection}>
+    <FlexContainer direction={direction} justify="center" align="center" className={styles.navigatorSection}>
       {tabs.map((tab) => (
         <Tab
           key={tab.key}

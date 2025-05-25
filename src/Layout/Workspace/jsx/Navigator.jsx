@@ -4,7 +4,9 @@ import { Tabs } from "../helper/Tabs";
 import { validateTabsIcons } from "../helper/validateTabsIcons";
 
 export const Navigator = ({
+  style,
   direction = "row", // "row", "column"
+  size = "35px",
   tabs = {
     left: [
       {
@@ -20,15 +22,22 @@ export const Navigator = ({
 }) => {
   validateTabsIcons(tabs, direction);
 
+  const customStyle = {
+    height: direction === "column" ? "100%" : size,
+    width: direction === "column" ? size : "100%",
+    ...style,
+  };
+
   return (
     <FlexContainer
       direction={direction}
       justify="between"
       className={styles.navigator}
+      style={customStyle}
     >
-      <Tabs tabs={tabs.left} />
-      <Tabs tabs={tabs.mid} />
-      <Tabs tabs={tabs.right} />
+      <Tabs direction={direction} tabs={tabs.left} />
+      <Tabs direction={direction} tabs={tabs.mid} />
+      <Tabs direction={direction} tabs={tabs.right} />
     </FlexContainer>
   );
 };

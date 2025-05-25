@@ -1,0 +1,53 @@
+.workspaceLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bottom,
+.top {
+  height: var(--navigatorSize);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 7px;
+}
+
+.midOfTopBottom {
+  width: 100%;
+  height: calc(100% - 2 * var(--navigatorSize));
+  display: flex;
+  justify-content: space-between;
+}
+
+.left,
+.right {
+  height: 100%;
+  width: var(--navigatorSize);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 0;
+}
+
+.midOfLeftRight {
+  height: 100%;
+  width: calc(100% - 2 * var(--navigatorSize));
+}
+
+.top {
+  border-bottom: 2px solid var(--colorGray1);
+}
+
+.bottom {
+  border-top: 2px solid var(--colorGray1);
+}
+
+.left {
+  border-right: 2px solid var(--colorGray1);
+}
+
+.right {
+  border-left: 2px solid var(--colorGray1);
+}
