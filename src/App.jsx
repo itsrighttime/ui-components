@@ -1,6 +1,6 @@
 import "./App.css";
 import "./export.js";
-import { Navigator } from "./Layout/Workspace/jsx/Navigator.jsx";
+import { FullscreenWrapper } from "./Layout/Workspace/jsx/FullscreenWrapper.jsx";
 import { WorkspaceLayout } from "./Layout/Workspace/jsx/WorkspaceLayout.jsx";
 
 const App = () => {
@@ -15,7 +15,11 @@ const App = () => {
           height: "100vh",
         }}
       >
-        <WorkspaceLayout api={"/letsDiscuss"} />
+        <FullscreenWrapper>
+          {({ toggleFullscreen }) => (
+            <WorkspaceLayout toggleFullscreen={toggleFullscreen} api={"letsSecure"}/>
+          )}
+        </FullscreenWrapper>
       </div>
     </div>
   );
