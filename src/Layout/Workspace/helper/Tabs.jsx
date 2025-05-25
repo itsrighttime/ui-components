@@ -18,6 +18,7 @@ export const Tabs = ({ tabs, direction }) => {
           icon={tab.icon}
           onClick={tab.onClick}
           color={tab.color}
+          dropdown={tab.dropdown}
         />
       ))}
     </FlexContainer>
