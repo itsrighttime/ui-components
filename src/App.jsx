@@ -1,7 +1,6 @@
 import "./App.css";
 import "./export.js";
-import { FullscreenWrapper } from "./Layout/Workspace/jsx/FullscreenWrapper.jsx";
-import { WorkspaceLayout } from "./Layout/Workspace/jsx/WorkspaceLayout.jsx";
+import { UseLayoutExample } from "./Usecases/Misc/UseLayoutExample.jsx";
 
 const App = () => {
   return (
@@ -15,11 +14,7 @@ const App = () => {
           height: "100vh",
         }}
       >
-        <FullscreenWrapper>
-          {({ toggleFullscreen }) => (
-            <WorkspaceLayout toggleFullscreen={toggleFullscreen} api={"letsSecure"}/>
-          )}
-        </FullscreenWrapper>
+        <UseLayoutExample />
       </div>
     </div>
   );

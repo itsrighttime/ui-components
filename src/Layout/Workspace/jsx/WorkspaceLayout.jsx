@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../css/WorkspaceLayout.module.css";
 import { workspaceLayoutApi } from "../helper/workspaceLayoutApi";
 import { Navigator } from "./Navigator";
+import { formateTabsDetails } from "../helper/formateTabsDetails";
 
 export const WorkspaceLayout = ({
   api,
@@ -12,6 +13,7 @@ export const WorkspaceLayout = ({
   providedTabs = null, // <---- Passed from parent if not root
   providedContent = null, // <---- Same for content
   toggleFullscreen,
+  tabsHandler,
 }) => {
   const [tabsLevel1, setTabsLevel1] = useState(providedTabs);
   const [tabsLevel2, setTabsLevel2] = useState(null);
@@ -20,9 +22,16 @@ export const WorkspaceLayout = ({
 
   useEffect(() => {
     if (level === 1 && api) {
-      const response = workspaceLayoutApi(api, toggleFullscreen);
-      setTabsLevel1(response.tabsLevel1);
-      setTabsLevel2(response.tabsLevel2);
+      const response = workspaceLayoutApi(api);
+
+      const formattedTabs = formateTabsDetails({
+        data: response,
+        toggleFullscreen: toggleFullscreen,
+        tabsHandler: tabsHandler,
+      });
+
+      setTabsLevel1(formattedTabs.tabsLevel1);
+      setTabsLevel2(formattedTabs.tabsLevel2);
 
       setContent(response.content.data);
     }

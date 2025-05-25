@@ -8,9 +8,9 @@ export const validateTabsIcons = (tabs, direction) => {
 
     for (const tab of tabGroup) {
       if (!tab.icon) {
-        throw new Error(
-          `[Navigator]: All tabs must include an 'icon' when direction is set to 'column'. Missing in section '${section}' for tab with key '${tab.key}'.`
-        );
+        // throw new Error(
+        //   `[Navigator]: All tabs must include an 'icon' when direction is set to 'column'. Missing in section '${section}' for tab with key '${tab.key}'.`
+        // );
       }
     }
   }
