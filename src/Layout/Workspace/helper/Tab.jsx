@@ -7,13 +7,18 @@ export const Tab = ({ mykey, value, icon, onClick, color }) => {
       "You have not pass the onClick in tabs of navigator. Kindly pass onClick"
     );
 
-  //   console.log(icon);
+  let customStyle = {};
+  if (mykey === "workspaceName" || mykey === "toggleFullscreen")
+    customStyle = {
+      textDecoration: "none",
+      color: "var(--colorRed)",
+    };
 
   return icon ? (
     <IconButton
       icon={icon}
       label={value}
-      color={color}
+      color={mykey === "toggleFullscreen" ? "#ff5969" : color}
       size={1.4}
       onClick={() => {
         onClick(mykey);
@@ -26,6 +31,7 @@ export const Tab = ({ mykey, value, icon, onClick, color }) => {
         onClick(mykey);
       }}
       color={color}
+      style={customStyle}
     />
   );
 };

@@ -2,6 +2,7 @@ export const workspaceLayoutApi = (api) => {
   const response = {
     content: {
       data: `Page for ${api || "Home"}`,
+      workspaceName: "letsDiscuss",
     },
 
     tabsLevel1: generateTabSet("Level1"),

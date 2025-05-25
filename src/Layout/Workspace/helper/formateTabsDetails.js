@@ -53,6 +53,19 @@ export const formateTabsDetails = ({ data, toggleFullscreen, tabsHandler }) => {
             icon: screenModeIcon,
           });
         }
+        // Add special toggleFullscreen tab for: level1 > top > right > left[0]
+        else if (
+          level === "tabsLevel1" &&
+          zone === "top" &&
+          position === "left"
+        ) {
+          result[level][zone][position].unshift({
+            key: "workspaceName",
+            value: data.content.workspaceName,
+            onClick: () => {},
+            icon: null,
+          });
+        }
       });
     });
   });
