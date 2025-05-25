@@ -8,7 +8,7 @@ export const WorkspaceLayout = ({
   api,
   height = "100%",
   width = "100%",
-  level = 1, // <---- NEW
+  level = 1, // <---- NEW | 
   maxDepth = 2, // <---- Where to stop nesting
   providedTabs = null, // <---- Passed from parent if not root
   providedContent = null, // <---- Same for content
