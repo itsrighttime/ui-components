@@ -19,7 +19,7 @@ export const Tab = ({ mykey, value, icon, onClick, color }) => {
       icon={icon}
       label={value}
       color={mykey === "toggleFullscreen" ? "#ff5969" : color}
-      size={1.4}
+      size={1.2}
       onClick={() => {
         onClick(mykey);
       }}
