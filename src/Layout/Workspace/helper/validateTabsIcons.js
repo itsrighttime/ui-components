@@ -5,7 +5,6 @@ export const validateTabsIcons = (tabs, direction) => {
 
   for (const section of allSections) {
     const tabGroup = tabs[section] || [];
-    console.log(tabGroup);
 
     for (const tab of tabGroup) {
       if (!tab.icon) {
