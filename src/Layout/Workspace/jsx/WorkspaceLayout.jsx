@@ -18,7 +18,7 @@ export const WorkspaceLayout = ({
   const [tabsLevel1, setTabsLevel1] = useState(providedTabs);
   const [tabsLevel2, setTabsLevel2] = useState(null);
   const [content, setContent] = useState(providedContent);
-  const navigatorSize = "30px";
+  const navigatorSize = "32px";
 
   useEffect(() => {
     if (level === 1 && api) {

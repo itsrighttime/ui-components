@@ -45,8 +45,8 @@ export const formateTabsDetails = ({ data, toggleFullscreen, tabsHandler }) => {
         });
 
         // Add special toggleFullscreen tab for: level1 > top > right > left[0]
-        if (level === "tabsLevel1" && zone === "right" && position === "left") {
-          result[level][zone][position].unshift({
+        if (level === "tabsLevel1" && zone === "top" && position === "right") {
+          result[level][zone][position].push({
             key: "toggleFullscreen",
             value: "Toggle Screen Mode",
             onClick: toggleFullscreen,
