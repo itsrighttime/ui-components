@@ -1,4 +1,4 @@
-import { homeIcon } from "../../../utils/icons";
+import { screenModeIcon } from "../../../utils/icons";
 
 export const formateTabsDetails = ({ data, toggleFullscreen, tabsHandler }) => {
   const result = {};
@@ -48,9 +48,9 @@ export const formateTabsDetails = ({ data, toggleFullscreen, tabsHandler }) => {
         if (level === "tabsLevel1" && zone === "right" && position === "left") {
           result[level][zone][position].unshift({
             key: "toggleFullscreen",
-            value: "Fullscreen",
+            value: "Toggle Screen Mode",
             onClick: toggleFullscreen,
-            icon: homeIcon,
+            icon: screenModeIcon,
           });
         }
       });
