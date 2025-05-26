@@ -24,34 +24,38 @@ const { OtpField, PasswordField, SecurityQuestion } = UIInputs.Security;
 
 ### Props
 
-| Prop        | Type     | Default       | Description                               |
-| ----------- | -------- | ------------- | ----------------------------------------- |
-| `length`    | `number` | `6`           | Number of digits in the OTP               |
-| `setResult` | `func`   | _required_    | Callback to return OTP string on complete |
-| `color`     | `string` | `--colorCyan` | Sets primary color via CSS variable       |
-| `width`     | `string` | `300px`       | Width of the container                    |
+| Prop             | Type     | Default       | Description                                                             |
+| ---------------- | -------- | ------------- | ----------------------------------------------------------------------- |
+| `length`         | `number` | `6`           | Number of characters in the OTP                                         |
+| `setResult`      | `func`   | _required_    | Callback to return OTP string when all inputs are filled                |
+| `color`          | `string` | `--colorCyan` | Sets the primary color using a CSS variable                             |
+| `width`          | `string` | `300px`       | Width of the OTP container                                              |
+| `codeToVerified` | `string` | _required_    | Value to compare the entered OTP with for verification                  |
+| `setError`       | `func`   | _required_    | Callback to display an error message on failure                         |
+| `isNumeric`      | `bool`   | `true`        | Whether to allow only numeric input (`true`) or any character (`false`) |
 
 ### Features
 
-- Automatically moves focus to the next input
-- Supports **paste** of full OTP
-- Clears input on backspace and moves backward
-- OTP state is returned via `setResult` once filled
+- **Numeric or Alphanumeric Support** — Use `isNumeric={false}` to accept any characters (e.g. for passwords or custom codes).
+- **Auto Focus** — Automatically moves focus to the next input on valid entry.
+- **Smart Backspace** — Clears current or previous input and moves focus backward.
+- **Paste Support** — Allows pasting the full OTP at once.
+- **Error Handling** — Highlights invalid input and resets fields with timeout.
+- **Auto-Reset Focus** — Returns focus to the first field after an error.
+- **Fully Controlled Styling** via CSS modules and variables.
 
 ### Usage
 
 ```jsx
-<OtpField length={4} color="blue" setResult={(otp) => console.log(otp)} />
+<OtpField
+  length={4}
+  color="blue"
+  isNumeric={false}
+  codeToVerified="AB12"
+  setResult={(otp) => console.log("Verified:", otp)}
+  setError={(msg) => console.warn(msg)}
+/>
 ```
-
-### Style Customization
-
-```css
---color: #00bcd4;
---width: 250px;
-```
-
----
 
 ## PasswordField
 
@@ -59,19 +63,21 @@ const { OtpField, PasswordField, SecurityQuestion } = UIInputs.Security;
 
 ### Props
 
-| Prop          | Type     | Default       | Description                             |
-| ------------- | -------- | ------------- | --------------------------------------- |
-| `label`       | `string` | `"Password"`  | Label for the input field               |
-| `value`       | `string` | `""`          | Initial value of the password field     |
-| `setResult`   | `func`   | _required_    | Callback to return final password value |
-| `placeholder` | `string` | `"Password"`  | Placeholder text                        |
-| `color`       | `string` | `--colorCyan` | Sets accent color                       |
-| `width`       | `string` | `300px`       | Width of the component                  |
+| Prop                  | Type     | Default       | Description                              |
+| --------------------- | -------- | ------------- | ---------------------------------------- |
+| `label`               | `string` | `"Password"`  | Label for the input field                |
+| `value`               | `string` | `""`          | Initial value of the password field      |
+| `setResult`           | `func`   | _required_    | Callback to return final password value  |
+| `placeholder`         | `string` | `"Password"`  | Placeholder text                         |
+| `color`               | `string` | `--colorCyan` | Sets accent color                        |
+| `width`               | `string` | `300px`       | Width of the component                   |
+| `setPasswordStrength` | `func`   | _optional_    | To get the information about the strengt |
 
 ### Features
 
 - Toggle show/hide password using icon
 - Displays password strength (`Short`, `Weak`, `Medium`, `Strong`)
+- These can be get by setPasswordStrength
 - Uses regex to validate strength
 
 ### Usage

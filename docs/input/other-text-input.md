@@ -1,4 +1,4 @@
-# Developer Guide for JsonField, TextArea, and Label Components
+# Developer Guide for JsonField, TextArea, MobileField, EmailField and Label Components
 
 ---
 
