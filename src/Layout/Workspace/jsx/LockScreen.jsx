@@ -7,16 +7,17 @@ export const LockScreen = ({ onUnlock }) => {
   const [error, setError] = useState(null);
 
   const handleSubmit = (value) => {
-    if (value === "123456") {
-      onUnlock();
-    } else {
-      setError("Incorrect code.");
-    }
+    onUnlock();
   };
 
   return (
     <div className={styles.lockScreen}>
-      <OtpField setResult={handleSubmit} />
+      <OtpField
+        setResult={handleSubmit}
+        codeToVerified={"123456"}
+        setError={setError}
+        isNumeric={false}
+      />
       {error ? (
         <p className={styles.errorText}>Aahh!, Your bad try again</p>
       ) : (

@@ -3,22 +3,23 @@ import styles from "../css/WorkspaceLayout.module.css";
 import { workspaceLayoutApi } from "../helper/workspaceLayoutApi";
 import { Navigator } from "./Navigator";
 import { formateTabsDetails } from "../helper/formateTabsDetails";
+import { useTabHandler } from "../../../Context/jsx/TabsHandlerContext";
 
 export const WorkspaceLayout = ({
   api,
   height = "100%",
   width = "100%",
-  level = 1, // <---- NEW | 
+  level = 1, // <---- NEW |
   maxDepth = 2, // <---- Where to stop nesting
   providedTabs = null, // <---- Passed from parent if not root
   providedContent = null, // <---- Same for content
   toggleFullscreen,
-  tabsHandler,
 }) => {
   const [tabsLevel1, setTabsLevel1] = useState(providedTabs);
   const [tabsLevel2, setTabsLevel2] = useState(null);
   const [content, setContent] = useState(providedContent);
   const navigatorSize = "32px";
+  const tabsHandler = useTabHandler();
 
   useEffect(() => {
     if (level === 1 && api) {
@@ -63,7 +64,7 @@ export const WorkspaceLayout = ({
 
         <div className={styles.midOfLeftRight}>
           {/* Recursive nesting until maxDepth */}
-          {level < maxDepth ? (
+          {level < maxDepth && tabsLevel2 ? (
             <WorkspaceLayout
               api={api}
               level={level + 1}

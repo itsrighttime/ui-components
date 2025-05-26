@@ -1,7 +1,6 @@
-import { WorkspaceLayoutFullScreen } from "../../Layout/Workspace/jsx/WorkspaceLayoutFullScreen";
+import { Workspace } from "../../Layout/Workspace/jsx/Workspace";
 import { tabsHandler } from "./helper/tabsHandler";
 
-tabsHandler;
 export const UseLayoutExample = () => {
-  return <WorkspaceLayoutFullScreen tabsHandler={tabsHandler} />;
+  return <Workspace tabsHandler={tabsHandler} />;
 };

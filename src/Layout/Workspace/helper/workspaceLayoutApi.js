@@ -30,7 +30,7 @@ const createTabs = (values, zone, label, position) =>
     key: `${position}${zone}${label}${index}`,
     value: val,
     isIcon: ["Left", "Right"].includes(zone),
-    dropdown,
+    dropdown: ["Left", "Right"].includes(zone) ? dropdown : null,
   }));
 
 const dropdown = [
