@@ -28,11 +28,6 @@ export const WorkspaceLayout = ({
 
   const handleMagicLock = getValue(tabsHandlerKey.magicLock);
 
-  console.log("Me: ", {
-    handleMagicLock,
-    handleLogout,
-  });
-
   // handleMagicLock && handleMagicLock();
 
   const defaultTabsHandler = {
@@ -40,7 +35,6 @@ export const WorkspaceLayout = ({
     [tabsHandlerKey.logout]: handleLogout,
   };
 
-  console.log("Default Tabs Handler: ", defaultTabsHandler);
   useEffect(() => {
     if (level === 1 && api) {
       const response = workspaceLayoutApi(api);
