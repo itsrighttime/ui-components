@@ -5,7 +5,7 @@ import { useEffect } from "react";
  * @param {function} onFocus - Called when user returns to the tab/app.
  * @param {function} onBlur - Called when user leaves the tab/app.
  */
-export const useUserActivity = ({ onFocus, onBlur }) => {
+export const useUserPresentOnTab = ({ onFocus, onBlur }) => {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
