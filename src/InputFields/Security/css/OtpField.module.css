@@ -24,3 +24,8 @@
   color: var(--color);
   font-weight: var(--boldL2);
 }
+
+.otpInput.colorError {
+  border: 1px solid var(--colorYellow);
+  color: var(--colorRed);
+}

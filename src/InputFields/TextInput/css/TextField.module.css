@@ -1,7 +1,6 @@
 .textField {
   position: relative;
-  max-width: var(--width);
-  margin-top: 9px;
+  width: var(--width);
   border-radius: var(--borderRadius);
 }
 
@@ -27,7 +26,7 @@
 }
 
 .textFieldSuffix {
-  padding-right: px;
+  padding-right: 10px;
 }
 
 .textFieldInput {

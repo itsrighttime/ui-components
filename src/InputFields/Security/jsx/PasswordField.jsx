@@ -10,6 +10,7 @@ export const PasswordField = ({
   placeholder = "Password",
   color,
   width = "300px",
+  setPasswordStrength: setPasswordStrengthProp,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("");
@@ -71,7 +72,13 @@ export const PasswordField = ({
 
   return (
     <div className={style.passwordInput} style={cssVariable}>
-      <div className={style.inputContainer} onBlur={() => setResult(password)}>
+      <div
+        className={style.inputContainer}
+        onBlur={() => {
+          setResult(password);
+          setPasswordStrengthProp && setPasswordStrengthProp(passwordStrength);
+        }}
+      >
         {label && isFocused && password !== "" && (
           <label
             htmlFor={label}
@@ -102,7 +109,7 @@ export const PasswordField = ({
       {passwordStrength && (
         <p className={`${style.strength} ${style[passwordStrength]}`}>
           {passwordStrength === "Weak"
-            ? "It Must have Uppercase, Lowercase, Numbers & Special Characters"
+            ? "Must use A-Z, a-z, 0-9 & symbols."
             : passwordStrength}
         </p>
       )}
