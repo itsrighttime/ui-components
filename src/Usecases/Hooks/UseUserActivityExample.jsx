@@ -1,7 +1,7 @@
-import { useUserActivity } from "./hooks/useUserActivity";
+import { useUserPresentOnTab } from "../../Hooks/useUserPresentOnTab";
 
 export const UseUserActivityExample = () => {
-  useUserActivity({
+  useUserPresentOnTab({
     onFocus: (source) => {
       console.log("User is active again:", source);
     },

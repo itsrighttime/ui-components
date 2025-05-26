@@ -1,0 +1,25 @@
+.lockScreen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text,
+.magicText,
+.errorText,
+.text button {
+  font-size: calc(var(--size) * 0.8);
+  color: var(--colorGray4);
+}
+
+.errorText {
+  color: var(--colorRed);
+}
+
+.magicText {
+  color: var(--colorRed);
+  font-weight: var(--boldL2);
+}
