@@ -3,7 +3,6 @@ import { PasswordField } from "../../InputFields/Security/jsx/PasswordField";
 import { TextField } from "../../InputFields/TextInput/jsx/TextField";
 import styles from "../css/LoginForm.module.css";
 import { Button } from "../../InputFields/Actions/jsx/Button";
-import { handleLogin } from "../helper/handleLogin";
 import { handleRegister } from "../helper/handleRegister";
 import { PlainButton } from "../../InputFields/Actions/jsx/PlainButton";
 import { handleForgot } from "../helper/handleForgot";

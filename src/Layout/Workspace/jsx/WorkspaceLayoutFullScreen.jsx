@@ -21,7 +21,6 @@ export const WorkspaceLayoutFullScreen = () => {
   const isActive = useUserActiveOnTab(1); // 5 minutes inactivity timeout
   const [locked, setLocked] = useState(userDetails?.user?.screenType);
   const { setValue } = useDynamicContent();
-  console.log("User Details: ", userDetails);
 
   useEffect(() => {
     setValue(tabsHandlerKey.magicLock, () => {
