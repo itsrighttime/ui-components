@@ -23,6 +23,10 @@
   color: var(--iconColor);
 }
 
+.btn svg circle {
+  color: var(--iconColor);
+}
+
 .btn svg {
   font-size: var(--iconSize);
   height: var(--iconSize);

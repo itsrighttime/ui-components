@@ -77,7 +77,7 @@ export const Tooltip = ({
           style={{
             ...style,
             opacity: visible ? 1 : 0,
-            visibility: visible ? "visible" : "hidden",
+            visibility: visible && content ? "visible" : "hidden",
             transition: "opacity 0.15s ease, visibility 0.15s ease",
           }}
           className={`${styles.tooltip} ${styles[position]}`}

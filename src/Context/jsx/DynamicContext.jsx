@@ -39,4 +39,4 @@ export const DynamicProvider = ({ children }) => {
 };
 
 // Custom hook for easier use
-export const useDynamicContext = () => useContext(DynamicContext);
+export const useDynamicContent = () => useContext(DynamicContext);

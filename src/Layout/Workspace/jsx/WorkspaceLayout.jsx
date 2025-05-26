@@ -4,6 +4,9 @@ import { workspaceLayoutApi } from "../helper/workspaceLayoutApi";
 import { Navigator } from "./Navigator";
 import { formateTabsDetails } from "../helper/formateTabsDetails";
 import { useTabHandler } from "../../../Context/jsx/TabsHandlerContext";
+import { tabsHandlerKey } from "../../../utils/tabHandlerKeys";
+import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
+import { useAuth } from "../../../Context/jsx/AuthContext";
 
 export const WorkspaceLayout = ({
   api,
@@ -20,7 +23,24 @@ export const WorkspaceLayout = ({
   const [content, setContent] = useState(providedContent);
   const navigatorSize = "32px";
   const tabsHandler = useTabHandler();
+  const { getValue } = useDynamicContent();
+  const { handleLogout } = useAuth();
 
+  const handleMagicLock = getValue(tabsHandlerKey.magicLock);
+
+  console.log("Me: ", {
+    handleMagicLock,
+    handleLogout,
+  });
+
+  // handleMagicLock && handleMagicLock();
+
+  const defaultTabsHandler = {
+    [tabsHandlerKey.magicLock]: handleMagicLock && handleMagicLock,
+    [tabsHandlerKey.logout]: handleLogout,
+  };
+
+  console.log("Default Tabs Handler: ", defaultTabsHandler);
   useEffect(() => {
     if (level === 1 && api) {
       const response = workspaceLayoutApi(api);
@@ -29,6 +49,7 @@ export const WorkspaceLayout = ({
         data: response,
         toggleFullscreen: toggleFullscreen,
         tabsHandler: tabsHandler,
+        defaultTabsHandler: defaultTabsHandler,
       });
 
       setTabsLevel1(formattedTabs.tabsLevel1);
@@ -36,7 +57,7 @@ export const WorkspaceLayout = ({
 
       setContent(response.content.data);
     }
-  }, [api, level]);
+  }, [api, level, handleMagicLock]);
 
   if (!tabsLevel1) return <>Tabs are Empty</>;
 

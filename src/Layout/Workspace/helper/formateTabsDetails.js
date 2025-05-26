@@ -1,6 +1,12 @@
-import { screenModeIcon } from "../../../utils/icons";
+import { lockIcon, logoutIcon, screenModeIcon } from "../../../utils/icons";
+import { tabsHandlerKey } from "../../../utils/tabHandlerKeys";
 
-export const formateTabsDetails = ({ data, toggleFullscreen, tabsHandler }) => {
+export const formateTabsDetails = ({
+  data,
+  toggleFullscreen,
+  tabsHandler,
+  defaultTabsHandler,
+}) => {
   const result = {};
   const levels = ["tabsLevel1", "tabsLevel2"];
   const zones = ["top", "bottom", "left", "right"];
@@ -47,16 +53,16 @@ export const formateTabsDetails = ({ data, toggleFullscreen, tabsHandler }) => {
         // Add special toggleFullscreen tab for: level1 > top > right > left[0]
         if (level === "tabsLevel1" && zone === "top" && position === "right") {
           result[level][zone][position].push({
-            key: "magicScreenLock",
+            key: tabsHandlerKey.magicLock,
             value: "Lock Screen",
-            onClick: toggleFullscreen,
-            icon: screenModeIcon,
+            onClick: defaultTabsHandler[tabsHandlerKey.magicLock],
+            icon: lockIcon,
           });
           result[level][zone][position].push({
-            key: "logout",
+            key: tabsHandlerKey.logout,
             value: "Logout",
-            onClick: toggleFullscreen,
-            icon: screenModeIcon,
+            onClick: defaultTabsHandler[tabsHandlerKey.logout],
+            icon: logoutIcon,
           });
           result[level][zone][position].push({
             key: "toggleFullscreen",

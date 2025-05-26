@@ -12,8 +12,10 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const handleLogin = async (credentials) => await login(setUserDetails, credentials);
+  const handleLogin = async (credentials) =>
+    await login(setUserDetails, credentials);
   const handleLogout = async () => {
+    console.log("Logging out...");
     logout(setUserDetails, navigate);
   };
 
@@ -23,7 +25,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: userDetails, handleLogin, handleLogout, loading }}>
+    <AuthContext.Provider
+      value={{ userDetails, handleLogin, handleLogout, loading }}
+    >
       {!loading && children}
     </AuthContext.Provider>
   );
