@@ -23,29 +23,33 @@ export const Tab = ({ mykey, value, icon, onClick, color, dropdown }) => {
     );
   }
 
-  const isSelected = mykey === activeTabKey;
+  // Check if this tab or one of its dropdown items is active
+  const isSelected = dropdown?.length
+    ? dropdown.some((item) => item.key === activeTabKey)
+    : mykey === activeTabKey;
+
   const isSpecial =
     mykey === workspaceKeys.workspaceName ||
     mykey === workspaceKeys.toggleFullscreen;
 
-  const iconBtnClass = `${styles.iconBtn}  ${
+  const iconBtnClass = `${styles.iconBtn} ${
     isSelected ? styles.isSelected : ""
   }`;
+
   const plainBtnClass = `${styles.plainBtn} ${
     isSpecial ? styles.isSpecial : ""
-  } 
-  ${isSelected ? styles.isSelected : ""}`;
+  } ${isSelected ? styles.isSelected : ""}`;
 
   const handleClick = () => {
-    if (dropdown?.length > 0) {
+    if (dropdown?.length) {
       setShowDropdown((prev) => !prev);
-    } else {
-      !isSelected && onClick?.(mykey);
+    } else if (!isSelected) {
+      onClick?.(mykey);
     }
   };
 
   const handleDropdownSelect = (selectedKey) => {
-    if (dropdownValue !== selectedKey) {
+    if (selectedKey !== dropdownValue) {
       onClick?.(selectedKey);
       setDropdownValue(selectedKey);
     }
