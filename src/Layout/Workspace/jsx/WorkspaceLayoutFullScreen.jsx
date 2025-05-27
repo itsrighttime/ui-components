@@ -18,7 +18,7 @@ export const ScreenType = {
 
 export const WorkspaceLayoutFullScreen = () => {
   const { userDetails } = useAuth();
-  const isActive = useUserActiveOnTab(1); // 5 minutes inactivity timeout
+  const isActive = useUserActiveOnTab(5); // 5 minutes inactivity timeout
   const [locked, setLocked] = useState(userDetails?.user?.screenType);
   const { setValue } = useDynamicContent();
 
