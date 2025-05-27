@@ -5,7 +5,7 @@ const TabsHandlerContext = createContext();
 
 export const TabsHandlerProvider = ({ children, tabClickHandler }) => {
   return (
-    <TabsHandlerContext.Provider value={tabClickHandler}>
+    <TabsHandlerContext.Provider value={{ tabClickHandler }}>
       {children}
     </TabsHandlerContext.Provider>
   );

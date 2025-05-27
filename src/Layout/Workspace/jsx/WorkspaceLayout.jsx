@@ -21,17 +21,15 @@ export const WorkspaceLayout = ({
   const [tabsLevel1, setTabsLevel1] = useState(providedTabs);
   const [tabsLevel2, setTabsLevel2] = useState(null);
   const [content, setContent] = useState(providedContent);
-  const navigatorSize = "32px";
-  const tabClickHandler = useTabHandler();
+  const { tabClickHandler } = useTabHandler();
   const { getValue } = useDynamicContent();
   const { handleLogout } = useAuth();
+  const navigatorSize = "32px";
 
   const handleMagicLock = getValue(tabsHandlerKey.magicLock);
 
-  // handleMagicLock && handleMagicLock();
-
   const defaultTabsHandler = {
-    [tabsHandlerKey.magicLock]: handleMagicLock && handleMagicLock,
+    [tabsHandlerKey.magicLock]: handleMagicLock,
     [tabsHandlerKey.logout]: handleLogout,
   };
 
