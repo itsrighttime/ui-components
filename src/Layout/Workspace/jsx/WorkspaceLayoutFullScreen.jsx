@@ -34,9 +34,7 @@ export const WorkspaceLayoutFullScreen = () => {
 
   const unlockMagicScreen = () => setLocked(ScreenType.FULL_SCREEN);
 
-  return !userDetails ? (
-    <LoginForm onLogin={unlockMagicScreen} isRegisterButton={false} />
-  ) : locked === ScreenType.MAGIC_SCREEN ? (
+  return locked === ScreenType.MAGIC_SCREEN ? (
     <LockScreen onUnlock={unlockMagicScreen} />
   ) : locked === ScreenType.FULL_SCREEN ? (
     <FullscreenWrapper>

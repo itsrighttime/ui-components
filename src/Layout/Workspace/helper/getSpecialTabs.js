@@ -1,6 +1,8 @@
 import { workspaceKeys } from "./workspaceKeys";
 import { getIconByKey } from "./getIconBYKey";
-import { LEVELS, ZONES, POSITIONS } from "./workspaceLayoutKeys";
+import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
+
+const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
 export const getSpecialTabs = ({
   section,

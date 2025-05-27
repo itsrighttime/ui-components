@@ -1,7 +1,15 @@
+import { makeUrl } from "../../Layout/Workspace/helper/urlFormatter";
+import { workspaceLayoutKeys } from "../../Layout/Workspace/helper/workspaceLayoutKeys";
 import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutFullScreen";
 import { apiCaller } from "../../utils/apiCaller";
+const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
-export const login = async (setUserDetails, credentials) => {
+export const login = async ({
+  setUserDetails,
+  credentials,
+  navigate,
+  workspace,
+}) => {
   const successCodes = ["CGP0046"];
   // const response = await apiCaller({
   //   endpoint: "/api/login",
@@ -17,4 +25,17 @@ export const login = async (setUserDetails, credentials) => {
       screenType: ScreenType.FULL_SCREEN,
     },
   });
+
+  navigate(
+    makeUrl(
+      {
+        level: LEVELS.primary,
+        zone: ZONES.commandBar,
+        position: POSITIONS.start,
+        workspaceId: workspace,
+        key: workspace,
+      },
+      true
+    )
+  );
 };

@@ -23,7 +23,7 @@ const ExtraButtons = ({}) => (
   </div>
 );
 
-export const LoginForm = ({ api, isRegisterButton = true }) => {
+export const LoginForm = ({ isRegisterButton = true }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const { handleLogin } = useAuth();

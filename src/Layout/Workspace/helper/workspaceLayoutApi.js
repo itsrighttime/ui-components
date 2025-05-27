@@ -1,4 +1,7 @@
-import { LEVELS, ZONES, POSITIONS } from "./workspaceLayoutKeys"; // adjust path if needed
+
+import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
+
+const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
 export const workspaceLayoutApi = (api) => {
   return {

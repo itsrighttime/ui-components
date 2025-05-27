@@ -2,7 +2,9 @@
 import styles from "../css/WorkspaceLayout.module.css";
 import { Navigator } from "./Navigator";
 import { useWorkspaceLayout } from "../helper/useWorkspaceLayout";
-import { ZONES } from "../helper/workspaceLayoutKeys";
+import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys";
+
+const { ZONES } = workspaceLayoutKeys;
 
 export const WorkspaceLayout = ({
   api,

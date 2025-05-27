@@ -1,4 +1,6 @@
-import { POSITIONS } from "./workspaceLayoutKeys";
+import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
+
+const { POSITIONS } = workspaceLayoutKeys;
 
 export const validateTabsIcons = (tabs, direction) => {
   if (direction !== "column") return tabs;

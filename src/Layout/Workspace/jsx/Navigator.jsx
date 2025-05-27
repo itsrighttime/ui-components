@@ -2,7 +2,9 @@ import { FlexContainer } from "../../Containers/jsx/FlexContainer";
 import styles from "../css/Navigator.module.css";
 import { Tabs } from "../helper/Tabs";
 import { validateTabsIcons } from "../helper/validateTabsIcons";
-import { POSITIONS } from "../helper/workspaceLayoutKeys";
+import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys";
+
+const { POSITIONS } = workspaceLayoutKeys;
 
 export const Navigator = ({
   style,

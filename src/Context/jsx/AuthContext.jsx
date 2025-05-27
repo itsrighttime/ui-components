@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 // Create AuthContext
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children, workspace }) => {
   const [userDetails, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleLogin = async (credentials) =>
-    await login(setUserDetails, credentials);
+    await login({ setUserDetails, credentials, navigate, workspace });
   const handleLogout = async () => {
     console.log("Logging out...");
     logout(setUserDetails, navigate);

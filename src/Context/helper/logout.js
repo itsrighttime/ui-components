@@ -6,5 +6,5 @@ export const logout = async (setUserDetails, navigate) => {
   // });
 
   setUserDetails(null); // Clear user data
-  navigate("/");
+  navigate("/login");
 };
