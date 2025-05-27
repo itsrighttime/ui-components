@@ -1,10 +1,11 @@
 import { lockIcon, logoutIcon, screenModeIcon } from "../../../utils/icons";
 import { tabsHandlerKey } from "../../../utils/tabHandlerKeys";
+import { getIconByKey } from "./getIconBYKey";
 
 export const formateTabsDetails = ({
   data,
   toggleFullscreen,
-  tabsHandler,
+  tabClickHandler,
   defaultTabsHandler,
 }) => {
   const result = {};
@@ -29,24 +30,10 @@ export const formateTabsDetails = ({
         result[level][zone][position] = [];
 
         tabs.forEach((tab, index) => {
-          const handler = tabsHandler[tab.key];
-
-          if (handler && !handler.onClick) {
-            console.warn(
-              `Missing onClick handler for tab key "${tab.key}". Please define it in tabsHandler.`
-            );
-          }
-
-          if (handler && tab.isIcon && !handler.icon) {
-            console.warn(
-              `Missing icon handler for tab key "${tab.key}". Please define it in tabsHandler.`
-            );
-          }
-
           result[level][zone][position].push({
             ...tab,
-            onClick: handler?.onClick || (() => {}),
-            icon: tab.isIcon ? handler?.icon || null : null,
+            onClick: tabClickHandler,
+            icon: tab.isIcon ? getIconByKey(tab.key) || null : null,
           });
         });
 
@@ -56,19 +43,19 @@ export const formateTabsDetails = ({
             key: tabsHandlerKey.magicLock,
             value: "Lock Screen",
             onClick: defaultTabsHandler[tabsHandlerKey.magicLock],
-            icon: lockIcon,
+            icon: getIconByKey(tabsHandlerKey.magicLock),
           });
           result[level][zone][position].push({
             key: tabsHandlerKey.logout,
             value: "Logout",
             onClick: defaultTabsHandler[tabsHandlerKey.logout],
-            icon: logoutIcon,
+            icon: getIconByKey(tabsHandlerKey.logout),
           });
           result[level][zone][position].push({
-            key: "toggleFullscreen",
+            key: tabsHandlerKey.toggleFullscreen,
             value: "Toggle Screen Mode",
             onClick: toggleFullscreen,
-            icon: screenModeIcon,
+            icon: getIconByKey(tabsHandlerKey.toggleFullscreen),
           });
         }
         // Add special toggleFullscreen tab for: level1 > top > right > left[0]
@@ -78,7 +65,7 @@ export const formateTabsDetails = ({
           position === "left"
         ) {
           result[level][zone][position].unshift({
-            key: "workspaceName",
+            key: tabsHandlerKey.workspaceName,
             value: data.content.workspaceName,
             onClick: () => {},
             icon: null,

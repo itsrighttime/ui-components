@@ -3,10 +3,10 @@ import { AuthProvider } from "../../../Context/jsx/AuthContext";
 import { DynamicProvider } from "../../../Context/jsx/DynamicContext";
 import { TabsHandlerProvider } from "../../../Context/jsx/TabsHandlerContext";
 
-export const CombinedProviders = ({ children, tabsHandler }) => (
+export const CombinedProviders = ({ children, tabClickHandler }) => (
   <AuthProvider>
     <DynamicProvider>
-      <TabsHandlerProvider tabsHandler={tabsHandler}>
+      <TabsHandlerProvider tabClickHandler={tabClickHandler}>
         {children}
       </TabsHandlerProvider>
     </DynamicProvider>

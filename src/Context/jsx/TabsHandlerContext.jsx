@@ -3,9 +3,9 @@ import { createContext, useContext } from "react";
 
 const TabsHandlerContext = createContext();
 
-export const TabsHandlerProvider = ({ children, tabsHandler }) => {
+export const TabsHandlerProvider = ({ children, tabClickHandler }) => {
   return (
-    <TabsHandlerContext.Provider value={tabsHandler}>
+    <TabsHandlerContext.Provider value={tabClickHandler}>
       {children}
     </TabsHandlerContext.Provider>
   );

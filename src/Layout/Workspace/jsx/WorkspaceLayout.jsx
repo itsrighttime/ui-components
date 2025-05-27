@@ -22,7 +22,7 @@ export const WorkspaceLayout = ({
   const [tabsLevel2, setTabsLevel2] = useState(null);
   const [content, setContent] = useState(providedContent);
   const navigatorSize = "32px";
-  const tabsHandler = useTabHandler();
+  const tabClickHandler = useTabHandler();
   const { getValue } = useDynamicContent();
   const { handleLogout } = useAuth();
 
@@ -42,7 +42,7 @@ export const WorkspaceLayout = ({
       const formattedTabs = formateTabsDetails({
         data: response,
         toggleFullscreen: toggleFullscreen,
-        tabsHandler: tabsHandler,
+        tabClickHandler: tabClickHandler,
         defaultTabsHandler: defaultTabsHandler,
       });
 
