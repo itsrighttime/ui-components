@@ -8,66 +8,72 @@ export const getSpecialTabs = ({
   clickHandler,
   toggleFullscreen,
 }) => {
-  const isTopRight =
-    section.level === LEVELS.primary &&
-    section.zone === ZONES.commandBar &&
-    section.position === POSITIONS.end;
-
-  const isTopLeft =
-    section.level === LEVELS.primary &&
-    section.zone === ZONES.commandBar &&
-    section.position === POSITIONS.start;
-
-  const isLeftLeft =
-    section.level === LEVELS.primary &&
-    section.zone === ZONES.sidebar &&
-    section.position === POSITIONS.end;
-
+  const { level, zone, position } = section;
   const specialTabs = [];
 
+  const isPosition = (lvl, zn, pos) =>
+    level === lvl && zone === zn && position === pos;
+
+  const isTopRight = isPosition(
+    LEVELS.primary,
+    ZONES.commandBar,
+    POSITIONS.end
+  );
+  const isTopLeft = isPosition(
+    LEVELS.primary,
+    ZONES.commandBar,
+    POSITIONS.start
+  );
+  const isLeftLeft = isPosition(LEVELS.primary, ZONES.sidebar, POSITIONS.end);
+
+  // Top-right: Lock + Logout + Fullscreen
   if (isTopRight) {
     [workspaceKeys.magicLock, workspaceKeys.logout].forEach((key) => {
+      const label = key === workspaceKeys.magicLock ? "Lock Screen" : "Logout";
+
       specialTabs.push({
         key,
-        value: key === workspaceKeys.magicLock ? "Lock Screen" : "Logout",
+        value: label,
+        icon: getIconByKey(key),
         onClick: (clickedValue) =>
           clickHandler({ tab: { key: clickedValue, ...section } })[key](
             clickedValue
           ),
-        icon: getIconByKey(key),
       });
     });
 
     specialTabs.push({
       key: workspaceKeys.toggleFullscreen,
       value: "Toggle Screen Mode",
-      onClick: toggleFullscreen,
       icon: getIconByKey(workspaceKeys.toggleFullscreen),
+      onClick: toggleFullscreen,
     });
   }
 
+  // Top-left: Workspace label
   if (isTopLeft) {
     specialTabs.unshift({
       key: workspaceKeys.workspaceName,
       value: data?.content?.workspaceName ?? "Workspace",
-      onClick: () => {},
       icon: null,
+      onClick: () => {},
     });
   }
 
+  // Left-sidebar: Workspace-level items
   if (isLeftLeft) {
-    const rendringKeys = workspaceKeys.workspace;
+    const renderingKeys = workspaceKeys.workspace;
 
-    Object.keys(rendringKeys).forEach((key) => {
+    Object.values(renderingKeys).forEach((key) => {
       specialTabs.push({
-        key: rendringKeys[key],
-        value: rendringKeys[key],
+        key,
+        value: key,
+        icon: getIconByKey(key),
         onClick: (clickedValue) =>
           clickHandler({
             tab: { key: clickedValue, ...section },
             isWorkspace: true,
           }),
-        icon: getIconByKey(rendringKeys[key]),
       });
     });
   }
