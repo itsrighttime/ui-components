@@ -9,6 +9,7 @@ import { useAuth } from "../../../Context/jsx/AuthContext";
 import { setDocumentTitle } from "../../../utils/setDocumentTitle";
 import { useNavigate, useParams } from "react-router-dom";
 import { makeUrl } from "./urlFormatter";
+import { kebabToCamel } from "../../../utils/caseConverter";
 
 export const useWorkspaceLayout = ({
   api,
@@ -53,7 +54,7 @@ export const useWorkspaceLayout = ({
   useEffect(() => {
     if (level === 1 && api) {
       const response = workspaceLayoutApi(api);
-      setValue(workspaceKeys.tabClickedKey, tabKey);
+      setValue(workspaceKeys.tabClickedKey, kebabToCamel(tabKey));
 
       const formattedTabs = formateTabsDetails({
         data: response,

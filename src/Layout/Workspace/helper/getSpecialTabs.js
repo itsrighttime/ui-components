@@ -25,7 +25,7 @@ export const getSpecialTabs = ({
       specialTabs.push({
         key,
         value: key === workspaceKeys.magicLock ? "Lock Screen" : "Logout",
-        onClick: () => clickHandler({ key, ...section })[key](key),
+        onClick: (clickedValue) => clickHandler({ key, ...section })[key](clickedValue),
         icon: getIconByKey(key),
       });
     });

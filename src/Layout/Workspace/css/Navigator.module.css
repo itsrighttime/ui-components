@@ -1,3 +1,35 @@
 .tabWithDropdown {
   position: relative;
 }
+
+.plainBtn.isSelected {
+  font-weight: var(--boldL3);
+}
+
+.plainBtn.isSelected button {
+  font-weight: var(--boldL3);
+  text-decoration: underline;
+  color: var(--colorYellow);
+}
+
+.plainBtn.isSpecial button {
+  text-decoration: none;
+  color: var(--colorRed);
+  font-weight: var(--boldL3);
+}
+
+.plainBtn.isSpecial button:hover {
+  cursor: default;
+  opacity: 1;
+}
+
+.iconBtn.isSelected:hover button,
+.iconBtn.isSelected button {
+  background-color: var(--colorYellow);
+  color: var(--colorWhite);
+}
+
+.iconBtn.isSelected:hover svg path,
+.iconBtn.isSelected svg path {
+  color: var(--colorWhite);
+}
