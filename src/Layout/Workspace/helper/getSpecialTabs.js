@@ -18,6 +18,11 @@ export const getSpecialTabs = ({
     section.zone === ZONES.commandBar &&
     section.position === POSITIONS.start;
 
+  const isLeftLeft =
+    section.level === LEVELS.primary &&
+    section.zone === ZONES.sidebar &&
+    section.position === POSITIONS.end;
+
   const specialTabs = [];
 
   if (isTopRight) {
@@ -26,7 +31,9 @@ export const getSpecialTabs = ({
         key,
         value: key === workspaceKeys.magicLock ? "Lock Screen" : "Logout",
         onClick: (clickedValue) =>
-          clickHandler({ key: clickedValue, ...section })[key](clickedValue),
+          clickHandler({ tab: { key: clickedValue, ...section } })[key](
+            clickedValue
+          ),
         icon: getIconByKey(key),
       });
     });
@@ -45,6 +52,23 @@ export const getSpecialTabs = ({
       value: data?.content?.workspaceName ?? "Workspace",
       onClick: () => {},
       icon: null,
+    });
+  }
+
+  if (isLeftLeft) {
+    const rendringKeys = workspaceKeys.workspace;
+
+    Object.keys(rendringKeys).forEach((key) => {
+      specialTabs.push({
+        key: rendringKeys[key],
+        value: rendringKeys[key],
+        onClick: (clickedValue) =>
+          clickHandler({
+            tab: { key: clickedValue, ...section },
+            isWorkspace: true,
+          }),
+        icon: getIconByKey(rendringKeys[key]),
+      });
     });
   }
 

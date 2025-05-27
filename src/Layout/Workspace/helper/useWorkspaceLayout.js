@@ -14,7 +14,6 @@ import { kebabToCamel } from "../../../utils/caseConverter";
 export const useWorkspaceLayout = ({
   api,
   level,
-  maxDepth,
   providedTabs,
   providedContent,
   toggleFullscreen,
@@ -42,9 +41,9 @@ export const useWorkspaceLayout = ({
     [workspaceKeys.logout]: handleLogout,
   };
 
-  const clickHandler = (tab, value) => {
+  const clickHandler = ({ tab, value, isWorkspace = false }) => {
     value && setDocumentTitle(value);
-    navigate(makeUrl(tab));
+    navigate(makeUrl({ ...tab, workspaceId }, isWorkspace));
     return {
       ...defaultTabsHandler,
       onClick: tabClickHandler,

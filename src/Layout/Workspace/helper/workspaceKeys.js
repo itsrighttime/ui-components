@@ -4,4 +4,8 @@ export const workspaceKeys = {
   toggleFullscreen: "toggleFullscreen",
   workspaceName: "workspaceName",
   tabClickedKey: "tabClickedKey",
+  workspace: {
+    letsSecure: "letsSecure",
+    letsDiscuss: "letsDiscuss",
+  },
 };

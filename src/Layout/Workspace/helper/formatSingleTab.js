@@ -4,7 +4,11 @@ import { getIconByKey } from "./getIconBYKey";
 export const formatSingleTab = (tab, clickHandler, section) => ({
   ...tab,
   onClick: (clickedValue) =>
-    clickHandler({ key: clickedValue, ...section }, tab.value).onClick(
+    clickHandler({
+      tab: { key: clickedValue, ...section },
+      value: tab.value,
+    }).onClick(
+      // TODO : handle title update for dropdowns --------------------------------
       clickedValue
     ),
   icon: tab.isIcon ? getIconByKey(tab.key) || null : null,
