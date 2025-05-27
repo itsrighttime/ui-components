@@ -1,79 +1,53 @@
-import { lockIcon, logoutIcon, screenModeIcon } from "../../../utils/icons";
-import { tabsHandlerKey } from "../../../utils/tabHandlerKeys";
-import { getIconByKey } from "./getIconBYKey";
+// helper/formateTabsDetails.js
+import { formatSingleTab } from "./formatSingleTab";
+import { getSpecialTabs } from "./getSpecialTabs";
+import { LEVELS, ZONES, POSITIONS } from "./workspaceLayoutKeys";
 
 export const formateTabsDetails = ({
   data,
   toggleFullscreen,
-  tabClickHandler,
-  defaultTabsHandler,
+  clickHandler,
 }) => {
   const result = {};
-  const levels = ["tabsLevel1", "tabsLevel2"];
-  const zones = ["top", "bottom", "left", "right"];
-  const positions = ["left", "mid", "right"];
+  const levels = [LEVELS.primary, LEVELS.secondary];
+  const zones = [ZONES.sidebar, ZONES.tools, ZONES.commandBar, ZONES.statusBar];
+  const positions = [POSITIONS.start, POSITIONS.center, POSITIONS.end];
 
-  levels.forEach((level) => {
-    if (!data[level]) return;
+  for (const level of levels) {
+    const levelData = data[level];
+    if (!levelData) continue;
 
     result[level] = {};
 
-    zones.forEach((zone) => {
-      if (!data[level][zone]) return;
+    for (const zone of zones) {
+      const zoneData = levelData[zone];
+      if (!zoneData) continue;
 
       result[level][zone] = {};
 
-      positions.forEach((position) => {
-        const tabs = data[level][zone][position];
-        if (!tabs) return;
+      for (const position of positions) {
+        const tabs = zoneData[position];
+        if (!tabs) continue;
 
-        result[level][zone][position] = [];
+        const section = { level, zone, position };
+        const formattedTabs = tabs.map((tab) =>
+          formatSingleTab(tab, clickHandler, section)
+        );
 
-        tabs.forEach((tab, index) => {
-          result[level][zone][position].push({
-            ...tab,
-            onClick: tabClickHandler,
-            icon: tab.isIcon ? getIconByKey(tab.key) || null : null,
-          });
+        const specialTabs = getSpecialTabs({
+          section,
+          data,
+          clickHandler,
+          toggleFullscreen,
         });
 
-        // Add special toggleFullscreen tab for: level1 > top > right > left[0]
-        if (level === "tabsLevel1" && zone === "top" && position === "right") {
-          result[level][zone][position].push({
-            key: tabsHandlerKey.magicLock,
-            value: "Lock Screen",
-            onClick: defaultTabsHandler[tabsHandlerKey.magicLock],
-            icon: getIconByKey(tabsHandlerKey.magicLock),
-          });
-          result[level][zone][position].push({
-            key: tabsHandlerKey.logout,
-            value: "Logout",
-            onClick: defaultTabsHandler[tabsHandlerKey.logout],
-            icon: getIconByKey(tabsHandlerKey.logout),
-          });
-          result[level][zone][position].push({
-            key: tabsHandlerKey.toggleFullscreen,
-            value: "Toggle Screen Mode",
-            onClick: toggleFullscreen,
-            icon: getIconByKey(tabsHandlerKey.toggleFullscreen),
-          });
-        }
-        // Add special toggleFullscreen tab for: level1 > top > right > left[0]
-        else if (
-          level === "tabsLevel1" &&
-          zone === "top" &&
-          position === "left"
-        ) {
-          result[level][zone][position].unshift({
-            key: tabsHandlerKey.workspaceName,
-            value: data.content.workspaceName,
-            onClick: () => {},
-            icon: null,
-          });
-        }
-      });
-    });
-  });
+        result[level][zone][position] =
+          position === POSITIONS.start
+            ? [...specialTabs, ...formattedTabs]
+            : [...formattedTabs, ...specialTabs];
+      }
+    }
+  }
 
   return result;
 };

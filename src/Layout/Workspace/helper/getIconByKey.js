@@ -1,10 +1,10 @@
 import * as Icons from "../../../utils/icons";
-import { tabsHandlerKey } from "../../../utils/tabHandlerKeys";
+import { workspaceKeys } from "./workspaceKeys";
 
 const IconsMap = {
-  [tabsHandlerKey.magicLock]: Icons.lockIcon,
-  [tabsHandlerKey.logout]: Icons.logoutIcon,
-  [tabsHandlerKey.toggleFullscreen]: Icons.screenModeIcon,
+  [workspaceKeys.magicLock]: Icons.lockIcon,
+  [workspaceKeys.logout]: Icons.logoutIcon,
+  [workspaceKeys.toggleFullscreen]: Icons.screenModeIcon,
   home: Icons.homeIcon,
 };
 

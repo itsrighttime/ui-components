@@ -1,7 +1,9 @@
+import { POSITIONS } from "./workspaceLayoutKeys";
+
 export const validateTabsIcons = (tabs, direction) => {
   if (direction !== "column") return tabs;
 
-  const allSections = ["left", "mid", "right"];
+  const allSections = [POSITIONS.start, POSITIONS.center, POSITIONS.end];
 
   for (const section of allSections) {
     const tabGroup = tabs[section] || [];

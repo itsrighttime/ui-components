@@ -6,7 +6,7 @@ import { useUserActiveOnTab } from "../../../Hooks/useUserActiveOnTab";
 import { LoginForm } from "../../../Auth/js/LoginForm";
 import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
 import { useEffect } from "react";
-import { tabsHandlerKey } from "../../../utils/tabHandlerKeys";
+import { workspaceKeys } from "../helper/workspaceKeys";
 import { useAuth } from "../../../Context/jsx/AuthContext";
 import { ErrorPage } from "../../../SpecialPages/js/ErrorPage";
 
@@ -23,7 +23,7 @@ export const WorkspaceLayoutFullScreen = () => {
   const { setValue } = useDynamicContent();
 
   useEffect(() => {
-    setValue(tabsHandlerKey.magicLock, () => {
+    setValue(workspaceKeys.magicLock, () => {
       console.log("Locking screen");
       setLocked(ScreenType.MAGIC_SCREEN);
     });

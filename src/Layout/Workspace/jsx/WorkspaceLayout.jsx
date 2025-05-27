@@ -1,107 +1,87 @@
-import { useEffect, useState } from "react";
+// components/WorkspaceLayout.jsx
 import styles from "../css/WorkspaceLayout.module.css";
-import { workspaceLayoutApi } from "../helper/workspaceLayoutApi";
 import { Navigator } from "./Navigator";
-import { formateTabsDetails } from "../helper/formateTabsDetails";
-import { useTabHandler } from "../../../Context/jsx/TabsHandlerContext";
-import { tabsHandlerKey } from "../../../utils/tabHandlerKeys";
-import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
-import { useAuth } from "../../../Context/jsx/AuthContext";
+import { useWorkspaceLayout } from "../helper/useWorkspaceLayout";
+import { ZONES } from "../helper/workspaceLayoutKeys";
 
 export const WorkspaceLayout = ({
   api,
   height = "100%",
   width = "100%",
-  level = 1, // <---- NEW |
-  maxDepth = 2, // <---- Where to stop nesting
-  providedTabs = null, // <---- Passed from parent if not root
-  providedContent = null, // <---- Same for content
+  level = 1,
+  maxDepth = 2,
+  providedTabs = null,
+  providedContent = null,
   toggleFullscreen,
 }) => {
-  const [tabsLevel1, setTabsLevel1] = useState(providedTabs);
-  const [tabsLevel2, setTabsLevel2] = useState(null);
-  const [content, setContent] = useState(providedContent);
-  const { tabClickHandler } = useTabHandler();
-  const { getValue } = useDynamicContent();
-  const { handleLogout } = useAuth();
-  const navigatorSize = "32px";
+  const { tabsPrimary, tabsSecondary, content, cssVariable, navigatorSize } =
+    useWorkspaceLayout({
+      api,
+      level,
+      maxDepth,
+      providedTabs,
+      providedContent,
+      toggleFullscreen,
+    });
 
-  const handleMagicLock = getValue(tabsHandlerKey.magicLock);
-
-  const defaultTabsHandler = {
-    [tabsHandlerKey.magicLock]: handleMagicLock,
-    [tabsHandlerKey.logout]: handleLogout,
-  };
-
-  useEffect(() => {
-    if (level === 1 && api) {
-      const response = workspaceLayoutApi(api);
-
-      const formattedTabs = formateTabsDetails({
-        data: response,
-        toggleFullscreen: toggleFullscreen,
-        tabClickHandler: tabClickHandler,
-        defaultTabsHandler: defaultTabsHandler,
-      });
-
-      setTabsLevel1(formattedTabs.tabsLevel1);
-      setTabsLevel2(formattedTabs.tabsLevel2);
-
-      setContent(response.content.data);
-    }
-  }, [api, level, handleMagicLock]);
-
-  if (!tabsLevel1) return <>Tabs are Empty</>;
-
-  const cssVariable = {
-    "--navigatorSize": navigatorSize,
-  };
+  if (!tabsPrimary) return <>Tabs are Empty</>;
 
   return (
     <div
       className={styles.workspaceLayout}
       style={{ height, width, ...cssVariable }}
     >
-      <div className={styles.top}>
-        <Navigator size={navigatorSize} tabs={tabsLevel1.top} />
-      </div>
-
-      <div className={styles.midOfTopBottom}>
-        <div className={styles.left}>
+      {tabsPrimary?.[ZONES.commandBar] && (
+        <div className={styles.top}>
           <Navigator
             size={navigatorSize}
-            direction="column"
-            tabs={tabsLevel1.left}
+            tabs={tabsPrimary[ZONES.commandBar]}
           />
         </div>
+      )}
+
+      <div className={styles.midOfTopBottom}>
+        {tabsPrimary?.[ZONES.sidebar] && (
+          <div className={styles.left}>
+            <Navigator
+              direction="column"
+              size={navigatorSize}
+              tabs={tabsPrimary[ZONES.sidebar]}
+            />
+          </div>
+        )}
 
         <div className={styles.midOfLeftRight}>
-          {/* Recursive nesting until maxDepth */}
-          {level < maxDepth && tabsLevel2 ? (
+          {level < maxDepth && tabsSecondary ? (
             <WorkspaceLayout
               api={api}
               level={level + 1}
               maxDepth={maxDepth}
-              providedTabs={tabsLevel2}
+              providedTabs={tabsSecondary}
               providedContent={content}
+              toggleFullscreen={toggleFullscreen}
             />
           ) : (
             <div>{JSON.stringify(content)}</div>
           )}
         </div>
 
-        <div className={styles.right}>
-          <Navigator
-            size={navigatorSize}
-            direction="column"
-            tabs={tabsLevel1.right}
-          />
-        </div>
+        {tabsPrimary?.[ZONES.tools] && (
+          <div className={styles.right}>
+            <Navigator
+              direction="column"
+              size={navigatorSize}
+              tabs={tabsPrimary[ZONES.tools]}
+            />
+          </div>
+        )}
       </div>
 
-      <div className={styles.bottom}>
-        <Navigator size={navigatorSize} tabs={tabsLevel1.bottom} />
-      </div>
+      {tabsPrimary?.[ZONES.statusBar] && (
+        <div className={styles.bottom}>
+          <Navigator size={navigatorSize} tabs={tabsPrimary[ZONES.statusBar]} />
+        </div>
+      )}
     </div>
   );
 };

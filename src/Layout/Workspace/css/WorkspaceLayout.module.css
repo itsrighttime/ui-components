@@ -16,7 +16,7 @@
 
 .midOfTopBottom {
   width: 100%;
-  height: calc(100% - 2 * var(--navigatorSize));
+  height: calc(100% - var(--navigatorHeight));
   display: flex;
   justify-content: space-between;
 }
@@ -33,7 +33,7 @@
 
 .midOfLeftRight {
   height: 100%;
-  width: calc(100% - 2 * var(--navigatorSize));
+  width: calc(100% - var(--navigatorWidth));
 }
 
 .top {

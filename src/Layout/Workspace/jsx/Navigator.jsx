@@ -2,6 +2,7 @@ import { FlexContainer } from "../../Containers/jsx/FlexContainer";
 import styles from "../css/Navigator.module.css";
 import { Tabs } from "../helper/Tabs";
 import { validateTabsIcons } from "../helper/validateTabsIcons";
+import { POSITIONS } from "../helper/workspaceLayoutKeys";
 
 export const Navigator = ({
   style,
@@ -20,6 +21,8 @@ export const Navigator = ({
     right: [{ key: "", value: "", icon: null }],
   },
 }) => {
+  if (!tabs) return <></>;
+
   validateTabsIcons(tabs, direction);
 
   const customStyle = {
@@ -35,9 +38,9 @@ export const Navigator = ({
       className={styles.navigator}
       style={customStyle}
     >
-      <Tabs direction={direction} tabs={tabs.left} />
-      <Tabs direction={direction} tabs={tabs.mid} />
-      <Tabs direction={direction} tabs={tabs.right} />
+      <Tabs direction={direction} tabs={tabs[POSITIONS.start]} />
+      <Tabs direction={direction} tabs={tabs[POSITIONS.center]} />
+      <Tabs direction={direction} tabs={tabs[POSITIONS.end]} />
     </FlexContainer>
   );
 };
