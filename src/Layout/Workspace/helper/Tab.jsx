@@ -45,7 +45,6 @@ export const Tab = ({ mykey, value, icon, onClick, color, dropdown }) => {
   };
 
   const handleDropdownSelect = (selectedKey) => {
-    console.log(selectedKey)
     if (dropdownValue !== selectedKey) {
       onClick?.(selectedKey);
       setDropdownValue(selectedKey);
