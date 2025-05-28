@@ -3,7 +3,6 @@
 
 .navigatorSection {
   flex: 1;
-  border: 1px solid red;
   /* display: flex;
   flex-direction: var(--direction);
   justify-content: center;
