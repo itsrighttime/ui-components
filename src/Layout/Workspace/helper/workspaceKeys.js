@@ -8,4 +8,5 @@ export const workspaceKeys = {
     letsSecure: "letsSecure",
     letsDiscuss: "letsDiscuss",
   },
+  myProfile: "myProfile",
 };

@@ -40,3 +40,7 @@
 .btn:hover svg path {
   color: var(--colorWhite);
 }
+
+.btn:hover svg circle {
+  color: var(--colorWhite);
+}

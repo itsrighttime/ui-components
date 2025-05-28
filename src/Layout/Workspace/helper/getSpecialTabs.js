@@ -1,6 +1,7 @@
 import { workspaceKeys } from "./workspaceKeys";
 import { getIconByKey } from "./getIconBYKey";
 import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
+import { profileIcon } from "../../../utils/icons";
 
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
@@ -30,6 +31,17 @@ export const getSpecialTabs = ({
 
   // Top-right: Lock + Logout + Fullscreen
   if (isTopRight) {
+    specialTabs.push({
+      key: workspaceKeys.myProfile,
+      value: "My Profile",
+      icon: profileIcon,
+      onClick: (clickedValue) =>
+        clickHandler({ tab: { key: clickedValue, ...section } })[
+          workspaceKeys.myProfile
+        ](clickedValue),
+      dropdown: data.myProfile.dropdown,
+    });
+
     [workspaceKeys.magicLock, workspaceKeys.logout].forEach((key) => {
       const label = key === workspaceKeys.magicLock ? "Lock Screen" : "Logout";
 

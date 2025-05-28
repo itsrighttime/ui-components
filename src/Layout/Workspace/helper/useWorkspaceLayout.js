@@ -40,6 +40,9 @@ export const useWorkspaceLayout = ({
   const defaultTabsHandler = {
     [workspaceKeys.magicLock]: handleMagicLock,
     [workspaceKeys.logout]: handleLogout,
+    [workspaceKeys.myProfile]: (value) => {
+      console.log(value);
+    },
   };
 
   const clickHandler = ({ tab, value, isWorkspace = false }) => {

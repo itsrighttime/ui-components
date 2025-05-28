@@ -51,6 +51,8 @@
 }
 
 .iconBtn.isSelected:hover svg path,
+.iconBtn.isSelected:hover svg circle,
+.iconBtn.isSelected svg circle,
 .iconBtn.isSelected svg path {
   color: var(--colorWhite);
 }

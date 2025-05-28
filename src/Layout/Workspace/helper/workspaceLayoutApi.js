@@ -13,6 +13,10 @@ export const workspaceLayoutApi = (api) => {
 
     [LEVELS.primary]: generateTabSet("Level1"),
     [LEVELS.secondary]: generateTabSet("Level2"),
+
+    myProfile: {
+      dropdown: profileDropdown,
+    },
   };
 };
 
@@ -66,6 +70,18 @@ const dropdown = [
   {
     key: "dropdownkey3",
     value: "Dropdown Key 3",
+  },
+];
+
+const profileDropdown = [
+  {
+    key: "myProfile2",
+    value: "Danishan",
+    description: "Technical Product Lead",
+  },
+  {
+    key: "myAccount",
+    value: "Account",
   },
 ];
 
