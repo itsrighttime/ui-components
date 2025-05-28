@@ -1,3 +1,25 @@
+.navigator {
+}
+
+.navigatorSection {
+  flex: 1;
+  border: 1px solid red;
+  /* display: flex;
+  flex-direction: var(--direction);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px; */
+}
+
+.navigatorSection:first-child {
+  justify-content: start;
+}
+
+.navigatorSection:nth-child(3) {
+  justify-content: end;
+}
+
 .tabWithDropdown {
   position: relative;
 }

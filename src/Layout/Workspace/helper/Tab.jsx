@@ -7,7 +7,15 @@ import { DropdownSimple } from "../../../InputFields/Selectors/jsx/DropdownSimpl
 import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
 import { workspaceKeys } from "./workspaceKeys";
 
-export const Tab = ({ mykey, value, icon, onClick, color, dropdown }) => {
+export const Tab = ({
+  tabRef,
+  mykey,
+  value,
+  icon,
+  onClick,
+  color,
+  dropdown,
+}) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropdownValue, setDropdownValue] = useState("");
   const dropdownRef = useRef(null);
@@ -57,7 +65,14 @@ export const Tab = ({ mykey, value, icon, onClick, color, dropdown }) => {
   };
 
   return (
-    <div className={styles.tabWithDropdown} ref={dropdownRef}>
+    <div
+      className={styles.tabWithDropdown}
+      ref={(el) => {
+        dropdownRef.current = el;
+        if (typeof tabRef === "function") tabRef(el);
+        else if (tabRef) tabRef.current = el;
+      }}
+    >
       {icon ? (
         <div className={iconBtnClass}>
           <IconButton

@@ -10,6 +10,7 @@ export const FlexContainer = ({
   gap = "8px", // numeric px value
   className = "",
   style = {},
+  flexRef = null,
 }) => {
   const cssVariables = {
     "--flex-direction": toCSSValue("direction", direction),
@@ -21,6 +22,7 @@ export const FlexContainer = ({
 
   return (
     <div
+      ref={flexRef}
       className={`${styles.flexContainer} ${className}`}
       style={{ ...cssVariables, ...style }}
     >
