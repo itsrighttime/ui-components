@@ -20,6 +20,7 @@ export const useWorkspaceLayout = ({
 }) => {
   const [tabsPrimary, setTabsPrimary] = useState(providedTabs);
   const [tabsSecondary, setTabsSecondary] = useState(null);
+  const [currentUrl, setCurrentUrl] = useState(api);
   const [content, setContent] = useState(providedContent);
   const { tabClickHandler } = useTabHandler();
   const { getValue, setValue } = useDynamicContent();
@@ -43,7 +44,9 @@ export const useWorkspaceLayout = ({
 
   const clickHandler = ({ tab, value, isWorkspace = false }) => {
     value && setDocumentTitle(value);
-    navigate(makeUrl({ ...tab, workspaceId }, isWorkspace));
+    const url = makeUrl({ ...tab, workspaceId }, isWorkspace);
+    setCurrentUrl(url);
+    navigate(url);
     return {
       ...defaultTabsHandler,
       onClick: tabClickHandler,
@@ -51,22 +54,28 @@ export const useWorkspaceLayout = ({
   };
 
   useEffect(() => {
-    if (level === 1 && api) {
-      const response = workspaceLayoutApi(api);
-      setValue(workspaceKeys.tabClickedKey, kebabToCamel(tabKey));
+    if (level === 1 && currentUrl) {
+      const response = workspaceLayoutApi(currentUrl);
 
-      const formattedTabs = formateTabsDetails({
-        data: response,
-        toggleFullscreen,
-        clickHandler,
-      });
+      if (!response) {
+        setContent(null);
+        setTabsPrimary(null);
+        setTabsSecondary(null);
+      } else {
+        setValue(workspaceKeys.tabClickedKey, kebabToCamel(tabKey));
+        const formattedTabs = formateTabsDetails({
+          data: response,
+          toggleFullscreen,
+          clickHandler,
+        });
 
-      setTabsPrimary(formattedTabs.primary);
-      setTabsSecondary(formattedTabs.secondary);
-      setContent(response.content.data);
+        setTabsPrimary(formattedTabs.primary);
+        setTabsSecondary(formattedTabs.secondary);
+        setContent(response.content.data);
+      }
     }
   }, [
-    api,
+    currentUrl,
     level,
     handleMagicLock,
     workspaceId,

@@ -1,9 +1,10 @@
-
 import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
 
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
 export const workspaceLayoutApi = (api) => {
+  // TODO: URL validation will done at the backend, it will allowed access or denied based of the user access
+  // return null; // Return null if invalid URL
   return {
     content: {
       data: `Page for ${api || "Home"}`,
@@ -67,3 +68,5 @@ const dropdown = [
     value: "Dropdown Key 3",
   },
 ];
+
+// http://localhost:5173/workspace/lets-discuss/primary/tools/start/starttools-level11

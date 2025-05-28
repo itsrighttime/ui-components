@@ -3,6 +3,7 @@ import styles from "../css/WorkspaceLayout.module.css";
 import { Navigator } from "./Navigator";
 import { useWorkspaceLayout } from "../helper/useWorkspaceLayout";
 import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys";
+import { ErrorPage } from "../../../SpecialPages/js/ErrorPage";
 
 const { ZONES } = workspaceLayoutKeys;
 
@@ -26,7 +27,7 @@ export const WorkspaceLayout = ({
       toggleFullscreen,
     });
 
-  if (!tabsPrimary) return <>Tabs are Empty</>;
+  if (!tabsPrimary && !tabsSecondary && !content) return <ErrorPage />;
 
   return (
     <div
