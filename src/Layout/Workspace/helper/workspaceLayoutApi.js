@@ -5,7 +5,7 @@ const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 export const workspaceLayoutApi = (api) => {
   // TODO: URL validation will done at the backend, it will allowed access or denied based of the user access
   // return null; // Return null if invalid URL
-  console.log("Called!")
+  console.log("Called!");
   return {
     content: {
       data: `Page for ${api || "Home"}`,
@@ -15,15 +15,13 @@ export const workspaceLayoutApi = (api) => {
     [LEVELS.primary]: generateTabSet("Level1"),
     [LEVELS.secondary]: generateTabSet("Level2"),
 
-    myProfile: {
-      dropdown: profileDropdown,
-    },
-
-    notification: {
-      total: 100,
-      dropdown : notificationDropdown
-    }
+    myProfile: myProfile,
+    notification: notification,
   };
+};
+
+export const getWorspaceHomeTabsApi = () => {
+  return { myProfile, notification };
 };
 
 const generateTabSet = (label) => ({
@@ -46,12 +44,7 @@ const getZoneTabs = (zone, label) => ({
     label,
     POSITIONS.center
   ),
-  [POSITIONS.end]: createTabs(
-    ["Contact", "Contact1", "Contact2"],
-    zone,
-    label,
-    POSITIONS.end
-  ),
+  [POSITIONS.end]: createTabs(["C1", "C2", "C3"], zone, label, POSITIONS.end),
 });
 
 const createTabs = (values, zone, label, position) =>
@@ -105,5 +98,14 @@ const notificationDropdown = [
     description: "Important",
   },
 ];
+
+const myProfile = {
+  dropdown: profileDropdown,
+};
+
+const notification = {
+  total: 100,
+  dropdown: notificationDropdown,
+};
 
 // http://localhost:5173/workspace/lets-discuss/primary/tools/start/starttools-level11

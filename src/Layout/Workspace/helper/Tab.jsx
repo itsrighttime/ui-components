@@ -59,7 +59,6 @@ export const Tab = ({
 
   const handleDropdownSelect = (selectedKey) => {
     if (selectedKey !== dropdownValue) {
-      console.log("Clicked!!", selectedKey, dropdownValue);
       onClick?.(selectedKey);
       setDropdownValue(selectedKey);
     }

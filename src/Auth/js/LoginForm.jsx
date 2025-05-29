@@ -7,6 +7,9 @@ import { handleRegister } from "../helper/handleRegister";
 import { PlainButton } from "../../InputFields/Actions/jsx/PlainButton";
 import { handleForgot } from "../helper/handleForgot";
 import { useAuth } from "../../Context/jsx/AuthContext";
+import { IconButton } from "../../InputFields/Actions/jsx/IconButton";
+import { screenModeIcon } from "../../utils/icons";
+import { workspaceLabels } from "../../Layout/Workspace/helper/workspaceLabels";
 
 const ExtraButtons = ({}) => (
   <div className={styles.extra}>
@@ -23,13 +26,27 @@ const ExtraButtons = ({}) => (
   </div>
 );
 
-export const LoginForm = ({ isRegisterButton = true }) => {
+export const LoginForm = ({
+  isRegisterButton = true,
+  toggleFullscreen = null,
+}) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const { handleLogin } = useAuth();
 
   return (
     <div className={styles.loginFormWrapper}>
+      {toggleFullscreen && (
+        <div className={styles.extraIcons}>
+          <IconButton
+            icon={screenModeIcon}
+            label={workspaceLabels.toggleFullscreen}
+            onClick={toggleFullscreen}
+            size={1.2}
+            color={"var(--colorRed)"}
+          />
+        </div>
+      )}
       <div className={styles.loginForm}>
         <p className={styles.title}>Login Page</p>
         <div className={styles.inputs}>

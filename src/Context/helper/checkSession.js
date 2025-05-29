@@ -1,4 +1,4 @@
-import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutFullScreen";
+import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutWrapper";
 import { apiCaller } from "../../utils/apiCaller";
 
 export const checkSession = async (setUserDetails, setLoading) => {

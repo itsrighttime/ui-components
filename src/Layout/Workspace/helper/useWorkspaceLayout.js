@@ -50,9 +50,12 @@ export const useWorkspaceLayout = ({
 
   const clickHandler = ({ tab, value, isWorkspace = false }) => {
     value && setDocumentTitle(value);
-    const url = makeUrl({ ...tab, workspaceId }, isWorkspace);
-    setCurrentUrl(url);
-    navigate(url);
+    const createdUrl = makeUrl({ ...tab, workspaceId }, isWorkspace);
+
+    const finalUrl = tab.key === workspaceKeys.workspaceHome ? "/" : createdUrl;
+
+    setCurrentUrl(finalUrl);
+    navigate(finalUrl);
     return {
       ...defaultTabsHandler,
       onClick: tabClickHandler,

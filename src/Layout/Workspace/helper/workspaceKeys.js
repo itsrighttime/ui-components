@@ -10,4 +10,5 @@ export const workspaceKeys = {
   },
   myProfile: "myProfile",
   notification: "notification",
+  workspaceHome: "workspaceHome",
 };

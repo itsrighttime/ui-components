@@ -3,7 +3,6 @@ import { FullscreenWrapper } from "./FullscreenWrapper";
 import { WorkspaceLayout } from "./WorkspaceLayout";
 import { LockScreen } from "./LockScreen";
 import { useUserActiveOnTab } from "../../../Hooks/useUserActiveOnTab";
-import { LoginForm } from "../../../Auth/js/LoginForm";
 import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
 import { useEffect } from "react";
 import { workspaceKeys } from "../helper/workspaceKeys";
@@ -16,7 +15,7 @@ export const ScreenType = {
   LOGOUT_SCREEN: "logoutScreen",
 };
 
-export const WorkspaceLayoutFullScreen = () => {
+export const WorkspaceLayoutWrapper = ({ toggleFullscreen }) => {
   const { userDetails } = useAuth();
   const isActive = useUserActiveOnTab(5); // 5 minutes inactivity timeout
   const [locked, setLocked] = useState(userDetails?.user?.screenType);
@@ -37,16 +36,7 @@ export const WorkspaceLayoutFullScreen = () => {
   return locked === ScreenType.MAGIC_SCREEN ? (
     <LockScreen onUnlock={unlockMagicScreen} />
   ) : locked === ScreenType.FULL_SCREEN ? (
-    <FullscreenWrapper>
-      {({ toggleFullscreen }) => (
-        <>
-          <WorkspaceLayout
-            toggleFullscreen={toggleFullscreen}
-            api={"letsSecure"}
-          />
-        </>
-      )}
-    </FullscreenWrapper>
+    <WorkspaceLayout toggleFullscreen={toggleFullscreen} api={"letsSecure"} />
   ) : (
     <ErrorPage ErrorMsg="Something is Wrong in WorkspaceLayoutFullScreen" />
   );

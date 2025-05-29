@@ -1,6 +1,6 @@
 import { makeUrl } from "../../Layout/Workspace/helper/urlFormatter";
 import { workspaceLayoutKeys } from "../../Layout/Workspace/helper/workspaceLayoutKeys";
-import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutFullScreen";
+import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutWrapper";
 import { apiCaller } from "../../utils/apiCaller";
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 

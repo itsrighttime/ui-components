@@ -1,7 +1,8 @@
 import { workspaceKeys } from "./workspaceKeys";
 import { getIconByKey } from "./getIconBYKey";
 import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
-import { profileIcon, reminderIcon } from "../../../utils/icons";
+import { homeIcon, profileIcon, reminderIcon } from "../../../utils/icons";
+import { workspaceLabels } from "./workspaceLabels";
 
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
@@ -29,8 +30,18 @@ export const getSpecialTabs = ({
   // Top-right: Lock + Logout + Fullscreen
   if (isTopEnd) {
     specialTabs.push({
+      key: workspaceKeys.workspaceHome,
+      value: workspaceLabels.workspaceHome,
+      icon: homeIcon,
+      onClick: (clickedValue) =>
+        clickHandler({ tab: { key: clickedValue, ...section } })[
+          workspaceKeys.myProfile
+        ](clickedValue),
+    });
+
+    specialTabs.push({
       key: workspaceKeys.myProfile,
-      value: "My Profile",
+      value: workspaceLabels.myProfile,
       icon: profileIcon,
       onClick: (clickedValue) =>
         clickHandler({ tab: { key: clickedValue, ...section } })[
@@ -40,7 +51,10 @@ export const getSpecialTabs = ({
     });
 
     [workspaceKeys.magicLock, workspaceKeys.logout].forEach((key) => {
-      const label = key === workspaceKeys.magicLock ? "Lock Screen" : "Logout";
+      const label =
+        key === workspaceKeys.magicLock
+          ? workspaceLabels.magicLock
+          : workspaceLabels.logout;
 
       specialTabs.push({
         key,
@@ -55,7 +69,7 @@ export const getSpecialTabs = ({
 
     specialTabs.push({
       key: workspaceKeys.notification,
-      value: "Notifications",
+      value: workspaceLabels.notification,
       icon: reminderIcon,
       onClick: (clickedValue) =>
         clickHandler({ tab: { key: clickedValue, ...section } })[
@@ -69,7 +83,7 @@ export const getSpecialTabs = ({
 
     specialTabs.push({
       key: workspaceKeys.toggleFullscreen,
-      value: "Toggle Screen Mode",
+      value: workspaceLabels.toggleFullscreen,
       icon: getIconByKey(workspaceKeys.toggleFullscreen),
       onClick: toggleFullscreen,
     });
@@ -79,7 +93,7 @@ export const getSpecialTabs = ({
   if (isTopStart) {
     specialTabs.unshift({
       key: workspaceKeys.workspaceName,
-      value: data?.content?.workspaceName ?? "Workspace",
+      value: data?.content?.workspaceName ?? workspaceLabels.workspaceName,
       icon: null,
       onClick: () => {},
     });

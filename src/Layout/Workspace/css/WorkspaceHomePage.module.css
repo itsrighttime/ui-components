@@ -1,0 +1,54 @@
+.extraIcons {
+  position: absolute;
+  top: 1px;
+  right: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.workspaceHomePage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.products {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-height: 70%;
+  max-width: 70%;
+  overflow: auto;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.product:hover {
+  border: 1px solid var(--colorCyan);
+}
+
+.image {
+  height: 60px;
+}
+
+.name {
+  font-weight: var(--boldL2);
+  color: var(--colorGray5);
+}
+
+.product:hover .name {
+  color: var(--colorCyan);
+}

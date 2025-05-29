@@ -7,6 +7,16 @@
   align-items: center;
 }
 
+.extraIcons {
+  position: absolute;
+  top: 1px;
+  right: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
 .loginForm {
   display: flex;
   flex-direction: column;
