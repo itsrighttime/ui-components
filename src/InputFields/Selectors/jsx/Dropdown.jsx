@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import styles from "../css/Dropdown.module.css"; // Import your CSS module for styling
+import styles from "../css/Dropdown.module.css";
 import { arrowDownIcon, arrowUpIcon } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
 import { Button } from "../../Actions/jsx/Button";
+import { useSmartPosition } from "../../../Hooks/useSmartPosition";
 
 export const Dropdown = ({
   options = [],
@@ -16,7 +17,6 @@ export const Dropdown = ({
   setAddedOptions,
   width = "300px",
 }) => {
-  // console.log(options)
   const [isOpen, setIsOpen] = useState(false);
   const [allOptions, setAllOptions] = useState(options);
   const [filteredOptions, setFilteredOptions] = useState(options);
@@ -25,6 +25,7 @@ export const Dropdown = ({
   const [newOption, setNewOption] = useState("");
 
   const dropdownRef = useRef(null);
+  const position = useSmartPosition(dropdownRef);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -37,20 +38,18 @@ export const Dropdown = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownRef]);
+  }, []);
 
   const handleSelectOption = (option) => {
-    let updatedSelections;
-    if (multiple) {
-      updatedSelections = selectedOptions.includes(option)
+    const updatedSelections = multiple
+      ? selectedOptions.includes(option)
         ? selectedOptions.filter((item) => item !== option)
-        : [...selectedOptions, option];
-    } else {
-      updatedSelections = [option];
-      setIsOpen(false);
-    }
+        : [...selectedOptions, option]
+      : [option];
+
     setSelectedOptions(updatedSelections);
     setResult(updatedSelections);
+    if (!multiple) setIsOpen(false);
   };
 
   const handleSearch = (e) => {
@@ -64,15 +63,14 @@ export const Dropdown = ({
   };
 
   const handleAddOption = () => {
-    if (newOption && !allOptions.includes(newOption)) {
-      const updatedOptions = [...allOptions, newOption];
-      setAllOptions(updatedOptions);
-      setFilteredOptions(updatedOptions);
-      setAddedOptions(updatedOptions);
+    const trimmed = newOption.trim();
+    if (trimmed && !allOptions.includes(trimmed)) {
+      const updated = [...allOptions, trimmed];
+      setAllOptions(updated);
+      setFilteredOptions(updated);
+      setAddedOptions?.(updated);
       setNewOption("");
       setSearchTerm("");
-      // handleSelectOption(newOption);
-      setResult(selectedOptions);
     }
   };
 
@@ -81,12 +79,10 @@ export const Dropdown = ({
     setResult([]);
   };
 
-  const handleHeaderClick = () => {
-    setIsOpen((prevState) => !prevState);
-  };
+  const handleHeaderClick = () => setIsOpen((prev) => !prev);
 
   const cssVariable = {
-    "--color": color ? color : "var(--colorCyan)",
+    "--color": color || "var(--colorCyan)",
     "--width": width,
   };
 
@@ -94,10 +90,11 @@ export const Dropdown = ({
     <div
       className={styles.dropdown}
       ref={dropdownRef}
-      tabIndex={0} // Makes the div focusable
+      tabIndex={0}
       style={cssVariable}
     >
-      <div className={styles.label}>{label}</div>
+      {label && <div className={styles.label}>{label}</div>}
+
       <div
         className={`${styles.dropdownHeader} ${isOpen ? styles.open : ""}`}
         onClick={handleHeaderClick}
@@ -105,15 +102,22 @@ export const Dropdown = ({
         <span>
           {selectedOptions.length ? selectedOptions.join(", ") : placeholder}
         </span>
-
-        {isOpen ? (
-          <IconButton icon={arrowUpIcon} label={"Open Dropdown"} />
-        ) : (
-          <IconButton icon={arrowDownIcon} label={"Close Dropdown"} />
-        )}
+        <IconButton
+          icon={isOpen ? arrowUpIcon : arrowDownIcon}
+          label={isOpen ? "Close Dropdown" : "Open Dropdown"}
+        />
       </div>
+
       {isOpen && (
-        <div className={styles.dropdownMenu}>
+        <div
+          className={`${styles.dropdownMenu} ${
+            position.vertical === "top" ? styles.dropTop : styles.dropBottom
+          } ${
+            position.horizontal === "left"
+              ? styles.alignLeft
+              : styles.alignRight
+          }`}
+        >
           <input
             type="text"
             value={searchTerm}
@@ -124,7 +128,7 @@ export const Dropdown = ({
 
           <div className={styles.dropdownOptions}>
             <ul className={styles.optionList}>
-              {filteredOptions.length ? (
+              {filteredOptions.length > 0 ? (
                 filteredOptions.map((option) => (
                   <li
                     key={option}
@@ -146,20 +150,18 @@ export const Dropdown = ({
                 <input
                   type="text"
                   value={newOption}
-                  onChange={(e) => {
-                    setNewOption(e.target.value);
-                  }}
+                  onChange={(e) => setNewOption(e.target.value)}
                   placeholder="Add new option"
                 />
-                {/* <button onClick={handleAddOption}>Add</button> */}
-                <Button text={"Add"} onClick={handleAddOption} color={color} />
+                <Button text="Add" onClick={handleAddOption} color={color} />
               </div>
             )}
+
             {multiple && selectedOptions.length > 0 && (
               <Button
                 onClick={handleClearSelection}
-                text={"Clear Selection"}
-                width={"90%"}
+                text="Clear Selection"
+                width="90%"
                 color={color}
               />
             )}
