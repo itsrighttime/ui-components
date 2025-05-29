@@ -1,7 +1,7 @@
 import { workspaceKeys } from "./workspaceKeys";
 import { getIconByKey } from "./getIconBYKey";
 import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
-import { profileIcon } from "../../../utils/icons";
+import { profileIcon, reminderIcon } from "../../../utils/icons";
 
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
@@ -17,20 +17,17 @@ export const getSpecialTabs = ({
   const isPosition = (lvl, zn, pos) =>
     level === lvl && zone === zn && position === pos;
 
-  const isTopRight = isPosition(
-    LEVELS.primary,
-    ZONES.commandBar,
-    POSITIONS.end
-  );
-  const isTopLeft = isPosition(
+  const isTopEnd = isPosition(LEVELS.primary, ZONES.commandBar, POSITIONS.end);
+  const isTopStart = isPosition(
     LEVELS.primary,
     ZONES.commandBar,
     POSITIONS.start
   );
-  const isLeftLeft = isPosition(LEVELS.primary, ZONES.sidebar, POSITIONS.end);
+  const isLeftEnd = isPosition(LEVELS.primary, ZONES.sidebar, POSITIONS.end);
+  const isRightStart = isPosition(LEVELS.primary, ZONES.tools, POSITIONS.start);
 
   // Top-right: Lock + Logout + Fullscreen
-  if (isTopRight) {
+  if (isTopEnd) {
     specialTabs.push({
       key: workspaceKeys.myProfile,
       value: "My Profile",
@@ -57,6 +54,20 @@ export const getSpecialTabs = ({
     });
 
     specialTabs.push({
+      key: workspaceKeys.notification,
+      value: "Notifications",
+      icon: reminderIcon,
+      onClick: (clickedValue) =>
+        clickHandler({ tab: { key: clickedValue, ...section } })[
+          workspaceKeys.notification
+        ](clickedValue),
+      dropdown: data.notification.dropdown,
+      extra: {
+        total: data.notification.total,
+      },
+    });
+
+    specialTabs.push({
       key: workspaceKeys.toggleFullscreen,
       value: "Toggle Screen Mode",
       icon: getIconByKey(workspaceKeys.toggleFullscreen),
@@ -65,7 +76,7 @@ export const getSpecialTabs = ({
   }
 
   // Top-left: Workspace label
-  if (isTopLeft) {
+  if (isTopStart) {
     specialTabs.unshift({
       key: workspaceKeys.workspaceName,
       value: data?.content?.workspaceName ?? "Workspace",
@@ -75,7 +86,7 @@ export const getSpecialTabs = ({
   }
 
   // Left-sidebar: Workspace-level items
-  if (isLeftLeft) {
+  if (isLeftEnd) {
     const renderingKeys = workspaceKeys.workspace;
 
     Object.values(renderingKeys).forEach((key) => {
@@ -90,6 +101,10 @@ export const getSpecialTabs = ({
           }),
       });
     });
+  }
+
+  // Right-sidebar: Workspace-level items
+  if (isRightStart) {
   }
 
   return specialTabs;

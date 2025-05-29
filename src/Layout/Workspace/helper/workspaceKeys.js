@@ -9,4 +9,5 @@ export const workspaceKeys = {
     letsDiscuss: "letsDiscuss",
   },
   myProfile: "myProfile",
+  notification: "notification",
 };

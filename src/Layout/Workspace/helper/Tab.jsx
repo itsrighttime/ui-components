@@ -15,6 +15,7 @@ export const Tab = ({
   onClick,
   color,
   dropdown,
+  extra,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropdownValue, setDropdownValue] = useState("");
@@ -58,10 +59,17 @@ export const Tab = ({
 
   const handleDropdownSelect = (selectedKey) => {
     if (selectedKey !== dropdownValue) {
+      console.log("Clicked!!", selectedKey, dropdownValue);
       onClick?.(selectedKey);
       setDropdownValue(selectedKey);
     }
     setShowDropdown(false);
+  };
+
+  const cssVariable = {
+    "--colorSpecial":
+      extra?.total === 0 ? color || "var(--colorCyan)" : "var(--colorRed)",
+    "--colorSpecialBg": "",
   };
 
   return (
@@ -72,8 +80,16 @@ export const Tab = ({
         if (typeof tabRef === "function") tabRef(el);
         else if (tabRef) tabRef.current = el;
       }}
+      style={cssVariable}
     >
-      {icon ? (
+      {mykey === workspaceKeys.notification ? (
+        <div className={iconBtnClass}>
+          <div className={styles.notification} onClick={handleClick}>
+            <p>{extra.total}</p>
+            <IconButton icon={icon} label={value} color={color} size={1.2} />
+          </div>
+        </div>
+      ) : icon ? (
         <div className={iconBtnClass}>
           <IconButton
             icon={icon}

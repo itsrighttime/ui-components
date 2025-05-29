@@ -1,0 +1,39 @@
+import { useEffect, useState } from "react";
+
+export const useSmartPosition = (ref) => {
+  const [position, setPosition] = useState({
+    vertical: "bottom",
+    horizontal: "right",
+  });
+
+  useEffect(() => {
+    const checkPosition = () => {
+      const el = ref.current;
+      if (!el) return;
+
+      const { top, bottom, left, right } = el.getBoundingClientRect();
+      const { offsetWidth: width, offsetHeight: height } = el;
+      const { innerHeight: vh, innerWidth: vw } = window;
+
+      const space = {
+        below: vh - bottom,
+        above: top,
+        right: vw - right,
+        left: left,
+      };
+
+      setPosition({
+        vertical:
+          space.below < height && space.above >= height ? "top" : "bottom",
+        horizontal:
+          space.right < width && space.left >= width ? "left" : "right",
+      });
+    };
+
+    checkPosition();
+    window.addEventListener("resize", checkPosition);
+    return () => window.removeEventListener("resize", checkPosition);
+  }, [ref]);
+
+  return position;
+};

@@ -43,6 +43,9 @@ export const useWorkspaceLayout = ({
     [workspaceKeys.myProfile]: (value) => {
       console.log(value);
     },
+    [workspaceKeys.notification]: (value) => {
+      console.log(value);
+    },
   };
 
   const clickHandler = ({ tab, value, isWorkspace = false }) => {

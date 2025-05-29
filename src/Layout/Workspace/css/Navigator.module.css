@@ -56,3 +56,48 @@
 .iconBtn.isSelected svg path {
   color: var(--colorWhite);
 }
+
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding-left: 5px;
+  border: 1px solid var(--colorSpecial);
+  border-radius: 5px;
+  font-weight: var(--boldL3);
+  /* transition: background-color 0.3s, color 0.3s; */
+}
+
+.notification:hover {
+  background-color: var(--colorSpecial);
+  cursor: pointer;
+  border: 1px solid var(--colorSpecial);
+}
+
+.notification:hover button {
+  background-color: transparent;
+  border: none;
+  transition: none;
+}
+
+.notification:hover svg path {
+  color: var(--colorWhite);
+}
+
+.notification p {
+  color: var(--colorSpecial);
+}
+
+.notification:hover p {
+  color: var(--colorWhite);
+}
+
+.iconBtn.isSelected .notification {
+  background-color: var(--colorYellow);
+  border: 1px solid var(--colorYellow);
+}
+
+.iconBtn.isSelected .notification p {
+  color: var(--colorWhite);
+}

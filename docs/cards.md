@@ -9,17 +9,6 @@ This document explains how to use the card components from the UI library. These
 - `CardTextOn` – Image background card with text overlay
 - `CardTextSliding` – Interactive promotional card with CTA
 
-## Installation & Setup
-
-Assuming your component library is already set up in your project:
-
-```jsx
-import { CardImg } from "your-library/Cards/js/CardImg";
-import { CardSimpleInfo } from "your-library/Cards/js/CardSimpleInfo";
-import { CardTextOn } from "your-library/Cards/js/CardTextOn";
-import { CardTextSliding } from "your-library/Cards/js/CardTextSliding";
-```
-
 ## Importing
 
 ```js

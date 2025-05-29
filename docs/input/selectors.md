@@ -262,6 +262,25 @@ const dropdownItems = [
     value: "Duplicate",
   },
 ];
+
+const dropdownItems = [
+  { key: "1", value: "Option A" },
+  { key: "2", value: "Option B", description: "This is option B" },
+];
+
+const dropdownItems = [
+  {
+    key: "dev",
+    value: "Developer",
+    box: ["Remote", "Full-time"],
+    description: "Work with modern web stacks.",
+  },
+  {
+    key: "designer",
+    value: "Designer",
+    box: ["Onsite"],
+  },
+];
 ```
 
 #### **Render the Dropdown**

@@ -5,6 +5,7 @@ const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 export const workspaceLayoutApi = (api) => {
   // TODO: URL validation will done at the backend, it will allowed access or denied based of the user access
   // return null; // Return null if invalid URL
+  console.log("Called!")
   return {
     content: {
       data: `Page for ${api || "Home"}`,
@@ -17,6 +18,11 @@ export const workspaceLayoutApi = (api) => {
     myProfile: {
       dropdown: profileDropdown,
     },
+
+    notification: {
+      total: 100,
+      dropdown : notificationDropdown
+    }
   };
 };
 
@@ -82,6 +88,21 @@ const profileDropdown = [
   {
     key: "myAccount",
     value: "Account",
+  },
+];
+
+const notificationDropdown = [
+  {
+    key: "letsSecure",
+    value: "letsSecure",
+    box: [17, 18, "Man", 0, ""],
+    description: "Critical",
+  },
+  {
+    key: "letsDiscuss",
+    value: "letsDiscuss",
+    box: [5000],
+    description: "Important",
   },
 ];
 

@@ -52,6 +52,7 @@ import { FlexContainer } from "./Layout/Containers/jsx/FlexContainer";
 import { GridContainer } from "./Layout/Containers/jsx/GridContainer";
 import { PlainButton } from "./InputFields/Actions/jsx/PlainButton";
 import { DropdownSimple } from "./InputFields/Selectors/jsx/DropdownSimple";
+import { useSmartPosition } from "./Hooks/useSmartPosition";
 
 export const UIAlert = {
   Alert,
@@ -146,4 +147,8 @@ export const UIInputs = {
 export const UILayout = {
   FlexContainer,
   GridContainer,
+};
+
+export const UIHooks = {
+  useSmartPosition,
 };
