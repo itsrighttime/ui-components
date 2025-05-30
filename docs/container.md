@@ -132,26 +132,3 @@ export default function Example() {
 }
 ```
 
-
-### Example CSS Module (`CustomStyles.module.css`)
-
-```css
-.customFlex {
-  border: 2px solid #007bff;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.customGrid {
-  background-color: #e7f3ff;
-  padding: 15px;
-  border-radius: 6px;
-}
-```
-
-### What Happens?
-
-- Your containers keep all their default layout behavior via CSS variables.
-- The `className` prop adds **additional styling** from your custom CSS module.
-- You can still override or add inline styles via the `style` prop.
-- This keeps your components flexible and reusable with customizable looks.
