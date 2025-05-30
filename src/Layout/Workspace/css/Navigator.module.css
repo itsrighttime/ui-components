@@ -57,6 +57,11 @@
   color: var(--colorWhite);
 }
 
+.productImg {
+  border: 1px solid red;
+  height: 25px;
+}
+
 .notification {
   display: flex;
   justify-content: center;

@@ -3,6 +3,7 @@ import { getIconByKey } from "./getIconBYKey";
 import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
 import { homeIcon, profileIcon, reminderIcon } from "../../../utils/icons";
 import { workspaceLabels } from "./workspaceLabels";
+import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
 
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
@@ -107,7 +108,7 @@ export const getSpecialTabs = ({
       specialTabs.push({
         key,
         value: key,
-        icon: getIconByKey(key),
+        icon: getProductLogo(key),
         onClick: (clickedValue) =>
           clickHandler({
             tab: { key: clickedValue, ...section },

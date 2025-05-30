@@ -34,14 +34,18 @@ export const IconButton = ({
   return (
     <div className={styles.iconButton} style={colorStyle}>
       <Tooltip content={label}>
-        <button
-          type="button"
-          className={`${styles.btn}`}
-          onClick={onClick}
-          style={{ ...style, ...colorStyle }}
-        >
-          {icon}
-        </button>
+        {typeof icon === "string" ? (
+          <img src={icon} className={styles.image} />
+        ) : (
+          <button
+            type="button"
+            className={`${styles.btn}`}
+            onClick={onClick}
+            style={{ ...style, ...colorStyle }}
+          >
+            {icon}
+          </button>
+        )}
       </Tooltip>
     </div>
   );

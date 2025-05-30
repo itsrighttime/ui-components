@@ -5,10 +5,11 @@ export const workspaceKeys = {
   workspaceName: "workspaceName",
   tabClickedKey: "tabClickedKey",
   workspace: {
-    letsSecure: "letsSecure",
     letsDiscuss: "letsDiscuss",
+    letsSecure: "letsSecure",
   },
   myProfile: "myProfile",
   notification: "notification",
   workspaceHome: "workspaceHome",
+  products: "products"
 };

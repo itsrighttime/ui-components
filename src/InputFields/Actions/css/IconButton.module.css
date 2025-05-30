@@ -44,3 +44,15 @@
 .btn:hover svg circle {
   color: var(--colorWhite);
 }
+
+.image {
+  height: 25px;
+  cursor: pointer;
+  border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+
+.image:hover {
+  border: 1px solid var(--iconColor);
+}

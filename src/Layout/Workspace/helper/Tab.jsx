@@ -6,6 +6,7 @@ import { useOutsideClick } from "../../../Hooks/useOutsideClick";
 import { DropdownSimple } from "../../../InputFields/Selectors/jsx/DropdownSimple";
 import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
 import { workspaceKeys } from "./workspaceKeys";
+import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
 
 export const Tab = ({
   tabRef,

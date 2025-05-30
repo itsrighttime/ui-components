@@ -9,5 +9,6 @@ const IconsMap = {
 };
 
 export const getIconByKey = (key) => {
-  return IconsMap[key] || IconsMap.home;
+  return IconsMap[key] || Icons.analyticsIcon;
 };
+
