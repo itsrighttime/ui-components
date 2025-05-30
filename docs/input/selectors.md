@@ -2,6 +2,16 @@
 
 These two components provide a consistent and accessible way to render single and multiple choice selection inputs with built-in styling, help text, and customizability.
 
+#### Selectors
+
+- [`Dropdown`](#dropdown-component)
+- [`DropdownSimple`](#dropdownsimple-component-)
+- [`SearchBox`](#searchbox)
+- [`ColorPicker`](#colorpicker)
+- [`RadioGroup`](#radiogroup)
+- [`Switch`](#switch)
+- [`CheckboxGroup`](#checkboxgroup)
+
 ### Import
 
 ```jsx

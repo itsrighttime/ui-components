@@ -77,7 +77,7 @@ const handleFileChange = (e) => {
 };
 ```
 
-## AudioUpload Component – Developer Guide
+## AudioUpload Component
 
 ### Purpose
 

@@ -10,6 +10,12 @@ This guide covers the following reusable input components:
 
 All components support custom styling via CSS variables like `--color` and `--width`.
 
+#### Security
+
+- [`OtpField`](#otpfield)
+- [`PasswordField`](#passwordfield)
+- [`SecurityQuestion`](#securityquestion)
+
 ---
 
 ## OtpField

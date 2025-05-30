@@ -1,6 +1,10 @@
 # Developer Guide for JsonField, TextArea, MobileField, EmailField and Label Components
 
----
+- [`TextArea`](#2-textarea-component)
+- [`Label`](#3-label-component)
+- [`JsonField`](#1-jsonfield-component)
+- [`MobileField`](#mobilefield-component)
+- [`EmailField`](#emailfield-component)
 
 ## 1. JsonField Component
 
