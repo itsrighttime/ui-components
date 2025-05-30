@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAuth } from "../../../Context/jsx/AuthContext";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import {
@@ -12,9 +13,28 @@ import { workspaceKeys } from "./workspaceKeys";
 import { workspaceLabels } from "./workspaceLabels";
 import { getWorspaceHomeTabsApi } from "./workspaceLayoutApi";
 
-export const WorkspaceHomePageTabs = ({ toggleFullscreen }) => {
+function convertToDictionary(dataArray) {
+  const result = {};
+
+  dataArray.forEach((item) => {
+    result[item.key] = item.box[0];
+  });
+
+  return result;
+}
+
+export const WorkspaceHomePageTabs = ({
+  toggleFullscreen,
+  setProductNotification,
+}) => {
   const { handleLogout } = useAuth();
   const { myProfile, notification } = getWorspaceHomeTabsApi();
+
+  useEffect(() => {
+    if (notification?.dropdown) {
+      setProductNotification(convertToDictionary(notification.dropdown));
+    }
+  }, [notification?.dropdown, setProductNotification]);
 
   return (
     <div className={styles.extraIcons}>

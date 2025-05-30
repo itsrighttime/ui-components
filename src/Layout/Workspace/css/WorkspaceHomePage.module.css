@@ -34,10 +34,33 @@
   border-radius: 5px;
   border: 1px solid transparent;
   cursor: pointer;
+  position: relative;
+  overflow: visible;
 }
 
 .product:hover {
   border: 1px solid var(--colorCyan);
+}
+
+.product.productNoti:hover {
+  border: 1px solid var(--colorRed);
+}
+
+.notification {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  font-weight: var(--boldL2);
+  color: var(--colorRed);
+  border: 1px solid var(--colorRed);
+  background-color: var(--colorBackground);
+  padding: 0 5px;
+  border-radius: 7px;
+}
+
+.product:hover .notification {
+  color: var(--colorWhite);
+  background-color: var(--colorRed);
 }
 
 .image {
@@ -51,4 +74,8 @@
 
 .product:hover .name {
   color: var(--colorCyan);
+}
+
+.product.productNoti:hover .name {
+  color: var(--colorRed);
 }

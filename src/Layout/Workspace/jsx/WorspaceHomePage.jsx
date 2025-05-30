@@ -6,9 +6,11 @@ const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 import { WorkspaceHomePageTabs } from "../helper/WorspaceHomePageTabs";
 import { makeUrl } from "../helper/urlFormatter";
 import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys";
+import { useState } from "react";
 
 export const WorkspaceHomePage = ({ apps = [], toggleFullscreen }) => {
   const navigate = useNavigate();
+  const [productNotification, setProductNotification] = useState([]);
 
   const handleClick = (value) => {
     navigate(
@@ -27,16 +29,25 @@ export const WorkspaceHomePage = ({ apps = [], toggleFullscreen }) => {
 
   return (
     <div className={styles.workspaceHomePage}>
-      <WorkspaceHomePageTabs toggleFullscreen={toggleFullscreen} />
+      <WorkspaceHomePageTabs
+        toggleFullscreen={toggleFullscreen}
+        setProductNotification={setProductNotification}
+      />
 
       <div className={styles.products}>
         {apps.map((value) => {
+          const notification = productNotification[value];
           return (
             <div
-              className={styles.product}
+              className={`${styles.product} ${
+                notification ? styles.productNoti : ""
+              }`}
               key={value}
               onClick={() => handleClick(value)}
             >
+              {notification && (
+                <span className={styles.notification}>{notification}</span>
+              )}
               <img
                 className={styles.image}
                 src={getProductLogo(value)}
