@@ -1,49 +1,53 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { apiCaller } from "../utils/apiCaller";
 
-/**
- * React hook for automatic data fetching with dependency safety.
- */
-export const useAPI = ({
+export const useAPICaller = ({
   endpoint = "/",
   method = "GET",
   body = null,
   headers = {},
   params = {},
-  activeTab = null,
+  dependencies = [],
 }) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await apiCaller({
+        endpoint,
+        method,
+        body,
+        headers,
+        params,
+      });
+      setData(response);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [endpoint, method, body, headers, params]);
 
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const result = await apiCaller({
-          endpoint,
-          method,
-          body,
-          headers,
-          params,
-        });
-        if (isMounted) setData(result);
-      } catch (err) {
-        if (isMounted) setError(err);
-      } finally {
-        if (isMounted) setLoading(false);
-      }
-    };
-
+    if (!endpoint) return;
     fetchData();
+  }, [fetchData, ...dependencies]);
 
-    return () => {
-      isMounted = false;
-    };
-  }, [endpoint, activeTab]);
+  const reset = () => {
+    setData(null);
+    setError(null);
+    setLoading(false);
+  };
 
-  return { data, loading, error };
+  return {
+    data,
+    error,
+    loading,
+    refetch: fetchData,
+    reset,
+  };
 };
