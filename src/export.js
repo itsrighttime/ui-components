@@ -65,9 +65,10 @@ import { LoginForm } from "./Auth/js/LoginForm";
 import { camelToKebab, kebabToCamel } from "./utils/caseConverter";
 import { getColorCode } from "./utils/COLOR";
 import { delay } from "./utils/delay";
-import { getRedirectBackUrl, getRedirectToURL } from "./utils/redirectToURL";
+import { getRedirectBackUrl, redirectUrlWithBack } from "./utils/redirectToURL";
 import { setDocumentTitle } from "./utils/setDocumentTitle";
 import { setFavicon } from "./utils/setFavicon";
+import { redirectURL } from "./utils/redirectURL";
 
 export const UIAlert = {
   Alert,
@@ -184,7 +185,8 @@ export const UIUtils = {
   kebabToCamel,
   getColorCode,
   delay,
-  getRedirectToURL,
+  redirectURL,
+  redirectUrlWithBack,
   getRedirectBackUrl,
   setDocumentTitle,
   setFavicon,

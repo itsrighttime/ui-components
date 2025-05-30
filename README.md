@@ -41,7 +41,7 @@ const { Alert } = UIAlert;
 | [`UIInputs`](./docs/input.md) | Grouped input fields                          |
 | `UILayout`                    | Layout components like containers & workspace |
 | `UIHooks`                     | Custom React hooks                            |
-| `UIUtils`                     | Utility functions and helpers                 |
+| [`UIUtils`](./docs/utils.md)  | Utility functions and helpers                 |
 
 ## Module Structure
 
@@ -145,17 +145,21 @@ const { Alert } = UIAlert;
 - `useUserActiveOnTab`
 - `useUserPresentOnTab`
 
-## Utilities
+## [Utilities](./docs/utils.md)
 
-- `apiCaller`
-- `logger` (with `codeTypes` and `getTrackingCode`)
-- `camelToKebab`, `kebabToCamel`
-- `getColorCode`
-- `delay`
-- `getRedirectToURL`, `getRedirectBackUrl`
-- `setDocumentTitle`, `setFavicon`
+- [`apiCaller`](./docs/api.md)
+- [`logger` (with `codeTypes` and `getTrackingCode`)](./docs/logger.md)
+- [`camelToKebab`](./docs/utils.md#cameltokebabstr)
+- [`kebabToCamel`](./docs/utils.md#kebabtocamelstr)
+- [`getColorCode`](./docs/utils.md#getcolorcodecolorname)
+- [`delay`](./docs/utils.md#delayms)
+- [`redirectURL`](./docs/utils.md#redirecturltarget)
+- [`redirectUrlWithBack`](./docs/utils.md#redirecttourlwithback-to-from-)
+- [`getRedirectBackUrl`](./docs/utils.md#getredirectbackurlurl)
+- [`setDocumentTitle`](./docs/utils.md#setdocumenttitletitle)
+- [`setFavicon`](./docs/utils.md#setfaviconlogoname-extension--png)
 
-## Icons
+## [Icons](./docs/icons.md)
 
 - All icons available via: `Icons`
 
