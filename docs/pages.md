@@ -5,8 +5,18 @@
 ```js
 import { UIPages } from "@itsrighttime/ui-components";
 
-const { Loading, ErrorPage, IconError, LoadingChat } = UIPages;
+const { Loading, ErrorPage, IconError, LoadingChat, LockScreen, LoginForm } =
+  UIPages;
 ```
+
+## [Special Pages]
+
+- [`Loading`](#loading-component)
+- [`ErrorPage`](#errorpage-component)
+- [`IconError`](#iconerror-component)
+- [`LoadingChat`](#loadingchat-component)
+- [`LockScreen`](#lockscreen)
+- [`LoginForm`](#loginform)
 
 ### `ErrorPage` Component
 
@@ -150,3 +160,62 @@ const { Loading, ErrorPage, IconError, LoadingChat } = UIPages;
 - Chatbot waiting screen
 - Message sending animation
 - Typing feedback UI in customer support apps
+
+## `LoginForm`
+
+A complete login UI component with support for ID/password input, fullscreen toggle, and register/forgot options.
+
+### Features:
+
+- ID and password fields with state management.
+- Login and Register buttons.
+- Option to switch to alternative action buttons if `isRegisterButton` is false.
+- Fullscreen toggle via `IconButton`.
+- Uses `AuthContext` for handling login logic.
+- Styled using `LoginForm.module.css`.
+
+### Props:
+
+| Prop               | Type      | Default | Description                                          |
+| ------------------ | --------- | ------- | ---------------------------------------------------- |
+| `isRegisterButton` | `boolean` | `true`  | Controls whether to show Register or Forgot options. |
+| `toggleFullscreen` | `func`    | `null`  | Enables fullscreen mode toggle.                      |
+
+**Purpose:**
+A secure login interface with optional registration and password recovery support.
+
+**Use Case:**
+When a user visits your app at `/login`, display the `LoginForm` component. Enable fullscreen toggling and provide a register button for new users.
+
+```jsx
+<LoginForm
+  isRegisterButton={true}
+  toggleFullscreen={() => document.documentElement.requestFullscreen()}
+/>
+```
+
+## `LockScreen`
+
+A simple lock screen page that uses a custom `OtpField` to unlock the interface.
+
+### Features:
+
+- Accepts magic phrase/OTP input.
+- Displays error or guidance message.
+- Trigger callback on successful unlock attempt.
+
+### Props:
+
+| Prop       | Type   | Required | Description                           |
+| ---------- | ------ | -------- | ------------------------------------- |
+| `onUnlock` | `func` | ✅       | Called when user submits correct OTP. |
+
+**Purpose:**
+A locked session screen using a custom OTP (magic phrase) for re-authentication.
+
+**Use Case:**
+When a session times out or the screen is locked, show `LockScreen` to re-authenticate using a predefined code or phrase.
+
+```jsx
+<LockScreen onUnlock={() => console.log("Access granted")} />
+```

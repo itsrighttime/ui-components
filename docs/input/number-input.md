@@ -2,6 +2,10 @@
 
 This guide covers how to use the `Slider`, `NumberField`, and `Stepper` components in your React application. These components are styled, configurable, and designed for flexibility in handling numeric inputs.
 
+- [`NumberField`](#numberfield-component)
+- [`Stepper`](#stepper-component)
+- [`Slider`](#slider-component)
+
 ### Shared Features
 
 - All components accept:

@@ -1,3 +1,8 @@
+# Developer Guide: `VideoUpload` and `VideoPlayer`
+
+- [`VideoUpload`](#videoupload-component)
+- [`VideoPlayer`](#videoplayer-component)
+
 ### Import
 
 ```jsx

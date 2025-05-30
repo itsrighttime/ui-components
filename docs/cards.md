@@ -9,6 +9,13 @@ This document explains how to use the card components from the UI library. These
 - `CardTextOn` – Image background card with text overlay
 - `CardTextSliding` – Interactive promotional card with CTA
 
+## Cards
+
+- [`CardImg`](#1️-cardimg)
+- [`CardSimpleInfo`](#2️-cardsimpleinfo)
+- [`CardTextOn`](#3️-cardtexton)
+- [`CardTextSliding`](#4️-cardtextsliding)
+
 ## Importing
 
 ```js

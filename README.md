@@ -36,8 +36,8 @@ const { Alert } = UIAlert;
 | [`UICards`](./docs/cards.md)  | Card components                               |
 | `UIExtra`                     | Miscellaneous components like `IndiaMap`      |
 | `UIEssentials`                | Core essential UI helpers like `Tooltip`      |
-| `UIIcons`                     | Icon collection                               |
-| `UIPages`                     | Special UI pages and loading states           |
+| [`UIIcons`](./docs/icons.md)  | Icon collection                               |
+| [`UIPages`](./docs/pages.md)  | Special UI pages and loading states           |
 | [`UIInputs`](./docs/input.md) | Grouped input fields                          |
 | `UILayout`                    | Layout components like containers & workspace |
 | `UIHooks`                     | Custom React hooks                            |
@@ -119,14 +119,14 @@ const { Alert } = UIAlert;
 - `GridContainer`
 - `Workspace`
 
-## Special Pages
+## [Special Pages](./docs/pages.md)
 
-- `Loading`
-- `ErrorPage`
-- `IconError`
-- `LoadingChat`
-- `LockScreen`
-- `LoginForm`
+- [`Loading`](./docs/pages.md#loading-component)
+- [`ErrorPage`](./docs/pages.md#errorpage-component)
+- [`IconError`](./docs/pages.md#iconerror-component)
+- [`LoadingChat`](./docs/pages.md#loadingchat-component)
+- [`LockScreen`](./docs/pages.md#lockscreen)
+- [`LoginForm`](./docs/pages.md#loginform)
 
 ## Extras
 

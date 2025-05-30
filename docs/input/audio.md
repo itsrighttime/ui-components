@@ -5,6 +5,9 @@
 1. **AudioPlayer** – Plays the uploaded audio with custom controls
 2. **AudioUpload** (you may have this as a custom uploader)
 
+- [`AudioPlayer`](#audioplayer-component)
+- [`AudioUpload`](#audioupload-component)
+
 ### Import
 
 ```jsx
