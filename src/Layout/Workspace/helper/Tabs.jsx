@@ -2,14 +2,21 @@ import { useLayoutEffect, useRef, useState } from "react";
 import styles from "../css/Navigator.module.css";
 import { FlexContainer } from "../../Containers/jsx/FlexContainer";
 import { Tab } from "./Tab";
-import { DropdownSimple } from "../../../InputFields/Selectors/jsx/DropdownSimple";
-import { toCSSValue } from "../../Containers/helper/toCSSValue";
+// import { DropdownSimple } from "../../../InputFields/Selectors/jsx/DropdownSimple";
+// import { toCSSValue } from "../../Containers/helper/toCSSValue";
+// import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
+// import { arrowDownIcon, arrowUpIcon } from "../../../utils/icons";
+// import { DropdownSimpleValue } from "./DropdownSimpleValue";
+import { useOutsideClick } from "../../../Hooks/useOutsideClick";
 
 export const Tabs = ({ tabs, direction }) => {
   const containerRef = useRef(null);
   const itemRefs = useRef([]);
   const [visibleTabs, setVisibleTabs] = useState(tabs);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [overflowTabs, setOverflowTabs] = useState([]);
+
+  useOutsideClick(containerRef, () => setIsDropdownOpen(false));
 
   const calculateTabs = () => {
     const container = containerRef.current;
@@ -75,6 +82,25 @@ export const Tabs = ({ tabs, direction }) => {
           extra={tab?.extra}
         />
       ))}
+
+      {/* 
+      {overflowTabs.length > 0 && (
+        <div className={styles.overflows}>
+          <IconButton
+            icon={isDropdownOpen ? arrowUpIcon : arrowDownIcon}
+            onClick={() => {
+              console.log("Clicked");
+              setIsDropdownOpen((prev) => prev !== true);
+            }}
+          />
+        </div>
+      )}
+      {isDropdownOpen && (
+        <DropdownSimpleValue
+          items={overflowTabs}
+          onSelect={() => setIsDropdownOpen(false)}
+        />
+      )} */}
     </FlexContainer>
   );
 };
