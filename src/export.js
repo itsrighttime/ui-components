@@ -7,7 +7,7 @@ import { CardTextSliding } from "./Cards/js/CardTextSliding";
 import { IndiaMap } from "./ExtraThings/js/IndiaMap";
 import { Tooltip } from "./ExtraThings/js/Tooltip";
 import { useAlerts } from "./Hooks/useAlert";
-import { useAPI } from "./Hooks/useAPI";
+import { useAPICaller } from "./Hooks/useAPICaller";
 import { Button } from "./InputFields/Actions/jsx/Button";
 import { IconButton } from "./InputFields/Actions/jsx/IconButton";
 import { ImageButton } from "./InputFields/Actions/jsx/ImageButton";
@@ -53,6 +53,21 @@ import { GridContainer } from "./Layout/Containers/jsx/GridContainer";
 import { PlainButton } from "./InputFields/Actions/jsx/PlainButton";
 import { DropdownSimple } from "./InputFields/Selectors/jsx/DropdownSimple";
 import { useSmartPosition } from "./Hooks/useSmartPosition";
+import { useInfiniteScroll } from "./Hooks/useInfiniteScroll";
+import { useLazyLoad } from "./Hooks/useLazyLoad";
+import { useMediaQuery } from "./Hooks/useMediaQuery";
+import { useOutsideClick } from "./Hooks/useOutsideClick";
+import { useUserActiveOnTab } from "./Hooks/useUserActiveOnTab";
+import { useUserPresentOnTab } from "./Hooks/useUserPresentOnTab";
+import { Workspace } from "./Layout/Workspace/jsx/Workspace";
+import { LockScreen } from "./Layout/Workspace/jsx/LockScreen";
+import { LoginForm } from "./Auth/js/LoginForm";
+import { camelToKebab, kebabToCamel } from "./utils/caseConverter";
+import { getColorCode } from "./utils/COLOR";
+import { delay } from "./utils/delay";
+import { getRedirectBackUrl, getRedirectToURL } from "./utils/redirectToURL";
+import { setDocumentTitle } from "./utils/setDocumentTitle";
+import { setFavicon } from "./utils/setFavicon";
 
 export const UIAlert = {
   Alert,
@@ -73,11 +88,6 @@ export const UIExtra = {
 
 export const UIEssentials = {
   Tooltip,
-  logger: UtilsLogger.logger,
-  codeTypes: UtilsLogger.codeTypes,
-  getTrackingCode: UtilsLogger.getTrackingCode,
-  useAPI,
-  apiCaller,
 };
 
 export const UIIcons = {
@@ -89,6 +99,8 @@ export const UIPages = {
   ErrorPage,
   IconError,
   LoadingChat,
+  LockScreen,
+  LoginForm,
 };
 
 export const UIInputs = {
@@ -147,8 +159,34 @@ export const UIInputs = {
 export const UILayout = {
   FlexContainer,
   GridContainer,
+  Workspace,
 };
 
 export const UIHooks = {
   useSmartPosition,
+  useAlerts,
+  useAPICaller,
+  useInfiniteScroll,
+  useLazyLoad,
+  useMediaQuery,
+  useOutsideClick,
+  useSmartPosition,
+  useUserActiveOnTab,
+  useUserPresentOnTab,
+};
+
+export const UIUtils = {
+  apiCaller,
+  logger: UtilsLogger.logger,
+  codeTypes: UtilsLogger.codeTypes,
+  getTrackingCode: UtilsLogger.getTrackingCode,
+  camelToKebab,
+  kebabToCamel,
+  getColorCode,
+  delay,
+  getRedirectToURL,
+  getRedirectBackUrl,
+  setDocumentTitle,
+  setFavicon,
+  Stack,
 };
