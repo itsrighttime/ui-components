@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A reusable and customizable UI component library including inputs, buttons, notifications, cards, icons, and special pages for rapid frontend development.",
   "keywords": [
     "react",
