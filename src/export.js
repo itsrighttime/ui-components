@@ -74,7 +74,7 @@ import {
   DynamicProvider,
   useDynamicContent,
 } from "./Context/jsx/DynamicContext";
-import { LoginPage } from "./Layout/Workspace/helper/LoginPage";
+import { LoginForm } from "./Auth/js/LoginForm";
 
 export const UIAlert = {
   Alert,
@@ -107,7 +107,7 @@ export const UIPages = {
   IconError,
   LoadingChat,
   LockScreen,
-  LoginPage,
+  LoginForm,
 };
 
 export const UIInputs = {
