@@ -19,7 +19,7 @@ Set the log types you want to enable in development (comma-separated):
 ```js
 # For Vite
 VITE_LOG_TYPES=error,warn,info
-VITE_APP_SERVER_API_PROXY="http://localhost:4999"
+// VITE_APP_SERVER_API_PROXY="http://localhost:4999" // TODO: In updated version will remove from here 
 VITE_PRINT_API_RESULT=true
 ```
 
@@ -30,7 +30,7 @@ VITE_PRINT_API_RESULT=true
 const handleCreateUser = async () => {
   try {
     const result = await apiCaller({
-      endpoint: "/users/create",
+      endpoint: "http://localhost:4999/users/create",
       method: "POST",
       body: { name: "Danishan", role: "admin" },
       headers: { "Content-Type": "application/json" },
@@ -71,7 +71,7 @@ Use this **inside React components** where data should be loaded and updated bas
 
 const UserList = ({ activeTab }) => {
   const { data, loading, error } = useAPI({
-    endpoint: "/users",
+    endpoint: "http://localhost:4999/users",
     params: { role: "admin" },
     activeTab, // refetches when this changes
   });
