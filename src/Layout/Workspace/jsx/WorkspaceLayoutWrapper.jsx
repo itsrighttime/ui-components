@@ -34,7 +34,11 @@ export const WorkspaceLayoutWrapper = ({ toggleFullscreen }) => {
   const unlockMagicScreen = () => setLocked(ScreenType.FULL_SCREEN);
 
   return locked === ScreenType.MAGIC_SCREEN ? (
-    <LockScreen onUnlock={unlockMagicScreen} />
+    <LockScreen
+      handleUnlock={(key) => {
+        unlockMagicScreen();
+      }}
+    />
   ) : locked === ScreenType.FULL_SCREEN ? (
     <WorkspaceLayout toggleFullscreen={toggleFullscreen} api={"letsSecure"} />
   ) : (

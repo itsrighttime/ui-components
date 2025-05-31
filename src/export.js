@@ -61,7 +61,6 @@ import { useUserActiveOnTab } from "./Hooks/useUserActiveOnTab";
 import { useUserPresentOnTab } from "./Hooks/useUserPresentOnTab";
 import { Workspace } from "./Layout/Workspace/jsx/Workspace";
 import { LockScreen } from "./Layout/Workspace/jsx/LockScreen";
-import { LoginForm } from "./Auth/js/LoginForm";
 import { camelToKebab, kebabToCamel } from "./utils/caseConverter";
 import { getColorCode } from "./utils/COLOR";
 import { delay } from "./utils/delay";
@@ -70,6 +69,12 @@ import { setDocumentTitle } from "./utils/setDocumentTitle";
 import { setFavicon } from "./utils/setFavicon";
 import { redirectURL } from "./utils/redirectURL";
 import { Stack } from "./utils/Stack";
+import { AuthProvider, useAuth } from "./Context/jsx/AuthContext";
+import {
+  DynamicProvider,
+  useDynamicContent,
+} from "./Context/jsx/DynamicContext";
+import { LoginPage } from "./Layout/Workspace/helper/LoginPage";
 
 export const UIAlert = {
   Alert,
@@ -102,7 +107,7 @@ export const UIPages = {
   IconError,
   LoadingChat,
   LockScreen,
-  LoginForm,
+  LoginPage,
 };
 
 export const UIInputs = {
@@ -192,4 +197,9 @@ export const UIUtils = {
   setDocumentTitle,
   setFavicon,
   Stack,
+};
+
+export const UIContext = {
+  Auth: { AuthProvider, useAuth },
+  Dynamic: { DynamicProvider, useDynamicContent },
 };

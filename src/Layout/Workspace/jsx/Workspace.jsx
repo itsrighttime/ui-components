@@ -1,13 +1,15 @@
 // Workspace.jsx
-import { Route, Routes } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import { CombinedProviders } from "../helper/CombinedProviders";
 import { WorkspaceLayoutWrapper } from "./WorkspaceLayoutWrapper";
 import { ErrorPage } from "../../../SpecialPages/js/ErrorPage";
-import { LoginForm } from "../../../Auth/js/LoginForm";
 import { WorkspaceHomePage } from "./WorspaceHomePage";
 import { FullscreenWrapper } from "./FullscreenWrapper";
+import { LoginPage } from "../helper/LoginPage";
 
 export const Workspace = ({ tabClickHandler, workspace = "letsDiscuss" }) => {
+  const navigate = useNavigate();
+
   return (
     <CombinedProviders tabClickHandler={tabClickHandler} workspace={workspace}>
       <FullscreenWrapper>
@@ -39,14 +41,14 @@ export const Workspace = ({ tabClickHandler, workspace = "letsDiscuss" }) => {
               <Route
                 path="/login"
                 element={
-                  <LoginForm
-                    isRegisterButton={false}
-                    toggleFullscreen={toggleFullscreen}
-                  />
+                  <LoginPage handleToggleFullscreen={toggleFullscreen} />
                 }
               />
 
-              <Route path="*" element={<ErrorPage />} />
+              <Route
+                path="*"
+                element={<ErrorPage handleNavigate={() => navigate("/")} />}
+              />
             </Routes>
           </>
         )}

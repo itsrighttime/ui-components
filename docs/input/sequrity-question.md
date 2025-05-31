@@ -30,15 +30,16 @@ const { OtpField, PasswordField, SecurityQuestion } = UIInputs.Security;
 
 ### Props
 
-| Prop             | Type     | Default       | Description                                                             |
-| ---------------- | -------- | ------------- | ----------------------------------------------------------------------- |
-| `length`         | `number` | `6`           | Number of characters in the OTP                                         |
-| `setResult`      | `func`   | _required_    | Callback to return OTP string when all inputs are filled                |
-| `color`          | `string` | `--colorCyan` | Sets the primary color using a CSS variable                             |
-| `width`          | `string` | `300px`       | Width of the OTP container                                              |
-| `codeToVerified` | `string` | _required_    | Value to compare the entered OTP with for verification                  |
-| `setError`       | `func`   | _required_    | Callback to display an error message on failure                         |
-| `isNumeric`      | `bool`   | `true`        | Whether to allow only numeric input (`true`) or any character (`false`) |
+| Prop                  | Type     | Default       | Description                                                             |
+| --------------------- | -------- | ------------- | ----------------------------------------------------------------------- |
+| `length`              | `number` | `6`           | Number of characters in the OTP                                         |
+| `setResult`           | `func`   | _required_    | Callback to return OTP string when all inputs are filled                |
+| `color`               | `string` | `--colorCyan` | Sets the primary color using a CSS variable                             |
+| `width`               | `string` | `300px`       | Width of the OTP container                                              |
+| `verifcationEndpoint` | `string` | _required_    | Endpoint for backend otp verification                                   |
+| `userId`              | `string` | _required_    | Id that need to verify OPT verification                                 |
+| `setError`            | `func`   | _required_    | Callback to display an error message on failure                         |
+| `isNumeric`           | `bool`   | `true`        | Whether to allow only numeric input (`true`) or any character (`false`) |
 
 ### Features
 
@@ -57,7 +58,8 @@ const { OtpField, PasswordField, SecurityQuestion } = UIInputs.Security;
   length={4}
   color="blue"
   isNumeric={false}
-  codeToVerified="AB12"
+  verifcationEndpoint={"http://localhost:4999/verifyOpt"}
+  userId={"A1542"}
   setResult={(otp) => console.log("Verified:", otp)}
   setError={(msg) => console.warn(msg)}
 />

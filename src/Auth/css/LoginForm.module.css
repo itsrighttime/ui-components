@@ -25,6 +25,19 @@
   gap: 2rem;
 }
 
+.formMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.formIcon {
+  width: 80px;
+  opacity: 0.6;
+}
+
 .title {
   font-weight: var(--boldL2);
 }

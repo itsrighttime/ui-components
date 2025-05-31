@@ -1,17 +1,12 @@
 import styles from "../css/ErrorPage.module.css";
-import { useNavigate } from "react-router-dom";
 
 export const ErrorPage = ({
   statusCode = "404",
   ErrorMsg = "not found",
   statusDetail = null,
   responseCode = null,
+  handleNavigate,
 }) => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/");
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -53,7 +48,7 @@ export const ErrorPage = ({
             <button
               className={styles.link}
               style={{ border: "none", background: "none", cursor: "pointer" }}
-              onClick={handleClick}
+              onClick={handleNavigate}
             >
               Home Page
             </button>{" "}

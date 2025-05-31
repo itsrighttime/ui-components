@@ -2,19 +2,24 @@ import { useState } from "react";
 import styles from "../css/LockScreen.module.css";
 import { OtpField } from "../../../InputFields/Security/jsx/OtpField";
 import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton";
+import { useAuth } from "../../../Context/jsx/AuthContext";
 
-export const LockScreen = ({ onUnlock }) => {
+export const LockScreen = ({ handleForgot, handleUnlock }) => {
   const [error, setError] = useState(null);
+  const { userDetails } = useAuth();
+
+  if (!userDetails) return <></>;
 
   const handleSubmit = (value) => {
-    onUnlock();
+    handleUnlock(value);
   };
 
   return (
     <div className={styles.lockScreen}>
       <OtpField
         setResult={handleSubmit}
-        codeToVerified={"123456"}
+        verifcationEndpoint={"/verify-otp"}
+        userId={userDetails.user.userId}
         setError={setError}
         isNumeric={false}
       />
@@ -23,7 +28,11 @@ export const LockScreen = ({ onUnlock }) => {
       ) : (
         <p className={styles.text}>
           Enter Your<span className={styles.magicText}> Magic Phrase</span>,{" "}
-          <PlainButton text={"Opps! I forgot it"} isUnderline />
+          <PlainButton
+            text={"Opps! I forgot it"}
+            isUnderline
+            onClick={handleForgot}
+          />
         </p>
       )}
     </div>

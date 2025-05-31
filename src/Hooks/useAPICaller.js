@@ -16,20 +16,23 @@ export const useAPICaller = ({
   const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
-    try {
-      const response = await apiCaller({
-        endpoint,
-        method,
-        body,
-        headers,
-        params,
-      });
+    const response = await apiCaller({
+      endpoint,
+      method,
+      body,
+      headers,
+      params,
+    });
+
+    if (response.error) {
+      setData(null);
+      setError(response.error);
+    } else {
       setData(response);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
+      setError(null);
     }
+
+    setLoading(false);
   }, [endpoint, method, body, headers, params]);
 
   useEffect(() => {

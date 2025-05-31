@@ -25,23 +25,23 @@ export const apiCaller = async ({
   params = {},
   timeout = 10000,
 }) => {
-  const baseURL = import.meta.env.VITE_APP_SERVER_API_PROXY;
-  const url = `${baseURL}${endpoint}`;
+  // const baseURL = import.meta.env.VITE_APP_SERVER_API_PROXY;
+  // const url = `${baseURL}${endpoint}`;
 
-  if (!baseURL)
-    throw new Error(
-      "Missing VITE_APP_SERVER_API_PROXY in environment variables"
-    );
+  // if (!baseURL)
+  //   throw new Error(
+  //     "Missing VITE_APP_SERVER_API_PROXY in environment variables"
+  //   );
 
   try {
     logger.debug({
-      message: `API Call → ${method} ${url}`,
+      message: `API Call → ${method} ${endpoint}`,
       context: { method, body, params, headers },
       code: "00002",
     });
 
     const response = await axios({
-      url,
+      endpoint,
       method,
       data: body,
       headers,
@@ -53,7 +53,7 @@ export const apiCaller = async ({
     const data = response.data;
 
     logger.info({
-      message: `API Success → ${method} ${url}`,
+      message: `API Success → ${method} ${endpoint}`,
       context: { status: response?.status, data },
       code: "00003",
     });
@@ -61,20 +61,15 @@ export const apiCaller = async ({
     if (import.meta.env.VITE_PRINT_API_RESULT === "true")
       console.log(`API Response of endpoint (${endpoint}): `, data);
 
-    return data;
+    return { ...data, error: null };
   } catch (error) {
     logger.error({
-      message: `API Error → ${method} ${url}`,
+      message: `API Error → ${method} ${endpoint}`,
       context: { body, params, headers },
       code: "00004",
       error,
     });
 
-    throw (
-      error.response?.data || {
-        message: "Unexpected API error occurred.",
-        raw: error,
-      }
-    );
+    return { error: error.message };
   }
 };

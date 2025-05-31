@@ -1,12 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import style from "../css/OtpField.module.css";
+import { apiCaller } from "../../../utils/apiCaller";
+import { UtilsLogger } from "../../../utils/logger/logger.util";
+
+const logger = UtilsLogger.logger;
 
 export const OtpField = ({
   length = 6,
   setResult,
   color,
   width = "300px",
-  codeToVerified,
+  verifcationEndpoint,
+  userId,
   setError,
   isNumeric = true,
 }) => {
@@ -29,19 +34,37 @@ export const OtpField = ({
     if (element.nextSibling) element.nextSibling.focus();
   };
 
-  const handleResult = (value) => {
-    if (value === codeToVerified) {
-      setResult(value);
-    } else {
-      setColorType("colorError");
-      setError("Invalid Code, Try Again!");
+  const handleResult = async (value) => {
+    if (!verifcationEndpoint) {
+      logger.warn({
+        message: "Verification endpoint is not pass as prop",
+      });
+    }
+    const response = await apiCaller({
+      endpoint: verifcationEndpoint,
+      method: "POST",
+      data: {
+        userId,
+        otp: value,
+      },
+    });
 
-      setTimeout(() => {
-        setOtp(Array(length).fill(""));
-        setColorType("");
-        setError("");
-        inputRefs.current[0]?.focus();
-      }, 3000);
+    if (response.error) setError(response.error);
+    else {
+      if (response?.success) {
+        setResult(value);
+      } else {
+        setColorType("colorError");
+        setError("Invalid Code, Try Again!");
+        setResult(null);
+
+        setTimeout(() => {
+          setOtp(Array(length).fill(""));
+          setColorType("");
+          setError("");
+          inputRefs.current[0]?.focus();
+        }, 3000);
+      }
     }
   };
 
