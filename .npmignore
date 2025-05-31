@@ -40,3 +40,8 @@ example/
 examples/
 public/
 scripts/
+
+
+.gitignore
+.npmrc
+.npmignore
