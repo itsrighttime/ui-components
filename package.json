@@ -1,5 +1,8 @@
 {
   "name": "@itsrighttime/ui-components",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "version": "0.0.1",
   "description": "A reusable and customizable UI component library including inputs, buttons, notifications, cards, icons, and special pages for rapid frontend development.",
   "keywords": [

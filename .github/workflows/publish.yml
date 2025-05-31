@@ -13,6 +13,7 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -27,7 +28,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 8 # or your preferred pnpm version
 
       - name: Install Dependencies
         run: pnpm install
@@ -40,7 +41,7 @@ jobs:
       - name: Bump Version and Publish
         run: |
           CURRENT_VERSION=$(node -p "require('./package.json').version")
-          if pnpm view @itsrighttime/socket-io@$CURRENT_VERSION --registry=https://npm.pkg.github.com/ 2>/dev/null; then
+          if npm view @itsrighttime/socket-io@$CURRENT_VERSION --registry=https://npm.pkg.github.com/ 2>/dev/null; then
             echo "Version $CURRENT_VERSION already exists. Bumping patch version..."
             pnpm version patch
           else
