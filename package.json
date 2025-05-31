@@ -1,5 +1,5 @@
 {
-  "name": "ui-components",
+  "name": "@itsrighttime/ui-components",
   "version": "0.0.1",
   "description": "A reusable and customizable UI component library including inputs, buttons, notifications, cards, icons, and special pages for rapid frontend development.",
   "keywords": [
