@@ -1,4 +1,4 @@
-name: Node.js Package Deploy with pnpm
+name: Node.js Package Deploy
 
 on:
   push:
@@ -13,7 +13,6 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -22,16 +21,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url: https://npm.pkg.github.com/
-          cache: pnpm
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8 # or your preferred pnpm version
+          cache: npm
 
       - name: Install Dependencies
-        run: pnpm install
+        run: npm ci --legacy-peer-deps
 
       - name: Configure Git
         run: |
@@ -43,11 +36,11 @@ jobs:
           CURRENT_VERSION=$(node -p "require('./package.json').version")
           if npm view @itsrighttime/socket-io@$CURRENT_VERSION --registry=https://npm.pkg.github.com/ 2>/dev/null; then
             echo "Version $CURRENT_VERSION already exists. Bumping patch version..."
-            pnpm version patch
+            npm version patch
           else
             echo "Version $CURRENT_VERSION does not exist."
           fi
           git push origin package --follow-tags
-          pnpm publish --no-git-checks --registry=https://npm.pkg.github.com/
+          npm publish --registry=https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_ENV }}
