@@ -1,11 +1,42 @@
-# .git
-# .gitignore
-# node_modules/
-# tests/
-# docs/
-# public/
+# Ignore build artifacts
+dist/
+build/
+.vite/
+.temp/
+.cache/
 
-# App.js
-# App.css
-# index.js
-# index.css
+# Ignore tests
+__tests__/
+*.test.js
+*.test.jsx
+*.spec.js
+*.spec.jsx
+
+# Ignore configuration files
+vite.config.*
+rollup.config.*
+webpack.config.*
+babel.config.*
+jest.config.*
+tsconfig.json
+
+# Ignore project files
+*.log
+*.env*
+.DS_Store
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+*.code-workspace
+
+# Ignore docs and meta
+# docs/
+coverage/
+storybook-static/
+
+# Ignore development files
+example/
+examples/
+public/
+scripts/
