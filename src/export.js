@@ -69,6 +69,7 @@ import { getRedirectBackUrl, redirectUrlWithBack } from "./utils/redirectToURL";
 import { setDocumentTitle } from "./utils/setDocumentTitle";
 import { setFavicon } from "./utils/setFavicon";
 import { redirectURL } from "./utils/redirectURL";
+import { Stack } from "./utils/Stack";
 
 export const UIAlert = {
   Alert,
