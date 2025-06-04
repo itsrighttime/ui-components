@@ -75,6 +75,7 @@ import {
   useDynamicContent,
 } from "./Context/jsx/DynamicContext";
 import { LoginForm } from "./Auth/js/LoginForm";
+import { useQueryParams } from "./Hooks/useQueryParams";
 
 export const UIAlert = {
   Alert,
@@ -180,6 +181,7 @@ export const UIHooks = {
   useSmartPosition,
   useUserActiveOnTab,
   useUserPresentOnTab,
+  useQueryParams,
 };
 
 export const UIUtils = {

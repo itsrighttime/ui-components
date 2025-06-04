@@ -45,9 +45,6 @@ const { Alert } = UIAlert;
 
 ## Imports
 
-
-
-
 ## Module Structure
 
 ## [Alerts](./docs/alert.md)
@@ -149,6 +146,7 @@ const { Alert } = UIAlert;
 - [`useOutsideClick`](./docs/hooks.md#3-useoutsideclickref-handler)
 - [`useUserActiveOnTab`](./docs/hooks.md#4-useuseractiveontabtimeoutinminutes)
 - [`useUserPresentOnTab`](./docs/hooks.md#5-useuserpresentontab-onfocus-onblur-)
+- [`useQueryParams`](./docs/hooks/useQueryParams.md)
 
 ## [Utilities](./docs/utils.md)
 
