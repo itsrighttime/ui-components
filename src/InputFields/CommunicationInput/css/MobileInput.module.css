@@ -1,6 +1,5 @@
 .mobileInput {
   display: flex;
-  width: 100%;
 }
 
 .code {
@@ -9,5 +8,5 @@
 }
 
 .number {
-  width: calc(100% - 50px);
+  width: calc(100% - 60px);
 }

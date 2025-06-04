@@ -39,6 +39,7 @@ export const MobileField = ({
           errorMessage="Invalid"
           showLabelAlways={showLabelAlways}
           isBorder={isBorder}
+          width="100%"
         />
       </div>
       <div className={styles.number}>
@@ -57,6 +58,7 @@ export const MobileField = ({
           errorMessage={errorMessage}
           showLabelAlways={showLabelAlways}
           isBorder={isBorder}
+          width="100%"
         />
       </div>
     </div>
