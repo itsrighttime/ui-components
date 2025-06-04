@@ -59,16 +59,16 @@ A customizable standard button with dynamic styles using CSS variables.
 
 ### Props
 
-| Prop           | Type     | Default    | Description                                        |
-| -------------- | -------- | ---------- | -------------------------------------------------- |
-| `onClick`      | function | —          | Function executed on click.                        |
-| `text`         | string   | "Click Me" | The button's label.                                |
-| `color`        | string   | "#52C9BD"  | Primary color for background or text.              |
-| `isBackground` | boolean  | `true`     | If `true`, uses color as background; else as text. |
-| `height`       | string   | "30px"     | Height of the button.                              |
-| `width`        | string   | "100px"    | Width of the button.                               |
-| `borderRadius` | string   | "5px"      | Corner radius.                                     |
-| `style`        | object   | `{}`       | Additional inline styles.                          |
+| Prop           | Type     | Default      | Description                                        |
+| -------------- | -------- | ------------ | -------------------------------------------------- |
+| `onClick`      | function | —            | Function executed on click.                        |
+| `text`         | string   | "Click Me"   | The button's label.                                |
+| `color`        | string   | "#52C9BD"    | Primary color for background or text.              |
+| `isBackground` | boolean  | `true`       | If `true`, uses color as background; else as text. |
+| `height`       | string   | "30px"       | Height of the button.                              |
+| `width`        | string   | "fitContent" | Width of the button.                               |
+| `borderRadius` | string   | "5px"        | Corner radius.                                     |
+| `style`        | object   | `{}`         | Additional inline styles.                          |
 
 ### Example
 
