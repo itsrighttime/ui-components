@@ -3,6 +3,7 @@ import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/MobileInput.module.css";
 
 export const MobileField = ({
+  placeholder = "Enter phone number",
   required = false,
   color,
   code = "+91",
@@ -46,7 +47,7 @@ export const MobileField = ({
         <TextField
           type="tel"
           label="Phone Number"
-          placeholder="Enter phone number"
+          placeholder={placeholder}
           value={phoneNumber}
           minLength={noOfDigits}
           maxLength={noOfDigits}

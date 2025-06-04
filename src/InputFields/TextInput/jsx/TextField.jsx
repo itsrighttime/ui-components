@@ -51,7 +51,7 @@ export const TextField = ({
     setIsFieldValid(false);
   };
 
-  const validateLength = (val) => {
+  const validateMinLength = (val) => {
     if (minLength && val.length < minLength) {
       handleError(
         minLength === maxLength
@@ -60,6 +60,10 @@ export const TextField = ({
       );
       return false;
     }
+
+    return true;
+  };
+  const validateMaxLength = (val) => {
     if (maxLength && val.length > maxLength) {
       handleError(
         minLength === maxLength
@@ -97,7 +101,7 @@ export const TextField = ({
   const handleChange = (e) => {
     const newVal = e.target.value;
     if (isApplyStrictPattern) {
-      if (!validatePattern(newVal) || !validateLength(newVal)) return;
+      if (!validatePattern(newVal) || !validateMaxLength(newVal)) return;
     }
     setIsValid(true);
     setInputValue(newVal);
@@ -106,10 +110,14 @@ export const TextField = ({
   const handleBlur = () => {
     const trimmedValue = inputValue.trim();
     const valid =
-      (!minLength || trimmedValue.length >= minLength) &&
       (!maxLength || trimmedValue.length <= maxLength) &&
       (!pattern || new RegExp(pattern).test(trimmedValue));
 
+    // (!minLength || trimmedValue.length >= minLength) &&
+    if (minLength && !validateMinLength(trimmedValue)) {
+      setResult(trimmedValue);
+      return;
+    }
     setIsValid(valid);
     setIsFieldValid(valid);
     if (valid) setResult(trimmedValue);
