@@ -1,0 +1,140 @@
+/* Wrapper to contain both header & body */
+.tableWrapper {
+  --tableheaderHei: 38px;
+  --marginBottomHeadere: 5px;
+  --borderRadius: 8px;
+  --flexGap: 8px;
+  --rowGap: 3px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  background: var(--colorTableBg);
+}
+
+/* Fixed header section */
+.headerWrapper {
+  width: 100%;
+  height: var(--tableheaderHei);
+  overflow-x: auto;
+  background: var(--colorTableBg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-bottom: 1px solid var(--colorGray2);
+  margin-bottom: var(--marginBottomHeadere);
+}
+
+/* Table body wrapper, allowing horizontal scrolling */
+.bodyWrapper {
+  width: 100%;
+  height: calc(100% - var(--tableheaderHei) - var(--marginBottomHeadere));
+  overflow: auto;
+}
+
+/* Sync scrollbars for header and body */
+.header,
+.body {
+  display: flex;
+  padding: 0 var(--rowGap);
+}
+
+.body {
+  flex-direction: column;
+  padding-bottom: var(--rowGap);
+}
+
+.header,
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.emptyMsg {
+  color: var(--colorSimple);
+  text-align: center;
+  padding: 20px;
+  font-weight: bolder;
+}
+
+.body {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--rowGap);
+}
+
+.row {
+  background-color: var(--colorTableBg);
+  font-size: var(--size);
+  border-radius: var(--borderRadius);
+  gap: var(--rowGap);
+}
+
+.header {
+  border-radius: var(--borderRadius);
+  gap: var(--rowGap);
+}
+
+.header .headerCell {
+  background-color: var(--colorBodyCellBg);
+  gap: var(--rowGap);
+  border-radius: var(--borderRadius);
+  font-weight: var(--boldL2);
+  padding: 5px 10px;
+}
+
+.cellLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--colorBodyText);
+}
+.headerCell .cellLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--colorHeaderText);
+}
+
+.cell {
+  flex: var(--flexValue);
+  text-align: left;
+  color: var(--colorSimple);
+  background-color: var(--colorBodyCellBg);
+  font-size: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: wrap;
+  min-width: var(--minumumWidth);
+  border-radius: var(--borderRadius);
+  padding: 5px 10px;
+  overflow: visible;
+}
+
+.cell div {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+}
+
+.actions div {
+  width: auto;
+}
+
+.clickableCell {
+  cursor: pointer;
+  font-size: var(--size);
+  color: var(--colorLinkText);
+}
+
+.clickableCell:hover {
+  text-decoration: underline;
+}
