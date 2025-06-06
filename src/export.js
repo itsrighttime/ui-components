@@ -61,7 +61,7 @@ import { useUserActiveOnTab } from "./Hooks/useUserActiveOnTab";
 import { useUserPresentOnTab } from "./Hooks/useUserPresentOnTab";
 import { Workspace } from "./Layout/Workspace/jsx/Workspace";
 import { LockScreen } from "./Layout/Workspace/jsx/LockScreen";
-import { camelToKebab, kebabToCamel } from "./utils/caseConverter";
+import { fromKebabCase, toKebabCase } from "./utils/caseConverter";
 import { getColorCode } from "./utils/COLOR";
 import { delay } from "./utils/delay";
 import { getRedirectBackUrl, redirectUrlWithBack } from "./utils/redirectToURL";
@@ -189,8 +189,8 @@ export const UIUtils = {
   logger: UtilsLogger.logger,
   codeTypes: UtilsLogger.codeTypes,
   getTrackingCode: UtilsLogger.getTrackingCode,
-  camelToKebab,
-  kebabToCamel,
+  fromKebabCase,
+  toKebabCase,
   getColorCode,
   delay,
   redirectURL,

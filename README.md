@@ -152,8 +152,8 @@ const { Alert } = UIAlert;
 
 - [`apiCaller`](./docs/api.md)
 - [`logger` (with `codeTypes` and `getTrackingCode`)](./docs/logger.md)
-- [`camelToKebab`](./docs/utils.md#cameltokebabstr)
-- [`kebabToCamel`](./docs/utils.md#kebabtocamelstr)
+- [`toKebabCase`](./docs/utils.md#tokebabcasestr)
+- [`fromKebabCase`](./docs/utils.md#fromkebabcasestr-format)
 - [`getColorCode`](./docs/utils.md#getcolorcodecolorname)
 - [`delay`](./docs/utils.md#delayms)
 - [`redirectURL`](./docs/utils.md#redirecturltarget)

@@ -9,7 +9,7 @@ import { useAuth } from "../../../Context/jsx/AuthContext";
 import { setDocumentTitle } from "../../../utils/setDocumentTitle";
 import { useNavigate, useParams } from "react-router-dom";
 import { makeUrl } from "./urlFormatter";
-import { kebabToCamel } from "../../../utils/caseConverter";
+import { fromKebabCase } from "../../../utils/caseConverter";
 
 export const useWorkspaceLayout = ({
   api,
@@ -71,7 +71,7 @@ export const useWorkspaceLayout = ({
         setTabsPrimary(null);
         setTabsSecondary(null);
       } else {
-        setValue(workspaceKeys.tabClickedKey, kebabToCamel(tabKey));
+        setValue(workspaceKeys.tabClickedKey, fromKebabCase(tabKey));
         const formattedTabs = formateTabsDetails({
           data: response,
           toggleFullscreen,

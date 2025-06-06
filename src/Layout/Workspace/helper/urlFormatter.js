@@ -1,4 +1,4 @@
-import { camelToKebab } from "../../../utils/caseConverter";
+import { toKebabCase } from "../../../utils/caseConverter";
 
 export const makeUrl = (
   { level, zone, position, key, workspaceId },
@@ -6,6 +6,6 @@ export const makeUrl = (
 ) => {
   const workspace = isWorkspace ? key : workspaceId;
   const usedKey = isWorkspace ? "home" : key;
-  const parts = [workspace, level, zone, position, usedKey].map(camelToKebab);
+  const parts = [workspace, level, zone, position, usedKey].map(toKebabCase);
   return `/workspace/${parts.join("/")}`;
 };

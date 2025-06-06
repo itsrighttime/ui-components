@@ -1,105 +1,131 @@
 ## Feature: `useQueryParams` Hook
 
-The `useQueryParams` hook is a lightweight utility built on top of React Router that enables developers to easily **get, set, update, and manage** URL query parameters in a declarative, React-friendly way.
+The `useQueryParams` hook is a **powerful and reusable utility** built on React Router, designed to simplify **reading, updating, and managing** query parameters in a React-friendly, declarative way.
+
+---
 
 ### Key Features
 
-- **Read** query parameters easily (`getParam`)
-- **Set or update** query parameters without reloading the page (`setParam`)
-- **Delete** specific query parameters (`deleteParam`)
-- **Replace** all query parameters at once (`replaceParams`)
-- **Toggle** boolean-style query values (`toggleParam`)
-- **Append** values to a comma-separated list (`appendParam`)
-- **Clear** all query parameters (`clearAllParams`)
-- Automatically updates the URL while maintaining current page state
-- Replaces history state (no page reload or back-button pollution)
+- **Read** query parameters easily with `getParam`
+- **Check** if a parameter exists with `hasParam`
+- **Set/Update** parameters without reloading using `setParam`
+- **Delete** specific parameters with `deleteParam`
+- **Replace** all query parameters in one go using `replaceParams`
+- **Toggle** boolean-style values (`"true"` ↔ `"false"`)
+- **Append** to comma-separated parameters (e.g., for filters)
+- **Clear** all query parameters from the URL
+- **Support navigation options** like `{ replace: false }`
+- URL updates automatically without page reload or back-button issues
+
+---
 
 ## Developer Guide
 
-### 1. **Import the Hook**
+### **Import the Hook**
 
 ```js
 import { UIHooks } from "@itsrighttime/ui-components";
 const { useQueryParams } = UIHooks;
 ```
 
+---
+
 ### **Use Inside a Component**
 
 ```jsx
 const {
   getParam,
+  hasParam,
   setParam,
   deleteParam,
   replaceParams,
   toggleParam,
   appendParam,
   clearAllParams,
-} = useQueryParams();
+} = useQueryParams({ navigate, location });
 ```
 
 ---
 
-### 3. **Common Use Cases**
+### **Common Use Cases**
 
-#### Read a parameter
+#### Get a Query Param
 
 ```js
 const mode = getParam("mode"); // "client" or "developer"
 ```
 
-#### Set or update a parameter
+#### Check if a Param Exists
+
+```js
+if (hasParam("sort")) {
+  // do something
+}
+```
+
+#### Set or Update a Param
 
 ```js
 setParam("view", "grid");
 ```
 
-#### Delete a parameter
+#### Delete a Param
 
 ```js
 deleteParam("search");
 ```
 
-#### Replace all parameters
+#### Replace All Params
 
 ```js
 replaceParams({ view: "list", sort: "desc" });
 ```
 
-#### Toggle a boolean parameter
+#### Toggle Boolean Param
 
 ```js
-toggleParam("debug"); // true -> false or false -> true
+toggleParam("debug"); // true ↔ false
 ```
 
-#### Append to comma-separated value
+#### Append to Comma-Separated List
 
 ```js
-appendParam("tags", "design"); // tags=design,ux,ui...
+appendParam("tags", "design"); // tags=ui,ux,design
 ```
 
-#### Clear everything
+#### Clear All Parameters
 
 ```js
 clearAllParams(); // resets URL to base path
 ```
 
+---
+
 ## Best Practices
 
-- Use `setParam` when adding or updating individual parameters.
-- Use `replaceParams` when you want a fresh state (e.g., on search submit).
-- Use `toggleParam` to manage query-driven UI toggles (like dark mode, debug, fullscreen).
-- Avoid using this in server-rendered logic unless the route is fully client-side.
+- Use `setParam` for granular updates.
+- Use `replaceParams` when resetting the full URL state (e.g., on new searches).
+- Use `appendParam` for multi-select filters or tags.
+- Use `toggleParam` for boolean flags like `debug`, `preview`, etc.
+- Use `hasParam` before relying on `getParam` in conditional flows.
 
-## Bonus: Sample Integration
+---
+
+## Sample Integration
 
 ```jsx
 <Button
-  text="Client Mode"
+  text="Activate Client Mode"
   onClick={() => setParam("mode", "client")}
 />
 
 <Button
-  text="Toggle Debug Mode"
+  text="Toggle Debug"
   onClick={() => toggleParam("debug")}
+/>
+
+<Button
+  text="Reset Filters"
+  onClick={() => clearAllParams()}
 />
 ```

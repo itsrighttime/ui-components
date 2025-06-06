@@ -4,8 +4,8 @@
 
 - [`apiCaller`](./api.md)
 - [`logger` (with `codeTypes` and `getTrackingCode`)](./logger.md)
-- [`camelToKebab`](#cameltokebabstr)
-- [`kebabToCamel`](#kebabtocamelstr)
+- [`toKebabCase`](#tokebabcasestr)
+- [`fromKebabCase`](#fromkebabcasestr-format)
 - [`getColorCode`](#getcolorcodecolorname)
 - [`delay`](#delayms)
 - [`redirectURL`](#redirecturltarget)
@@ -16,31 +16,64 @@
 
 ### 1. **String Conversion Utilities**
 
-#### `camelToKebab(str)`
+Reusable utility functions to convert between different naming formats like camelCase, kebab-case, snake_case, PascalCase, and more.
+
+---
+
+### `toKebabCase(str)`
 
 **Purpose:**
-Converts a `camelCase` string into `kebab-case`.
+Converts any string from `camelCase`, `PascalCase`, `snake_case`, or `Sentence Case` to `kebab-case`.
 
-**Example Usage:**
+**Behavior:**
+
+- Converts camel or Pascal case to kebab
+- Replaces spaces and underscores with hyphens
+- Outputs lowercase only
+
+**Example:**
 
 ```js
-camelToKebab("myComponentName"); // "my-component-name"
+toKebabCase("myComponentName"); // "my-component-name"
+toKebabCase("My_Component Name"); // "my-component-name"
 ```
 
 ---
 
-#### `kebabToCamel(str)`
+### `fromKebabCase(str, format)`
 
 **Purpose:**
-Converts a `kebab-case` string into `camelCase`.
+Converts a `kebab-case` string into another format like camelCase, PascalCase, snake_case, or Sentence Case.
 
-**Example Usage:**
+**Available Formats:**
+
+- `"camel"` → camelCase
+- `"pascal"` → PascalCase
+- `"snake"` → snake_case
+- `"snake-upper"` → SNAKE_CASE
+- `"sentence"` → Sentence case
+- _Defaults to returning original string if format is unrecognized_
+
+**Example:**
 
 ```js
-kebabToCamel("my-component-name"); // "myComponentName"
+fromKebabCase("my-component-name", "camel"); // "myComponentName"
+fromKebabCase("my-component-name", "pascal"); // "MyComponentName"
+fromKebabCase("my-component-name", "snake"); // "my_component_name"
+fromKebabCase("my-component-name", "snake-upper"); // "MY_COMPONENT_NAME"
+fromKebabCase("my-component-name", "sentence"); // "My component name"
 ```
 
 ---
+
+### ✅ Use Case Scenarios
+
+- Converting filenames to component names
+- Dynamic key formatting for APIs
+- Uniform variable naming
+- Display formatting in UI
+
+Would you like to generate a complete helper module file or integrate this into your UI library?
 
 ### 2. **Color Utilities**
 
