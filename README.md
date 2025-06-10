@@ -130,10 +130,11 @@ const { Alert } = UIAlert;
 - [`LockScreen`](./docs/pages.md#lockscreen)
 - [`LoginForm`](./docs/pages.md#loginform)
 
-## Extras
+## UIEssentials
 
 - `IndiaMap`
-- [`Tooltip`](./docs/essential.md#tooltip--smart-cursor-following-tooltip)
+- [`Tooltip`](./docs/tooltip.md)
+- [`Table`](./docs/table.md)
 
 ## [Hooks](./docs/hooks.md)
 

@@ -76,6 +76,7 @@ import {
 } from "./Context/jsx/DynamicContext";
 import { LoginForm } from "./Auth/js/LoginForm";
 import { useQueryParams } from "./Hooks/useQueryParams";
+import { Table } from "./Layout/Table/jsx/Table";
 
 export const UIAlert = {
   Alert,
@@ -96,6 +97,7 @@ export const UIExtra = {
 
 export const UIEssentials = {
   Tooltip,
+  Table,
 };
 
 export const UIIcons = {
