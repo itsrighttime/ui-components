@@ -25,7 +25,11 @@ const { Table } = UIEssentials;
 ### 2. **Define Your Columns and Data**
 
 ```js
-const columns = ["Name", "Role", "Email"];
+const columns = [
+  { key: "Name", value: "Name" },
+  { key: "Role", value: "Role" },
+  { key: "Email", value: "Email" },
+];
 const columnWidths = { Name: "200px", Role: "150px", Email: "250px" };
 
 const data = [

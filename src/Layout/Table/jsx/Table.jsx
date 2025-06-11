@@ -21,12 +21,12 @@ export const Table = ({
   },
 }) => {
   const cssVariables = {
-    "--colorLinkText": styling.colorLinkText,
-    "--colorHeaderText": styling.colorHeaderText,
-    "--colorBodyText": styling.colorBodyText,
-    "--colorHeaderCellBg": styling.colorHeaderCellBg,
-    "--colorBodyCellBg": styling.colorBodyCellBg,
-    "--colorTableBg": styling.colorTableBg,
+    "--colorLinkText": styling.colorLinkText || "var(--colorBlue)",
+    "--colorHeaderText": styling.colorHeaderText || "var(--colorCyan)",
+    "--colorBodyText": styling.colorBodyText || "var(--colorSimple)",
+    "--colorHeaderCellBg": styling.colorHeaderCellBg || "var(--colorGray2)",
+    "--colorBodyCellBg": styling.colorBodyCellBg || "var(--colorGray2)",
+    "--colorTableBg": styling.colorTableBg || "var(--colorWhite)",
   };
 
   return (
