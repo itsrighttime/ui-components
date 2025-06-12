@@ -37,6 +37,7 @@ const {
   getParam,
   hasParam,
   setParam,
+  setParams,
   deleteParam,
   replaceParams,
   toggleParam,
@@ -67,6 +68,15 @@ if (hasParam("sort")) {
 
 ```js
 setParam("view", "grid");
+```
+
+### Set, Update and removes multiple Param
+
+```js
+setParams({
+  mode: "purchase",
+  plan: "growing-business",
+});
 ```
 
 #### Delete a Param

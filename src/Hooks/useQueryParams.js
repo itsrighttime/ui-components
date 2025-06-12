@@ -23,6 +23,26 @@ export const useQueryParams = ({ navigate, location }) => {
     [navigate, pathname, search]
   );
 
+  /**
+   * Update or add multiple query parameters, and remove any existing ones not included.
+   * @param {Object} newParams - Key-value pairs of parameters to set.
+   * @param {Object} options - Navigation options (default: replace true).
+   */
+  const setParams = useCallback(
+    (newParams = {}, options = { replace: true }) => {
+      const updatedQuery = new URLSearchParams();
+
+      Object.entries(newParams).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== "") {
+          updatedQuery.set(key, value.toString().trim());
+        }
+      });
+
+      navigate(`${pathname}?${updatedQuery.toString()}`, options);
+    },
+    [navigate, pathname]
+  );
+
   // Delete a parameter
   const deleteParam = useCallback(
     (key, options = { replace: true }) => {
@@ -83,6 +103,7 @@ export const useQueryParams = ({ navigate, location }) => {
   return {
     getParam,
     setParam,
+    setParams,
     deleteParam,
     replaceParams,
     toggleParam,
