@@ -43,5 +43,11 @@ export const fromKebabCase = (str, format = "camel") => {
       .join(" ");
   }
 
+  if (format === "capitalized") {
+    return words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
+
   return str; // fallback to original
 };

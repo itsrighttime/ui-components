@@ -52,6 +52,7 @@ Converts a `kebab-case` string into another format like camelCase, PascalCase, s
 - `"snake"` → snake_case
 - `"snake-upper"` → SNAKE_CASE
 - `"sentence"` → Sentence case
+- `"capitalized"` → Capital First Letter Of Each Word
 - _Defaults to returning original string if format is unrecognized_
 
 **Example:**
@@ -62,6 +63,7 @@ fromKebabCase("my-component-name", "pascal"); // "MyComponentName"
 fromKebabCase("my-component-name", "snake"); // "my_component_name"
 fromKebabCase("my-component-name", "snake-upper"); // "MY_COMPONENT_NAME"
 fromKebabCase("my-component-name", "sentence"); // "My component name"
+fromKebabCase("my-component-name", "capitalized"); // "My Component Name"
 ```
 
 ---
