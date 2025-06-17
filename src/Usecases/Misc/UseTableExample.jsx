@@ -39,7 +39,7 @@ const userData = [
   },
   {
     id: 1,
-    name: "Danishan",
+    name: "Danishan Danishan DanishanDanishan Danishan Danishan Danishan Danishan Danishan Danishan ",
     email: "danishan@example.com",
     status: "Active",
   },

@@ -93,17 +93,19 @@ const data = [
 
 ## Props Reference
 
-| Prop                 | Type       | Description                                                   |
-| -------------------- | ---------- | ------------------------------------------------------------- |
-| `columns`            | `string[]` | List of column names to display in header                     |
-| `columnWidths`       | `object`   | Optional fixed widths for columns                             |
-| `data`               | `object[]` | Array of row data objects                                     |
-| `isAction`           | `boolean`  | Whether to display action buttons in each row                 |
-| `btns`               | `array`    | Buttons to show in action column (`{ label, icon, onClick }`) |
-| `clickableColumns`   | `string[]` | Columns that trigger `onCellClick`                            |
-| `onCellClick`        | `function` | Callback when a cell from `clickableColumns` is clicked       |
-| `isMinimunCellWidth` | `boolean`  | If true, enforces a minimum width for cells                   |
-| `styling`            | `object`   | Customize colors for text, background, links, etc.            |
+| Prop                 | Type       | Description                                                            |
+| -------------------- | ---------- | ---------------------------------------------------------------------- |
+| `columns`            | `string[]` | List of column names to display in header                              |
+| `columnWidths`       | `object`   | Optional fixed widths for columns                                      |
+| `data`               | `object[]` | Array of row data objects                                              |
+| `isAction`           | `boolean`  | Whether to display action buttons in each row                          |
+| `btns`               | `array`    | Buttons to show in action column (`{ label, icon, onClick }`)          |
+| `clickableColumns`   | `string[]` | Columns that trigger `onCellClick`                                     |
+| `onCellClick`        | `function` | Callback when a cell from `clickableColumns` is clicked                |
+| `isMinimunCellWidth` | `boolean`  | If true, enforces a minimum width for cells                            |
+| `styling`            | `object`   | Customize colors for text, background, links, etc.                     |
+| `textWrap`           | `string`   | Control the overflow of the content in the body of the table's cells   |
+| `headerWrap`         | `string`   | Control the overflow of the content in the header of the table's cells |
 
 ## Best Practices
 

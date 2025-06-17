@@ -19,6 +19,8 @@ export const Table = ({
     colorBodyCellBg: "var(--colorGray2)",
     colorTableBg: "var(--colorWhite)",
   },
+  textWrap = "wrap",
+  headerWrap = "nowrap",
 }) => {
   const cssVariables = {
     "--colorLinkText": styling.colorLinkText || "var(--colorBlue)",
@@ -27,6 +29,8 @@ export const Table = ({
     "--colorHeaderCellBg": styling.colorHeaderCellBg || "var(--colorGray2)",
     "--colorBodyCellBg": styling.colorBodyCellBg || "var(--colorGray2)",
     "--colorTableBg": styling.colorTableBg || "var(--colorWhite)",
+    "--textWrap": textWrap,
+    "--headerWrap": headerWrap,
   };
 
   return (

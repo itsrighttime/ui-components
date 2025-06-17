@@ -88,13 +88,13 @@
 }
 
 .cellLabel {
-  white-space: nowrap;
+  white-space: var(--textWrap);
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--colorBodyText);
 }
 .headerCell .cellLabel {
-  white-space: nowrap;
+  white-space: var(--headerWrap);
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--colorHeaderText);
