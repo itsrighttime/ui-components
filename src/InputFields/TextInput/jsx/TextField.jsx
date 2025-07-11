@@ -120,7 +120,8 @@ export const TextField = ({
     }
     setIsValid(valid);
     setIsFieldValid(valid);
-    if (valid) setResult(trimmedValue);
+    // if (valid) setResult(trimmedValue);
+    setResult(trimmedValue);
     onBlur?.();
     setIsFocused(false);
   };

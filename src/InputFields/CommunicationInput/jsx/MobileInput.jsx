@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/MobileInput.module.css";
 
@@ -18,24 +18,11 @@ export const MobileField = ({
   const [countryCode, setCountryCode] = useState(code);
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const updatePhoneData = (updated = {}) => {
-    if (setResult) {
-      setResult({
-        countryCode: updated.countryCode ?? countryCode,
-        phoneNumber: updated.phoneNumber ?? phoneNumber,
-      });
-    }
-  };
+  useEffect(() => {
+    setResult({ countryCode, phoneNumber });
+  }, [countryCode, phoneNumber]);
 
-  const handleCountryChange = (val) => {
-    setCountryCode(val);
-    updatePhoneData({ countryCode: val });
-  };
-
-  const handlePhoneChange = (val) => {
-    setPhoneNumber(val);
-    updatePhoneData({ phoneNumber: val });
-  };
+  const errorMessage = "Numbers Only";
 
   return (
     <div className={styles.mobileInput} style={{ width, ...style }}>
@@ -45,11 +32,11 @@ export const MobileField = ({
           label="Code"
           placeholder="+91"
           minLength={1}
-          maxLength={4}
+          maxLength={4} // Consider a maximum length constraint for country code (e.g., 4 digits max)
           value={countryCode}
           color={color}
-          setResult={handleCountryChange}
-          pattern="^\\+\\d*$"
+          setResult={(value) => setCountryCode(value)}
+          pattern="^\+\d*$"
           errorMessage="Invalid"
           showLabelAlways={showLabelAlways}
           isBorder={isBorder}
@@ -64,12 +51,12 @@ export const MobileField = ({
           value={phoneNumber}
           minLength={noOfDigits}
           maxLength={noOfDigits}
-          setResult={handlePhoneChange}
+          setResult={(value) => setPhoneNumber(value)}
           color={color}
           setIsFieldValid={setIsFieldValid}
           required={required}
-          pattern="^\\d*$"
-          errorMessage="Numbers Only"
+          pattern="^\d*$" // Allow numbers only
+          errorMessage={errorMessage}
           showLabelAlways={showLabelAlways}
           isBorder={isBorder}
           width="100%"

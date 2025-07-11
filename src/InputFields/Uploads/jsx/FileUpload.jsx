@@ -6,6 +6,7 @@ import { IconButton } from "../../Actions/jsx/IconButton";
 import { formatFileSize } from "../helper/formatFileSize";
 
 export const FileUpload = ({
+  value = [],
   label = "Upload File",
   setResult,
   color,
@@ -18,7 +19,7 @@ export const FileUpload = ({
   height = "200px",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState(value);
   const [error, setError] = useState(null);
 
   const validateFile = (file) => {
