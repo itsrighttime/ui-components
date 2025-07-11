@@ -184,6 +184,7 @@ const { MobileField } = UIInputs.text;
 
 | Prop              | Type      | Default | Description                                                       |
 | ----------------- | --------- | ------- | ----------------------------------------------------------------- |
+| `value`           | `string`  | `""`    | Value that it current hold.                                       |
 | `required`        | `boolean` | `false` | Whether the phone number field is mandatory.                      |
 | `color`           | `string`  | `-`     | Primary theme color (used for styling).                           |
 | `code`            | `string`  | `"+91"` | Default country code.                                             |

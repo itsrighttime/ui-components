@@ -3,6 +3,7 @@ import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/MobileInput.module.css";
 
 export const MobileField = ({
+  value = "",
   placeholder = "Enter phone number",
   required = false,
   color,
@@ -16,7 +17,7 @@ export const MobileField = ({
   isBorder = false,
 }) => {
   const [countryCode, setCountryCode] = useState(code);
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(value);
 
   const updatePhoneData = (updated = {}) => {
     if (setResult) {

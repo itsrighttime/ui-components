@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "version": "0.0.19",
+  "version": "0.0.20",
   "main": "src/export.js",
   "module": "src/export.js",
   "exports": {

@@ -28,6 +28,7 @@ const { FileUpload } = UIInputs.Upload;
 
 | Prop              | Type       | Default         | Description                                                    |
 | ----------------- | ---------- | --------------- | -------------------------------------------------------------- |
+| `value`           | `object[]` | `[]`            | Value that it current hold.                                    |
 | `label`           | `string`   | `"Upload File"` | Label shown inside upload box.                                 |
 | `setResult`       | `function` | _required_      | Function to receive uploaded file list.                        |
 | `setIsFieldValid` | `function` | `() => {}`      | Called with `true`/`false` to validate form state.             |
