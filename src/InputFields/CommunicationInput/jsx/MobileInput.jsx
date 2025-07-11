@@ -18,9 +18,24 @@ export const MobileField = ({
   const [countryCode, setCountryCode] = useState(code);
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  useEffect(() => {
-    setResult({ countryCode, phoneNumber });
-  }, [countryCode, phoneNumber]);
+  const updatePhoneData = (updated = {}) => {
+    if (setResult) {
+      setResult({
+        countryCode: updated.countryCode ?? countryCode,
+        phoneNumber: updated.phoneNumber ?? phoneNumber,
+      });
+    }
+  };
+
+  const handleCountryChange = (val) => {
+    setCountryCode(val);
+    updatePhoneData({ countryCode: val });
+  };
+
+  const handlePhoneChange = (val) => {
+    setPhoneNumber(val);
+    updatePhoneData({ phoneNumber: val });
+  };
 
   const errorMessage = "Numbers Only";
 
@@ -35,7 +50,7 @@ export const MobileField = ({
           maxLength={4} // Consider a maximum length constraint for country code (e.g., 4 digits max)
           value={countryCode}
           color={color}
-          setResult={(value) => setCountryCode(value)}
+          setResult={handleCountryChange}
           pattern="^\+\d*$"
           errorMessage="Invalid"
           showLabelAlways={showLabelAlways}
@@ -51,7 +66,7 @@ export const MobileField = ({
           value={phoneNumber}
           minLength={noOfDigits}
           maxLength={noOfDigits}
-          setResult={(value) => setPhoneNumber(value)}
+          setResult={handlePhoneChange}
           color={color}
           setIsFieldValid={setIsFieldValid}
           required={required}
