@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/MobileInput.module.css";
 
@@ -18,11 +18,24 @@ export const MobileField = ({
   const [countryCode, setCountryCode] = useState(code);
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  useEffect(() => {
-    setResult({ countryCode, phoneNumber });
-  }, [countryCode, phoneNumber, setResult]);
+  const updatePhoneData = (updated = {}) => {
+    if (setResult) {
+      setResult({
+        countryCode: updated.countryCode ?? countryCode,
+        phoneNumber: updated.phoneNumber ?? phoneNumber,
+      });
+    }
+  };
 
-  const errorMessage = "Numbers Only";
+  const handleCountryChange = (val) => {
+    setCountryCode(val);
+    updatePhoneData({ countryCode: val });
+  };
+
+  const handlePhoneChange = (val) => {
+    setPhoneNumber(val);
+    updatePhoneData({ phoneNumber: val });
+  };
 
   return (
     <div className={styles.mobileInput} style={{ width, ...style }}>
@@ -32,11 +45,11 @@ export const MobileField = ({
           label="Code"
           placeholder="+91"
           minLength={1}
-          maxLength={4} // Consider a maximum length constraint for country code (e.g., 4 digits max)
+          maxLength={4}
           value={countryCode}
           color={color}
-          setResult={(value) => setCountryCode(value)}
-          pattern="^\+\d*$"
+          setResult={handleCountryChange}
+          pattern="^\\+\\d*$"
           errorMessage="Invalid"
           showLabelAlways={showLabelAlways}
           isBorder={isBorder}
@@ -51,12 +64,12 @@ export const MobileField = ({
           value={phoneNumber}
           minLength={noOfDigits}
           maxLength={noOfDigits}
-          setResult={(value) => setPhoneNumber(value)}
+          setResult={handlePhoneChange}
           color={color}
           setIsFieldValid={setIsFieldValid}
           required={required}
-          pattern="^\d*$" // Allow numbers only
-          errorMessage={errorMessage}
+          pattern="^\\d*$"
+          errorMessage="Numbers Only"
           showLabelAlways={showLabelAlways}
           isBorder={isBorder}
           width="100%"
