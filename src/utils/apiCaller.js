@@ -1,6 +1,6 @@
 // utils/api/apiCaller.js
 import axios from "axios";
-import { UtilsLogger } from "./logger/logger.util";
+import { UtilsLogger } from "./logger/logger.util.js";
 
 const logger = UtilsLogger.logger;
 

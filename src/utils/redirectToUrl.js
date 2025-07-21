@@ -1,4 +1,4 @@
-import { redirectURL as tempRedirectURL } from "./redirectURL";
+import { redirectURL as tempRedirectURL } from "./redirectURL.js";
 
 export const redirectUrlWithBack = ({ to, from }) => {
   tempRedirectURL(`${to}?redirectBack=${encodeURIComponent(from)}`);
