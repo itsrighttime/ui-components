@@ -1,7 +1,7 @@
 import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
 import { LoginForm } from "../../../Auth/js/LoginForm";
 import { useAuth } from "../../../Context/jsx/AuthContext";
-import { getIconByKey } from "./getIconBYKey";
+import { getIconByKey } from "./getIconByKey";
 
 export const LoginPage = ({ handleToggleFullscreen = null }) => {
   const { handleLogin } = useAuth();
