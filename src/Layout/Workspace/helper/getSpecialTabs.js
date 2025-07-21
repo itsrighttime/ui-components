@@ -1,5 +1,5 @@
 import { workspaceKeys } from "./workspaceKeys";
-import { getIconByKey } from "./getIconBYKey";
+import { getIconByKey } from "./getIconByKey";
 import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
 import { homeIcon, profileIcon, reminderIcon } from "../../../utils/icons";
 import { workspaceLabels } from "./workspaceLabels";
