@@ -41,8 +41,7 @@ jobs:
       - name: Configure npm auth
         run: |
           echo "@itsrighttime:registry=https://npm.pkg.github.com/" > $NPM_CONFIG_USERCONFIG
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NODE_ENV }}" >> $NPM_CONFIG_USERCONFIG
-
+          echo "//npm.pkg.github.com/:_authToken=${secrets.NODE_ENV}" >> $NPM_CONFIG_USERCONFIG
 
       - name: Bump Version and Publish
         run: |
