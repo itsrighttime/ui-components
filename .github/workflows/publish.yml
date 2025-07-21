@@ -39,7 +39,9 @@ jobs:
           git config --global user.name "${{ github.actor }}"
 
       - name: Configure npm auth
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NODE_ENV }}" > ~/.npmrc
+        run: |
+          echo "@itsrighttime:registry=https://npm.pkg.github.com/" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NODE_ENV }}" >> ~/.npmrc
 
       - name: Bump Version and Publish
         run: |
