@@ -1,7 +1,7 @@
 {
-  "name": "@itsrighttime/ui-component",
+  "name": "@itsrighttime/ui-components",
   "version": "0.0.21",
-  "description": "A reusable and customizable React UI component library including inputs, buttons, notifications, cards, icons, and more.",
+  "description": "A reusable and customizable React UI components library including inputs, buttons, notifications, cards, icons, and more.",
   "author": {
     "name": "Danishan",
     "email": "danishan089@gmail.com",
@@ -9,27 +9,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/itsrighttime/ui-component"
+    "url": "https://github.com/itsrighttime/ui-components"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "dist/ui-component.cjs.js",
-  "module": "dist/ui-component.es.js",
+  "main": "dist/ui-components.cjs.js",
+  "module": "dist/ui-components.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "import": "./dist/ui-component.es.js",
-      "require": "./dist/ui-component.cjs.js"
+      "import": "./dist/ui-components.es.js",
+      "require": "./dist/ui-components.cjs.js"
     }
   },
   "keywords": [
     "react",
     "ui-components",
-    "component-library",
+    "components-library",
     "design-system",
     "react-components",
     "buttons",

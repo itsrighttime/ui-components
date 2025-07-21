@@ -9,7 +9,7 @@ export default defineConfig({
       entry: path.resolve("src/export.js"), // or export.jsx
       name: "ItsRightTimeUI",
       formats: ["es", "cjs"],
-      fileName: (format) => `ui-component.${format}.js`,
+      fileName: (format) => `ui-components.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime"],
