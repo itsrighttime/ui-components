@@ -1,0 +1,153 @@
+.headerContainerLargeScreen {
+  padding: 5px 15px;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.logoImg {
+  height: 35px;
+}
+
+.logoImg img {
+  height: 100%;
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+}
+
+.tabs1,
+.tabs2 {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.tab:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--color) !important;
+}
+
+/* .displayNone {
+  display: none;
+}
+
+.navShowHide {
+  display: none;
+} */
+
+@media (max-width: 1000px) {
+  .headerContainerLargeScreen {
+    height: 60px;
+    align-items: center;
+  }
+
+  .logoImg {
+    height: 50px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: 10px;
+    margin-right: 25px;
+  }
+
+  .tab {
+    width: 80px;
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 820px) {
+  .tabs {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 800px) {
+  .headerContainerSmallScreen {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: transform 1s ease;
+    z-index: 1000;
+    background-color: var(--colorBackground);
+  }
+
+  .headerOpen {
+    display: flex;
+  }
+
+  .headerClose {
+    display: none;
+  }
+
+  .tabs {
+    flex-direction: column;
+    height: 85%;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tabs1,
+  .tabs2 {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    gap: 0;
+    align-items: center;
+  }
+
+  .tab {
+    width: 120px;
+    justify-content: center;
+  }
+
+  .tab {
+    display: flex;
+    justify-content: center;
+    font-size: calc(var(--size) * 1.2);
+  }
+
+  .navShowHide {
+    display: flex;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 1000000;
+  }
+
+  .show {
+    transition: transform 0.3s ease;
+  }
+
+  .show.open {
+    transform: rotate(45deg);
+  }
+
+  .hide {
+    transition: transform 0.3s ease;
+  }
+
+
+  .show:hover,
+  .hide:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+  }
+}

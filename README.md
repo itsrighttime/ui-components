@@ -120,6 +120,7 @@ const { Alert } = UIAlert;
 - [`FlexContainer`](./docs/container.md#flexcontainer)
 - [`GridContainer`](./docs/container.md#gridcontainer)
 - [`Workspace`](./docs/layout.md#workspace-component--usage-guide)
+- [`Header`](./docs/layout.md#header-component--usage-guide)
 
 ## [Special Pages](./docs/pages.md)
 
@@ -164,6 +165,11 @@ const { Alert } = UIAlert;
 - [`setFavicon`](./docs/utils.md#setfaviconlogoname-extension--png)
 
 ## [Icons](./docs/icons.md)
+
+- All icons available via: `Icons`
+
+## [Contexts]
+- [`Translation`](./docs/context/translation.md)
 
 - All icons available via: `Icons`
 

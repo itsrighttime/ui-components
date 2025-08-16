@@ -3,6 +3,7 @@
 - [`FlexContainer`](./container.md#flexcontainer)
 - [`GridContainer`](./container.md#gridcontainer)
 - [`Workspace`](./layout.md#workspace-component--usage-guide)
+- [`Header`](./layout.md#header-component--usage-guide)
 
 ## Workspace Component – Usage Guide
 
@@ -52,6 +53,56 @@ function App() {
 
   return (
     <Workspace tabClickHandler={handleTabClick} workspace="letsGrowTogether" />
+  );
+}
+```
+
+## Header Component – Usage Guide
+
+The `Header` component is a responsive, reusable navigation header for any project.
+
+### Features:
+
+- **Responsive Navigation** with mobile hamburger toggle.
+- **Dynamic Tab Highlighting** based on current URL.
+- **Login/Register Redirect** with return URL support.
+- **Automatic Document Title Updates**.
+- **Customizable Logo and Breakpoint Support**.
+
+### Props:
+
+| Prop                   | Type     | Default                       | Description                                                          |
+| ---------------------- | -------- | ----------------------------- | -------------------------------------------------------------------- |
+| `tabs`                 | `Array`  | `[]`                          | Array of tab objects: `{ name: string, goTo: string }`.              |
+| `logoURL`              | `string` | `""`                          | Path or URL of the logo image.                                       |
+| `defaultTab`           | `object` | `{ name: "Home", goTo: "/" }` | Tab considered active on root path (`/`).                            |
+| `breakpoint`           | `number` | `800`                         | Width (in px) below which mobile nav toggle is activated.            |
+| `loginRegisterTabName` | `string` | `"login/register"`            | Name of the login tab (matched via `resolveStringToId`).             |
+| `loginRegisterURL`     | `string` | `"/login"`                    | Redirect path for login/register tabs with `?redirectBack=` support. |
+| `color`                | `string` | `"var(colorRed)"`             | Tochange the header button color                                     |
+
+---
+
+### Example Usage:
+
+```jsx
+import { Header } from "./components/Header";
+
+const tabs = [
+  { name: "Home", goTo: "/" },
+  { name: "About", goTo: "about" },
+  { name: "Contact", goTo: "contact" },
+  { name: "Login/Register", goTo: "login" },
+];
+
+function AppHeader() {
+  return (
+    <Header
+      tabs={tabs}
+      logoURL="/assets/logo.svg"
+      defaultTab={{ name: "Home", goTo: "/" }}
+      loginRegisterURL="/login"
+    />
   );
 }
 ```
