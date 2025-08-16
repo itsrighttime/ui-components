@@ -6,6 +6,7 @@ export const ErrorPage = ({
   statusDetail = null,
   responseCode = null,
   handleNavigate,
+  navigateTo = "Home Page",
 }) => {
   return (
     <div className={styles.container}>
@@ -50,7 +51,7 @@ export const ErrorPage = ({
               style={{ border: "none", background: "none", cursor: "pointer" }}
               onClick={handleNavigate}
             >
-              Home Page
+              {navigateTo}
             </button>{" "}
             or try using the correct URL.
           </p>

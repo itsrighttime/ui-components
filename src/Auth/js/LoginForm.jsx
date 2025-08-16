@@ -37,6 +37,7 @@ export const LoginForm = ({
   },
   formTitle = "Welcome Back",
   formIcon = null,
+  errorMsg = "",
 }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -90,6 +91,7 @@ export const LoginForm = ({
             />
           )}
         </div>
+        {errorMsg && <p className={styles.error}>{errorMsg}</p>}
       </div>
     </div>
   );

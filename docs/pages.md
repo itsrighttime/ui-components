@@ -16,7 +16,7 @@ const { Loading, ErrorPage, IconError, LoadingChat, LockScreen, LoginForm } =
 - [`IconError`](#iconerror-component)
 - [`LoadingChat`](#loadingchat-component)
 - [`LockScreen`](#lockscreen)
-- [`LoginForm`](#loginform)
+- [`LoginForm`](./pages/login-form.md)
 
 ### `ErrorPage` Component
 
@@ -40,12 +40,14 @@ const { Loading, ErrorPage, IconError, LoadingChat, LockScreen, LoginForm } =
 
 #### Props:
 
-| Prop           | Type     | Default       | Description                       |
-| -------------- | -------- | ------------- | --------------------------------- |
-| `statusCode`   | `string` | `"404"`       | HTTP error/status code.           |
-| `ErrorMsg`     | `string` | `"not found"` | Short error message.              |
-| `statusDetail` | `string` | `null`        | Additional details on the error.  |
-| `responseCode` | `string` | `null`        | Custom application response code. |
+| Prop               | Type       | Default       | Description                         |
+| ------------------ | ---------- | ------------- | ----------------------------------- |
+| `statusCode`       | `string`   | `"404"`       | HTTP error/status code.             |
+| `ErrorMsg`         | `string`   | `"not found"` | Short error message.                |
+| `statusDetail`     | `string`   | `null`        | Additional details on the error.    |
+| `responseCode`     | `string`   | `null`        | Custom application response code.   |
+| `handleNavigation` | `function` | `null`        | To handle the navigate of clicking. |
+| `navigateTo`       | `string`   | `home Page`   | Name of the navigation Page.        |
 
 #### Use Cases:
 
@@ -161,7 +163,7 @@ const { Loading, ErrorPage, IconError, LoadingChat, LockScreen, LoginForm } =
 - Message sending animation
 - Typing feedback UI in customer support apps
 
-## `LoginForm`
+## [`LoginForm`](./pages/login-form.md)
 
 A complete login UI component with support for ID/password input, fullscreen toggle, and register/forgot options.
 

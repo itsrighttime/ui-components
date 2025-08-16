@@ -79,3 +79,9 @@
 .extra button:hover {
   color: var(--colorRed);
 }
+
+.error {
+  color: var(--colorRed);
+  text-align: center;
+  font-size: calc(var(--size) * 0.9);
+}

@@ -1,4 +1,4 @@
-# Developer Guide: `apiCaller` & `useAPI`
+# Developer Guide: `apiCaller` & `useAPICaller`
 
 ## `apiCaller`: Low-Level API Utility
 
@@ -7,9 +7,10 @@ Use this **outside React components** or in event-driven code like service files
 ## Importing
 
 ```js
-import { UIEssentials } from "@itsrighttime/ui-components";
+import { UIUtils, UIHooks } from "@itsrighttime/ui-components";
 
-const { apiCaller, useAPI } = UIEssentials;
+const { apiCaller } = UIUtils;
+const { useAPICaller } = UIHooks;
 ```
 
 ## Setup in `.env`
@@ -19,14 +20,13 @@ Set the log types you want to enable in development (comma-separated):
 ```js
 # For Vite
 VITE_LOG_TYPES=error,warn,info
-// VITE_APP_SERVER_API_PROXY="http://localhost:4999" // TODO: In updated version will remove from here 
+// VITE_APP_SERVER_API_PROXY="http://localhost:4999" // TODO: In updated version will remove from here
 VITE_PRINT_API_RESULT=true
 ```
 
 ### Usage
 
 ```js
-
 const handleCreateUser = async () => {
   try {
     const result = await apiCaller({
@@ -59,18 +59,15 @@ const handleCreateUser = async () => {
 - Automatically throws Axios response data or a fallback.
 - Works with `VITE_APP_SERVER_API_PROXY` and prints result if `VITE_PRINT_API_RESULT` is `"true"`.
 
-
-
-## `useAPI`: React Hook for Auto-Fetching
+## [`useAPICaller`: React Hook for Auto-Fetching](./hooks/useApiCaller.md)
 
 Use this **inside React components** where data should be loaded and updated based on props, filters, or user selections.
 
 ### Usage
 
 ```jsx
-
 const UserList = ({ activeTab }) => {
-  const { data, loading, error } = useAPI({
+  const { data, loading, error } = useAPICaller({
     endpoint: "http://localhost:4999/users",
     params: { role: "admin" },
     activeTab, // refetches when this changes

@@ -1,3 +1,5 @@
+import "./index.css";
+
 import { Alert } from "./Alert/js/Alert";
 import { AlertContainer } from "./Alert/js/AlertContainer";
 import { CardImg } from "./Cards/js/CardImg";
@@ -77,6 +79,12 @@ import {
 import { LoginForm } from "./Auth/js/LoginForm";
 import { useQueryParams } from "./Hooks/useQueryParams";
 import { Table } from "./Layout/Table/jsx/Table";
+import {
+  TranslationProvider,
+  useTranslation,
+} from "./Context/jsx/TranslationContext";
+import { I18nextProvider } from "./service/I18nextProvider";
+import { AITranslationProvider } from "./service/AITranslationProvider";
 
 export const UIAlert = {
   Alert,
@@ -206,4 +214,10 @@ export const UIUtils = {
 export const UIContext = {
   Auth: { AuthProvider, useAuth },
   Dynamic: { DynamicProvider, useDynamicContent },
+  Translation: {
+    TranslationProvider,
+    useTranslation,
+    I18nextProvider,
+    AITranslationProvider,
+  },
 };

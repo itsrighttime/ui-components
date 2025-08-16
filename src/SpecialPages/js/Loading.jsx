@@ -40,14 +40,14 @@ export const Loading = ({
   showText = false,
   text = "Loading",
 }) => {
-  const [loadingText, setLoadingText] = useState("Loading");
+  const [loadingText, setLoadingText] = useState("");
 
   useEffect(() => {
     const dots = ["", ".", "..", "..."];
     let index = 0;
 
     const intervalId = setInterval(() => {
-      setLoadingText(`${text}${dots[index]}`);
+      setLoadingText(dots[index]);
       index = (index + 1) % dots.length;
     }, 500);
 
@@ -100,7 +100,12 @@ export const Loading = ({
     >
       <Suspense fallback={<SecondaryLoading />}>
         {LoaderComponent}
-        {showText && <p className={styles.text}>{loadingText}</p>}
+        {showText && (
+          <div className={styles.loadingTextWrapper}>
+            <p className={styles.text}>{text}</p>
+            <p className={styles.loadingText}>{loadingText}</p>
+          </div>
+        )}
       </Suspense>
     </div>
   );

@@ -1,7 +1,7 @@
-import { useAPI } from "../../Hooks/useAPI";
+import { useAPICaller } from "../../Hooks/useAPICaller";
 
 export const UseHookAPIExample = () => {
-  const { data, loading, error } = useAPI({
+  const { data, loading, error } = useAPICaller({
     endpoint: "/api/users",
     method: "GET",
   });
