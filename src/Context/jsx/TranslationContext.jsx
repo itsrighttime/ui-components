@@ -1,6 +1,6 @@
 // src/context/TranslationContext.js
 import { createContext, useState, useContext, useEffect } from "react";
-import { TranslationService } from "../../service/translationService";
+import { TranslationService } from "../../service/TranslationService";
 import { I18nextProvider } from "../../service/I18nextProvider";
 import { AITranslationProvider } from "../../service/AITranslationProvider";
 
