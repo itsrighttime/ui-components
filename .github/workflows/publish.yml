@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           registry-url: "https://npm.pkg.github.com/"
           scope: "@itsrighttime"
 
@@ -38,12 +38,15 @@ jobs:
       - name: Bump Version and Publish
         run: |
           CURRENT_VERSION=$(node -p "require('./package.json').version")
+          VERSION_BUMP=${{ secrets.VERSION_BUMP || 'patch' }}  # Default to 'patch' if not set in secrets
+
           if npm view @itsrighttime/socket-io@$CURRENT_VERSION --registry=https://npm.pkg.github.com/ 2>/dev/null; then
-            echo "Version $CURRENT_VERSION already exists. Bumping patch version..."
-            npm version patch
+            echo "Version $CURRENT_VERSION already exists. Bumping $VERSION_BUMP version..."
+            npm version $VERSION_BUMP
           else
             echo "Version $CURRENT_VERSION does not exist."
           fi
+
           git push origin package --follow-tags
           npm publish --registry=https://npm.pkg.github.com/
         env:
