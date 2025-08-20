@@ -11,11 +11,12 @@ export const TableBody = ({
   clickableColumns,
   onCellClick,
   isMinimunCellWidth,
+  nothingToShow,
 }) => {
   return (
     <div className={styles.body}>
       {data.length === 0 ? (
-        <p className={styles.emptyMsg}>No Records to Show</p>
+        <p className={styles.emptyMsg}>{nothingToShow}</p>
       ) : (
         data.map((row, rowIndex) => (
           <TableRow

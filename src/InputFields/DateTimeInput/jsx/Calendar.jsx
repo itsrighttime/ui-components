@@ -21,7 +21,6 @@ const RenderCalendar = React.lazy(() => import("../helper/RenderDates"));
 const RenderMonths = React.lazy(() => import("../helper/RenderMonths"));
 const RenderYears = React.lazy(() => import("../helper/RenderYears"));
 
-
 export const Calendar = ({
   isSmall = false,
   setResult,
@@ -109,7 +108,11 @@ export const Calendar = ({
         )}
       </div>
 
-      <Suspense fallback={<Loading windowHeight="100%" windowWidth="100%" />}>
+      <Suspense
+        fallback={
+          <Loading color={color} windowHeight="100%" windowWidth="100%" />
+        }
+      >
         {view === "calendar" && (
           <RenderCalendar
             isSmall={isSmall}

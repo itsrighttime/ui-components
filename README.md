@@ -121,6 +121,7 @@ const { Alert } = UIAlert;
 - [`GridContainer`](./docs/container.md#gridcontainer)
 - [`Workspace`](./docs/layout.md#workspace-component--usage-guide)
 - [`Header`](./docs/layout.md#header-component--usage-guide)
+- [`Form`](./docs/generic-form.md)
 
 ## [Special Pages](./docs/pages.md)
 
@@ -169,6 +170,7 @@ const { Alert } = UIAlert;
 - All icons available via: `Icons`
 
 ## [Contexts]
+
 - [`Translation`](./docs/context/translation.md)
 
 - All icons available via: `Icons`

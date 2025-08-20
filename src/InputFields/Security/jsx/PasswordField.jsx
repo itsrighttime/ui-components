@@ -53,6 +53,7 @@ export const PasswordField = ({
       label={"Show Password"}
       style={{ border: "none" }}
       size="1.3"
+      color={color}
     />
   );
   const hidePasswordIcon = (
@@ -62,6 +63,7 @@ export const PasswordField = ({
       label={"Hide Password"}
       style={{ border: "none" }}
       size="1.3"
+      color={color}
     />
   );
 

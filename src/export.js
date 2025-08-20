@@ -85,6 +85,7 @@ import {
 } from "./Context/jsx/TranslationContext";
 import { I18nextProvider } from "./service/I18nextProvider";
 import { AITranslationProvider } from "./service/AITranslationProvider";
+import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
 
 export const UIAlert = {
   Alert,
@@ -178,6 +179,7 @@ export const UILayout = {
   FlexContainer,
   GridContainer,
   Workspace,
+  Form: GenericForm,
 };
 
 export const UIHooks = {

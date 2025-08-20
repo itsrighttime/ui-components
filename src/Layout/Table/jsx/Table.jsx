@@ -21,6 +21,7 @@ export const Table = ({
   },
   textWrap = "wrap",
   headerWrap = "nowrap",
+  nothingToShow = "No Records to Show",
 }) => {
   const cssVariables = {
     "--colorLinkText": styling.colorLinkText || "var(--colorBlue)",
@@ -55,6 +56,7 @@ export const Table = ({
           clickableColumns={clickableColumns}
           onCellClick={onCellClick}
           isMinimunCellWidth={isMinimunCellWidth}
+          nothingToShow={nothingToShow}
         />
       </div>
     </div>

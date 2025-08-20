@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/AddressField.module.css";
 
@@ -31,12 +31,12 @@ export const AddressField = ({
 
   const [address, setAddress] = useState(initialStates);
 
-  useEffect(() => {
-    setResult(address);
-  }, [address, setResult]);
-
   const handleChange = (field, value) => {
     setAddress((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleBlur = () => {
+    setResult(address);
   };
 
   const fieldConfigs = [
@@ -149,6 +149,8 @@ export const AddressField = ({
               color={color}
               isBorder={isBorder}
               showLabelAlways={showLabelAlways}
+              onBlur={handleBlur} // Trigger onBlur to update the result
+              width={width}
             />
           )
       )}

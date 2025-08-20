@@ -105,6 +105,7 @@ export const Dropdown = ({
         <IconButton
           icon={isOpen ? arrowUpIcon : arrowDownIcon}
           label={isOpen ? "Close Dropdown" : "Open Dropdown"}
+          color={color}
         />
       </div>
 

@@ -106,6 +106,7 @@ const data = [
 | `styling`            | `object`   | Customize colors for text, background, links, etc.                     |
 | `textWrap`           | `string`   | Control the overflow of the content in the body of the table's cells   |
 | `headerWrap`         | `string`   | Control the overflow of the content in the header of the table's cells |
+| `nothingToShow`      | `string`   | To show when there is no data is present to show                       |
 
 ## Best Practices
 
