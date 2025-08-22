@@ -3,11 +3,12 @@ import "./App.css";
 import "./export.js";
 import IconGallery from "./Usecases/Misc/IconGallery.jsx";
 import { UseLayoutExample } from "./Usecases/Misc/UseLayoutExample.jsx";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginForm } from "./Auth/js/LoginForm.jsx";
 import { Header } from "./Layout/Header/jsx/Header.jsx";
 import { getProductLogo } from "./assets/productsLogo/productLogo.assets.js";
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm.jsx";
+import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure.jsx";
 
 const logo = getProductLogo();
 
@@ -105,7 +106,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <div
+        {/* <div
           style={{
             // border: "1px solid red",
             // display: "flex",
@@ -113,20 +114,21 @@ const App = () => {
             // alignItems: "center",
             height: "100vh",
           }}
-        >
-          {/* <UseLayoutExample /> */}
-          {/* <LoginForm /> */}
-          {/* <IconGallery /> */}
+        > */}
 
-          <GenericForm
+        {/* <UseLayoutExample /> */}
+        {/* <LoginForm /> */}
+        {/* <IconGallery /> */}
+
+        {/* <GenericForm
             config={formConfig}
             onSubmit={(value) => {
               console.log("Submited", value);
             }} // Your custom submission logic
             submitLabel="Create User"
-          />
+          /> */}
 
-          {/* <Header
+        {/* <Header
             tabs={[
               { name: "Home", goTo: "/" },
               { name: "About", goTo: "about" },
@@ -138,7 +140,12 @@ const App = () => {
             loginRegisterURL="/login"
             color="var(--colorCyan)"
           /> */}
-        </div>
+
+        {/* </div> */}
+
+        <WebStructure>
+          {/* <IconGallery /> */}
+        </WebStructure>
       </div>
     </BrowserRouter>
   );

@@ -6,9 +6,6 @@ import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import { redirectURL } from "../../../utils/redirectURL";
 import { setDocumentTitle } from "../../../utils/setDocumentTitle";
 
-// Helper to normalize tab names
-const resolveStringToId = (str) => str.replace(/\s+/g, "").toLowerCase();
-
 export const Header = ({
   tabs = [], // Example: [{ name: "Home", goTo: "/" }, { name: "About", goTo: "about" }]
   logoURL = "",
@@ -17,14 +14,13 @@ export const Header = ({
   loginRegisterTabName = "login/register",
   loginRegisterURL = "/login",
   color = "var(--colorRed)",
+  brand = "itsRIGHTtime",
 }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(
     window.innerWidth <= breakpoint
   );
-  const [activeTab, setActiveTab] = useState(
-    resolveStringToId(defaultTab.name)
-  );
+  const [activeTab, setActiveTab] = useState(defaultTab.name);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,24 +41,9 @@ export const Header = ({
     return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);
 
-  // Handle tab clicks
-  const handleTabClick = (tab) => {
-    const tabId = resolveStringToId(tab.name);
-
-    if (tabId === resolveStringToId(loginRegisterTabName)) {
-      const currentUrl = window.location.href;
-      redirectURL(
-        `${loginRegisterURL}?redirectBack=${encodeURIComponent(currentUrl)}`
-      );
-    } else {
-      navigate(tab.goTo.startsWith("/") ? tab.goTo : `/${tab.goTo}`);
-      setActiveTab(tabId);
-      setDocumentTitle(tab.name);
-    }
-
-    if (isSmallScreen) {
-      setIsNavOpen(false);
-    }
+  const setTab = (tab) => {
+    setActiveTab(tab);
+    setDocumentTitle(`${tab} | ${brand}`);
   };
 
   // Sync active tab based on URL path
@@ -70,17 +51,31 @@ export const Header = ({
     const currentPath = location.pathname.replace(/^\/+/, ""); // Remove leading slash
     const matchedTab = tabs.find((tab) => {
       const tabPath = tab.goTo.replace(/^\/+/, "");
-      return currentPath.startsWith(tabPath);
+      return currentPath === tabPath;
     });
 
-    if (matchedTab) {
-      setActiveTab(resolveStringToId(matchedTab.name));
-      setDocumentTitle(matchedTab.name);
+    if (matchedTab) setTab(matchedTab.name);
+    else setTab(defaultTab.name);
+  }, [location.pathname, tabs, defaultTab, activeTab]);
+
+  // Handle tab clicks
+  const handleTabClick = (tab) => {
+    const tabId = tab.name;
+
+    if (tabId === loginRegisterTabName) {
+      const currentUrl = window.location.href;
+      redirectURL(
+        `${loginRegisterURL}?redirectBack=${encodeURIComponent(currentUrl)}`
+      );
     } else {
-      setActiveTab(resolveStringToId(defaultTab.name));
-      setDocumentTitle(defaultTab.name);
+      navigate(tab.goTo.startsWith("/") ? tab.goTo : `/${tab.goTo}`);
+      setTab(tab.name);
     }
-  }, [location.pathname, tabs, defaultTab]);
+
+    if (isSmallScreen) {
+      setIsNavOpen(false);
+    }
+  };
 
   const getButtonStyle = (tabId) => ({
     color: activeTab === tabId ? color : "var(--colorSimple)",
@@ -135,34 +130,28 @@ export const Header = ({
         {/* Tabs split into two parts for layout */}
         <div className={style.tabs}>
           <div className={style.tabs1}>
-            {tabs.slice(0, Math.ceil(tabs.length / 2)).map((tab) => {
-              const tabId = resolveStringToId(tab.name);
-              return (
-                <div
-                  key={tabId}
-                  className={style.tab}
-                  style={getButtonStyle(tabId)}
-                  onClick={() => handleTabClick(tab)}
-                >
-                  {tab.name}
-                </div>
-              );
-            })}
+            {tabs.slice(0, Math.ceil(tabs.length / 2)).map((tab) => (
+              <div
+                key={tab.name}
+                className={style.tab}
+                style={getButtonStyle(tab.name)}
+                onClick={() => handleTabClick(tab)}
+              >
+                {tab.name}
+              </div>
+            ))}
           </div>
           <div className={style.tabs2}>
-            {tabs.slice(Math.ceil(tabs.length / 2)).map((tab) => {
-              const tabId = resolveStringToId(tab.name);
-              return (
-                <div
-                  key={tabId}
-                  className={style.tab}
-                  style={getButtonStyle(tabId)}
-                  onClick={() => handleTabClick(tab)}
-                >
-                  {tab.name}
-                </div>
-              );
-            })}
+            {tabs.slice(Math.ceil(tabs.length / 2)).map((tab) => (
+              <div
+                key={tab.name}
+                className={style.tab}
+                style={getButtonStyle(tab.name)}
+                onClick={() => handleTabClick(tab)}
+              >
+                {tab.name}
+              </div>
+            ))}
           </div>
         </div>
       </div>

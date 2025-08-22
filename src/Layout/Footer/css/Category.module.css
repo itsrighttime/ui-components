@@ -1,0 +1,65 @@
+.category {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.namelogo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 50px;
+  filter: grayscale(100%);
+}
+
+.name {
+  font-size: calc(1.5 * var(--size));
+}
+
+.taglLine {
+  font-weight: var(--boldL3);
+  text-align: left;
+}
+
+.links {
+  display: flex;
+  /* flex-direction: column; */
+  text-align: start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.contactus button:hover,
+.link button:hover {
+  text-decoration: none !important;
+}
+
+.contactus {
+  text-align: left;
+  display: flex;
+  gap: 3px;
+  flex-direction: column;
+}
+.contactus p {
+  color: var(--colorGray5);
+}
+
+.socialMedia {
+  display: flex;
+  gap: 5px;
+}
+
+.icon button,
+.icon svg {
+  background-color: var(--colorGray2);
+}
+
+.icon button:hover svg,
+.icon svg:hover {
+  background-color: var(--colorGray5);
+}

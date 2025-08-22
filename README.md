@@ -121,6 +121,8 @@ const { Alert } = UIAlert;
 - [`GridContainer`](./docs/container.md#gridcontainer)
 - [`Workspace`](./docs/layout.md#workspace-component--usage-guide)
 - [`Header`](./docs/layout.md#header-component--usage-guide)
+- [`Footer`](./docs/layout.md#footer-component)
+- [`WebStructure`](./docs/layout.md#webstructure-component)
 - [`Form`](./docs/generic-form.md)
 
 ## [Special Pages](./docs/pages.md)
