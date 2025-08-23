@@ -86,6 +86,9 @@ import {
 import { I18nextProvider } from "./service/I18nextProvider";
 import { AITranslationProvider } from "./service/AITranslationProvider";
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
+import { Header } from "./Layout/Header/jsx/Header";
+import { Footer } from "./Layout/Footer/jsx/Footer";
+import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure";
 
 export const UIAlert = {
   Alert,
@@ -180,6 +183,9 @@ export const UILayout = {
   GridContainer,
   Workspace,
   Form: GenericForm,
+  Header,
+  Footer,
+  WebStructure,
 };
 
 export const UIHooks = {
