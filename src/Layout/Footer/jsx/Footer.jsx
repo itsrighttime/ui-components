@@ -5,7 +5,9 @@ import { Category } from "./Category";
 const logoIRT = getProductLogo("itsRIGHTtimeName");
 const logo = getProductLogo("itsRIGHTtimeName");
 export const Footer = ({ brand }) => {
-  const logoBrand = getProductLogo(`${brand?.name}Name`);
+  const logoBrand = brand?.logo
+    ? brand.logo
+    : getProductLogo(`${brand?.name}Name`);
   const tabs = [
     { name: "Home", goTo: "/" },
     { name: "About", goTo: "/about" },

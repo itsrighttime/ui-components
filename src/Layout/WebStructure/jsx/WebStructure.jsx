@@ -2,11 +2,20 @@ import { Footer } from "../../Footer/jsx/Footer";
 import { Header } from "../../Header/jsx/Header";
 import styles from "../css/WebStructure.module.css";
 
-export const WebStructure = ({ children, brandFooter, headerTabs }) => {
+export const WebStructure = ({ children, brandFooter, brandHeader }) => {
   return (
     <div className={styles.webStructure}>
       <div className={styles.header}>
-        <Header tabs={headerTabs} />
+        <Header
+          tabs={brandHeader?.tabs}
+          logoURL={brandHeader?.logoURL}
+          defaultTab={brandHeader?.defaultTab}
+          breakpoint={brandHeader?.breakpoint}
+          loginRegisterTabName={brandHeader?.loginRegisterTabName}
+          loginRegisterURL={brandHeader?.loginRegisterURL}
+          color={brandHeader?.color}
+          brand={brandHeader?.brand}
+        />
       </div>
       <div className={styles.top}>
         <div className={styles.body}>{children}</div>

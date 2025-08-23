@@ -41,10 +41,17 @@
 
 ---
 
+## Importing
+
+```js
+import { UILayout } from "@itsrighttime/ui-components";
+
+const { Workspace, Form, Header, Footer, WebStructure } = UILayout;
+```
+
 ### Example Usage:
 
 ```jsx
-import { Workspace } from "./components/Workspace";
 
 function App() {
   const handleTabClick = (tabKey) => {
@@ -86,7 +93,6 @@ The `Header` component is a responsive, reusable navigation header for any proje
 ### Example Usage:
 
 ```jsx
-import { Header } from "./components/Header";
 
 const tabs = [
   { name: "Home", goTo: "/" },
@@ -137,7 +143,6 @@ To use the `Footer` component, pass a `brand` object that contains details like 
 ### Example Usage
 
 ```jsx
-import { Footer } from "./components/Footer/Footer";
 
 const brand = {
   name: "itsRIGHTtime",

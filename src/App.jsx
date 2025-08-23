@@ -10,7 +10,7 @@ import { getProductLogo } from "./assets/productsLogo/productLogo.assets.js";
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm.jsx";
 import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure.jsx";
 
-const logo = getProductLogo();
+const logo = getProductLogo("");
 
 const formConfig = {
   title: "Create New User", // Title of the form
@@ -103,6 +103,46 @@ const formConfig = {
 
 const App = () => {
   const [count, setCount] = useState();
+
+  const tabs = [
+    {
+      name: "Home",
+      goTo: "/",
+    },
+    {
+      name: "Design Inspiration",
+      goTo: "/design-showcase",
+    },
+    {
+      name: "Services",
+      goTo: "/services",
+    },
+    {
+      name: "Industries",
+      goTo: "/industries",
+    },
+    {
+      name: "Portfolio",
+      goTo: "/portfolio",
+    },
+
+    {
+      name: "About",
+      goTo: "/about",
+    },
+    {
+      name: "Blog",
+      goTo: "/blog",
+    },
+    {
+      name: "Contact",
+      goTo: "/contact",
+    },
+    {
+      name: "Book a Consultation",
+      goTo: "/book-consultation",
+    },
+  ];
   return (
     <BrowserRouter>
       <div className="App">
@@ -143,7 +183,7 @@ const App = () => {
 
         {/* </div> */}
 
-        <WebStructure>
+        <WebStructure brandHeader={{ tabs, logoURL: logo }}>
           {/* <IconGallery /> */}
         </WebStructure>
       </div>

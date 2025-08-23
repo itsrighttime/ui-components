@@ -82,8 +82,16 @@ export const Header = ({
     fontWeight: activeTab === tabId ? "var(--boldL3)" : "var(--bold)",
   });
 
+  const tabsSize = Math.ceil(tabs.length / 2);
+
+  const tabs1 = tabs.slice(0, tabsSize);
+  let tabs2 = tabs.slice(tabsSize);
+
+  // if (tabs1.length !== tabs2.length) tabs2.unshift("One");
+
   const cssVariable = {
     "--color": color,
+    "--numOfColTab": tabsSize,
   };
 
   return (
@@ -130,7 +138,7 @@ export const Header = ({
         {/* Tabs split into two parts for layout */}
         <div className={style.tabs}>
           <div className={style.tabs1}>
-            {tabs.slice(0, Math.ceil(tabs.length / 2)).map((tab) => (
+            {tabs1.map((tab) => (
               <div
                 key={tab.name}
                 className={style.tab}
@@ -142,7 +150,7 @@ export const Header = ({
             ))}
           </div>
           <div className={style.tabs2}>
-            {tabs.slice(Math.ceil(tabs.length / 2)).map((tab) => (
+            {tabs2.map((tab) => (
               <div
                 key={tab.name}
                 className={style.tab}
