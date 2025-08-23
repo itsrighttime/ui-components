@@ -79,16 +79,12 @@ import {
 import { LoginForm } from "./Auth/js/LoginForm";
 import { useQueryParams } from "./Hooks/useQueryParams";
 import { Table } from "./Layout/Table/jsx/Table";
-import {
-  TranslationProvider,
-  useTranslation,
-} from "./Context/jsx/TranslationContext";
-import { I18nextProvider } from "./service/I18nextProvider";
-import { AITranslationProvider } from "./service/AITranslationProvider";
+
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
 import { Header } from "./Layout/Header/jsx/Header";
 import { Footer } from "./Layout/Footer/jsx/Footer";
 import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure";
+import { translator, useTranslator } from "./service/translator";
 
 export const UIAlert = {
   Alert,
@@ -222,10 +218,11 @@ export const UIUtils = {
 export const UIContext = {
   Auth: { AuthProvider, useAuth },
   Dynamic: { DynamicProvider, useDynamicContent },
+};
+
+export const UIServices = {
   Translation: {
-    TranslationProvider,
-    useTranslation,
-    I18nextProvider,
-    AITranslationProvider,
+    useTranslator,
+    translator,
   },
 };

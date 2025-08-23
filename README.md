@@ -171,9 +171,9 @@ const { Alert } = UIAlert;
 
 - All icons available via: `Icons`
 
-## [Contexts]
+## [Services]
 
-- [`Translation`](./docs/context/translation.md)
+- [`Translation`](./docs/services/translation.md)
 
 - All icons available via: `Icons`
 
