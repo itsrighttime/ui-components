@@ -48,10 +48,10 @@ export const Header = ({
 
   // Sync active tab based on URL path
   useEffect(() => {
-    const currentPath = location.pathname.replace(/^\/+/, ""); // Remove leading slash
+    const [firstTab] = location.pathname.replace(/^\/+/, "").split("/"); // Remove leading slash
     const matchedTab = tabs.find((tab) => {
       const tabPath = tab.goTo.replace(/^\/+/, "");
-      return currentPath === tabPath;
+      return firstTab === tabPath;
     });
 
     if (matchedTab) setTab(matchedTab.name);
@@ -131,7 +131,7 @@ export const Header = ({
         } ${isSmallScreen && isNavOpen ? style.headerOpen : style.headerClose}`}
       >
         {/* Logo */}
-        <div className={style.logoImg}>
+        <div className={style.logoImg} onClick={() => navigate("/")}>
           {logoURL && <img src={logoURL} alt="Logo" />}
         </div>
 

@@ -23,7 +23,7 @@ export const useTranslator = (defaultNamespaces = "common") => {
 
   const changeLanguage = (newLang) => {
     translator.setLanguage(newLang);
-    setLang(newLang); // Trigger re-render
+    setLang(newLang);
   };
 
   /**
@@ -32,11 +32,22 @@ export const useTranslator = (defaultNamespaces = "common") => {
    * @param {string} [overrideNs] - optional namespace override
    */
   const t = (key, overrideNs) => {
-    if (overrideNs) return translator.t(key, overrideNs);
+    if (overrideNs) {
+      return translator.t(key, overrideNs);
+    }
 
     for (const ns of nsList) {
-      const translated = translator.t(key, ns);
+      const translated = translator.t(key, ns, true); // suppress debug here
       if (translated !== key) return translated;
+    }
+
+    // If we get here, key is missing in all namespaces
+    if (translator.isDebug) {
+      console.warn(
+        `Translator: Missing key "${key}" in namespaces [${nsList.join(
+          ", "
+        )}] [lang: ${lang}]`
+      );
     }
 
     return key;

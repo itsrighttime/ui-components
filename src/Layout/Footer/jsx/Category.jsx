@@ -34,7 +34,7 @@ export const Category = ({
   links = [],
   contactus = {},
   socialMedia = [],
-  getInTouch ,
+  getInTouch,
 }) => {
   const navigate = useNavigate();
 
@@ -52,6 +52,9 @@ export const Category = ({
           <img
             src={logo}
             className={styles.logo}
+            onClick={() => {
+              navigate("/");
+            }}
             alt={name || "Category Logo"}
           />
         )}
@@ -101,7 +104,7 @@ export const Category = ({
               <IconButton
                 color={"var(--colorGray5)"}
                 icon={getIcon(tab.name)}
-                size={1.2}
+                size={1}
                 isBorder
                 onClick={() => handleSocialMedia(tab.goTo)}
               />

@@ -9,6 +9,7 @@ export const Tooltip = ({
   content,
   color = "#272626",
   backgroundColor = "#eceaea",
+  width = "250px",
 }) => {
   const tooltipRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -50,6 +51,7 @@ export const Tooltip = ({
       pointerEvents: "none",
       color,
       backgroundColor,
+      "--width": width,
     });
 
     setPosition(newPosition);

@@ -38,7 +38,7 @@ export const Footer = ({ brand }) => {
         socialMedia={brand?.socialMedia}
         getInTouch={brand?.getInTouch}
       />
-      {/* <Category
+      <Category
         logo={logo}
         // name={"itsRIGHTtime"}
         tagLine={"One Stop Solution for all Businesses"}
@@ -50,7 +50,7 @@ export const Footer = ({ brand }) => {
         }}
         socialMedia={socialMedia}
         getInTouch={{ name: "Get In Touch", goTo: "/go" }}
-      /> */}
+      />
       <Category
         logo={logoIRT}
         // name={"itsRIGHTtime"}

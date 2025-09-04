@@ -45,11 +45,12 @@ class Translator {
    * Translate a key from the current language
    * @param {string} key - Translation key
    * @param {string} namespace - Namespace (e.g., 'header')
+   * @param {boolean} suppressDebug - Prevent debug logs (used by multi-namespace search)
    * @returns {string}
    */
-  t(key, namespace = "common") {
+  t(key, namespace = "common", suppressDebug = false) {
     if (!this.isInitialized) {
-      if (this.isDebug) {
+      if (this.isDebug && !suppressDebug) {
         console.warn("Translator: Not initialized");
       }
       return key;
@@ -57,10 +58,9 @@ class Translator {
 
     const langData = this.translations[this.language] || {};
     const ns = langData[namespace];
-
     const value = (ns && ns[key]) || key;
 
-    if (this.isDebug && value === key) {
+    if (this.isDebug && value === key && !suppressDebug) {
       console.warn(
         `Translator: Missing key "${key}" in namespace "${namespace}" [lang: ${this.language}]`
       );

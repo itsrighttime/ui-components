@@ -1,4 +1,3 @@
-
 ## Tooltip – Smart Cursor-Following Tooltip
 
 ### **Purpose:**
@@ -37,6 +36,7 @@ A custom React tooltip component that follows the cursor and smartly adjusts its
 | `content`         | `string`    | —           | The text/content to display inside the tooltip. |
 | `color`           | `string`    | `"#272626"` | Text color of the tooltip.                      |
 | `backgroundColor` | `string`    | `"#eceaea"` | Background color of the tooltip.                |
+| `width`           | `string`    | `"250px"`   | Control the width of the tooltip.               |
 
 ---
 
@@ -73,5 +73,3 @@ You can also change the colors:
 - Adjusts tooltip's `top` and `left` styles so it stays within the window.
 - Renders the tooltip directly into `document.body` using a portal.
 - Fades in/out based on `visible` state from `onMouseEnter` and `onMouseLeave`.
-
-

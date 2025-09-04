@@ -11,6 +11,7 @@
 
 .logoImg {
   height: 35px;
+  cursor: pointer;
 }
 
 .logoImg img {
@@ -63,7 +64,7 @@
     /* width: 80px; */
     display: flex;
     align-items: flex-start;
-    justify-content: end
+    justify-content: end;
   }
 
   .tabs1,

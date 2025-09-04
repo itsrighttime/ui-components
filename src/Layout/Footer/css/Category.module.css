@@ -15,6 +15,7 @@
 .logo {
   height: 50px;
   filter: grayscale(100%);
+  cursor: pointer;
 }
 
 .name {
@@ -24,14 +25,19 @@
 .taglLine {
   font-weight: var(--boldL3);
   text-align: left;
+  font-size: calc(0.9 * var(--size));
 }
 
 .links {
   display: flex;
   /* flex-direction: column; */
   text-align: start;
-  gap: 10px;
+  gap: 5px;
   flex-wrap: wrap;
+}
+
+.category button {
+  font-size: calc(0.9 * var(--size));
 }
 
 .contactus button:hover,
@@ -45,7 +51,9 @@
   gap: 3px;
   flex-direction: column;
 }
+
 .contactus p {
+  font-size: calc(0.9 * var(--size));
   color: var(--colorGray5);
 }
 
@@ -62,4 +70,10 @@
 .icon button:hover svg,
 .icon svg:hover {
   background-color: var(--colorGray5);
+}
+
+@media (max-width: 300px) {
+  .logo {
+    height: 40px;
+  }
 }
