@@ -28,7 +28,7 @@
   font-size: calc(var(--size) * 0.8);
   color: var(--colorGray5);
   text-align: left;
-  padding-left: 10px;
+  padding-bottom: 3px;
 }
 
 .dropdownMenu {

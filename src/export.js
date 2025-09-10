@@ -80,7 +80,7 @@ import { LoginForm } from "./Auth/js/LoginForm";
 import { useQueryParams } from "./Hooks/useQueryParams";
 import { Table } from "./Layout/Table/jsx/Table";
 
-import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
+import { FORM_FIELDS_TYPE, GenericForm } from "./Layout/Forms/jsx/GenericForm";
 import { Header } from "./Layout/Header/jsx/Header";
 import { Footer } from "./Layout/Footer/jsx/Footer";
 import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure";
@@ -182,6 +182,7 @@ export const UILayout = {
   Header,
   Footer,
   WebStructure,
+  KEYS: { FORM_FIELDS_TYPE },
 };
 
 export const UIHooks = {

@@ -92,6 +92,7 @@ const { TextArea } = UIInputs.text;
 | `disabled`           | boolean  | false                | Disable the textarea input.                                                                 |
 | `style`              | object   | {}                   | Additional inline styles applied to the container.                                          |
 | `width`              | `string` | `300px`              | to adjust the width of the Field                                                            |
+| `showCharacterCount` | boolean  | false                | Show character count below the textarea.                                                    |
 
 ### Behavior
 

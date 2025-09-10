@@ -16,6 +16,7 @@ export const TextArea = ({
   disabled = false,
   style = {},
   width = "300px",
+  showLabelAlways = false,
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
   const [isFocused, setIsFocused] = useState(false);
@@ -78,11 +79,13 @@ export const TextArea = ({
       className={styles.textAreaContainer}
       style={{ ...style, ...cssVariable }}
     >
-      {label && isFocused && inputValue !== "" && (
-        <label htmlFor={label} className={styles.textAreaLabel}>
-          {label}
-        </label>
-      )}
+      {label &&
+        (showLabelAlways ||
+          (isFocused && inputValue !== "" && (
+            <label htmlFor={label} className={styles.textAreaLabel}>
+              {label}
+            </label>
+          )))}
 
       <textarea
         id={label}

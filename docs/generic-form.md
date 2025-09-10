@@ -13,7 +13,10 @@ This component leverages a **config object** passed as a prop to define the form
 ```js
 import { UILayout } from "@itsrighttime/ui-components";
 
-const { Form } = UILayout;
+const {
+  Form,
+  KEYS: { FORM_FIELDS_TYPE },
+} = UILayout;
 ```
 
 2. Use the form component by passing a `config` object that defines the form fields and structure.
@@ -22,8 +25,6 @@ const { Form } = UILayout;
 const formConfig = {
   title: "Create New User",
   description: "Please fill in the details below to create a new user.",
-  submitVariant: "primary",
-  submitLabel: "Create User",
   fields: [
     {
       name: "name",
@@ -41,88 +42,118 @@ const formConfig = {
 
 ```js
 const formConfig = {
-  title: "Create New User",
+  title: "Create New User", // Title of the form
   description: "Please fill in the details below to create a new user.",
-  submitVariant: "primary",
-  submitLabel: "Create User",
+
   fields: [
     {
-      name: "name",
-      label: "Full Name",
-      type: "text",
-      required: true,
-      placeholder: "Enter your full name",
+      name: "name", // Field name (key in the formData)
+      label: "Full Name", // Field label displayed next to the input
+      type: FORM_FIELDS_TYPE.TEXT, // Input type (text, email, etc.)
+      required: true, // Make this field mandatory
+      placeholder: "Enter your full name", // Placeholder text for the input
     },
+    {
+      name: "aboutYou",
+      label: "About You",
+      type: FORM_FIELDS_TYPE.TEXT_AREA,
+      placeholder: "Enter something about you...",
+      showCharacterCount = false
+    },
+
     {
       name: "email",
       label: "Email Address",
-      type: "email",
+      type: FORM_FIELDS_TYPE.EMAIL,
       required: true,
       placeholder: "Enter your email address",
     },
+
     {
       name: "password",
       label: "Password",
-      type: "password",
+      type: FORM_FIELDS_TYPE.PASSWORD, // Password field
       required: true,
       placeholder: "Enter a secure password",
     },
+
     {
       name: "role",
       label: "User Role",
-      type: "dropdown",
+      type: FORM_FIELDS_TYPE.MULTI_DROPDOWN, // Single selection dropdown
       required: true,
-      options: [
-        { label: "Admin", value: "admin" },
-        { label: "Phase Head", value: "phase_head" },
-        { label: "Operator", value: "operator" },
-      ],
+      options: ["Admin", "Phase Head", "Operator"],
     },
+
     {
       name: "phases",
       label: "Assigned Phases",
-      type: "multi-dropdown",
-      options: [
-        { label: "Phase 1", value: "p1" },
-        { label: "Phase 2", value: "p2" },
-        { label: "Phase 3", value: "p3" },
-      ],
-      defaultValue: ["p1"], // Pre-select Phase 1
+      type: FORM_FIELDS_TYPE.DROPDOWN, // Multiple selection dropdown
+      options: ["Phase 1", "Phase 2", "Phase 3"],
+      defaultValue: ["Phase 1"], // Default value pre-selected
     },
+
     {
       name: "birthdate",
       label: "Date of Birth",
-      type: "date",
+      type: FORM_FIELDS_TYPE.DATE, // Date picker input
       required: true,
-      initialDate: "2000-01-01",
-      restrictionStartDate: "1900-01-01",
-      restrictionEndDate: "2025-12-31",
+      placeholder: "Select your birthdate",
+      initialDate: "2000-01-01", // Initial default date
+      restrictionStartDate: "1900-01-01", // Restrict start date
+      restrictionEndDate: "2025-12-31", // Restrict end date
     },
+
     {
       name: "appointmentTime",
       label: "Appointment Time",
-      type: "time",
+      type: FORM_FIELDS_TYPE.TIME, // Time picker input
       required: true,
     },
+
     {
       name: "phone",
       label: "Phone Number",
-      type: "mobile",
+      type: FORM_FIELDS_TYPE.MOBILE, // Mobile number field
       required: true,
       placeholder: "Enter your phone number",
     },
+
     {
       name: "address",
       label: "Home Address",
-      type: "address",
+      type: FORM_FIELDS_TYPE.ADDRESS, // Custom Address input component
       isHouse: true,
       isStreet: true,
       isCity: true,
       isState: true,
       isPostal: true,
       isCountry: true,
+      isAddressLine: true,
+      isLandmark: false,
     },
   ],
+};
+```
+
+```js
+export const FORM_FIELDS_TYPE = {
+  DROPDOWN: "dropdown",
+  MULTI_DROPDOWN: "multi-dropdown",
+  EMAIL: "email",
+  PASSWORD: "password",
+  MOBILE: "mobile",
+  DATE: "date",
+  TIME: "time",
+  ADDRESS: "address",
+  TEXT: "text",
+  TEXT_AREA: "textArea",
+};
+
+const settings = {
+  showLabelAlways: true,
+  gap: "2rem",
+  color: "var(--colorCyan)",
 };
 ```
 
@@ -157,6 +188,7 @@ export const UseFormExample = () => {
           config={formConfig} // Pass the form configuration
           onSubmit={handleSubmit} // Handle form submission
           submitLabel="Create User" // Optional: Override default submit button label
+          settings = {}
         />
       </div>
     </div>
@@ -249,6 +281,26 @@ export const UseFormExample = () => {
 | `isLandmark`    | `boolean`  | Includes a "Landmark" input in the address field.                       | `false`           |
 | `value`         | `object`   | An object representing the current value of the address fields.         | N/A               |
 | `setResult`     | `function` | Function to update the form state when the address field value changes. | N/A               |
+
+### **TextArea Field:**
+
+| **Prop Name**        | **Type** | **Default Value**    | **Description**                                                                             |
+| -------------------- | -------- | -------------------- | ------------------------------------------------------------------------------------------- |
+| `label`              | string   | —                    | Label text to display (shown only on focus and if input is not empty).                      |
+| `value`              | string   | ""                   | Controlled value of the textarea.                                                           |
+| `setResult`          | function | —                    | Callback to update the input value on change or blur.                                       |
+| `color`              | string   | var(--colorCyan)     | Color for styling the input border/text.                                                    |
+| `placeholder`        | string   | "Enter text here..." | Placeholder text shown when input is empty.                                                 |
+| `minLength`          | number   | —                    | Minimum allowed length for input. If violated, shows error.                                 |
+| `maxLength`          | number   | —                    | Maximum allowed length for input. Prevents typing beyond limit and shows error if exceeded. |
+| `maxTextAreaHeight`  | number   | 200                  | Maximum height of the textarea in pixels. If content exceeds, scrollbar appears.            |
+| `setIsFieldValid`    | function | () => {}             | Callback to notify if current field is valid (based on length validation).                  |
+| `showCharacterCount` | boolean  | false                | Show character count below the textarea.                                                    |
+| `showWordCount`      | boolean  | false                | Show word count below the textarea.                                                         |
+| `disabled`           | boolean  | false                | Disable the textarea input.                                                                 |
+| `style`              | object   | {}                   | Additional inline styles applied to the container.                                          |
+| `width`              | `string` | `300px`              | to adjust the width of the Field                                                            |
+| `showCharacterCount` | boolean  | false                | Show character count below the textarea.                                                    |
 
 ### **General Properties for all Fields:**
 

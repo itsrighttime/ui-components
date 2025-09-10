@@ -15,14 +15,19 @@ const logo = getProductLogo("");
 const formConfig = {
   title: "Create New User", // Title of the form
   description: "Please fill in the details below to create a new user.",
-  submitVariant: "primary", // Defines the styling of the submit button (can be primary, secondary, etc.)
-  submitLabel: "Create User", // Text displayed on the submit button
 
   fields: [
     {
       name: "name", // Field name (key in the formData)
       label: "Full Name", // Field label displayed next to the input
       type: "text", // Input type (text, email, etc.)
+      required: true, // Make this field mandatory
+      placeholder: "Enter your full name", // Placeholder text for the input
+    },
+    {
+      name: "namea", // Field name (key in the formData)
+      label: "Full Name", // Field label displayed next to the input
+      type: "textArea", // Input type (text, email, etc.)
       required: true, // Make this field mandatory
       placeholder: "Enter your full name", // Placeholder text for the input
     },
@@ -161,12 +166,12 @@ const App = () => {
         {/* <IconGallery /> */}
 
         {/* <GenericForm
-            config={formConfig}
-            onSubmit={(value) => {
-              console.log("Submited", value);
-            }} // Your custom submission logic
-            submitLabel="Create User"
-          /> */}
+          config={formConfig}
+          onSubmit={(value) => {
+            console.log("Submited", value);
+          }} // Your custom submission logic
+          submitLabel="Create User"
+        /> */}
 
         {/* <Header
             tabs={[
