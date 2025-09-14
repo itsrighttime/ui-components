@@ -41,7 +41,7 @@ export function GenericForm({
   });
 
   const _settings = {
-    showLabelAlways: settings?.showLabelAlways || true,
+    showLabelAlways: settings?.showLabelAlways || false,
     gap: settings?.gap || "2rem",
     color: settings?.color || "var(--colorCyan)",
   };
@@ -88,6 +88,7 @@ export function GenericForm({
               key={field.name}
               label={field.label}
               placeholder={field.placeholder || field.label}
+              showLabelAlways={_settings.showLabelAlways}
               options={field.options}
               value={formData[field.name]}
               setResult={(value) => handleChange(field.name, value)} // Update state on change
@@ -106,6 +107,7 @@ export function GenericForm({
               multiple
               placeholder={field.placeholder || field.label}
               options={field.options}
+              showLabelAlways={_settings.showLabelAlways}
               value={formData[field.name]}
               setResult={(value) => handleChange(field.name, value)} // Update state on change
             />
@@ -250,6 +252,7 @@ export function GenericForm({
             width="100%"
             color={color}
             showLabelAlways={_settings.showLabelAlways}
+            required={field?.required || false}
           />
         );
       })}

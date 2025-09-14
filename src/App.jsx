@@ -53,7 +53,14 @@ const formConfig = {
       label: "User Role",
       type: "dropdown", // Single selection dropdown
       required: true,
-      options: ["Admin", "Phase Head", "Operator"],
+      options: [
+        "Admin",
+        "Phase Head",
+        "Operator",
+        "Admin1",
+        "Phase Head 1",
+        "Operator 1",
+      ],
     },
 
     {
@@ -70,7 +77,7 @@ const formConfig = {
       type: "date", // Date picker input
       required: true,
       placeholder: "Select your birthdate",
-      initialDate: "2000-01-01", // Initial default date
+      // initialDate: "2000-01-01", // Initial default date
       restrictionStartDate: "1900-01-01", // Restrict start date
       restrictionEndDate: "2025-12-31", // Restrict end date
     },
@@ -165,13 +172,14 @@ const App = () => {
         {/* <LoginForm /> */}
         {/* <IconGallery /> */}
 
-        {/* <GenericForm
+        <GenericForm
           config={formConfig}
           onSubmit={(value) => {
             console.log("Submited", value);
           }} // Your custom submission logic
           submitLabel="Create User"
-        /> */}
+          settings={{ showLabelAlways: true }}
+        />
 
         {/* <Header
             tabs={[
@@ -188,9 +196,9 @@ const App = () => {
 
         {/* </div> */}
 
-        <WebStructure brandHeader={{ tabs, logoURL: logo }}>
-          {/* <IconGallery /> */}
-        </WebStructure>
+        {/* <WebStructure brandHeader={{ tabs, logoURL: logo }}>
+          <IconGallery />
+        </WebStructure> */}
       </div>
     </BrowserRouter>
   );

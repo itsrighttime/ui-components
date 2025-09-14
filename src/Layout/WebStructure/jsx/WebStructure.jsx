@@ -17,7 +17,7 @@ export const WebStructure = ({ children, brandFooter, brandHeader }) => {
           brand={brandHeader?.brand}
         />
       </div>
-      <div className={styles.top}>
+      <div className={styles.top} id="body-layout-scroll">
         <div className={styles.body}>{children}</div>
         <div className={styles.footer}>
           <Footer brand={brandFooter} />

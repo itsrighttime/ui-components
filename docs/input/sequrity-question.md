@@ -71,15 +71,16 @@ const { OtpField, PasswordField, SecurityQuestion } = UIInputs.Security;
 
 ### Props
 
-| Prop                  | Type     | Default       | Description                              |
-| --------------------- | -------- | ------------- | ---------------------------------------- |
-| `label`               | `string` | `"Password"`  | Label for the input field                |
-| `value`               | `string` | `""`          | Initial value of the password field      |
-| `setResult`           | `func`   | _required_    | Callback to return final password value  |
-| `placeholder`         | `string` | `"Password"`  | Placeholder text                         |
-| `color`               | `string` | `--colorCyan` | Sets accent color                        |
-| `width`               | `string` | `300px`       | Width of the component                   |
-| `setPasswordStrength` | `func`   | _optional_    | To get the information about the strengt |
+| Prop                  | Type      | Default       | Description                                            |
+| --------------------- | --------- | ------------- | ------------------------------------------------------ |
+| `label`               | `string`  | `"Password"`  | Label for the input field                              |
+| `value`               | `string`  | `""`          | Initial value of the password field                    |
+| `setResult`           | `func`    | _required_    | Callback to return final password value                |
+| `placeholder`         | `string`  | `"Password"`  | Placeholder text                                       |
+| `color`               | `string`  | `--colorCyan` | Sets accent color                                      |
+| `width`               | `string`  | `300px`       | Width of the component                                 |
+| `setPasswordStrength` | `func`    | _optional_    | To get the information about the strengt               |
+| `showLabelAlways`     | `boolean` | `false`       | If true, always shows the label above the input field. |
 
 ### Features
 

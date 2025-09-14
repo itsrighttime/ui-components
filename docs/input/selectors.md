@@ -391,6 +391,7 @@ const MyComponent = () => {
 | `setAddedOptions` | `Function`      | `undefined`        | Callback triggered when a new option is added.                   |
 | `color`           | `string`        | `var(--colorCyan)` | Sets the primary color of the dropdown (CSS variable `--color`). |
 | `width`           | `string`        | `"300px"`          | Sets the width of the dropdown (CSS variable `--width`).         |
+| `showLabelAlways` | `boolean`       | `false`            | If true, always shows the label above the input field.           |
 
 ## **Features**
 

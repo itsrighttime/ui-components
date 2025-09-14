@@ -76,23 +76,23 @@ const { TextArea } = UIInputs.text;
 
 ### Props
 
-| Prop                 | Type     | Default              | Description                                                                                 |
-| -------------------- | -------- | -------------------- | ------------------------------------------------------------------------------------------- |
-| `label`              | string   | —                    | Label text to display (shown only on focus and if input is not empty).                      |
-| `value`              | string   | ""                   | Controlled value of the textarea.                                                           |
-| `setResult`          | function | —                    | Callback to update the input value on change or blur.                                       |
-| `color`              | string   | var(--colorCyan)     | Color for styling the input border/text.                                                    |
-| `placeholder`        | string   | "Enter text here..." | Placeholder text shown when input is empty.                                                 |
-| `minLength`          | number   | —                    | Minimum allowed length for input. If violated, shows error.                                 |
-| `maxLength`          | number   | —                    | Maximum allowed length for input. Prevents typing beyond limit and shows error if exceeded. |
-| `maxTextAreaHeight`  | number   | 200                  | Maximum height of the textarea in pixels. If content exceeds, scrollbar appears.            |
-| `setIsFieldValid`    | function | () => {}             | Callback to notify if current field is valid (based on length validation).                  |
-| `showCharacterCount` | boolean  | false                | Show character count below the textarea.                                                    |
-| `showWordCount`      | boolean  | false                | Show word count below the textarea.                                                         |
-| `disabled`           | boolean  | false                | Disable the textarea input.                                                                 |
-| `style`              | object   | {}                   | Additional inline styles applied to the container.                                          |
-| `width`              | `string` | `300px`              | to adjust the width of the Field                                                            |
-| `showCharacterCount` | boolean  | false                | Show character count below the textarea.                                                    |
+| Prop                 | Type      | Default              | Description                                                                                 |
+| -------------------- | --------- | -------------------- | ------------------------------------------------------------------------------------------- |
+| `label`              | string    | —                    | Label text to display (shown only on focus and if input is not empty).                      |
+| `value`              | string    | ""                   | Controlled value of the textarea.                                                           |
+| `setResult`          | function  | —                    | Callback to update the input value on change or blur.                                       |
+| `color`              | string    | var(--colorCyan)     | Color for styling the input border/text.                                                    |
+| `placeholder`        | string    | "Enter text here..." | Placeholder text shown when input is empty.                                                 |
+| `minLength`          | number    | —                    | Minimum allowed length for input. If violated, shows error.                                 |
+| `maxLength`          | number    | —                    | Maximum allowed length for input. Prevents typing beyond limit and shows error if exceeded. |
+| `maxTextAreaHeight`  | number    | 200                  | Maximum height of the textarea in pixels. If content exceeds, scrollbar appears.            |
+| `setIsFieldValid`    | function  | () => {}             | Callback to notify if current field is valid (based on length validation).                  |
+| `showCharacterCount` | boolean   | false                | Show character count below the textarea.                                                    |
+| `showWordCount`      | boolean   | false                | Show word count below the textarea.                                                         |
+| `disabled`           | boolean   | false                | Disable the textarea input.                                                                 |
+| `style`              | object    | {}                   | Additional inline styles applied to the container.                                          |
+| `width`              | `string`  | `300px`              | to adjust the width of the Field                                                            |
+| `showLabelAlways`    | `boolean` | `false`              | If true, always shows the label above the input field.                                      |
 
 ### Behavior
 

@@ -110,7 +110,7 @@ export const Calendar = ({
 
       <Suspense
         fallback={
-          <Loading color={color} windowHeight="100%" windowWidth="100%" />
+          <Loading color={color} windowHeight="200px" windowWidth="100%" />
         }
       >
         {view === "calendar" && (

@@ -79,13 +79,11 @@ export const TextArea = ({
       className={styles.textAreaContainer}
       style={{ ...style, ...cssVariable }}
     >
-      {label &&
-        (showLabelAlways ||
-          (isFocused && inputValue !== "" && (
-            <label htmlFor={label} className={styles.textAreaLabel}>
-              {label}
-            </label>
-          )))}
+      {(showLabelAlways || (isFocused && inputValue)) && label && (
+        <label htmlFor={label} className={styles.textAreaLabel}>
+          {label}
+        </label>
+      )}
 
       <textarea
         id={label}

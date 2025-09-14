@@ -16,6 +16,7 @@ export const Dropdown = ({
   addNew = false,
   setAddedOptions,
   width = "300px",
+  showLabelAlways = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [allOptions, setAllOptions] = useState(options);
@@ -93,7 +94,7 @@ export const Dropdown = ({
       tabIndex={0}
       style={cssVariable}
     >
-      {label && <div className={styles.label}>{label}</div>}
+      {showLabelAlways && label && <div className={styles.label}>{label}</div>}
 
       <div
         className={`${styles.dropdownHeader} ${isOpen ? styles.open : ""}`}
