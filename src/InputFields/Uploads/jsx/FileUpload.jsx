@@ -19,7 +19,7 @@ export const FileUpload = ({
   height = "200px",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [files, setFiles] = useState(value);
+  const [files, setFiles] = useState(value || []);
   const [error, setError] = useState(null);
 
   const validateFile = (file) => {
@@ -38,6 +38,8 @@ export const FileUpload = ({
 
   const handleFileChange = (selectedFiles) => {
     let newFileArray = Array.from(selectedFiles).filter(validateFile);
+
+    console.log("DDDD", newFileArray, files);
 
     // Prevent duplicates
     newFileArray = newFileArray.filter(

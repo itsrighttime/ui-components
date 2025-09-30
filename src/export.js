@@ -86,6 +86,7 @@ import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure";
 import { translator, useTranslator } from "./service/translator";
 import { FORM_FIELDS_TYPE } from "./Layout/Forms/jsx/formFieldTypes";
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
+import { OPERATORS } from "./Layout/Forms/jsx/operators";
 
 export const UIAlert = {
   Alert,
@@ -183,7 +184,7 @@ export const UILayout = {
   Header,
   Footer,
   WebStructure,
-  KEYS: { FORM_FIELDS_TYPE },
+  KEYS: { FORM_FIELDS_TYPE, OPERATORS },
 };
 
 export const UIHooks = {

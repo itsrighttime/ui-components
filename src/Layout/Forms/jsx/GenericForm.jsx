@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { FieldRenderer } from "./FieldRenderer";
 import { Button } from "../../../InputFields/Actions/jsx/Button";
 import styles from "../css/GenericForm.module.css";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
+import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
 
 export function GenericForm({
   config,
@@ -29,13 +31,10 @@ export function GenericForm({
         (initialState[f.name] = f.defaultValue || (f.repeatable ? [{}] : ""))
     );
 
-    console.log("DDDD Generic Form", initialState);
-
     setFormData(initialState);
   }, [config, mode]);
 
   const handleChange = (name, value) => {
-    console.log("DDDD ", name, value)
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -71,15 +70,19 @@ export function GenericForm({
       {mode === "multi" && config.steps.length > 1 && (
         <div className={styles.stepButtons}>
           {currentStep > 0 && (
-            <Button
-              text="Back"
+            <IconButton
+              icon={arrowLeftIcon}
+              label={"Back"}
               onClick={() => setCurrentStep((prev) => prev - 1)}
+              size={"2"}
             />
           )}
           {currentStep < config.steps.length - 1 ? (
-            <Button
-              text="Next"
+            <IconButton
+              icon={arrowRightIcon}
+              label="Next"
               onClick={() => setCurrentStep((prev) => prev + 1)}
+              size={"2"}
             />
           ) : (
             <Button text={submitLabel} onClick={handleSubmit} />

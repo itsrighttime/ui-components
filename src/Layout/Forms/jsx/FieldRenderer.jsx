@@ -11,16 +11,13 @@ import { Dropdown } from "../../../InputFields/Selectors/jsx/Dropdown";
 import { FORM_FIELDS_TYPE } from "./formFieldTypes";
 import { RepeatableGroup } from "./RepeatableGroup";
 import { FileUpload } from "../../../InputFields/Uploads/jsx/FileUpload";
+import { isConditional } from "./conditional";
 
 export function FieldRenderer({ field, value, onChange, settings }) {
   // Conditional rendering
   if (field.conditional) {
-    const targetValue = value[field.conditional.dependsOn];
-    const match =
-      field.conditional.operator === "in"
-        ? field.conditional.value.includes(targetValue)
-        : field.conditional.value === targetValue;
-    if (!match) return null;
+    const isMatch = isConditional(field, value);
+    if (!isMatch) return null;
   }
 
   const color = settings.color;
