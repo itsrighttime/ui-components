@@ -9,109 +9,76 @@ import { Header } from "./Layout/Header/jsx/Header.jsx";
 import { getProductLogo } from "./assets/productsLogo/productLogo.assets.js";
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm.jsx";
 import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure.jsx";
+import { FORM_FIELDS_TYPE } from "./Layout/Forms/jsx/formFieldTypes.js";
+import { configData01 } from "./Layout/Forms/helper/data-01.js";
 
 const logo = getProductLogo("");
 
-const formConfig = {
-  title: "Create New User", // Title of the form
-  description: "Please fill in the details below to create a new user.",
+// const formConfig = {
+//   title: "Job Application",
+//   description: "Fill out your details to apply",
+//   mode: "multi",
 
-  fields: [
-    {
-      name: "name", // Field name (key in the formData)
-      label: "Full Name", // Field label displayed next to the input
-      type: "text", // Input type (text, email, etc.)
-      required: true, // Make this field mandatory
-      placeholder: "Enter your full name", // Placeholder text for the input
-    },
-    {
-      name: "namea", // Field name (key in the formData)
-      label: "Full Name", // Field label displayed next to the input
-      type: "textArea", // Input type (text, email, etc.)
-      required: true, // Make this field mandatory
-      placeholder: "Enter your full name", // Placeholder text for the input
-    },
-
-    {
-      name: "email",
-      label: "Email Address",
-      type: "email",
-      required: true,
-      placeholder: "Enter your email address",
-    },
-
-    {
-      name: "password",
-      label: "Password",
-      type: "password", // Password field
-      required: true,
-      placeholder: "Enter a secure password",
-    },
-
-    {
-      name: "role",
-      label: "User Role",
-      type: "dropdown", // Single selection dropdown
-      required: true,
-      options: [
-        "Admin",
-        "Phase Head",
-        "Operator",
-        "Admin1",
-        "Phase Head 1",
-        "Operator 1",
-      ],
-    },
-
-    {
-      name: "phases",
-      label: "Assigned Phases",
-      type: "multi-dropdown", // Multiple selection dropdown
-      options: ["Phase 1", "Phase 2", "Phase 3"],
-      defaultValue: ["Phase 1"], // Default value pre-selected
-    },
-
-    {
-      name: "birthdate",
-      label: "Date of Birth",
-      type: "date", // Date picker input
-      required: true,
-      placeholder: "Select your birthdate",
-      // initialDate: "2000-01-01", // Initial default date
-      restrictionStartDate: "1900-01-01", // Restrict start date
-      restrictionEndDate: "2025-12-31", // Restrict end date
-    },
-
-    {
-      name: "appointmentTime",
-      label: "Appointment Time",
-      type: "time", // Time picker input
-      required: true,
-    },
-
-    {
-      name: "phone",
-      label: "Phone Number",
-      type: "mobile", // Mobile number field
-      required: true,
-      placeholder: "Enter your phone number",
-    },
-
-    {
-      name: "address",
-      label: "Home Address",
-      type: "address", // Custom Address input component
-      isHouse: true,
-      isStreet: true,
-      isCity: true,
-      isState: true,
-      isPostal: true,
-      isCountry: true,
-      isAddressLine: true,
-      isLandmark: false,
-    },
-  ],
-};
+//   steps: [
+//     {
+//       title: "Step 1: Personal Info",
+//       fields: [
+//         {
+//           name: "fullName",
+//           type: FORM_FIELDS_TYPE.TEXT,
+//           label: "Full Name",
+//           required: true,
+//           min: 3,
+//           max: 50,
+//         },
+//         {
+//           name: "email",
+//           type: FORM_FIELDS_TYPE.EMAIL,
+//           label: "Email",
+//           required: true,
+//         },
+//         {
+//           name: "portfolio",
+//           type: FORM_FIELDS_TYPE.TEXT,
+//           label: "Portfolio URL",
+//           conditional: {
+//             dependsOn: "role",
+//             operator: "eq",
+//             value: "designer",
+//           },
+//         },
+//       ],
+//     },
+//     {
+//       title: "Step 2: Education",
+//       fields: [
+//         {
+//           name: "education",
+//           label: "Education Details",
+//           repeatable: true,
+//           fields: [
+//             { name: "degree", type: "text", label: "Degree" },
+//             { name: "institute", type: "text", label: "Institute" },
+//             { name: "year", type: "date", label: "Year of Passing" },
+//           ],
+//         },
+//       ],
+//     },
+//     {
+//       title: "Step 3: Uploads",
+//       fields: [
+//         {
+//           name: "resume",
+//           type: FORM_FIELDS_TYPE.TEXT,
+//           label: "Upload Resume",
+//           required: true,
+//           allowedTypes: ["application/pdf"],
+//           maxSize: 2 * 1024 * 1024,
+//         },
+//       ],
+//     },
+//   ],
+// };
 
 const App = () => {
   const [count, setCount] = useState();
@@ -173,12 +140,12 @@ const App = () => {
         {/* <IconGallery /> */}
 
         <GenericForm
-          config={formConfig}
+          config={configData01}
           onSubmit={(value) => {
             console.log("Submited", value);
           }} // Your custom submission logic
           submitLabel="Create User"
-          settings={{ showLabelAlways: true }}
+          // settings={{ showLabelAlways: true }}
         />
 
         {/* <Header

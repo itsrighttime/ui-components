@@ -160,12 +160,20 @@ export const Dropdown = ({
             )}
 
             {multiple && selectedOptions.length > 0 && (
-              <Button
-                onClick={handleClearSelection}
-                text="Clear Selection"
-                width="90%"
-                color={color}
-              />
+              <div className={styles.buttons}>
+                <Button
+                  onClick={handleClearSelection}
+                  text="Clear Selection"
+                  width="90%"
+                  color={color}
+                />
+                <Button
+                  onClick={handleHeaderClick}
+                  text="Done"
+                  width="90%"
+                  color={color}
+                />
+              </div>
             )}
           </div>
         </div>

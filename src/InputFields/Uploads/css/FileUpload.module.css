@@ -1,6 +1,6 @@
 .fileUploadContainer {
   width: var(--width);
-  height: var(--height);
+  min-height: var(--height);
 }
 
 .fileUpload {
@@ -17,14 +17,19 @@
   color: var(--color);
 }
 
-.fileUpload.dragging {
-  border-color: var(--colorBlue);
-  background-color: var(--colorGray1);
-  color: var(--color);
-}
-
 .fileUpload .label {
   color: var(--colorGray4);
+}
+
+.fileUpload.dragging {
+  border-color: var(--color);
+  background-color: var(--color);
+  color: var(--colorWhite);
+}
+
+.fileUpload.dragging .label {
+  color: var(--colorWhite);
+  font-weight: var(--boldL2);
 }
 
 .fileUpload:hover .label {

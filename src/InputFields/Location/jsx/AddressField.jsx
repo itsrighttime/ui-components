@@ -57,7 +57,7 @@ export const AddressField = ({
       visible: isStreet,
       pattern: "^[A-Za-z0-9\\s,]*$",
       errorMessage: "Must be letters, numbers, and spaces.",
-      minLength: 3,
+      minLength: 1,
       maxLength: 100,
     },
     {
@@ -137,6 +137,7 @@ export const AddressField = ({
         }) =>
           visible && (
             <TextField
+              type="text"
               key={key}
               label={label}
               placeholder={placeholder}

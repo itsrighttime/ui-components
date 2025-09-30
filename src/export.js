@@ -80,11 +80,12 @@ import { LoginForm } from "./Auth/js/LoginForm";
 import { useQueryParams } from "./Hooks/useQueryParams";
 import { Table } from "./Layout/Table/jsx/Table";
 
-import { FORM_FIELDS_TYPE, GenericForm } from "./Layout/Forms/jsx/GenericForm";
 import { Header } from "./Layout/Header/jsx/Header";
 import { Footer } from "./Layout/Footer/jsx/Footer";
 import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure";
 import { translator, useTranslator } from "./service/translator";
+import { FORM_FIELDS_TYPE } from "./Layout/Forms/jsx/formFieldTypes";
+import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
 
 export const UIAlert = {
   Alert,

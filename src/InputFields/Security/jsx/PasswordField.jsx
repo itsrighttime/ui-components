@@ -82,7 +82,7 @@ export const PasswordField = ({
           setPasswordStrengthProp && setPasswordStrengthProp(passwordStrength);
         }}
       >
-        {(showLabelAlways || (isFocused && inputValue)) && label && (
+        {(showLabelAlways || (isFocused && password)) && label && (
           <label
             htmlFor={label}
             className={`${style.passwordLabel} ${
