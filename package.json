@@ -12,7 +12,8 @@
     "url": "https://github.com/itsrighttime/ui-components"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
   },
   "main": "src/export.js",
   "module": "src/export.js",
