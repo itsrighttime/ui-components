@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/AddressField.module.css";
+import { useEffect } from "react";
 
 export const AddressField = ({
   setResult,
@@ -17,27 +18,75 @@ export const AddressField = ({
   width = "300px",
   isBorder = false,
   gap = "10px",
+  setIsFieldValid = () => {},
 }) => {
-  const initialStates = {
-    house: isHouse ? "" : null,
-    street: isStreet ? "" : null,
-    city: isCity ? "" : null,
-    state: isState ? "" : null,
-    postal: isPostal ? "" : null,
-    country: isCountry ? "" : null,
-    addressLine: isAddressLine ? "" : null,
-    landmark: isLandmark ? "" : null,
-  };
+  const initialStates = {};
+  const initialError = {};
+  const VALID = "valid",
+    INVALID = "invalid";
+
+  if (isHouse) {
+    initialStates["house"] = "";
+    initialError["house"] = INVALID;
+  }
+  if (isStreet) {
+    initialStates["street"] = "";
+    initialError["street"] = INVALID;
+  }
+  if (isCity) {
+    initialStates["city"] = "";
+    initialError["city"] = INVALID;
+  }
+  if (isState) {
+    initialStates["state"] = "";
+    initialError["state"] = INVALID;
+  }
+  if (isPostal) {
+    initialStates["postal"] = "";
+    initialError["postal"] = INVALID;
+  }
+  if (isCountry) {
+    initialStates["country"] = "";
+    initialError["country"] = INVALID;
+  }
+  if (isAddressLine) {
+    initialStates["addressLine"] = "";
+    initialError["addressLine"] = INVALID;
+  }
+  if (isLandmark) {
+    initialStates["landmark"] = "";
+    initialError["landmark"] = INVALID;
+  }
+
+  // const inital
 
   const [address, setAddress] = useState(initialStates);
+  const [error, setError] = useState(initialError);
+  const [isStarted, setIsStarted] = useState(false);
 
-  const handleChange = (field, value) => {
+  const handleChange = (field, value, isError = false) => {
+    !isStarted && setIsStarted(true);
+
     setAddress((prev) => ({ ...prev, [field]: value }));
+    isError &&
+      setError((prev) => ({ ...prev, [field]: value ? VALID : INVALID }));
   };
 
   const handleBlur = () => {
     setResult(address);
   };
+
+  useEffect(() => {
+    if (!isStarted) return;
+
+    const validity = Object.values(error).find((er) => {
+      return er === INVALID;
+    });
+
+    const isValid = validity ? false : true;
+
+    setIsFieldValid(isValid);
+  }, [error]);
 
   const fieldConfigs = [
     {
@@ -45,7 +94,7 @@ export const AddressField = ({
       label: "House No.",
       placeholder: "House No.",
       visible: isHouse,
-      pattern: "^[A-Za-z0-9\\s,/.\\-]*$",
+      pattern: /^[A-Za-z0-9\\s,\/.\-]*$/,
       errorMessage: "Must be numbers, letters, space, hyphen and dot",
       minLength: 1,
       maxLength: 10,
@@ -152,6 +201,7 @@ export const AddressField = ({
               showLabelAlways={showLabelAlways}
               onBlur={handleBlur} // Trigger onBlur to update the result
               width={width}
+              setIsFieldValid={(v) => handleChange(key, v, true)}
             />
           )
       )}

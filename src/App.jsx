@@ -10,6 +10,8 @@ import { getProductLogo } from "./assets/productsLogo/productLogo.assets.js";
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm.jsx";
 
 import { configData06 } from "./Layout/Forms/helper/data-06.js";
+import { configData05 } from "./Layout/Forms/helper/data-05.js";
+import { configData01 } from "./Layout/Forms/helper/data-01.js";
 
 const logo = getProductLogo("");
 
@@ -73,7 +75,7 @@ const App = () => {
         {/* <IconGallery /> */}
 
         <GenericForm
-          config={configData06}
+          config={configData01}
           onSubmit={(value) => {
             console.log("Submited", value);
           }} // Your custom submission logic

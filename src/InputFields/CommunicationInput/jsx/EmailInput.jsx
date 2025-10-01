@@ -14,6 +14,7 @@ export const EmailField = ({
   style = {},
   width = "300px",
   isBorder = false,
+  errorMessage = "Please enter a valid email address.",
 }) => {
   return (
     <TextField
@@ -27,7 +28,7 @@ export const EmailField = ({
       disabled={disabled}
       color={color}
       pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
-      errorMessage="Please enter a valid email address."
+      errorMessage={errorMessage}
       style={style}
       setIsFieldValid={setIsFieldValid}
       isApplyStrictPattern={false}

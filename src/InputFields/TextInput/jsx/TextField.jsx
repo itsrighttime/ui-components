@@ -109,19 +109,40 @@ export const TextField = ({
 
   const handleBlur = () => {
     const trimmedValue = inputValue.trim();
-    const valid =
-      (!maxLength || trimmedValue.length <= maxLength) &&
-      (!pattern || new RegExp(pattern).test(trimmedValue));
 
-    // (!minLength || trimmedValue.length >= minLength) &&
-    if (minLength && !validateMinLength(trimmedValue)) {
-      setResult(trimmedValue);
-      return;
+    let isValid = true;
+
+    if (required) {
+      // If required, empty is invalid
+      if (trimmedValue === "") {
+        isValid = false;
+      }
+    } else {
+      // If not required and empty, it's always valid — skip further checks
+      if (trimmedValue === "") {
+        setIsValid(true);
+        setIsFieldValid(true);
+        setResult(trimmedValue);
+        onBlur?.();
+        setIsFocused(false);
+        return;
+      }
     }
-    setIsValid(valid);
-    setIsFieldValid(valid);
-    // if (valid) setResult(trimmedValue);
+
+    // Apply validations only if value is non-empty
+    const passesLength =
+      (!maxLength || trimmedValue.length <= maxLength) &&
+      (!minLength || trimmedValue.length >= minLength);
+
+    const passesPattern = !pattern || new RegExp(pattern).test(trimmedValue);
+
+    isValid = isValid && passesLength && passesPattern;
+
+    // Update state
+    setIsValid(isValid);
+    setIsFieldValid(isValid);
     setResult(trimmedValue);
+
     onBlur?.();
     setIsFocused(false);
   };

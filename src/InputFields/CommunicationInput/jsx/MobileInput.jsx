@@ -15,6 +15,7 @@ export const MobileField = ({
   style = {},
   width = "300px",
   isBorder = false,
+  errorMessage = "Not a valid Numbers",
 }) => {
   const [countryCode, setCountryCode] = useState(code);
   const [phoneNumber, setPhoneNumber] = useState(value);
@@ -37,8 +38,6 @@ export const MobileField = ({
     setPhoneNumber(val);
     updatePhoneData({ phoneNumber: val });
   };
-
-  const errorMessage = "Numbers Only";
 
   return (
     <div className={styles.mobileInput} style={{ width, ...style }}>

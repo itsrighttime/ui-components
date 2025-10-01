@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { FieldRenderer } from "./FieldRenderer";
 import { Button } from "../../../InputFields/Actions/jsx/Button";
-import styles from "../css/GenericForm.module.css";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
+import styles from "../css/GenericForm.module.css";
 
 export function GenericForm({
   config,
@@ -13,38 +13,77 @@ export function GenericForm({
   settings = {},
 }) {
   const [formData, setFormData] = useState({});
+  const [formError, setFormError] = useState({});
   const [currentStep, setCurrentStep] = useState(0);
+
+  const VALIDITY = { VALID: "valid", INVALID: "invalid" };
   const mode = config.mode || "single";
 
+  // merge default settings with overrides
   const _settings = {
-    showLabelAlways: settings?.showLabelAlways || false,
-    gap: settings?.gap || "2rem",
-    color: settings?.color || "var(--colorCyan)",
+    showLabelAlways: false,
+    gap: "2rem",
+    color: "var(--colorCyan)",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "var(--colorWhite)",
+    textColor: "var(--colorSimple)",
+    labelColor: "var(--colorGray4)",
+    border: "none",
+    borderRadius: "5px",
+    ...settings,
   };
+
+  // all fields (single or flattened multi-step)
+  const allFields = useMemo(
+    () =>
+      mode === "multi" ? config.steps.flatMap((s) => s.fields) : config.fields,
+    [config, mode]
+  );
+
+  // build initial state + error state
+  const { initialState, initialError } = useMemo(() => {
+    const state = {};
+    const errors = {};
+    allFields.forEach((f) => {
+      state[f.name] = f.defaultValue ?? (f.repeatable ? [{}] : "");
+      errors[f.name] = f.required ? VALIDITY.INVALID : VALIDITY.VALID;
+    });
+    return { initialState: state, initialError: errors };
+  }, [allFields]);
+
+  // initialize form state when config changes
+  useEffect(() => {
+    setFormData(initialState);
+    setFormError(initialError);
+  }, [initialState, initialError]);
 
   useEffect(() => {
-    const initialState = {};
-    const fields =
-      mode === "multi" ? config.steps.flatMap((s) => s.fields) : config.fields;
-    fields.forEach(
-      (f) =>
-        (initialState[f.name] = f.defaultValue || (f.repeatable ? [{}] : ""))
-    );
+    console.log("DDDD", formError);
+  }, [formError]);
 
-    setFormData(initialState);
-  }, [config, mode]);
-
-  const handleChange = (name, value) => {
+  const handleChange = (name, value, isError) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
-  const fieldsToRender =
-    mode === "multi" ? config.steps[currentStep].fields : config.fields;
+    setFormError((prev) => {
+      if (isError) {
+        return { ...prev, [name]: value ? VALIDITY.VALID : VALIDITY.INVALID };
+      }
+
+      const isInitialValid =
+        value === initialState[name] && initialError[name] === VALIDITY.VALID;
+
+      return { ...prev, [name]: isInitialValid ? VALIDITY.VALID : prev[name] };
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await onSubmit(formData);
   };
+
+  const fieldsToRender =
+    mode === "multi" ? config.steps[currentStep].fields : config.fields;
 
   return (
     <form className={styles.form} style={style} onSubmit={handleSubmit}>
@@ -67,31 +106,29 @@ export function GenericForm({
         />
       ))}
 
-      {mode === "multi" && config.steps.length > 1 && (
+      {mode === "multi" && config.steps.length > 1 ? (
         <div className={styles.stepButtons}>
           {currentStep > 0 && (
             <IconButton
               icon={arrowLeftIcon}
-              label={"Back"}
-              onClick={() => setCurrentStep((prev) => prev - 1)}
-              size={"2"}
+              label="Back"
+              onClick={() => setCurrentStep((s) => s - 1)}
+              size="2"
             />
           )}
           {currentStep < config.steps.length - 1 ? (
             <IconButton
               icon={arrowRightIcon}
               label="Next"
-              onClick={() => setCurrentStep((prev) => prev + 1)}
-              size={"2"}
+              onClick={() => setCurrentStep((s) => s + 1)}
+              size="2"
             />
           ) : (
-            <Button text={submitLabel} onClick={handleSubmit} />
+            <Button text={submitLabel} type="submit" />
           )}
         </div>
-      )}
-
-      {mode === "single" && (
-        <Button text={submitLabel} onClick={handleSubmit} />
+      ) : (
+        mode === "single" && <Button text={submitLabel} type="submit" />
       )}
     </form>
   );

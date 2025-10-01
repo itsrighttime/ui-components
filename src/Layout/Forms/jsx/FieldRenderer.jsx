@@ -74,6 +74,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         placeholder={field.placeholder || field.label}
         value={value[field.name]}
         setResult={(v) => onChange(field.name, v)} // Update state on change
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
         showLabelAlways={settings.showLabelAlways}
       />
     ),
@@ -103,6 +104,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
           onChange(field.name, val);
         }} // Update state on change
         showLabelAlways={settings.showLabelAlways}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.DATE]: (
@@ -145,6 +147,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         isAddressLine={field.isAddressLine}
         isLandmark={field.isLandmark}
         showLabelAlways={settings.showLabelAlways}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
         gap="2rem"
       />
     ),
@@ -160,6 +163,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         color={color}
         showLabelAlways={settings.showLabelAlways}
         required={field?.required || false}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.TEXT_AREA]: (
@@ -175,10 +179,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         minLength={field.minLength}
         maxLength={field.maxLength}
         maxTextAreaHeight={field.maxTextAreaHeight}
-        setIsFieldValid={field.setIsFieldValid}
         showCharacterCount={field.showCharacterCount}
         showWordCount={field.showWordCount}
         disabled={field.disabled}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.FILE]: (
@@ -192,7 +196,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         allowedTypes={field.allowedTypes}
         height={field.height || "200px"}
         setResult={(files) => onChange(field.name, files)}
-        setIsFieldValid={() => {}}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
     ),
   };

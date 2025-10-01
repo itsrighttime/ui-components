@@ -38,6 +38,7 @@ const { AddressField } = UIInputs.Text;
 | `width`           | String   | `"300px"`   | Width of the entire address form                                 |
 | `gap`             | String   | `"10px"`    | Spacing between each input field                                 |
 | `isBorder`        | Boolean  | `false`     | If true, TextFields will show borders instead of only underlines |
+| `setIsFieldValid` | `func`    | `-`                  | Callback to indicate whether the email is valid.       |
 
 ### Returned Data Format
 

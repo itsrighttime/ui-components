@@ -24,7 +24,7 @@ export const configData01 = {
       type: FORM_FIELDS_TYPE.EMAIL,
       label: "Email Address",
       placeholder: "Enter your email",
-      required: true,
+      required: false,
     },
     {
       name: "password",
