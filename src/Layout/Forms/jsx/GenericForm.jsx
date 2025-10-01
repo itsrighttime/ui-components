@@ -34,6 +34,16 @@ export function GenericForm({
     ...settings,
   };
 
+  const formStyle = {
+    gap: _settings.gap,
+    width: _settings.width,
+    height: _settings.height,
+    // backgroundColor: _settings.backgroundColor,
+    border: _settings.border,
+    borderRadius: _settings.borderRadius,
+    ...style,
+  };
+
   const color = _settings.color;
 
   // all fields (single or flattened multi-step)
@@ -88,62 +98,60 @@ export function GenericForm({
     mode === "multi" ? config.steps[currentStep].fields : config.fields;
 
   return (
-    <form className={styles.form} style={style} onSubmit={handleSubmit}>
-      {mode === "multi" && (
+    <div className={styles.formWrapper}>
+      <form className={styles.form} style={formStyle}>
         <div className={styles.stepHeader}>
-          <h2>{config.steps[currentStep].title}</h2>
-          {config.steps[currentStep].description && (
-            <p>{config.steps[currentStep].description}</p>
-          )}
+          <h2>{config.title}</h2>
+          {config.description && <p>{config.description}</p>}
         </div>
-      )}
+        {mode === "multi" && (
+          <div className={styles.stepHeader}>
+            <h2>{config.steps[currentStep].title}</h2>
+            {config.steps[currentStep].description && (
+              <p>{config.steps[currentStep].description}</p>
+            )}
+          </div>
+        )}
 
-      {fieldsToRender.map((field) => (
-        <FieldRenderer
-          key={field.name}
-          field={field}
-          value={formData}
-          onChange={handleChange}
-          settings={_settings}
-        />
-      ))}
-
-      {mode === "multi" && config.steps.length > 1 ? (
-        <div className={styles.stepButtons}>
-          {currentStep > 0 && (
-            <IconButton
-              icon={arrowLeftIcon}
-              label="Back"
-              onClick={() => setCurrentStep((s) => s - 1)}
-              size="2"
-              color={color}
-            />
-          )}
-          {currentStep < config.steps.length - 1 ? (
-            <IconButton
-              icon={arrowRightIcon}
-              label="Next"
-              onClick={() => setCurrentStep((s) => s + 1)}
-              size="2"
-              color={color}
-            />
-          ) : (
-            <Button
-              text={submitLabel}
-              onClick={() => console.warn("Need to implement in General Form")}
-              color={color}
-            />
-          )}
-        </div>
-      ) : (
-        mode === "single" && (
-          <Button
-            text={submitLabel}
-            onClick={() => console.warn("Need to implement in General Form")}
-            color={color}
+        {fieldsToRender.map((field) => (
+          <FieldRenderer
+            key={field.name}
+            field={field}
+            value={formData}
+            onChange={handleChange}
+            settings={_settings}
           />
-        )
-      )}
-    </form>
+        ))}
+
+        {mode === "multi" && config.steps.length > 1 ? (
+          <div className={styles.stepButtons}>
+            {currentStep > 0 && (
+              <IconButton
+                icon={arrowLeftIcon}
+                label="Back"
+                onClick={() => setCurrentStep((s) => s - 1)}
+                size="2"
+                color={color}
+              />
+            )}
+            {currentStep < config.steps.length - 1 ? (
+              <IconButton
+                icon={arrowRightIcon}
+                label="Next"
+                onClick={() => setCurrentStep((s) => s + 1)}
+                size="2"
+                color={color}
+              />
+            ) : (
+              <Button text={submitLabel} onClick={handleSubmit} color={color} />
+            )}
+          </div>
+        ) : (
+          mode === "single" && (
+            <Button text={submitLabel} onClick={handleSubmit} color={color} />
+          )
+        )}
+      </form>
+    </div>
   );
 }

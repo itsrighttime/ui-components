@@ -161,7 +161,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         isLandmark={field.isLandmark}
         showLabelAlways={settings.showLabelAlways}
         setIsFieldValid={(v) => onChange(field.name, v, true)}
-        gap="2rem"
+        gap={settings.gap}
       />
     ),
     [FORM_FIELDS_TYPE.TEXT]: (

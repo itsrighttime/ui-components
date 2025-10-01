@@ -5,7 +5,7 @@
 
 .fileUpload {
   width: 100%;
-  height: calc(100% - 20px);
+  height: calc(var(--height) - 20px);
   border: 2px dashed var(--color);
   border-radius: 10px;
   display: flex;

@@ -6,7 +6,7 @@
 
 .imageUpload {
   width: 100%;
-  height: 100%;
+  height: var(--height);
   border: 2px dashed var(--color);
   border-radius: 10px;
   display: flex;
