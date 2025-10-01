@@ -34,7 +34,7 @@ export const VideoPlayer = ({
             controls
             controlsList="nodownload"
             muted
-            autoplay
+            autoPlay
             src={videoSrc}
             className={style.videoPlayer}
           />

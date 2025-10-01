@@ -4,6 +4,7 @@ import { VideoPlayer } from "./VideoPlayer";
 import { crossIcon, resetFieldIcon } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
 import { formatFileSize } from "../helper/formatFileSize";
+import { useEffect } from "react";
 
 export const VideoUpload = ({
   label = "Upload Video",
@@ -24,6 +25,13 @@ export const VideoUpload = ({
   const maxSize = maxSizeMB * 1024 * 1024; // Convert MB to bytes
   const formattedMaxSize = formatFileSize(maxSize);
 
+  useEffect(() => {
+    if (backendError) {
+      setError(backendError);
+      setIsFieldValid(false);
+    }
+  }, [backendError]);
+
   const validateVideo = (file) => {
     if (!allowedTypes.includes(file.type)) {
       setError(`Invalid video type. Allowed types: ${allowedTypes.join(", ")}`);
@@ -39,6 +47,7 @@ export const VideoUpload = ({
 
   const handleFileChange = (selectedFile) => {
     if (!selectedFile) return;
+    if (backendError) setError(null);
 
     if (validateVideo(selectedFile)) {
       setVideo(selectedFile);

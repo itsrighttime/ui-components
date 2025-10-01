@@ -43,11 +43,13 @@ export const AudioPlayer = ({
     };
   }, []);
 
-  useEffect(() => {
-    return () => {
-      URL.revokeObjectURL(audioSrc);
-    };
-  }, [audioSrc]);
+  // useEffect(() => {
+  //   // Cleanup only on unmount
+  //   return () => {
+  //     console.log("DDDD", "Triggered")
+  //     if (audioSrc) URL.revokeObjectURL(audioSrc);
+  //   };
+  // }, []);
 
   const formatTime = (time) => {
     if (!time) return "0:00";

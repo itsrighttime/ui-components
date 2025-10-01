@@ -1,6 +1,6 @@
 .imageUploadContainer {
   width: var(--width);
-  height: var(--height);
+  min-height: var(--height);
   overflow: auto;
 }
 
@@ -49,7 +49,7 @@
 .image {
   margin-bottom: 10px;
   height: calc(100% - 30px);
-  width: calc(100% - 30px);
+  width: auto;
 }
 
 .resetRemove {

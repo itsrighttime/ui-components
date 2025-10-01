@@ -113,5 +113,26 @@ export const configData01 = {
       maxSize: 2 * 1024 * 1024, // 2MB
       allowedTypes: ["application/pdf", "image/jpeg", "image/png"],
     },
+    {
+      name: "audio",
+      type: FORM_FIELDS_TYPE.AUDIO,
+      label: "Upload Audio",
+      maxFiles: 5,
+      maxSize: 2 * 1024 * 1024, // 2MB
+    },
+    {
+      name: "video",
+      type: FORM_FIELDS_TYPE.VIDEO,
+      label: "Upload Vidoe",
+      maxSize: 2 * 1024 * 1024, // 2MB
+      preview: true,
+    },
+    {
+      name: "image",
+      type: FORM_FIELDS_TYPE.IMAGE,
+      label: "Upload Image",
+      maxFiles: 5,
+      requireSquare: false,
+    },
   ],
 };

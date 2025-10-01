@@ -1,6 +1,6 @@
 .videoUploadContainer {
   width: var(--width);
-  height: var(--height);
+  min-height: var(--height);
 }
 
 .videoUpload {

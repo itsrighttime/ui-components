@@ -1,426 +1,277 @@
-# [ OLD ] Developer Documentation: **GenericForm** Component
+# Dynamic Form Engine Documentation
 
-## Overview
+The **Form Engine** allows developers to build highly dynamic and customizable forms using configuration objects. It supports single-step and multi-step forms, various input field types, repeatable groups, file uploads, and powerful conditional rendering.
 
-The `GenericForm` component is designed to dynamically render a flexible and reusable form based on the configuration provided. This form can handle a variety of input fields, including text inputs, dropdowns, multi-select dropdowns, date pickers, time pickers, email fields, mobile fields, password fields, and custom address fields.
+It supports:
 
-This component leverages a **config object** passed as a prop to define the form's structure and behavior. The `GenericForm` is highly customizable, allowing you to easily add, modify, or remove form fields based on your needs.
+- **Single-step or multi-step** forms
+- **Conditional rendering** (fields visible only if certain conditions are met)
+- **Repeatable groups** (dynamic field sets like education, work experience, etc.)
+- **Static & API-driven dropdown options**
+- **Field-level validations** (min, max, regex, required, etc.)
+- **File uploads with type & size restrictions**
+- **Custom React components integration**
 
-## Installation
-
-1. Import the `GenericForm` component into your application.
+Import the `GenericForm` component into your application.
 
 ```js
 import { UILayout } from "@itsrighttime/ui-components";
 
 const {
   Form,
-  KEYS: { FORM_FIELDS_TYPE },
+  KEYS: { FORM_FIELDS_TYPE, OPERATORS },
 } = UILayout;
 ```
 
-2. Use the form component by passing a `config` object that defines the form fields and structure.
+## 1. Form Structure
 
-```js
-const formConfig = {
-  title: "Create New User",
-  description: "Please fill in the details below to create a new user.",
+A form configuration is a JavaScript object with the following properties:
+
+```javascript
+{
+  title: "Form Title",
+  description: "Form description text",
+  mode: "single" | "multi",   // single-step or multi-step form
+  fields: [...],  // (for single-step forms)
+  steps: [...]    // (for multi-step forms)
+}
+```
+
+## 2. Settings 
+- This was pass as the prop to the Form Component
+
+| Setting           | Description                                       | Example                |
+| ----------------- | ------------------------------------------------- | ---------------------- |
+| `showLabelAlways` | Whether field labels are always visible           | `true`                 |
+| `color`           | Primary theme color for inputs and labels         | `"var(--colorCyan)"`   |
+| `gap`             | Vertical spacing between fields                   | `"2rem"`               |
+| `width`           | Default width for input fields                    | `"100%"`               |
+| `height`          | Default height for input fields                   | `"100%"`               |
+| `backgroundColor` | Background color for input fields                 | `"var(--colorWhite)"`  |
+| `textColor`       | Default text color inside input fields            | `"var(--colorSimple)"` |
+| `labelColor`      | Color of field labels                             | `"var(--colorGray4)"`  |
+| `border`          | Border style for input fields                     | `"none"`               |
+| `borderRadius`    | Border radius for rounded corners on input fields | `"5px"`                |
+
+## 3. Field Definition
+
+Each field is an object with the following base properties:
+
+```javascript
+{
+  name: "fieldName",                   // unique identifier
+  type: FORM_FIELDS_TYPE.TEXT,         // field type
+  label: "Field Label",                // label shown to user
+  placeholder: "Enter value...",       // (optional) placeholder
+  required: true,                      // (optional) validation
+  repeatable: false,                   // (optional) allows multiple entries
+  moreLabel: "Add Another",            // (optional) for repeatable groups
+  conditional: { ... }                 // (optional) show/hide logic
+}
+```
+
+## 4. Supported Field Types
+
+Imported from `formFieldTypes.js`.
+
+- **Text & Input**: `TEXT`, `TEXT_AREA`, `EMAIL`, `PASSWORD`, `MOBILE`
+- **Selectors**: `DROPDOWN`, `MULTI_DROPDOWN`
+- **Date & Time**: `DATE`, `TIME`
+- **Location**: `ADDRESS`
+- **Uploads**: `FILE`
+
+## 5. Repeatable Groups
+
+Fields can be marked as `repeatable: true` to allow multiple entries dynamically.
+
+```javascript
+{
+  name: "education",
+  label: "Education",
+  repeatable: true,
+  moreLabel: "Add Other Degree",
+  fields: [
+    { name: "degree", type: FORM_FIELDS_TYPE.TEXT, label: "Degree" },
+    { name: "yearOfPassing", type: FORM_FIELDS_TYPE.DATE, label: "Year of Passing" }
+  ]
+}
+```
+
+**Notes:**
+
+- `moreLabel` sets the text for the “Add More” button.
+- Conditional fields can exist inside repeatable groups.
+
+## 6. Conditional Rendering
+
+Fields (including repeatable fields) can be displayed conditionally:
+
+```javascript
+conditional: {
+  dependsOn: "employmentStatus",
+  operator: OPERATORS.in,
+  value: ["Employed", "Self-Employed"]
+}
+```
+
+### Operators
+
+Imported from `operators.js`.
+
+- `equals`, `notEquals`
+- `in`, `notIn`
+- `gt`, `gte`, `lt`, `lte`
+- `contains`, `notContains`
+
+**Example:** Conditional inside repeatable:
+
+```javascript
+{
+  name: "noticePeriod",
+  type: FORM_FIELDS_TYPE.TEXT,
+  label: "Notice Period",
+  placeholder: "Enter notice period",
+  conditional: {
+    dependsOn: "currentlyWorking",
+    operator: OPERATORS.equals,
+    value: ["Yes"]
+  }
+}
+```
+
+## 7. Single-Step Repeatable Example
+
+```javascript
+import { FORM_FIELDS_TYPE } from "../jsx/formFieldTypes";
+import { OPERATORS } from "../jsx/operators";
+
+export const configData06 = {
+  title: "Repeatable Fields Example",
+  description: "Form to test repeatable groups",
+  mode: "single",
+  settings: {
+    showLabelAlways: true,
+    color: "var(--colorPurple)",
+    gap: "2rem",
+  },
   fields: [
     {
-      name: "name",
+      name: "fullName",
+      type: FORM_FIELDS_TYPE.TEXT,
       label: "Full Name",
-      type: "text",
-      required: true,
       placeholder: "Enter your full name",
-    },
-    // Add other fields here
-  ],
-};
-```
-
-### **Example of a Full Configuration:**
-
-```js
-const formConfig = {
-  title: "Create New User", // Title of the form
-  description: "Please fill in the details below to create a new user.",
-
-  fields: [
-    {
-      name: "name", // Field name (key in the formData)
-      label: "Full Name", // Field label displayed next to the input
-      type: FORM_FIELDS_TYPE.TEXT, // Input type (text, email, etc.)
-      required: true, // Make this field mandatory
-      placeholder: "Enter your full name", // Placeholder text for the input
-    },
-    {
-      name: "aboutYou",
-      label: "About You",
-      type: FORM_FIELDS_TYPE.TEXT_AREA,
-      placeholder: "Enter something about you...",
-      showCharacterCount = false
-    },
-
-    {
-      name: "email",
-      label: "Email Address",
-      type: FORM_FIELDS_TYPE.EMAIL,
-      required: true,
-      placeholder: "Enter your email address",
-    },
-
-    {
-      name: "password",
-      label: "Password",
-      type: FORM_FIELDS_TYPE.PASSWORD, // Password field
-      required: true,
-      placeholder: "Enter a secure password",
-    },
-
-    {
-      name: "role",
-      label: "User Role",
-      type: FORM_FIELDS_TYPE.MULTI_DROPDOWN, // Single selection dropdown
-      required: true,
-      options: ["Admin", "Phase Head", "Operator"],
-    },
-
-    {
-      name: "phases",
-      label: "Assigned Phases",
-      type: FORM_FIELDS_TYPE.DROPDOWN, // Multiple selection dropdown
-      options: ["Phase 1", "Phase 2", "Phase 3"],
-      defaultValue: ["Phase 1"], // Default value pre-selected
-    },
-
-    {
-      name: "birthdate",
-      label: "Date of Birth",
-      type: FORM_FIELDS_TYPE.DATE, // Date picker input
-      required: true,
-      placeholder: "Select your birthdate",
-      initialDate: "2000-01-01", // Initial default date
-      restrictionStartDate: "1900-01-01", // Restrict start date
-      restrictionEndDate: "2025-12-31", // Restrict end date
-    },
-
-    {
-      name: "appointmentTime",
-      label: "Appointment Time",
-      type: FORM_FIELDS_TYPE.TIME, // Time picker input
       required: true,
     },
-
     {
-      name: "phone",
-      label: "Phone Number",
-      type: FORM_FIELDS_TYPE.MOBILE, // Mobile number field
-      required: true,
-      placeholder: "Enter your phone number",
+      name: "skills",
+      type: FORM_FIELDS_TYPE.TEXT,
+      label: "Skills",
+      placeholder: "Enter a skill",
     },
-
     {
-      name: "address",
-      label: "Home Address",
-      type: FORM_FIELDS_TYPE.ADDRESS, // Custom Address input component
-      isHouse: true,
-      isStreet: true,
-      isCity: true,
-      isState: true,
-      isPostal: true,
-      isCountry: true,
-      isAddressLine: true,
-      isLandmark: false,
+      name: "education",
+      label: "Education",
+      repeatable: true,
+      moreLabel: "Add Other Degree",
+      fields: [
+        {
+          name: "degree",
+          type: FORM_FIELDS_TYPE.TEXT,
+          label: "Degree",
+          placeholder: "Enter your degree",
+        },
+        {
+          name: "yearOfPassing",
+          type: FORM_FIELDS_TYPE.DATE,
+          label: "Year of Passing",
+        },
+        {
+          name: "institution",
+          type: FORM_FIELDS_TYPE.TEXT,
+          label: "Institution Name",
+          placeholder: "Enter institution name",
+        },
+      ],
+    },
+    {
+      name: "workExperience",
+      label: "Work Experience",
+      repeatable: true,
+      moreLabel: "Add Other Details",
+      fields: [
+        {
+          name: "company",
+          type: FORM_FIELDS_TYPE.TEXT,
+          label: "Company Name",
+          placeholder: "Enter company name",
+        },
+        {
+          name: "role",
+          type: FORM_FIELDS_TYPE.TEXT,
+          label: "Role",
+          placeholder: "Enter your role",
+        },
+        {
+          name: "duration",
+          type: FORM_FIELDS_TYPE.TEXT,
+          label: "Duration",
+          placeholder: "Enter duration (e.g., 2 years)",
+        },
+        {
+          name: "currentlyWorking",
+          type: FORM_FIELDS_TYPE.DROPDOWN,
+          label: "Currently Working?",
+          options: ["Yes", "No"],
+        },
+        {
+          name: "noticePeriod",
+          type: FORM_FIELDS_TYPE.TEXT,
+          label: "Notice Period",
+          placeholder: "Enter notice period",
+          conditional: {
+            dependsOn: "currentlyWorking",
+            operator: OPERATORS.equals,
+            value: ["Yes"],
+          },
+        },
+      ],
     },
   ],
 };
 ```
 
-```js
-export const FORM_FIELDS_TYPE = {
-  DROPDOWN: "dropdown",
-  MULTI_DROPDOWN: "multi-dropdown",
-  EMAIL: "email",
-  PASSWORD: "password",
-  MOBILE: "mobile",
-  DATE: "date",
-  TIME: "time",
-  ADDRESS: "address",
-  TEXT: "text",
-  TEXT_AREA: "textArea",
-};
+## 8. Multi-Step Repeatable Example
 
-const settings = {
-  showLabelAlways: true,
-  gap: "2rem",
-  color: "var(--colorCyan)",
-};
+Multi-step forms can include repeatable groups in any step. The structure is the same as single-step, but nested under `steps`:
+
+```javascript
+steps: [
+  {
+    title: "Step 1",
+    fields: [
+      /* repeatable fields allowed here */
+    ],
+  },
+  {
+    title: "Step 2",
+    fields: [
+      /* additional repeatable fields */
+    ],
+  },
+];
 ```
 
-## Usage Example
+## 9. Best Practices
 
-Here’s how to integrate the `GenericForm` into your application:
+1. Unique field names.
+2. Logical ordering of dependent fields.
+3. Use `moreLabel` for repeatable clarity.
+4. Test repeatable + conditional combinations thoroughly.
 
-### **1. Importing the Form Component:**
+This documentation now fully covers:
 
-```js
-import { GenericForm } from "../../Layout/Forms/jsx/GenericForm";
-```
-
-### **2. Using the Form in Your Component:**
-
-```js
-const handleSubmit = async (formData) => {
-  // Handle form submission logic here
-  console.log("Form submitted with data:", formData);
-};
-
-export const UseFormExample = () => {
-  return (
-    <div className="App">
-      <div
-        style={{
-          width: "100vw",
-          height: "100vh",
-        }}
-      >
-        <GenericForm
-          config={formConfig} // Pass the form configuration
-          onSubmit={handleSubmit} // Handle form submission
-          submitLabel="Create User" // Optional: Override default submit button label
-          settings = {}
-        />
-      </div>
-    </div>
-  );
-};
-```
-
-## Form Configuration
-
-### **Text, Email, Password, and Mobile Fields:**
-
-| **Prop Name** | **Type**   | **Description**                                                           | **Default Value** |
-| ------------- | ---------- | ------------------------------------------------------------------------- | ----------------- |
-| `name`        | `string`   | The field name used for form state.                                       | N/A               |
-| `label`       | `string`   | The label for the input field.                                            | N/A               |
-| `type`        | `string`   | Type of input field (e.g., `"text"`, `"email"`, `"password"`, `"mobile"`) | N/A               |
-| `required`    | `boolean`  | Indicates whether the field is required.                                  | `false`           |
-| `placeholder` | `string`   | Placeholder text for the input field.                                     | N/A               |
-| `value`       | `string`   | The current value of the input field.                                     | N/A               |
-| `setResult`   | `function` | Function to update the form state when the input value changes.           | N/A               |
-
-### **Dropdown (Single Selection):**
-
-| **Prop Name** | **Type**   | **Description**                                                                 | **Default Value** |
-| ------------- | ---------- | ------------------------------------------------------------------------------- | ----------------- |
-| `name`        | `string`   | The field name used for form state.                                             | N/A               |
-| `label`       | `string`   | The label for the dropdown.                                                     | N/A               |
-| `type`        | `string`   | Type of input field, always `"dropdown"`.                                       | `"dropdown"`      |
-| `required`    | `boolean`  | Indicates whether the field is required.                                        | `false`           |
-| `options`     | `array`    | Options for dropdown, provided as an array of objects with `label` and `value`. | N/A               |
-| `placeholder` | `string`   | Placeholder text for the dropdown.                                              | N/A               |
-| `value`       | `string`   | The current selected value of the dropdown.                                     | N/A               |
-| `setResult`   | `function` | Function to update the form state when the dropdown value changes.              | N/A               |
-
-### **Multi-Dropdown (Multiple Selections):**
-
-| **Prop Name**  | **Type**   | **Description**                                                                       | **Default Value**  |
-| -------------- | ---------- | ------------------------------------------------------------------------------------- | ------------------ |
-| `name`         | `string`   | The field name used for form state.                                                   | N/A                |
-| `label`        | `string`   | The label for the multi-dropdown.                                                     | N/A                |
-| `type`         | `string`   | Type of input field, always `"multi-dropdown"`.                                       | `"multi-dropdown"` |
-| `required`     | `boolean`  | Indicates whether the field is required.                                              | `false`            |
-| `options`      | `array`    | Options for multi-dropdown, provided as an array of objects with `label` and `value`. | N/A                |
-| `placeholder`  | `string`   | Placeholder text for the multi-dropdown.                                              | N/A                |
-| `defaultValue` | `array`    | The default selected values for multi-dropdown.                                       | `[]`               |
-| `value`        | `array`    | The current selected values of the multi-dropdown.                                    | N/A                |
-| `setResult`    | `function` | Function to update the form state when the multi-dropdown value changes.              | N/A                |
-
-### **Date Field:**
-
-| **Prop Name**          | **Type**   | **Description**                                                           | **Default Value** |
-| ---------------------- | ---------- | ------------------------------------------------------------------------- | ----------------- |
-| `name`                 | `string`   | The field name used for form state.                                       | N/A               |
-| `label`                | `string`   | The label for the date picker.                                            | N/A               |
-| `type`                 | `string`   | Type of input field, always `"date"`.                                     | `"date"`          |
-| `required`             | `boolean`  | Indicates whether the field is required.                                  | `false`           |
-| `initialDate`          | `string`   | Initial default date value.                                               | N/A               |
-| `restrictionStartDate` | `string`   | The earliest valid date in the date picker.                               | N/A               |
-| `restrictionEndDate`   | `string`   | The latest valid date in the date picker.                                 | N/A               |
-| `isSmall`              | `boolean`  | Specifies if the date picker should be smaller (useful for inline forms). | `true`            |
-| `value`                | `string`   | The current selected date value.                                          | N/A               |
-| `setResult`            | `function` | Function to update the form state when the date picker value changes.     | N/A               |
-
-### **Time Field:**
-
-| **Prop Name** | **Type**   | **Description**                                                       | **Default Value** |
-| ------------- | ---------- | --------------------------------------------------------------------- | ----------------- |
-| `name`        | `string`   | The field name used for form state.                                   | N/A               |
-| `label`       | `string`   | The label for the time picker.                                        | N/A               |
-| `type`        | `string`   | Type of input field, always `"time"`.                                 | `"time"`          |
-| `required`    | `boolean`  | Indicates whether the field is required.                              | `false`           |
-| `value`       | `string`   | The current selected time value.                                      | N/A               |
-| `setResult`   | `function` | Function to update the form state when the time picker value changes. | N/A               |
-
-### **Address Field:**
-
-| **Prop Name**   | **Type**   | **Description**                                                         | **Default Value** |
-| --------------- | ---------- | ----------------------------------------------------------------------- | ----------------- |
-| `name`          | `string`   | The field name used for form state.                                     | N/A               |
-| `label`         | `string`   | The label for the address field.                                        | N/A               |
-| `type`          | `string`   | Type of input field, always `"address"`.                                | `"address"`       |
-| `required`      | `boolean`  | Indicates whether the field is required.                                | `false`           |
-| `isHouse`       | `boolean`  | Includes a "House Number" input in the address field.                   | `false`           |
-| `isStreet`      | `boolean`  | Includes a "Street" input in the address field.                         | `false`           |
-| `isCity`        | `boolean`  | Includes a "City" input in the address field.                           | `false`           |
-| `isState`       | `boolean`  | Includes a "State" input in the address field.                          | `false`           |
-| `isPostal`      | `boolean`  | Includes a "Postal Code" input in the address field.                    | `false`           |
-| `isCountry`     | `boolean`  | Includes a "Country" input in the address field.                        | `false`           |
-| `isAddressLine` | `boolean`  | Includes a "Address Line" input in the address field.                   | `false`           |
-| `isLandmark`    | `boolean`  | Includes a "Landmark" input in the address field.                       | `false`           |
-| `value`         | `object`   | An object representing the current value of the address fields.         | N/A               |
-| `setResult`     | `function` | Function to update the form state when the address field value changes. | N/A               |
-
-### **TextArea Field:**
-
-| **Prop Name**        | **Type** | **Default Value**    | **Description**                                                                             |
-| -------------------- | -------- | -------------------- | ------------------------------------------------------------------------------------------- |
-| `label`              | string   | —                    | Label text to display (shown only on focus and if input is not empty).                      |
-| `value`              | string   | ""                   | Controlled value of the textarea.                                                           |
-| `setResult`          | function | —                    | Callback to update the input value on change or blur.                                       |
-| `color`              | string   | var(--colorCyan)     | Color for styling the input border/text.                                                    |
-| `placeholder`        | string   | "Enter text here..." | Placeholder text shown when input is empty.                                                 |
-| `minLength`          | number   | —                    | Minimum allowed length for input. If violated, shows error.                                 |
-| `maxLength`          | number   | —                    | Maximum allowed length for input. Prevents typing beyond limit and shows error if exceeded. |
-| `maxTextAreaHeight`  | number   | 200                  | Maximum height of the textarea in pixels. If content exceeds, scrollbar appears.            |
-| `setIsFieldValid`    | function | () => {}             | Callback to notify if current field is valid (based on length validation).                  |
-| `showCharacterCount` | boolean  | false                | Show character count below the textarea.                                                    |
-| `showWordCount`      | boolean  | false                | Show word count below the textarea.                                                         |
-| `disabled`           | boolean  | false                | Disable the textarea input.                                                                 |
-| `style`              | object   | {}                   | Additional inline styles applied to the container.                                          |
-| `width`              | `string` | `300px`              | to adjust the width of the Field                                                            |
-| `showCharacterCount` | boolean  | false                | Show character count below the textarea.                                                    |
-
-### **General Properties for all Fields:**
-
-| **Prop Name**     | **Type**  | **Description**                                                                                      | **Default Value**    |
-| ----------------- | --------- | ---------------------------------------------------------------------------------------------------- | -------------------- |
-| `width`           | `string`  | The width of the input element (can be `"100%"` or any other CSS value).                             | `"100%"`             |
-| `color`           | `string`  | The color theme for the input fields (use CSS variable like `var(--colorCyan)` or any custom color). | `"var(--colorCyan)"` |
-| `showLabelAlways` | `boolean` | If `true`, the label will always be displayed even if the field has a value.                         | `false`              |
-
-Here is a table summarizing each **input type** with its corresponding **config fields** that can be used when configuring the form. Each row describes the input type and the configuration options you can specify for that input.
-
----
-
-### **Table of Input Types with Config Fields**
-
-| **Input Type**     | **Config Fields**                                                                                                                                                                                                                                                                                                            | **Description**                                                                                               |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Text**           | - `name` (required) <br> - `label` (required) <br> - `type` (default: "text") <br> - `placeholder` <br> - `required` <br> - `defaultValue`                                                                                                                                                                                   | Standard text input for short, single-line text (e.g., names, titles).                                        |
-| **Email**          | - `name` (required) <br> - `label` (required) <br> - `type` (default: "email") <br> - `placeholder` <br> - `required` <br> - `defaultValue`                                                                                                                                                                                  | Input field specifically for emails, which validates the email format.                                        |
-| **Password**       | - `name` (required) <br> - `label` (required) <br> - `type` (default: "password") <br> - `placeholder` <br> - `required` <br> - `defaultValue`                                                                                                                                                                               | Input for passwords. The text entered is obscured for security.                                               |
-| **Mobile**         | - `name` (required) <br> - `label` (required) <br> - `type` (default: "mobile") <br> - `placeholder` <br> - `required` <br> - `defaultValue` <br> - `countryCode` <br> - `validationPattern`                                                                                                                                 | For mobile phone numbers with optional country code and validation.                                           |
-| **Dropdown**       | - `name` (required) <br> - `label` (required) <br> - `type` (default: "dropdown") <br> - `options` (required) <br> - `placeholder` <br> - `required` <br> - `defaultValue` <br> - `multiple` (optional)                                                                                                                      | Dropdown field for selecting a single option from a predefined list.                                          |
-| **Multi-Dropdown** | - `name` (required) <br> - `label` (required) <br> - `type` (default: "multi-dropdown") <br> - `options` (required) <br> - `placeholder` <br> - `required` <br> - `defaultValue` <br> - `multiple`                                                                                                                           | Dropdown with multiple selection support, allowing the user to select more than one option.                   |
-| **Date**           | - `name` (required) <br> - `label` (required) <br> - `type` (default: "date") <br> - `placeholder` <br> - `required` <br> - `initialDate` <br> - `restrictionStartDate` <br> - `restrictionEndDate`                                                                                                                          | A date picker for selecting a specific date, with optional start and end date restrictions.                   |
-| **Time**           | - `name` (required) <br> - `label` (required) <br> - `type` (default: "time") <br> - `required` <br> - `defaultValue`                                                                                                                                                                                                        | A time picker for selecting a specific time (e.g., appointment time).                                         |
-| **Address**        | - `name` (required) <br> - `label` (required) <br> - `type` (default: "address") <br> - `isHouse` (optional) <br> - `isStreet` (optional) <br> - `isCity` (optional) <br> - `isState` (optional) <br> - `isPostal` (optional) <br> - `isCountry` (optional) <br> - `isAddressLine` (optional) <br> - `isLandmark` (optional) | Custom address input for multi-field address (house number, street, city, state, postal code, country, etc.). |
-
----
-
-### **Description of Config Fields**
-
-1. **Text**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "text").
-   - **placeholder**: Placeholder text shown in the input.
-   - **required**: Boolean value that determines if the field is required.
-   - **defaultValue**: Default value for the field.
-
-2. **Email**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "email").
-   - **placeholder**: Placeholder text shown in the input.
-   - **required**: Boolean value that determines if the field is required.
-   - **defaultValue**: Default value for the field.
-
-3. **Password**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "password").
-   - **placeholder**: Placeholder text shown in the input.
-   - **required**: Boolean value that determines if the field is required.
-   - **defaultValue**: Default value for the field.
-
-4. **Mobile**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "mobile").
-   - **placeholder**: Placeholder text shown in the input.
-   - **required**: Boolean value that determines if the field is required.
-   - **defaultValue**: Default value for the field.
-   - **countryCode**: The optional country code for mobile numbers.
-   - **validationPattern**: Custom pattern for validating mobile numbers.
-
-5. **Dropdown**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "dropdown").
-   - **options**: Array of options for the dropdown.
-   - **placeholder**: Placeholder text shown in the input.
-   - **required**: Boolean value that determines if the field is required.
-   - **defaultValue**: Default selected value for the dropdown.
-   - **multiple**: (Optional) Boolean to enable multiple selections.
-
-6. **Multi-Dropdown**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "multi-dropdown").
-   - **options**: Array of options for the multi-dropdown.
-   - **placeholder**: Placeholder text shown in the input.
-   - **required**: Boolean value that determines if the field is required.
-   - **defaultValue**: Default selected values for the multi-dropdown.
-   - **multiple**: (Optional) Boolean to enable multiple selections.
-
-7. **Date**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "date").
-   - **placeholder**: Placeholder text shown in the input.
-   - **required**: Boolean value that determines if the field is required.
-   - **initialDate**: The initial default date for the date picker.
-   - **restrictionStartDate**: The earliest allowed date.
-   - **restrictionEndDate**: The latest allowed date.
-
-8. **Time**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "time").
-   - **required**: Boolean value that determines if the field is required.
-   - **defaultValue**: Default value for the time picker.
-
-9. **Address**:
-
-   - **name**: The field identifier.
-   - **label**: The label displayed next to the input.
-   - **type**: Type of input (default: "address").
-   - **isHouse**: Boolean to indicate if house number field is enabled.
-   - **isStreet**: Boolean to indicate if street field is enabled.
-   - **isCity**: Boolean to indicate if city field is enabled.
-   - **isState**: Boolean to indicate if state field is enabled.
-   - **isPostal**: Boolean to indicate if postal code field is enabled.
-   - **isCountry**: Boolean to indicate if country field is enabled.
-   - **isAddressLine**: Boolean to indicate if address line field is enabled.
-   - **isLandmark**: Boolean to indicate if landmark field is enabled.
+- Single-step forms
+- Multi-step forms
+- Repeatable groups
+- Conditional logic
+- Nested repeatable + conditional

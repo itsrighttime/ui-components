@@ -34,6 +34,8 @@ export function GenericForm({
     ...settings,
   };
 
+  const color = _settings.color;
+
   // all fields (single or flattened multi-step)
   const allFields = useMemo(
     () =>
@@ -59,11 +61,11 @@ export function GenericForm({
   }, [initialState, initialError]);
 
   useEffect(() => {
-    console.log("DDDD", formError);
-  }, [formError]);
+    console.log("DDDD", formData);
+  }, [formData]);
 
   const handleChange = (name, value, isError) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    !isError && setFormData((prev) => ({ ...prev, [name]: value }));
 
     setFormError((prev) => {
       if (isError) {
@@ -114,6 +116,7 @@ export function GenericForm({
               label="Back"
               onClick={() => setCurrentStep((s) => s - 1)}
               size="2"
+              color={color}
             />
           )}
           {currentStep < config.steps.length - 1 ? (
@@ -122,13 +125,24 @@ export function GenericForm({
               label="Next"
               onClick={() => setCurrentStep((s) => s + 1)}
               size="2"
+              color={color}
             />
           ) : (
-            <Button text={submitLabel} type="submit" />
+            <Button
+              text={submitLabel}
+              onClick={() => console.warn("Need to implement in General Form")}
+              color={color}
+            />
           )}
         </div>
       ) : (
-        mode === "single" && <Button text={submitLabel} type="submit" />
+        mode === "single" && (
+          <Button
+            text={submitLabel}
+            onClick={() => console.warn("Need to implement in General Form")}
+            color={color}
+          />
+        )
       )}
     </form>
   );

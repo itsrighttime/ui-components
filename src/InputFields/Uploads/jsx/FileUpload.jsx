@@ -4,6 +4,7 @@ import { crossIcon, resetFieldIcon } from "../../../utils/icons";
 import { getFileTypeLabel } from "../helper/getFileType";
 import { IconButton } from "../../Actions/jsx/IconButton";
 import { formatFileSize } from "../helper/formatFileSize";
+import { useEffect } from "react";
 
 export const FileUpload = ({
   value = [],

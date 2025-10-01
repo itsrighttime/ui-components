@@ -12,6 +12,7 @@ import { GenericForm } from "./Layout/Forms/jsx/GenericForm.jsx";
 import { configData06 } from "./Layout/Forms/helper/data-06.js";
 import { configData05 } from "./Layout/Forms/helper/data-05.js";
 import { configData01 } from "./Layout/Forms/helper/data-01.js";
+import { configData07 } from "./Layout/Forms/helper/data-07.js";
 
 const logo = getProductLogo("");
 
@@ -75,12 +76,12 @@ const App = () => {
         {/* <IconGallery /> */}
 
         <GenericForm
-          config={configData01}
+          config={configData07}
           onSubmit={(value) => {
             console.log("Submited", value);
           }} // Your custom submission logic
           submitLabel="Create User"
-          // settings={{ showLabelAlways: true }}
+          settings={{ showLabelAlways: false, color: "var(--colorDarkBlue)" }}
         />
 
         {/* <Header

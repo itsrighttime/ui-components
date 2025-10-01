@@ -19,7 +19,7 @@ export const SecurityQuestion = ({
 
   useEffect(() => {
     setResult({ question: selectedQuestion, answer });
-  }, [answer, selectedQuestion, setResult]);
+  }, [answer, selectedQuestion]);
 
   return (
     <div className={styles.securityQuestion} style={{ width }}>
@@ -30,6 +30,7 @@ export const SecurityQuestion = ({
         setResult={handleQuestionChange}
         label="Select a Security Question"
         color={color}
+        width="100%"
       />
 
       {selectedQuestion && (
@@ -43,6 +44,7 @@ export const SecurityQuestion = ({
             color={color}
             required
             errorMessage="Please provide an answer."
+            width="100%"
           />
         </div>
       )}

@@ -12,6 +12,19 @@ import { FORM_FIELDS_TYPE } from "./formFieldTypes";
 import { RepeatableGroup } from "./RepeatableGroup";
 import { FileUpload } from "../../../InputFields/Uploads/jsx/FileUpload";
 import { isConditional } from "./conditional";
+import { AudioUpload } from "../../../InputFields/Uploads/jsx/AudioUpload";
+import { ImageUpload } from "../../../InputFields/Uploads/jsx/ImageUpload";
+import { VideoUpload } from "../../../InputFields/Uploads/jsx/VideoUpload";
+import { SecurityQuestion } from "../../../InputFields/Security/jsx/SecurityQuestion";
+import { OtpField } from "../../../InputFields/Security/jsx/OtpField";
+import { CheckboxGroup } from "../../../InputFields/Selectors/jsx/CheckboxGroup";
+import { ColorPicker } from "../../../InputFields/Selectors/jsx/ColorPicker";
+import { RadioGroup } from "../../../InputFields/Selectors/jsx/RadioGroup";
+import { SearchBox } from "../../../InputFields/Selectors/jsx/SearchBox";
+import { Switch } from "../../../InputFields/Selectors/jsx/Switch";
+import { Slider } from "../../../InputFields/NumericInput.jsx/jsx/Slider";
+import { JsonField } from "../../../InputFields/TextInput/jsx/JsonField";
+import { Stepper } from "../../../InputFields/NumericInput.jsx/jsx/Stepper";
 
 export function FieldRenderer({ field, value, onChange, settings }) {
   // Conditional rendering
@@ -185,6 +198,20 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
     ),
+    [FORM_FIELDS_TYPE.JSON]: (
+      <JsonField
+        width={width}
+        color={color}
+        label={field.label}
+        setResult={(v) => onChange(field.name, v)} // Update state on change
+        showCharacterCount={field.showCharacterCount}
+        showWordCount={field.showWordCount}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        hideOnSave={field.hideOnSave}
+        isBorder={field.isBorder}
+        backendError={field.backendError}
+      />
+    ),
     [FORM_FIELDS_TYPE.FILE]: (
       <FileUpload
         value={value[field.name]}
@@ -192,11 +219,150 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         width={width}
         multiple={field.multiple}
         maxFiles={field.maxFiles}
+        color={color}
         maxSize={field.maxSize}
         allowedTypes={field.allowedTypes}
         height={field.height || "200px"}
         setResult={(files) => onChange(field.name, files)}
         setIsFieldValid={(v) => onChange(field.name, v, true)}
+      />
+    ),
+    [FORM_FIELDS_TYPE.AUDIO]: (
+      <AudioUpload
+        label={field.label}
+        width={width}
+        height={field.height || "100px"}
+        maxSizeMB={field.maxSizeMB}
+        allowedTypes={field.allowedTypes}
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
+      />
+    ),
+    [FORM_FIELDS_TYPE.IMAGE]: (
+      <ImageUpload
+        label={field.label}
+        width={width}
+        height={field.height || "100px"}
+        maxSizeMB={field.maxSizeMB}
+        allowedTypes={field.allowedTypes}
+        requireSquare={field.requireSquare}
+        previewBorderRadius={field.previewBorderRadius}
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
+      />
+    ),
+    [FORM_FIELDS_TYPE.VIDEO]: (
+      <VideoUpload
+        label={field.label}
+        width={width}
+        height={field.height || "100px"}
+        maxSizeMB={field.maxSizeMB}
+        allowedTypes={field.allowedTypes}
+        preview={field.preview}
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        setIsFieldValid={(v) => onChange(field.name, v, true)}
+      />
+    ),
+    [FORM_FIELDS_TYPE.SECURTY_QUESTION]: (
+      <SecurityQuestion
+        placeholder={field.label || field.placeholder}
+        width={width}
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+      />
+    ),
+    [FORM_FIELDS_TYPE.OTP]: (
+      <OtpField
+        width={width}
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        length={field.length}
+        verifcationEndpoint={field.verifcationEndpoint}
+        userId={field.userId}
+        setError={field.setError}
+        isNumeric={field.isNumeric}
+      />
+    ),
+    [FORM_FIELDS_TYPE.CHECKBOX]: (
+      <CheckboxGroup
+        width={width}
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        options={field.options}
+        initialSelectedValues={field.initialSelectedValues}
+        layout={field.layout}
+        label={field.label}
+        disabled={field.disabled}
+        customStyles={field.customStyles}
+      />
+    ),
+    [FORM_FIELDS_TYPE.COLOR]: (
+      <ColorPicker
+        setResult={(files) => onChange(field.name, files)}
+        color={field.color || "#ff5969"}
+      />
+    ),
+    [FORM_FIELDS_TYPE.RADIO]: (
+      <RadioGroup
+        width={width}
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        options={field.options}
+        initialSelectedValues={field.initialSelectedValues}
+        layout={field.layout}
+        label={field.label}
+        disabled={field.disabled}
+        customStyles={field.customStyles}
+        initialSelectedValue={field.initialSelectedValue}
+      />
+    ),
+    [FORM_FIELDS_TYPE.SEARCH]: (
+      <SearchBox
+        placeholder={field.label || field.placeholder}
+        width={width}
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        suggestions={field.suggestions}
+      />
+    ),
+    [FORM_FIELDS_TYPE.SWITCH]: (
+      <Switch
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        initialValue={field.initialValue}
+        label={field.label}
+        disabled={field.disabled}
+        customStyles={field.customStyles}
+      />
+    ),
+    [FORM_FIELDS_TYPE.SLIDER]: (
+      <Slider
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        label={field.label}
+        value={field.value}
+        min={field.min}
+        max={field.max}
+        step={field.step}
+        showRange={field.showRange}
+        showValueSide={field.showValueSide}
+        precision={field.precision}
+        width={width}
+      />
+    ),
+    [FORM_FIELDS_TYPE.STEPPER]: (
+      <Stepper
+        setResult={(files) => onChange(field.name, files)}
+        color={color}
+        width={width}
+        label={field.label}
+        value={field.value}
+        min={field.min}
+        max={field.max}
+        step={field.step}
       />
     ),
   };

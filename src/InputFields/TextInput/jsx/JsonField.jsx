@@ -23,7 +23,7 @@ export const JsonField = ({
 
   useEffect(() => {
     setResult(formattedJson);
-  }, [formattedJson, setResult]);
+  }, [formattedJson]);
 
   const handleValidateJson = () => {
     try {
@@ -35,7 +35,6 @@ export const JsonField = ({
       const prettyJson = JSON.stringify(parsedJson, null, 2);
       setFormattedJson(prettyJson);
       setJsonInput(prettyJson);
-      console.log("Formatted JSON:", prettyJson);
       hideOnSave && setOnSave(false);
     } catch (err) {
       console.error("Invalid JSON format:", err);
@@ -60,10 +59,11 @@ export const JsonField = ({
               label={label}
               value={jsonInput}
               setResult={setJsonInput}
-              placeholder="Please input the JSON data here..."
+              placeholder="Write JSON here..."
               showCharacterCount={showCharacterCount}
               showWordCount={showWordCount}
               backendError={backendError}
+              width="100%"
             />
           </div>
 

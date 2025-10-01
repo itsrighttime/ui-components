@@ -9,6 +9,7 @@ export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
     updated[index][name] = value;
     onChange(updated);
   };
+  const color = settings.color;
 
   return (
     <div className={styles.repeatableGroup}>
@@ -29,6 +30,7 @@ export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
       <Button
         text={field.moreLabel}
         onClick={() => onChange([...values, {}])}
+        color={color}
       />
     </div>
   );

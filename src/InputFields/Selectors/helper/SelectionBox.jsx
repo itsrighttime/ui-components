@@ -58,12 +58,14 @@ export const SelectionBox = ({
           width: "18px",
           height: "18px",
           cursor: `${disabled || option.disabled ? "not-allowed" : "pointer"}`,
+          border: `1px solid ${setIconColor(option)}`,
         }
       : {
           width: "15px",
           height: "15px",
           cursor: `${disabled || option.disabled ? "not-allowed" : "pointer"}`,
           borderRadius: "50%",
+          border: `1px solid ${setIconColor(option)}`,
         };
   };
 
@@ -89,7 +91,7 @@ export const SelectionBox = ({
             }
           >
             <IconButton
-              icon={selectedOption ? tickSingleIcon : ""}
+              icon={selectedOption ? tickSingleIcon : <></>}
               color={setIconColor(option)}
               style={setIconStyle(option)}
               onClick={(e) => {
