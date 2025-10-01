@@ -11,12 +11,21 @@ export const AudioUpload = ({
   maxSizeMB = 10,
   width = "500px",
   height = "100px",
+  backendError = "",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [audio, setAudio] = useState(null);
   const [error, setError] = useState(null);
 
   const maxSize = maxSizeMB * 1024 * 1024;
+
+  // Handle backend error sync
+  useEffect(() => {
+    if (backendError) {
+      setError(backendError);
+      setIsFieldValid(false);
+    }
+  }, [backendError]);
 
   const validateAudio = (file) => {
     if (!allowedTypes.includes(file.type)) {
@@ -35,6 +44,11 @@ export const AudioUpload = ({
     if (!file || !validateAudio(file)) {
       setIsFieldValid(false);
       return;
+    }
+
+    // clear backend error on user re-upload
+    if (backendError) {
+      setError("");
     }
 
     setAudio(URL.createObjectURL(file));

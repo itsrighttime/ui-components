@@ -17,6 +17,7 @@ export const TextArea = ({
   style = {},
   width = "300px",
   showLabelAlways = false,
+  backendError = "",
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
   const [isFocused, setIsFocused] = useState(false);
@@ -27,6 +28,16 @@ export const TextArea = ({
     setInputValue(value || "");
   }, [value]);
 
+  // Handle backend errors
+  useEffect(() => {
+    if (backendError) {
+      setError(backendError);
+      setIsValid(false);
+      setIsFieldValid(false);
+    }
+  }, [backendError]);
+
+  // Auto-resize logic
   useEffect(() => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = "auto"; // Reset height to auto
@@ -43,6 +54,13 @@ export const TextArea = ({
 
   const handleChange = (e) => {
     const { value } = e.target;
+
+    // Clear backend error on user input
+    if (backendError) {
+      setError("");
+      setIsValid(true);
+      setIsFieldValid(true);
+    }
 
     if (minLength && value.length < minLength) {
       setError(`Minimum length is ${minLength} characters.`);

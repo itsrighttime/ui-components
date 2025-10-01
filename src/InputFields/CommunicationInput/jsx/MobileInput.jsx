@@ -16,6 +16,7 @@ export const MobileField = ({
   width = "300px",
   isBorder = false,
   errorMessage = "Not a valid Numbers",
+  backendError = "",
 }) => {
   const [countryCode, setCountryCode] = useState(code);
   const [phoneNumber, setPhoneNumber] = useState(value);
@@ -75,6 +76,7 @@ export const MobileField = ({
           showLabelAlways={showLabelAlways}
           isBorder={isBorder}
           width="100%"
+          backendError={backendError}
         />
       </div>
     </div>

@@ -26,18 +26,19 @@ const { ImageUpload, ImagePreview } = UIInputs.Upload;
 
 ### Props
 
-| Prop                  | Type       | Default                                    | Description                                  |
-| --------------------- | ---------- | ------------------------------------------ | -------------------------------------------- |
-| `label`               | `string`   | `"Upload Image"`                           | Text label for the uploader                  |
-| `setResult`           | `function` | —                                          | Callback to receive the selected File object |
-| `color`               | `string`   | `var(--colorCyan)`                         | Theme color for border and buttons           |
-| `setIsFieldValid`     | `function` | `() => {}`                                 | Callback to update field validity            |
-| `allowedTypes`        | `string[]` | `["image/jpeg", "image/png", "image/gif"]` | Allowed image MIME types                     |
-| `maxSizeMB`           | `number`   | `5`                                        | Maximum allowed size in MB                   |
-| `requireSquare`       | `boolean`  | `true`                                     | Whether the image must be square             |
-| `width`               | `string`   | `"200px"`                                  | Display width                                |
-| `height`              | `string`   | `"200px"`                                  | Display height                               |
-| `previewBorderRadius` | `string`   | `"0%"`                                     | Border Radius of the preview image           |
+| Prop                  | Type       | Default                                    | Description                                     |
+| --------------------- | ---------- | ------------------------------------------ | ----------------------------------------------- |
+| `label`               | `string`   | `"Upload Image"`                           | Text label for the uploader                     |
+| `setResult`           | `function` | —                                          | Callback to receive the selected File object    |
+| `color`               | `string`   | `var(--colorCyan)`                         | Theme color for border and buttons              |
+| `setIsFieldValid`     | `function` | `() => {}`                                 | Callback to update field validity               |
+| `allowedTypes`        | `string[]` | `["image/jpeg", "image/png", "image/gif"]` | Allowed image MIME types                        |
+| `maxSizeMB`           | `number`   | `5`                                        | Maximum allowed size in MB                      |
+| `requireSquare`       | `boolean`  | `true`                                     | Whether the image must be square                |
+| `width`               | `string`   | `"200px"`                                  | Display width                                   |
+| `height`              | `string`   | `"200px"`                                  | Display height                                  |
+| `previewBorderRadius` | `string`   | `"0%"`                                     | Border Radius of the preview image              |
+| `backendError`        | `string`   | `""`                                       | bakend error that reaches to the correct field. |
 
 ### Features
 

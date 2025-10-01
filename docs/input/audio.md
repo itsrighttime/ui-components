@@ -33,13 +33,14 @@ Provides a customizable audio player with:
 
 ### Props
 
-| Prop         | Type       | Description                                                             |
-| ------------ | ---------- | ----------------------------------------------------------------------- |
-| `audioSrc`   | `string`   | Required. The URL or path to the audio file.                            |
-| `onRemove`   | `function` | Optional. Callback for remove button.                                   |
-| `onReupload` | `function` | Optional. Callback for re-upload button.                                |
-| `color`      | `string`   | Optional. Custom color for accent buttons and slider (e.g., `#52C9BD`). |
-| `width`      | `string`   | Optional. Width of the audio player container (e.g., `"500px"`).        |
+| Prop           | Type       | Description                                                                       |
+| -------------- | ---------- | --------------------------------------------------------------------------------- |
+| `audioSrc`     | `string`   | Required. The URL or path to the audio file.                                      |
+| `onRemove`     | `function` | Optional. Callback for remove button.                                             |
+| `onReupload`   | `function` | Optional. Callback for re-upload button.                                          |
+| `color`        | `string`   | Optional. Custom color for accent buttons and slider (e.g., `#52C9BD`).           |
+| `width`        | `string`   | Optional. Width of the audio player container (e.g., `"500px"`).                  |
+| `backendError` | `string`   | To make sure if eny error occurs at the bakend that reaches to the correct field. |
 
 ### Usage
 
@@ -113,16 +114,17 @@ The `AudioUpload` component provides a **file upload interface** for audio files
 
 ## Props
 
-| Prop              | Type       | Default                       | Description                                                             |
-| ----------------- | ---------- | ----------------------------- | ----------------------------------------------------------------------- |
-| `label`           | `string`   | —                             | Label shown in the upload UI.                                           |
-| `setResult`       | `function` | —                             | Callback that receives the selected `File` object.                      |
-| `color`           | `string`   | `var(--colorCyan)`            | Theme color for styling accents.                                        |
-| `setIsFieldValid` | `function` | `() => {}`                    | Callback triggered with a `true/false` value indicating input validity. |
-| `allowedTypes`    | `string[]` | `["audio/mpeg", "audio/wav"]` | Allowed MIME types for uploaded audio files.                            |
-| `maxSizeMB`       | `number`   | `10`                          | Maximum audio file size in megabytes.                                   |
-| `width`           | `string`   | `"500px"`                     | Width of the audio upload/player block.                                 |
-| `height`          | `string`   | `"100px"`                     | Height of the upload area (ignored after audio is uploaded).            |
+| Prop              | Type       | Default                       | Description                                                                       |
+| ----------------- | ---------- | ----------------------------- | --------------------------------------------------------------------------------- |
+| `label`           | `string`   | —                             | Label shown in the upload UI.                                                     |
+| `setResult`       | `function` | —                             | Callback that receives the selected `File` object.                                |
+| `color`           | `string`   | `var(--colorCyan)`            | Theme color for styling accents.                                                  |
+| `setIsFieldValid` | `function` | `() => {}`                    | Callback triggered with a `true/false` value indicating input validity.           |
+| `allowedTypes`    | `string[]` | `["audio/mpeg", "audio/wav"]` | Allowed MIME types for uploaded audio files.                                      |
+| `maxSizeMB`       | `number`   | `10`                          | Maximum audio file size in megabytes.                                             |
+| `width`           | `string`   | `"500px"`                     | Width of the audio upload/player block.                                           |
+| `height`          | `string`   | `"100px"`                     | Height of the upload area (ignored after audio is uploaded).                      |
+| `backendError`    | `string`   | `""`                          | To make sure if eny error occurs at the bakend that reaches to the correct field. |
 
 ## Features
 

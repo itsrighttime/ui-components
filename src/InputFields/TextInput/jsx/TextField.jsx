@@ -34,62 +34,60 @@ export const TextField = ({
   onClear,
   icon,
   width = "300px",
+  backendError = "",
 }) => {
   const [inputValue, setInputValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const [errorMsg, setErrorMsg] = useState(errorMessage);
 
+  // Sync value from external props
   useEffect(() => {
     setInputValue(value); // Sync with external value
   }, [value]);
 
+  // Sync backend errors into component state
+  useEffect(() => {
+    if (backendError) {
+      setErrorMsg(backendError);
+      setIsValid(false);
+      setIsFieldValid(false);
+    }
+  }, [backendError]);
+
+  // General error handler
   const handleError = (msg) => {
     const finalMsg = errorMessage === "Invalid" ? "Invalid" : msg;
     setErrorMsg(finalMsg);
     setIsValid(false);
     setIsFieldValid(false);
+    return false;
   };
 
-  const validateMinLength = (val) => {
-    if (minLength && val.length < minLength) {
-      handleError(
-        minLength === maxLength
-          ? `Length must be ${minLength}.`
-          : `Length must be greater than ${minLength}.`
-      );
-      return false;
-    }
+  // Validation helpers
+  const validateMinLength = (val) =>
+    !minLength ||
+    val.length >= minLength ||
+    handleError(
+      minLength === maxLength
+        ? `Length must be ${minLength}.`
+        : `Length must be greater than ${minLength}.`
+    );
 
-    return true;
-  };
-  const validateMaxLength = (val) => {
-    if (maxLength && val.length > maxLength) {
-      handleError(
-        minLength === maxLength
-          ? `Length must be ${minLength}.`
-          : `Length must be less than ${maxLength}.`
-      );
-      return false;
-    }
-    return true;
-  };
+  const validateMaxLength = (val) =>
+    !maxLength ||
+    val.length <= maxLength ||
+    handleError(
+      minLength === maxLength
+        ? `Length must be ${minLength}.`
+        : `Length must be less than ${maxLength}.`
+    );
 
-  const validatePattern = (val) => {
-    if (pattern) {
-      const regex = new RegExp(pattern);
-      if (!regex.test(val)) {
-        handleError(errorMessage || "Invalid Input");
-        return false;
-      }
-    }
-    return true;
-  };
+  const validatePattern = (val) =>
+    !pattern || new RegExp(pattern).test(val) || handleError(errorMessage);
 
-  const hasRegexLength = (pattern) =>
-    typeof pattern === "string" && /{(\d+)(,(\d+))?}/.test(pattern);
-
-  if (isApplyStrictPattern && hasRegexLength(pattern)) {
+  // Warn if regex includes length quantifiers
+  if (isApplyStrictPattern && pattern && /{(\d+)(,(\d+))?}/.test(pattern)) {
     console.error(
       "Length should be controlled using minLength and maxLength, not regex quantifiers."
     );
@@ -100,6 +98,14 @@ export const TextField = ({
 
   const handleChange = (e) => {
     const newVal = e.target.value;
+
+    // Clear backend error on first user edit
+    if (backendError) {
+      setErrorMsg(errorMessage); // revert to default message
+      setIsValid(true);
+      setIsFieldValid(true);
+    }
+
     if (isApplyStrictPattern) {
       if (!validatePattern(newVal) || !validateMaxLength(newVal)) return;
     }
@@ -131,8 +137,8 @@ export const TextField = ({
 
     // Apply validations only if value is non-empty
     const passesLength =
-      (!maxLength || trimmedValue.length <= maxLength) &&
-      (!minLength || trimmedValue.length >= minLength);
+      (!maxLength || validateMaxLength(trimmedValue)) &&
+      (!minLength || validateMinLength(trimmedValue));
 
     const passesPattern = !pattern || new RegExp(pattern).test(trimmedValue);
 
@@ -147,6 +153,7 @@ export const TextField = ({
     setIsFocused(false);
   };
 
+  // Focus & clear handlers
   const handleFocus = () => {
     setIsValid(true);
     setIsFocused(true);

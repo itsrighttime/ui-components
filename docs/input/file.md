@@ -26,19 +26,20 @@ const { FileUpload } = UIInputs.Upload;
 
 ### Props & Configuration
 
-| Prop              | Type       | Default         | Description                                                    |
-| ----------------- | ---------- | --------------- | -------------------------------------------------------------- |
-| `value`           | `object[]` | `[]`            | Value that it current hold.                                    |
-| `label`           | `string`   | `"Upload File"` | Label shown inside upload box.                                 |
-| `setResult`       | `function` | _required_      | Function to receive uploaded file list.                        |
-| `setIsFieldValid` | `function` | `() => {}`      | Called with `true`/`false` to validate form state.             |
-| `allowedTypes`    | `string[]` | `[]`            | Accepted MIME types (e.g. `["image/png", "application/pdf"]`). |
-| `maxSize`         | `number`   | `Infinity`      | Maximum file size in **bytes**.                                |
-| `multiple`        | `boolean`  | `false`         | Allow multiple files.                                          |
-| `maxFiles`        | `number`   | `Infinity`      | Max number of files allowed.                                   |
-| `color`           | `string`   | `"#52C9BD"`     | Base accent color (for buttons & borders).                     |
-| `width`           | `string`   | `"500px"`       | Width of the component.                                        |
-| `height`          | `string`   | `"100px"`       | Height of the component.                                       |
+| Prop              | Type       | Default         | Description                                                                       |
+| ----------------- | ---------- | --------------- | --------------------------------------------------------------------------------- |
+| `value`           | `object[]` | `[]`            | Value that it current hold.                                                       |
+| `label`           | `string`   | `"Upload File"` | Label shown inside upload box.                                                    |
+| `setResult`       | `function` | _required_      | Function to receive uploaded file list.                                           |
+| `setIsFieldValid` | `function` | `() => {}`      | Called with `true`/`false` to validate form state.                                |
+| `allowedTypes`    | `string[]` | `[]`            | Accepted MIME types (e.g. `["image/png", "application/pdf"]`).                    |
+| `maxSize`         | `number`   | `Infinity`      | Maximum file size in **bytes**.                                                   |
+| `multiple`        | `boolean`  | `false`         | Allow multiple files.                                                             |
+| `maxFiles`        | `number`   | `Infinity`      | Max number of files allowed.                                                      |
+| `color`           | `string`   | `"#52C9BD"`     | Base accent color (for buttons & borders).                                        |
+| `width`           | `string`   | `"500px"`       | Width of the component.                                                           |
+| `height`          | `string`   | `"100px"`       | Height of the component.                                                          |
+| `backendError`    | `string`   | `""`            | To make sure if eny error occurs at the bakend that reaches to the correct field. |
 
 ### Example Usage
 

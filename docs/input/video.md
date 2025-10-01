@@ -46,6 +46,7 @@ The `VideoUpload` component enables users to upload, preview, validate, and opti
 | `preview`         | `boolean`  | `false`                       | If `true`, shows `VideoPlayer` component to preview.     |
 | `width`           | `string`   | `"400px"`                     | Width of video preview/player.                           |
 | `height`          | `string`   | `"200px"`                     | Height of video preview/player.                          |
+| `backendError`    | `string`   | `""`                          | bakend error that reaches to the correct field.          |
 
 ### Features
 

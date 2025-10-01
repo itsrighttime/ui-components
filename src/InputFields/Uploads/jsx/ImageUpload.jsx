@@ -14,6 +14,7 @@ export const ImageUpload = ({
   width = "200px",
   height = "200px",
   previewBorderRadius = "0%",
+  backendError = "",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [image, setImage] = useState(null); // image URL for preview
@@ -21,6 +22,14 @@ export const ImageUpload = ({
   const [error, setError] = useState(null);
 
   const maxSize = maxSizeMB * 1024 * 1024;
+
+  // Sync backend error into local error
+  useEffect(() => {
+    if (backendError) {
+      setError(backendError);
+      setIsFieldValid(false);
+    }
+  }, [backendError]);
 
   useEffect(() => {
     // Cleanup the previous object URL to prevent memory leak

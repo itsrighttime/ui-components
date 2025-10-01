@@ -22,23 +22,26 @@ const { AddressField } = UIInputs.Text;
 
 ### Props
 
-| Prop              | Type     | Default     | Description                                                      |
-| ----------------- | -------- | ----------- | ---------------------------------------------------------------- |
-| `setResult`       | Function | _required_  | Returns the full address object on any field change              |
-| `color`           | String   | `undefined` | Pass a color name or hex for input underline and label           |
-| `isHouse`         | Boolean  | `true`      | Whether to show the "House No." field                            |
-| `isStreet`        | Boolean  | `true`      | Whether to show the "Street No." field                           |
-| `isCity`          | Boolean  | `true`      | Whether to show the "City" field                                 |
-| `isState`         | Boolean  | `true`      | Whether to show the "State" field                                |
-| `isPostal`        | Boolean  | `true`      | Whether to show the "Postal Code" field                          |
-| `isCountry`       | Boolean  | `true`      | Whether to show the "Country" field                              |
-| `isAddressLine`   | Boolean  | `true`      | Whether to show the "Additional Address Line" field              |
-| `isLandmark`      | Boolean  | `true`      | Whether to show the "Landmark" field                             |
-| `showLabelAlways` | Boolean  | `false`     | Always show labels above inputs                                  |
-| `width`           | String   | `"300px"`   | Width of the entire address form                                 |
-| `gap`             | String   | `"10px"`    | Spacing between each input field                                 |
-| `isBorder`        | Boolean  | `false`     | If true, TextFields will show borders instead of only underlines |
-| `setIsFieldValid` | `func`    | `-`                  | Callback to indicate whether the email is valid.       |
+| Prop              | Type     | Default     | Description                                                                       |
+| ----------------- | -------- | ----------- | --------------------------------------------------------------------------------- |
+| `setResult`       | Function | _required_  | Returns the full address object on any field change                               |
+| `color`           | String   | `undefined` | Pass a color name or hex for input underline and label                            |
+| `isHouse`         | Boolean  | `true`      | Whether to show the "House No." field                                             |
+| `isStreet`        | Boolean  | `true`      | Whether to show the "Street No." field                                            |
+| `isCity`          | Boolean  | `true`      | Whether to show the "City" field                                                  |
+| `isState`         | Boolean  | `true`      | Whether to show the "State" field                                                 |
+| `isPostal`        | Boolean  | `true`      | Whether to show the "Postal Code" field                                           |
+| `isCountry`       | Boolean  | `true`      | Whether to show the "Country" field                                               |
+| `isAddressLine`   | Boolean  | `true`      | Whether to show the "Additional Address Line" field                               |
+| `isLandmark`      | Boolean  | `true`      | Whether to show the "Landmark" field                                              |
+| `showLabelAlways` | Boolean  | `false`     | Always show labels above inputs                                                   |
+| `width`           | String   | `"300px"`   | Width of the entire address form                                                  |
+| `gap`             | String   | `"10px"`    | Spacing between each input field                                                  |
+| `isBorder`        | Boolean  | `false`     | If true, TextFields will show borders instead of only underlines                  |
+| `setIsFieldValid` | func     | `-`         | Callback to indicate whether the email is valid.                                  |
+| `backendError`    | String   | `""`        | To make sure if eny error occurs at the bakend that reaches to the correct field. |
+
+> backendError keys - `house`, `street`, `city`, `state`, `postal`, `country`, `landmark`, `addressLine`
 
 ### Returned Data Format
 
@@ -59,8 +62,6 @@ The `setResult` callback receives the current address object every time any fiel
 
 > Hidden fields return `null` in the result object.
 
-
-
 ### Custom Example
 
 ```jsx
@@ -76,11 +77,9 @@ The `setResult` callback receives the current address object every time any fiel
 />
 ```
 
-
 ### Validation Built-in
 
 Each field has built-in validation using regex, min/max lengths, and error messages. You don’t need to manage validation manually.
-
 
 ### Styling
 

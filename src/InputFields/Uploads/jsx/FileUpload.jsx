@@ -17,10 +17,19 @@ export const FileUpload = ({
   maxFiles = Infinity,
   width = "500px",
   height = "200px",
+  backendError = "",
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState(value || []);
   const [error, setError] = useState(null);
+
+  // Sync backend error with state
+  useEffect(() => {
+    if (backendError) {
+      setError(backendError);
+      setIsFieldValid(false);
+    }
+  }, [backendError]);
 
   const validateFile = (file) => {
     if (allowedTypes.length && !allowedTypes.includes(file.type)) {
@@ -39,8 +48,6 @@ export const FileUpload = ({
   const handleFileChange = (selectedFiles) => {
     let newFileArray = Array.from(selectedFiles).filter(validateFile);
 
-    console.log("DDDD", newFileArray, files);
-
     // Prevent duplicates
     newFileArray = newFileArray.filter(
       (newFile) =>
@@ -57,7 +64,7 @@ export const FileUpload = ({
       setFiles(updatedFiles);
       setResult(updatedFiles);
       setIsFieldValid(true);
-      setError(null);
+      setError("");
     } else {
       setIsFieldValid(false);
     }
@@ -82,7 +89,7 @@ export const FileUpload = ({
           setFiles(newFiles);
           setResult(newFiles);
           setIsFieldValid(true);
-          setError(null);
+          setError("");
         } else {
           setIsFieldValid(false);
         }
@@ -95,13 +102,14 @@ export const FileUpload = ({
     setFiles(updated);
     setResult(updated);
     setIsFieldValid(updated.length > 0);
+    if (updated.length === 0) setError("");
   };
 
   const handleResetFile = () => {
     setFiles([]);
     setResult([]);
     setIsFieldValid(false);
-    setError(null);
+    setError("");
   };
 
   const handleAddMoreFiles = () => {

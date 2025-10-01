@@ -14,6 +14,7 @@ export const JsonField = ({
   showWordCount = false,
   width = "300px",
   isBorder = false,
+  backendError = "",
 }) => {
   const [jsonInput, setJsonInput] = useState("");
   const [error, setError] = useState("");
@@ -45,10 +46,9 @@ export const JsonField = ({
     }
   };
 
-    const cssVariable = {
-      ...getCommonCssVariables(isBorder, color, width),
-    };
-  
+  const cssVariable = {
+    ...getCommonCssVariables(isBorder, color, width),
+  };
 
   return (
     <div className={styles.jsonField} style={{ width: width, ...cssVariable }}>
@@ -63,6 +63,7 @@ export const JsonField = ({
               placeholder="Please input the JSON data here..."
               showCharacterCount={showCharacterCount}
               showWordCount={showWordCount}
+              backendError={backendError}
             />
           </div>
 

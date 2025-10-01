@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextField } from "../../TextInput/jsx/TextField";
 import styles from "../css/AddressField.module.css";
-import { useEffect } from "react";
 
 export const AddressField = ({
   setResult,
@@ -19,6 +18,7 @@ export const AddressField = ({
   isBorder = false,
   gap = "10px",
   setIsFieldValid = () => {},
+  backendErrors = {}, // <-- new prop: { house: "Error message" }
 }) => {
   const initialStates = {};
   const initialError = {};
@@ -58,18 +58,36 @@ export const AddressField = ({
     initialError["landmark"] = INVALID;
   }
 
-  // const inital
-
   const [address, setAddress] = useState(initialStates);
   const [error, setError] = useState(initialError);
+  const [fieldMessages, setFieldMessages] = useState({}); // backend error messages
   const [isStarted, setIsStarted] = useState(false);
+
+  // Merge backend errors into field messages
+  useEffect(() => {
+    if (backendErrors && Object.keys(backendErrors).length) {
+      setFieldMessages((prev) => ({ ...prev, ...backendErrors }));
+      // mark fields with backend errors as invalid
+      const updatedError = { ...error };
+      Object.keys(backendErrors).forEach((key) => {
+        if (updatedError[key] !== undefined) {
+          updatedError[key] = INVALID;
+        }
+      });
+      setError(updatedError);
+    }
+  }, [backendErrors]);
 
   const handleChange = (field, value, isError = false) => {
     !isStarted && setIsStarted(true);
 
+    // clear backend error on user input
+    setFieldMessages((prev) => ({ ...prev, [field]: undefined }));
+
     setAddress((prev) => ({ ...prev, [field]: value }));
-    isError &&
+    if (isError) {
       setError((prev) => ({ ...prev, [field]: value ? VALID : INVALID }));
+    }
   };
 
   const handleBlur = () => {
@@ -79,13 +97,8 @@ export const AddressField = ({
   useEffect(() => {
     if (!isStarted) return;
 
-    const validity = Object.values(error).find((er) => {
-      return er === INVALID;
-    });
-
-    const isValid = validity ? false : true;
-
-    setIsFieldValid(isValid);
+    const validity = Object.values(error).find((er) => er === INVALID);
+    setIsFieldValid(!validity);
   }, [error]);
 
   const fieldConfigs = [
@@ -94,7 +107,7 @@ export const AddressField = ({
       label: "House No.",
       placeholder: "House No.",
       visible: isHouse,
-      pattern: /^[A-Za-z0-9\\s,\/.\-]*$/,
+      pattern: /^[A-Za-z0-9\s,\/.\-]*$/,
       errorMessage: "Must be numbers, letters, space, hyphen and dot",
       minLength: 1,
       maxLength: 10,
@@ -104,7 +117,7 @@ export const AddressField = ({
       label: "Street No.",
       placeholder: "Street No.",
       visible: isStreet,
-      pattern: "^[A-Za-z0-9\\s,]*$",
+      pattern: /^[A-Za-z0-9\s,]*$/,
       errorMessage: "Must be letters, numbers, and spaces.",
       minLength: 1,
       maxLength: 100,
@@ -114,7 +127,7 @@ export const AddressField = ({
       label: "City",
       placeholder: "City",
       visible: isCity,
-      pattern: "^[A-Za-z0-9\\s]*$",
+      pattern: /^[A-Za-z0-9\s]*$/,
       errorMessage: "Must be letters, numbers and spaces.",
       minLength: 2,
       maxLength: 50,
@@ -124,7 +137,7 @@ export const AddressField = ({
       label: "State",
       placeholder: "State",
       visible: isState,
-      pattern: "^[A-Za-z\\s]*$",
+      pattern: /^[A-Za-z\s]*$/,
       errorMessage: "Must be letters and spaces.",
       minLength: 2,
       maxLength: 50,
@@ -134,7 +147,7 @@ export const AddressField = ({
       label: "Postal Code",
       placeholder: "Enter postal code",
       visible: isPostal,
-      pattern: "^[0-9]*$",
+      pattern: /^[0-9]*$/,
       errorMessage: "Must be 4 to 8 digits.",
       minLength: 4,
       maxLength: 8,
@@ -144,7 +157,7 @@ export const AddressField = ({
       label: "Country",
       placeholder: "Country",
       visible: isCountry,
-      pattern: "^[A-Za-z\\s]*$",
+      pattern: /^[A-Za-z\s]*$/,
       errorMessage: "Must be letters and spaces.",
       minLength: 2,
       maxLength: 50,
@@ -154,7 +167,7 @@ export const AddressField = ({
       label: "Landmark",
       placeholder: "Landmark",
       visible: isLandmark,
-      pattern: "^[A-Za-z0-9\\s,]*$",
+      pattern: /^[A-Za-z0-9\s,]*$/,
       errorMessage: "Must be letters, numbers, spaces and commas.",
       minLength: 2,
       maxLength: 50,
@@ -164,7 +177,7 @@ export const AddressField = ({
       label: "Address Line (Additional)",
       placeholder: "Additional address line",
       visible: isAddressLine,
-      pattern: "^[A-Za-z0-9\\s,]*$",
+      pattern: /^[A-Za-z0-9\s,]*$/,
       errorMessage: "Must be letters, numbers, spaces and commas.",
       minLength: 2,
       maxLength: 50,
@@ -192,16 +205,17 @@ export const AddressField = ({
               placeholder={placeholder}
               setResult={(val) => handleChange(key, val)}
               pattern={pattern}
-              errorMessage={errorMessage}
+              errorMessage={errorMessage} // show backend error if exists
               minLength={minLength}
               maxLength={maxLength}
               required
               color={color}
               isBorder={isBorder}
               showLabelAlways={showLabelAlways}
-              onBlur={handleBlur} // Trigger onBlur to update the result
+              onBlur={handleBlur}
               width={width}
               setIsFieldValid={(v) => handleChange(key, v, true)}
+              backendError={fieldMessages[key]}
             />
           )
       )}

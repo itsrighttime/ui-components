@@ -15,6 +15,7 @@ export const EmailField = ({
   width = "300px",
   isBorder = false,
   errorMessage = "Please enter a valid email address.",
+  backendError= ""
 }) => {
   return (
     <TextField
@@ -35,6 +36,7 @@ export const EmailField = ({
       showLabelAlways={showLabelAlways}
       isBorder={isBorder}
       width={width}
+      backendError={backendError}
     />
   );
 };

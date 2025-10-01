@@ -33,6 +33,7 @@ const { JsonField } = UIInputs.Text;
 | `showWordCount`      | boolean   | false   | Show word count below the textarea.                                                      |
 | `width`              | `string`  | `300px` | to adjust the width of the Field                                                         |
 | `isBorder`           | `boolean` | `false` | Applies full border instead of bottom border only                                        |
+| `backendError`       | `string`  | `""`    | bakend error that reaches to the correct field.                                          |
 
 ### Behavior
 
@@ -76,23 +77,25 @@ const { TextArea } = UIInputs.text;
 
 ### Props
 
-| Prop                 | Type      | Default              | Description                                                                                 |
-| -------------------- | --------- | -------------------- | ------------------------------------------------------------------------------------------- |
-| `label`              | string    | —                    | Label text to display (shown only on focus and if input is not empty).                      |
-| `value`              | string    | ""                   | Controlled value of the textarea.                                                           |
-| `setResult`          | function  | —                    | Callback to update the input value on change or blur.                                       |
-| `color`              | string    | var(--colorCyan)     | Color for styling the input border/text.                                                    |
-| `placeholder`        | string    | "Enter text here..." | Placeholder text shown when input is empty.                                                 |
-| `minLength`          | number    | —                    | Minimum allowed length for input. If violated, shows error.                                 |
-| `maxLength`          | number    | —                    | Maximum allowed length for input. Prevents typing beyond limit and shows error if exceeded. |
-| `maxTextAreaHeight`  | number    | 200                  | Maximum height of the textarea in pixels. If content exceeds, scrollbar appears.            |
-| `setIsFieldValid`    | function  | () => {}             | Callback to notify if current field is valid (based on length validation).                  |
-| `showCharacterCount` | boolean   | false                | Show character count below the textarea.                                                    |
-| `showWordCount`      | boolean   | false                | Show word count below the textarea.                                                         |
-| `disabled`           | boolean   | false                | Disable the textarea input.                                                                 |
-| `style`              | object    | {}                   | Additional inline styles applied to the container.                                          |
-| `width`              | `string`  | `300px`              | to adjust the width of the Field                                                            |
-| `showLabelAlways`    | `boolean` | `false`              | If true, always shows the label above the input field.                                      |
+| Prop                 | Type      | Default                                 | Description                                                                                 |
+| -------------------- | --------- | --------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `label`              | string    | —                                       | Label text to display (shown only on focus and if input is not empty).                      |
+| `value`              | string    | ""                                      | Controlled value of the textarea.                                                           |
+| `setResult`          | function  | —                                       | Callback to update the input value on change or blur.                                       |
+| `color`              | string    | var(--colorCyan)                        | Color for styling the input border/text.                                                    |
+| `placeholder`        | string    | "Enter text here..."                    | Placeholder text shown when input is empty.                                                 |
+| `minLength`          | number    | —                                       | Minimum allowed length for input. If violated, shows error.                                 |
+| `maxLength`          | number    | —                                       | Maximum allowed length for input. Prevents typing beyond limit and shows error if exceeded. |
+| `maxTextAreaHeight`  | number    | 200                                     | Maximum height of the textarea in pixels. If content exceeds, scrollbar appears.            |
+| `setIsFieldValid`    | function  | () => {}                                | Callback to notify if current field is valid (based on length validation).                  |
+| `showCharacterCount` | boolean   | false                                   | Show character count below the textarea.                                                    |
+| `showWordCount`      | boolean   | false                                   | Show word count below the textarea.                                                         |
+| `disabled`           | boolean   | false                                   | Disable the textarea input.                                                                 |
+| `style`              | object    | {}                                      | Additional inline styles applied to the container.                                          |
+| `width`              | `string`  | `300px`                                 | to adjust the width of the Field                                                            |
+| `showLabelAlways`    | `boolean` | `false`                                 | If true, always shows the label above the input field.                                      |
+| `backendError`       | `string`  | `""`                                    | bakend error that reaches to the correct field.                                             |
+| `errorMessage`       | `string`  | `"Please enter a valid email address."` | Custom error message                                                                        |
 
 ### Behavior
 
@@ -183,19 +186,21 @@ const { MobileField } = UIInputs.text;
 
 ### Props
 
-| Prop              | Type      | Default | Description                                                       |
-| ----------------- | --------- | ------- | ----------------------------------------------------------------- |
-| `value`           | `string`  | `""`    | Value that it current hold.                                       |
-| `required`        | `boolean` | `false` | Whether the phone number field is mandatory.                      |
-| `color`           | `string`  | `-`     | Primary theme color (used for styling).                           |
-| `code`            | `string`  | `"+91"` | Default country code.                                             |
-| `setResult`       | `func`    | `-`     | Callback to receive `{ countryCode, phoneNumber }` result object. |
-| `setIsFieldValid` | `func`    | `-`     | Callback to indicate whether the phone number is valid.           |
-| `noOfDigits`      | `number`  | `10`    | Expected number of digits in the phone number.                    |
-| `showLabelAlways` | `boolean` | `false` | If true, always shows the label above the input field.            |
-| `style`           | `object`  | `{}`    | Inline style object applied to the root container.                |
-| `width`           | `string`  | `300px` | to adjust the width of the Field                                  |
-| `isBorder`        | `boolean` | `false` | Applies full border instead of bottom border only                 |
+| Prop              | Type      | Default                 | Description                                                       |
+| ----------------- | --------- | ----------------------- | ----------------------------------------------------------------- |
+| `value`           | `string`  | `""`                    | Value that it current hold.                                       |
+| `required`        | `boolean` | `false`                 | Whether the phone number field is mandatory.                      |
+| `color`           | `string`  | `-`                     | Primary theme color (used for styling).                           |
+| `code`            | `string`  | `"+91"`                 | Default country code.                                             |
+| `setResult`       | `func`    | `-`                     | Callback to receive `{ countryCode, phoneNumber }` result object. |
+| `setIsFieldValid` | `func`    | `-`                     | Callback to indicate whether the phone number is valid.           |
+| `noOfDigits`      | `number`  | `10`                    | Expected number of digits in the phone number.                    |
+| `showLabelAlways` | `boolean` | `false`                 | If true, always shows the label above the input field.            |
+| `style`           | `object`  | `{}`                    | Inline style object applied to the root container.                |
+| `width`           | `string`  | `300px`                 | to adjust the width of the Field                                  |
+| `isBorder`        | `boolean` | `false`                 | Applies full border instead of bottom border only                 |
+| `backendError`    | `string`  | `""`                    | bakend error that reaches to the correct field.                   |
+| `errorMessage`    | `string`  | `"Not a valid Numbers"` | Custom error message                                              |
 
 ### Validation
 
@@ -246,6 +251,7 @@ const { EmailField } = UIInputs.text;
 | `style`           | `object`  | `{}`                 | Inline style for the component.                        |
 | `width`           | `string`  | `300px`              | to adjust the width of the Field                       |
 | `isBorder`        | `boolean` | `false`              | Applies full border instead of bottom border only      |
+| `backendError`    | `string`  | `""`                 | bakend error that reaches to the correct field.        |
 
 ### Validation
 

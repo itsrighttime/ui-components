@@ -45,6 +45,7 @@ const { TextField } = UIInputs.Text;
 | `onClear`              | `function`  | —                    | Renders a clear (X) icon when provided                           |
 | `icon`                 | `ReactNode` | —                    | Adds a right-side icon inside the input                          |
 | `width`                | `string`    | `300px`              | to adjust the width of the Field                                 |
+| `backendError`        | `string`   | `""`                                       | bakend error that reaches to the correct field. |
 
 ---
 

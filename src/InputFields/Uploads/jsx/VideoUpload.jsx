@@ -15,6 +15,7 @@ export const VideoUpload = ({
   preview = false,
   width = "400px",
   height = "200px",
+  backendError,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [video, setVideo] = useState(null);
@@ -32,16 +33,23 @@ export const VideoUpload = ({
       setError(`Video size exceeds limit of ${formattedMaxSize}`);
       return false;
     }
+    setError(null);
     return true;
   };
 
   const handleFileChange = (selectedFile) => {
+    if (!selectedFile) return;
+
     if (validateVideo(selectedFile)) {
       setVideo(selectedFile);
       setResult(selectedFile);
       setIsFieldValid(true);
       setError(null);
-    } else setIsFieldValid(true);
+    } else {
+      setVideo(null);
+      setResult(null);
+      setIsFieldValid(false);
+    }
   };
 
   const handleDragEnter = (e) => {
