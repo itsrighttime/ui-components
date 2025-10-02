@@ -17,13 +17,34 @@ export const VideoUpload = ({
   width = "400px",
   height = "200px",
   backendError,
+  value = null
 }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [video, setVideo] = useState(null);
+  const [video, setVideo] = useState(value);
   const [error, setError] = useState(null);
 
   const maxSize = maxSizeMB * 1024 * 1024; // Convert MB to bytes
   const formattedMaxSize = formatFileSize(maxSize);
+
+  useEffect(() => {
+    if (!value) {
+      setVideo(null);
+      return;
+    }
+
+    if (typeof value === "string") {
+      // backend provided URL (e.g. from DynamoDB / S3)
+      setVideo(value);
+      setError(null);
+    } else if (value instanceof File || value instanceof Blob) {
+      // local file object (user just uploaded)
+      const url = URL.createObjectURL(value);
+      setVideo(url);
+      setError(null);
+
+      return () => URL.revokeObjectURL(url); // cleanup
+    }
+  }, [value]);
 
   useEffect(() => {
     if (backendError) {

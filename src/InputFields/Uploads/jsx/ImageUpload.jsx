@@ -15,11 +15,33 @@ export const ImageUpload = ({
   height = "200px",
   previewBorderRadius = "0%",
   backendError = "",
+  value = null,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [image, setImage] = useState(null); // image URL for preview
-  const [file, setFile] = useState(null); // actual File object
+  const [image, setImage] = useState(value); // image URL for preview
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!value) {
+      setImage(null);
+      return;
+    }
+
+    if (typeof value === "string") {
+      // backend provided URL (e.g. from DynamoDB / S3)
+      setImage(value);
+      setIsFieldValid(true);
+      setError(null);
+    } else if (value instanceof File || value instanceof Blob) {
+      // local file object (user just uploaded)
+      const url = URL.createObjectURL(value);
+      setImage(url);
+      setIsFieldValid(true);
+      setError(null);
+
+      return () => URL.revokeObjectURL(url); // cleanup
+    }
+  }, [value]);
 
   const maxSize = maxSizeMB * 1024 * 1024;
 
@@ -73,7 +95,6 @@ export const ImageUpload = ({
       resetAll();
     } else {
       setImage(url);
-      setFile(selectedFile);
       setResult(selectedFile);
       setIsFieldValid(true);
       setError(null);
@@ -83,7 +104,6 @@ export const ImageUpload = ({
   const resetAll = () => {
     if (image) URL.revokeObjectURL(image);
     setImage(null);
-    setFile(null);
     setResult(null);
     setIsFieldValid(false);
   };

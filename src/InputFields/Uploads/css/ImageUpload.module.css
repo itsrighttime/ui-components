@@ -43,12 +43,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  height: var(--height);
 }
 
 .image {
   margin-bottom: 10px;
-  height: calc(100% - 30px);
+  height: calc(100% - 35px);
   width: auto;
 }
 

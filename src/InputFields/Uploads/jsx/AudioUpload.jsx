@@ -13,10 +13,31 @@ export const AudioUpload = ({
   width = "500px",
   height = "100px",
   backendError = "",
+  value = null,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
-  const [audio, setAudio] = useState(null);
+  const [audio, setAudio] = useState(value);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!value) {
+      setAudio(null);
+      return;
+    }
+
+    if (typeof value === "string") {
+      // backend provided URL (e.g. from DynamoDB / S3)
+      setAudio(value);
+      setError(null);
+    } else if (value instanceof File || value instanceof Blob) {
+      // local file object (user just uploaded)
+      const url = URL.createObjectURL(value);
+      setAudio(url);
+      setError(null);
+
+      return () => URL.revokeObjectURL(url); // cleanup
+    }
+  }, [value]);
 
   const maxSize = maxSizeMB * 1024 * 1024;
 

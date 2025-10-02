@@ -11,8 +11,6 @@ export const Switch = ({
 }) => {
   const [switchValue, setSwitchValue] = useState(initialValue);
 
-  console.log(initialValue);
-
   const handleToggle = () => {
     if (!disabled) {
       const newValue = !switchValue;

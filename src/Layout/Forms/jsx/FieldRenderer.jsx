@@ -238,6 +238,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         maxSizeMB={field.maxSizeMB}
         allowedTypes={field.allowedTypes}
         setResult={(files) => onChange(field.name, files)}
+        value={value[field.name]}
         color={color}
         setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
@@ -247,6 +248,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         label={field.label}
         width={width}
         height={field.height || "100px"}
+        value={value[field.name]}
         maxSizeMB={field.maxSizeMB}
         allowedTypes={field.allowedTypes}
         requireSquare={field.requireSquare}
@@ -264,6 +266,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         maxSizeMB={field.maxSizeMB}
         allowedTypes={field.allowedTypes}
         preview={field.preview}
+        value={value[field.name]}
         setResult={(files) => onChange(field.name, files)}
         color={color}
         setIsFieldValid={(v) => onChange(field.name, v, true)}

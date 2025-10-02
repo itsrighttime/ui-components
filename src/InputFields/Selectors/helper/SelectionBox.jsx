@@ -92,9 +92,9 @@ export const SelectionBox = ({
               disabled || option.disabled ? styles.disabled : ""
             }`}
             style={customStyles.item}
-            onClick={() =>
-              !disabled && !option.disabled && handleChange(option.value)
-            }
+            // onClick={() =>
+            //   !disabled && !option.disabled && handleChange(option.value)
+            // }
           >
             <IconButton
               icon={selectedOption ? tickSingleIcon : <></>}

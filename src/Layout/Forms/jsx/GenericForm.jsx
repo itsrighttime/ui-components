@@ -4,6 +4,7 @@ import { Button } from "../../../InputFields/Actions/jsx/Button";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
 import styles from "../css/GenericForm.module.css";
+import { loadFile, saveFile } from "../helper/indexedDb";
 
 export function GenericForm({
   config,
@@ -67,28 +68,66 @@ export function GenericForm({
     return { initialState: state, initialError: errors };
   }, [allFields]);
 
-  // initialize / load saved state once
+  // 1. Load data (localStorage + files from IndexedDB)
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      setFormData(parsed.formData || initialState);
-      setFormError(parsed.formError || initialError);
-      setCurrentStep(parsed.currentStep || 0);
-    } else {
-      setFormData(initialState);
-      setFormError(initialError);
-    }
-    setIsInitialized(true); // mark as ready
+    const loadForm = async () => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      let formState = saved ? JSON.parse(saved) : {};
+
+      let loadedFiles = {};
+      if (formState.files) {
+        const fileEntries = await Promise.all(
+          Object.keys(formState.files).map(async (key) => {
+            const file = await loadFile(key);
+            return [key, file];
+          })
+        );
+        loadedFiles = Object.fromEntries(fileEntries);
+      }
+
+      // merge loaded files into formData
+      setFormData({
+        ...initialState,
+        ...formState.formData,
+        ...loadedFiles, // overwrite only file fields
+      });
+
+      setFormError(formState.formError || initialError);
+      setCurrentStep(formState.currentStep || 0);
+      setIsInitialized(true);
+    };
+
+    loadForm();
   }, [initialState, initialError]);
 
-  // persist to localStorage (only after init is complete)
+  // 2️. Save data (localStorage + IndexedDB)
   useEffect(() => {
     if (!isInitialized) return;
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({ formData, formError, currentStep })
-    );
+
+    const persistForm = async () => {
+      const filesToSave = {};
+      const promises = [];
+
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value instanceof File || value instanceof Blob) {
+          filesToSave[key] = true; // mark presence
+          promises.push(saveFile(key, value)); // save asynchronously
+        }
+      });
+
+      await Promise.all(promises); // wait for all files to save
+
+      const storageData = {
+        formData: { ...formData },
+        formError,
+        currentStep,
+        files: filesToSave,
+      };
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(storageData));
+    };
+
+    persistForm();
   }, [formData, formError, currentStep, isInitialized]);
 
   const handleChange = (name, value, isError) => {

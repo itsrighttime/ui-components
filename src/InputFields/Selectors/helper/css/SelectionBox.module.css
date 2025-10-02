@@ -24,7 +24,7 @@
   justify-content: left;
   position: relative;
   gap: 10px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .selectionLabel {
