@@ -1,8 +1,11 @@
 import { useState } from "react";
 import styles from "../css/Stepper.module.css"; // Ensure to create this CSS file for styling
+import { IconButton } from "../../Actions/jsx/IconButton";
+import { minusIcon, plusIcon } from "../../../utils/icons";
+import { useEffect } from "react";
 
 export const Stepper = ({
-  value,
+  value = 0,
   setResult,
   color,
   min = 0,
@@ -11,7 +14,11 @@ export const Stepper = ({
   label = "",
   width = "300px",
 }) => {
-  const [stepperValue, setStepperValue] = useState(value || 0);
+  const [stepperValue, setStepperValue] = useState(value);
+
+  useEffect(() => {
+    if (value !== 0 && stepperValue === 0) setStepperValue(value);
+  }, [value]);
 
   const handleIncrement = () => {
     if (stepperValue + step <= max) {
@@ -38,21 +45,23 @@ export const Stepper = ({
     <div className={styles.stepperContainer} style={cssVariable}>
       {label && <label className={styles.stepperLabel}>{label}</label>}
       <div className={styles.stepperControls}>
-        <button
-          className={styles.stepperButton}
+        <IconButton
           onClick={handleDecrement}
-          disabled={stepperValue - step < min}
-        >
-          -
-        </button>
+          size={2.2}
+          icon={minusIcon}
+          isBorder={true}
+          color={"var(--colorWhite)"}
+          style={{ backgroundColor: color }}
+        />
         <div className={styles.stepperOutput}> {stepperValue} </div>
-        <button
-          className={styles.stepperButton}
+        <IconButton
           onClick={handleIncrement}
-          disabled={stepperValue + step > max}
-        >
-          +
-        </button>
+          size={2.2}
+          icon={plusIcon}
+          isBorder={true}
+          color={"var(--colorWhite)"}
+          style={{ backgroundColor: color }}
+        />
       </div>
     </div>
   );

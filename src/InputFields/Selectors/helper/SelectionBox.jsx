@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./css/SelectionBox.module.css";
 import { IconButton } from "../../Actions/jsx/IconButton";
 import { tickSingleIcon } from "../../../utils/icons";
+import { useEffect } from "react";
 
 export const SelectionBox = ({
   options = [],
@@ -18,6 +19,11 @@ export const SelectionBox = ({
   const [selectedValues, setSelectedValues] = useState(
     multiple ? initialSelectedValues : initialSelectedValues || null
   );
+
+  useEffect(() => {
+    if ((initialSelectedValues.length > 0) & (selectedValues.length === 0))
+      setSelectedValues(initialSelectedValues);
+  }, [initialSelectedValues]);
 
   // Handles selection for both checkbox (multiple) and radio (single)
   const handleChange = (value) => {

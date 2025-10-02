@@ -15,11 +15,17 @@ export const JsonField = ({
   width = "300px",
   isBorder = false,
   backendError = "",
+  value = "",
 }) => {
-  const [jsonInput, setJsonInput] = useState("");
+  const [jsonInput, setJsonInput] = useState(value);
   const [error, setError] = useState("");
   const [onSave, setOnSave] = useState(true);
   const [formattedJson, setFormattedJson] = useState("");
+
+  // Sync value from external props
+  useEffect(() => {
+    if (value !== "" && jsonInput === "") setJsonInput(value); // Sync with external value
+  }, [value]);
 
   useEffect(() => {
     setResult(formattedJson);

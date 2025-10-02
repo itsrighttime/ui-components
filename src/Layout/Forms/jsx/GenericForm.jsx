@@ -12,12 +12,15 @@ export function GenericForm({
   style,
   settings = {},
 }) {
+  const VALIDITY = { VALID: "valid", INVALID: "invalid" };
+  const mode = config.mode || "single";
+
+  const STORAGE_KEY = `genericForm_${config.title || "form"}`;
+
   const [formData, setFormData] = useState({});
   const [formError, setFormError] = useState({});
   const [currentStep, setCurrentStep] = useState(0);
-
-  const VALIDITY = { VALID: "valid", INVALID: "invalid" };
-  const mode = config.mode || "single";
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // merge default settings with overrides
   const _settings = {
@@ -64,15 +67,29 @@ export function GenericForm({
     return { initialState: state, initialError: errors };
   }, [allFields]);
 
-  // initialize form state when config changes
+  // initialize / load saved state once
   useEffect(() => {
-    setFormData(initialState);
-    setFormError(initialError);
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setFormData(parsed.formData || initialState);
+      setFormError(parsed.formError || initialError);
+      setCurrentStep(parsed.currentStep || 0);
+    } else {
+      setFormData(initialState);
+      setFormError(initialError);
+    }
+    setIsInitialized(true); // mark as ready
   }, [initialState, initialError]);
 
+  // persist to localStorage (only after init is complete)
   useEffect(() => {
-    console.log("DDDD", formData);
-  }, [formData]);
+    if (!isInitialized) return;
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ formData, formError, currentStep })
+    );
+  }, [formData, formError, currentStep, isInitialized]);
 
   const handleChange = (name, value, isError) => {
     !isError && setFormData((prev) => ({ ...prev, [name]: value }));
@@ -92,6 +109,25 @@ export function GenericForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
     await onSubmit(formData);
+    localStorage.removeItem(STORAGE_KEY); // clear after successful submit
+  };
+
+  // validate step fields
+  const isStepValid = () => {
+    const stepFields =
+      mode === "multi" ? config.steps[currentStep].fields : config.fields;
+
+    return stepFields.every(
+      (field) => formError[field.name] === VALIDITY.VALID
+    );
+  };
+
+  const handleNext = () => {
+    if (isStepValid()) {
+      setCurrentStep((s) => s + 1);
+    } else {
+      alert("Please complete all required fields in this step.");
+    }
   };
 
   const fieldsToRender =
@@ -104,6 +140,7 @@ export function GenericForm({
           <h2>{config.title}</h2>
           {config.description && <p>{config.description}</p>}
         </div>
+
         {mode === "multi" && (
           <div className={styles.stepHeader}>
             <h2>{config.steps[currentStep].title}</h2>
@@ -138,7 +175,7 @@ export function GenericForm({
               <IconButton
                 icon={arrowRightIcon}
                 label="Next"
-                onClick={() => setCurrentStep((s) => s + 1)}
+                onClick={handleNext}
                 size="2"
                 color={color}
               />
@@ -150,6 +187,23 @@ export function GenericForm({
           mode === "single" && (
             <Button text={submitLabel} onClick={handleSubmit} color={color} />
           )
+        )}
+
+        {mode === "multi" && (
+          <>
+            <div className={styles.progressStatus}>
+              Step {currentStep + 1} of {config.steps.length}
+            </div>
+            <div className={styles.progressBarWrapper}>
+              <div
+                className={styles.progressBar}
+                style={{
+                  width: `${((currentStep + 1) / config.steps.length) * 100}%`,
+                  backgroundColor: color,
+                }}
+              />
+            </div>
+          </>
         )}
       </form>
     </div>

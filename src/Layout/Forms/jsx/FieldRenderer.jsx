@@ -111,7 +111,8 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         label={field.label}
         required={field?.required || false}
         placeholder={field.placeholder || field.label}
-        value={value[field.name]}
+        value={value[field.name]?.number}
+        code={value[field.name]?.code}
         setResult={(v) => {
           const val = { code: v.countryCode, number: v.phoneNumber };
           onChange(field.name, val);
@@ -128,12 +129,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         label={field.label}
         required={field?.required || false}
         isSmall={field?.isSmall || true}
-        value={value[field.name]}
-        initialDate={field.initialDate}
+        initialDate={value[field.name] || field.initialDate}
         restrictionStartDate={field.restrictionStartDate}
         restrictionEndDate={field.restrictionEndDate}
         setResult={(v) => onChange(field.name, v)} // Update state on change
-        showLabelAlways={settings.showLabelAlways}
         mode={field.mode}
       />
     ),
@@ -160,6 +159,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         isCountry={field.isCountry}
         isAddressLine={field.isAddressLine}
         isLandmark={field.isLandmark}
+        values={value[field.name]}
         showLabelAlways={settings.showLabelAlways}
         setIsFieldValid={(v) => onChange(field.name, v, true)}
         gap={settings.gap}
@@ -212,6 +212,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         hideOnSave={field.hideOnSave}
         isBorder={field.isBorder}
         backendError={field.backendError}
+        value={value[field.name]}
       />
     ),
     [FORM_FIELDS_TYPE.FILE]: (
@@ -294,7 +295,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         setResult={(files) => onChange(field.name, files)}
         color={color}
         options={field.options}
-        initialSelectedValues={field.initialSelectedValues}
+        initialSelectedValues={value[field.name]}
         layout={field.layout}
         label={field.label}
         disabled={field.disabled}
@@ -304,7 +305,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     [FORM_FIELDS_TYPE.COLOR]: (
       <ColorPicker
         setResult={(files) => onChange(field.name, files)}
-        color={field.color || "#ff5969"}
+        color={value[field.name] || field.color || "#ff5969"}
       />
     ),
     [FORM_FIELDS_TYPE.RADIO]: (
@@ -313,12 +314,11 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         setResult={(files) => onChange(field.name, files)}
         color={color}
         options={field.options}
-        initialSelectedValues={field.initialSelectedValues}
+        initialSelectedValue={value[field.name]}
         layout={field.layout}
         label={field.label}
         disabled={field.disabled}
         customStyles={field.customStyles}
-        initialSelectedValue={field.initialSelectedValue}
       />
     ),
     [FORM_FIELDS_TYPE.SEARCH]: (
@@ -334,7 +334,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <Switch
         setResult={(files) => onChange(field.name, files)}
         color={color}
-        initialValue={field.initialValue}
+        initialValue={value[field.name]}
         label={field.label}
         disabled={field.disabled}
         customStyles={field.customStyles}
@@ -345,7 +345,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         setResult={(files) => onChange(field.name, files)}
         color={color}
         label={field.label}
-        value={field.value}
+        value={value[field.name]}
         min={field.min}
         max={field.max}
         step={field.step}
@@ -361,7 +361,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         color={color}
         width={width}
         label={field.label}
-        value={field.value}
+        value={value[field.name]}
         min={field.min}
         max={field.max}
         step={field.step}

@@ -42,6 +42,7 @@ export const configData07 = {
     { name: "switch", type: FORM_FIELDS_TYPE.SWITCH, label: "Switch Field", initialValue: true },
     { name: "color", type: FORM_FIELDS_TYPE.COLOR, label: "Color Picker" },
     { name: "slider", type: FORM_FIELDS_TYPE.SLIDER, label: "Slider", min: 0, max: 100, step: 5 },
+    { name: "slider", type: FORM_FIELDS_TYPE.STEPPER, label: "Stepper", min: 0, max: 100, step: 5 },
     { name: "search", type: FORM_FIELDS_TYPE.SEARCH, label: "Search Box", suggestions: ["Apple", "Banana", "Orange"] },
     { name: "json", type: FORM_FIELDS_TYPE.JSON, label: "JSON Field" },
     { name: "file", type: FORM_FIELDS_TYPE.FILE, label: "File Upload", multiple: true, maxFiles: 3, maxSize: 2 * 1024 * 1024, allowedTypes: ["application/pdf"] },

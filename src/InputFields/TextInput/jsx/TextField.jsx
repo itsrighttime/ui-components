@@ -43,7 +43,7 @@ export const TextField = ({
 
   // Sync value from external props
   useEffect(() => {
-    setInputValue(value); // Sync with external value
+    if (value !== "" && inputValue === "") setInputValue(value); // Sync with external value
   }, [value]);
 
   // Sync backend errors into component state

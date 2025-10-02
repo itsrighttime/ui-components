@@ -4,7 +4,7 @@ import { minusIcon, plusIcon } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
 
 export const Slider = ({
-  value,
+  value = 0,
   setResult,
   color,
   min = 0,
@@ -16,7 +16,11 @@ export const Slider = ({
   precision = 10,
   width = "300px",
 }) => {
-  const [sliderValue, setSlidervalue] = useState(value || 0);
+  const [sliderValue, setSlidervalue] = useState(value);
+
+   useEffect(() => {
+    if (value !== 0 && sliderValue === 0) setSlidervalue(value);
+  }, [value]);
 
   useEffect(() => {
     const updateSliderBackground = (value) => {

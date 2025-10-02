@@ -1,4 +1,3 @@
-import React from "react";
 import { SelectionBox } from "../helper/SelectionBox";
 
 export const CheckboxGroup = ({

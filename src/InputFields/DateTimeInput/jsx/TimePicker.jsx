@@ -1,11 +1,29 @@
 import { useState } from "react";
 import styles from "../css/TimePicker.module.css";
 import { CustomDropdown } from "../helper/CustomDropdown";
+import { useEffect } from "react";
 
-export const TimePicker = ({ label, setResult, color, width = "200px" }) => {
-  const [hours, setHours] = useState("--");
-  const [minutes, setMinutes] = useState("--");
-  const [period, setPeriod] = useState("--");
+export const TimePicker = ({
+  label,
+  value = "--:-- --",
+  setResult,
+  color,
+  width = "200px",
+}) => {
+  const [_time, _period] = value.split(" ");
+  const [_hour, _minute] = _time.split(":");
+
+  const [hours, setHours] = useState(_hour);
+  const [minutes, setMinutes] = useState(_minute);
+  const [period, setPeriod] = useState(_period);
+
+  useEffect(() => {
+    const [_time, _p] = value.split(" ");
+    const [_h, _m] = _time.split(":");
+    setHours(_h);
+    setMinutes(_m);
+    setPeriod(_p);
+  }, [value]);
 
   const handleHoursChange = (value) => {
     setHours(value);

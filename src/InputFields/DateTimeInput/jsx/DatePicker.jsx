@@ -15,10 +15,12 @@ export const DatePicker = ({
   width = "200px",
   mode = "date", // "month-year" | "year" | "month" | "date"
 }) => {
-  const [selectedDate, setSelectedDate] = useState(
-    initialDate === null ? label || "Select a Date" : initialDate
-  );
+  const _label = label || "Select a Date";
+
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(
+    initialDate === null ? _label : initialDate
+  );
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
@@ -27,6 +29,11 @@ export const DatePicker = ({
   };
 
   const pickerRef = useRef(null);
+
+  useEffect(() => {
+    if (initialDate !== null && selectedDate === _label)
+      setSelectedDate(initialDate);
+  }, [initialDate]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

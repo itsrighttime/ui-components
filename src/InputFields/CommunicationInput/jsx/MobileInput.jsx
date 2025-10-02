@@ -21,6 +21,13 @@ export const MobileField = ({
   const [countryCode, setCountryCode] = useState(code);
   const [phoneNumber, setPhoneNumber] = useState(value);
 
+  useEffect(() => {
+    if (phoneNumber === "") {
+      setPhoneNumber(value);
+      setCountryCode(code);
+    }
+  }, [code, value]);
+
   const updatePhoneData = (updated = {}) => {
     if (setResult) {
       setResult({

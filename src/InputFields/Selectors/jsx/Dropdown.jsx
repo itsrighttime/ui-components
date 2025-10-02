@@ -29,6 +29,11 @@ export const Dropdown = ({
   const position = useSmartPosition(dropdownRef);
 
   useEffect(() => {
+    if (value.length > 0 && selectedOptions.length === 0)
+      setSelectedOptions(value);
+  }, [value]);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
