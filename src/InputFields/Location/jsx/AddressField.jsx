@@ -179,8 +179,6 @@ export const AddressField = ({
   useEffect(() => {
     if (!isStarted) return;
 
-    console.log("DDDD", error);
-
     const validity = Object.values(error).find((er) => er === INVALID);
     setIsFieldValid(!validity);
   }, [error]);

@@ -20,9 +20,9 @@ export const TimePicker = ({
   useEffect(() => {
     const [_time, _p] = value.split(" ");
     const [_h, _m] = _time.split(":");
-    setHours(_h);
-    setMinutes(_m);
-    setPeriod(_p);
+    setHours(_h || "--");
+    setMinutes(_m || "--");
+    setPeriod(_p || "--");
   }, [value]);
 
   const handleHoursChange = (value) => {

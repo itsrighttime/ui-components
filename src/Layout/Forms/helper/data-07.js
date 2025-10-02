@@ -50,7 +50,7 @@ export const configData07 = {
     { name: "image", type: FORM_FIELDS_TYPE.IMAGE, label: "Image Upload", maxSizeMB: 5, requireSquare: false },
     { name: "video", type: FORM_FIELDS_TYPE.VIDEO, label: "Video Upload", maxSizeMB: 100, preview: true },
     { name: "otp", type: FORM_FIELDS_TYPE.OTP, label: "OTP Field", length: 6 },
-    { name: "securityQuestion", type: FORM_FIELDS_TYPE.SECURTY_QUESTION, label: "Security Question" },
+    { name: "securityQuestion", type: FORM_FIELDS_TYPE.SECURTY_QUESTION, label: "Security Question", questions: ["Que1", "Que2", "Que3"] },
     { name: "repeatableGroup", type: FORM_FIELDS_TYPE.TEXT_AREA, label: "Repeatable Example", repeatable: true, fields: [{ name: "field1", type: FORM_FIELDS_TYPE.TEXT, label: "Inner Field" }] }
   ],
 };

@@ -14,10 +14,10 @@ export const Stepper = ({
   label = "",
   width = "300px",
 }) => {
-  const [stepperValue, setStepperValue] = useState(value);
+  const [stepperValue, setStepperValue] = useState(value || 0);
 
   useEffect(() => {
-    if (value !== 0 && stepperValue === 0) setStepperValue(value);
+    if (value !== 0 && stepperValue === 0) setStepperValue(value || 0);
   }, [value]);
 
   const handleIncrement = () => {

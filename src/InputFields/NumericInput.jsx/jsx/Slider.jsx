@@ -16,10 +16,10 @@ export const Slider = ({
   precision = 10,
   width = "300px",
 }) => {
-  const [sliderValue, setSlidervalue] = useState(value);
+  const [sliderValue, setSlidervalue] = useState(value || 0);
 
-   useEffect(() => {
-    if (value !== 0 && sliderValue === 0) setSlidervalue(value);
+  useEffect(() => {
+    if (value !== 0 && sliderValue === 0) setSlidervalue(value || 0);
   }, [value]);
 
   useEffect(() => {

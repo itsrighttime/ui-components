@@ -24,6 +24,10 @@ export const FileUpload = ({
   const [files, setFiles] = useState(value || []);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    if (value.length > 0 && files.length === 0) setFiles(value);
+  }, [value]);
+
   // Sync backend error with state
   useEffect(() => {
     if (backendError) {

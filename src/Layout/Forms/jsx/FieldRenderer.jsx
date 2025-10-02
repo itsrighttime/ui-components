@@ -42,7 +42,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <RepeatableGroup
         field={field}
         values={value[field.name]}
-        onChange={(val) => onChange(field.name, val)}
+        onChange={(v) => onChange(field.name, v)}
         settings={settings}
       />
     );
@@ -173,7 +173,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         type={field.type || FORM_FIELDS_TYPE.TEXT}
         name={field.name}
         value={value[field.name]}
-        setResult={(value) => onChange(field.name, value)} // Update state on change
+        setResult={(v) => onChange(field.name, v)} // Update state on change
         width={width}
         color={color}
         showLabelAlways={settings.showLabelAlways}
@@ -217,7 +217,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     ),
     [FORM_FIELDS_TYPE.FILE]: (
       <FileUpload
-        value={value[field.name]}
+        value={value[field.name] || []}
         label={field.label}
         width={width}
         multiple={field.multiple}
@@ -226,7 +226,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         maxSize={field.maxSize}
         allowedTypes={field.allowedTypes}
         height={field.height || "200px"}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
     ),
@@ -237,7 +237,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         height={field.height || "100px"}
         maxSizeMB={field.maxSizeMB}
         allowedTypes={field.allowedTypes}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         value={value[field.name]}
         color={color}
         setIsFieldValid={(v) => onChange(field.name, v, true)}
@@ -253,7 +253,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         allowedTypes={field.allowedTypes}
         requireSquare={field.requireSquare}
         previewBorderRadius={field.previewBorderRadius}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
@@ -267,23 +267,25 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         allowedTypes={field.allowedTypes}
         preview={field.preview}
         value={value[field.name]}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         setIsFieldValid={(v) => onChange(field.name, v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.SECURTY_QUESTION]: (
       <SecurityQuestion
+        questions={field.questions}
         placeholder={field.label || field.placeholder}
         width={width}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
+        value={value[field.name]}
       />
     ),
     [FORM_FIELDS_TYPE.OTP]: (
       <OtpField
         width={width}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         length={field.length}
         verifcationEndpoint={field.verifcationEndpoint}
@@ -295,7 +297,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     [FORM_FIELDS_TYPE.CHECKBOX]: (
       <CheckboxGroup
         width={width}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         options={field.options}
         initialSelectedValues={value[field.name]}
@@ -314,7 +316,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     [FORM_FIELDS_TYPE.RADIO]: (
       <RadioGroup
         width={width}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         options={field.options}
         initialSelectedValue={value[field.name]}
@@ -328,14 +330,14 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <SearchBox
         placeholder={field.label || field.placeholder}
         width={width}
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         suggestions={field.suggestions}
       />
     ),
     [FORM_FIELDS_TYPE.SWITCH]: (
       <Switch
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         initialValue={value[field.name]}
         label={field.label}
@@ -345,7 +347,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     ),
     [FORM_FIELDS_TYPE.SLIDER]: (
       <Slider
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         label={field.label}
         value={value[field.name]}
@@ -360,7 +362,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     ),
     [FORM_FIELDS_TYPE.STEPPER]: (
       <Stepper
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => onChange(field.name, v)}
         color={color}
         width={width}
         label={field.label}

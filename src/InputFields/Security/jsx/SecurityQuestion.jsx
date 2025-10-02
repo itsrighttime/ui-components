@@ -9,9 +9,17 @@ export const SecurityQuestion = ({
   color,
   placeholder = "Select a question",
   width = "300px",
+  value = {},
 }) => {
   const [selectedQuestion, setSelectedQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+
+  useEffect(() => {
+    if (value?.question && value?.answer && !selectedQuestion) {
+      setSelectedQuestion(value.question);
+      setAnswer(value.answer);
+    }
+  }, [value, selectedQuestion]);
 
   const handleQuestionChange = (value) => {
     setSelectedQuestion(value[0]);
@@ -26,7 +34,7 @@ export const SecurityQuestion = ({
       <Dropdown
         options={questions}
         placeholder={placeholder}
-        value={selectedQuestion}
+        value={selectedQuestion === "" ? [] : [selectedQuestion]}
         setResult={handleQuestionChange}
         label="Select a Security Question"
         color={color}

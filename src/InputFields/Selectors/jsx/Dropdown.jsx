@@ -21,7 +21,7 @@ export const Dropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const [allOptions, setAllOptions] = useState(options);
   const [filteredOptions, setFilteredOptions] = useState(options);
-  const [selectedOptions, setSelectedOptions] = useState(value);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [newOption, setNewOption] = useState("");
 
@@ -30,7 +30,7 @@ export const Dropdown = ({
 
   useEffect(() => {
     if (value.length > 0 && selectedOptions.length === 0)
-      setSelectedOptions(value);
+      value && setSelectedOptions(value);
   }, [value]);
 
   useEffect(() => {
