@@ -163,6 +163,7 @@ export const AudioPlayer = ({
               showValueSide="left"
               color={color}
               showRange={false}
+              width="auto"
             />
           </div>
 
@@ -172,6 +173,7 @@ export const AudioPlayer = ({
                 icon={resetFieldIcon}
                 onClick={onReupload}
                 color={color || "#52C9BD"}
+                label={"Re-Upload"}
               />
             )}
             {onRemove && (

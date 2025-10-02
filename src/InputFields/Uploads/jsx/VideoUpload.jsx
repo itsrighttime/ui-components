@@ -149,6 +149,7 @@ export const VideoUpload = ({
               icon={resetFieldIcon}
               onClick={handleReupload}
               color={color || "#52C9BD"}
+              label={"Re-Upload"}
             />
             <IconButton
               icon={crossIcon}

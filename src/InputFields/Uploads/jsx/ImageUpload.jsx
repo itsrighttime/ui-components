@@ -156,6 +156,7 @@ export const ImageUpload = ({
                 icon={resetFieldIcon}
                 onClick={handleReupload}
                 color={color || "#52C9BD"}
+                label={"Re-Upload"}
               />
               <IconButton icon={crossIcon} onClick={resetAll} color="#FF5969" />
             </div>

@@ -20,15 +20,16 @@ The `Calendar` component is a **fully-featured, customizable, and dynamic calend
 
 ## Props
 
-| Prop                   | Type                 | Default  | Description                                           |
-| ---------------------- | -------------------- | -------- | ----------------------------------------------------- |
-| `isSmall`              | `boolean`            | `false`  | If `true`, renders a compact version of the calendar. |
-| `setResult`            | `function`           | —        | Callback triggered when a date is selected.           |
-| `color`                | `string`             | —        | CSS color used for button highlights.                 |
-| `restrictionStartDate` | `string` (formatted) | `null`   | Start boundary (inclusive) for selectable dates.      |
-| `restrictionEndDate`   | `string` (formatted) | `null`   | End boundary (inclusive) for selectable dates.        |
-| `height`               | `string`             | `"100%"` | Sets the height of the calendar container.            |
-| `width`                | `string`             | `"100%"` | Sets the width of the calendar container.             |
+| Prop                   | Type                                        | Default                          | Description                                           |
+| ---------------------- | ------------------------------------------- | -------------------------------- | ----------------------------------------------------- |
+| `isSmall`              | `boolean`                                   | `false`                          | If `true`, renders a compact version of the calendar. |
+| `setResult`            | `function`                                  | —                                | Callback triggered when a date is selected.           |
+| `color`                | `string`                                    | —                                | CSS color used for button highlights.                 |
+| `restrictionStartDate` | `string` (formatted)                        | `null`                           | Start boundary (inclusive) for selectable dates.      |
+| `restrictionEndDate`   | `string` (formatted)                        | `null`                           | End boundary (inclusive) for selectable dates.        |
+| `height`               | `string`                                    | `"100%"`                         | Sets the height of the calendar container.            |
+| `width`                | `string`                                    | `"100%"`                         | Sets the width of the calendar container.             |
+| `mode`                 | `month-year` \| `year` \| `month` \| `date` | CSS width for layout flexibility |
 
 ### Import
 
@@ -106,17 +107,18 @@ The `DatePicker` is a customizable, reusable date selection component built in R
 
 ### Props:
 
-| Prop                   | Type               | Description                          |
-| ---------------------- | ------------------ | ------------------------------------ |
-| `label`                | `string`           | Placeholder or label text            |
-| `initialDate`          | `string` or `null` | Pre-selected date value              |
-| `restrictionStartDate` | `Date` or `null`   | Prevent selection before this date   |
-| `restrictionEndDate`   | `Date` or `null`   | Prevent selection after this date    |
-| `color`                | `string`           | Custom highlight color               |
-| `setResult`            | `function`         | Callback to return the selected date |
-| `isSmall`              | `boolean`          | Controls calendar compactness        |
-| `isBorder`             | `boolean`          | Toggle border visibility             |
-| `width`                | `string`           | CSS width for layout flexibility     |
+| Prop                   | Type                                        | Description                          |
+| ---------------------- | ------------------------------------------- | ------------------------------------ |
+| `label`                | `string`                                    | Placeholder or label text            |
+| `initialDate`          | `string` or `null`                          | Pre-selected date value              |
+| `restrictionStartDate` | `Date` or `null`                            | Prevent selection before this date   |
+| `restrictionEndDate`   | `Date` or `null`                            | Prevent selection after this date    |
+| `color`                | `string`                                    | Custom highlight color               |
+| `setResult`            | `function`                                  | Callback to return the selected date |
+| `isSmall`              | `boolean`                                   | Controls calendar compactness        |
+| `isBorder`             | `boolean`                                   | Toggle border visibility             |
+| `width`                | `string`                                    | CSS width for layout flexibility     |
+| `mode`                 | `month-year` \| `year` \| `month` \| `date` | CSS width for layout flexibility     |
 
 ## `TimePicker` Component
 

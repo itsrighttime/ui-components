@@ -82,9 +82,9 @@ const App = () => {
           }} // Your custom submission logic
           submitLabel="Create User"
           settings={{
-            showLabelAlways: true,
+            // showLabelAlways: true,
             color: "var(--colorDarkBlue)",
-            width: "600px",
+            width: "550px",
             gap: "3rem",
           }}
         />

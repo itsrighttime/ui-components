@@ -35,7 +35,7 @@
 | [Email](#email-field)                         | `name, type, label, value, placeholder, required, width, color, showLabelAlways, setResult, setIsFieldValid`                                                                             |
 | [Mobile](#mobile-field)                       | `name, type, label, value, placeholder, required, width, color, showLabelAlways, setResult, setIsFieldValid`                                                                             |
 | [Password](#password-field)                   | `name, type, label, value, placeholder, width, color, showLabelAlways, setResult, setIsFieldValid`                                                                                       |
-| [Date](#date-field)                           | `name, type, label, value, required, initialDate, restrictionStartDate, restrictionEndDate, isSmall, width, color, showLabelAlways, setResult`                                           |
+| [Date](#date-field)                           | `name, type, label, value, required, initialDate, restrictionStartDate, restrictionEndDate, isSmall, width, color, mode, showLabelAlways, setResult`                                           |
 | [Time](#time-field)                           | `name, type, label, value, width, color, setResult`                                                                                                                                      |
 | [Address](#address-field)                     | `name, type, isHouse, isStreet, isCity, isState, isPostal, isCountry, isAddressLine, isLandmark, width, color, gap, showLabelAlways, setResult, setIsFieldValid`                         |
 | [Dropdown](#dropdown-field)                   | `name, type, label, placeholder, value, multiple, options, width, color, showLabelAlways, setResult`                                                                                     |
@@ -134,20 +134,21 @@
 
 ### **Date Field**
 
-| **Prop Name**          | **Type**   | **Description**                    | **Default Value**    |
-| ---------------------- | ---------- | ---------------------------------- | -------------------- |
-| `name`                 | `string`   | Field name for state.              | N/A                  |
-| `type`                 | `string`   | Type of field, always mention this | N/A                  |
-| `label`                | `string`   | Field label.                       | N/A                  |
-| `required`             | `boolean`  | Whether date is required.          | false                |
-| `initialDate`          | `string`   | Default date.                      | N/A                  |
-| `restrictionStartDate` | `string`   | Earliest selectable date.          | N/A                  |
-| `restrictionEndDate`   | `string`   | Latest selectable date.            | N/A                  |
-| `isSmall`              | `boolean`  | Small picker option.               | true                 |
-| `value`                | `string`   | Current date.                      | N/A                  |
-| `setResult`            | `function` | Updates state.                     | N/A                  |
-| `width`                | `string`   | Input width.                       | `"100%"`             |
-| `color`                | `string`   | Accent color.                      | `"var(--colorCyan)"` |
+| **Prop Name**          | **Type**   | **Description**                    | **Default Value**                           |
+| ---------------------- | ---------- | ---------------------------------- | ------------------------------------------- |
+| `name`                 | `string`   | Field name for state.              | N/A                                         |
+| `type`                 | `string`   | Type of field, always mention this | N/A                                         |
+| `label`                | `string`   | Field label.                       | N/A                                         |
+| `required`             | `boolean`  | Whether date is required.          | false                                       |
+| `initialDate`          | `string`   | Default date.                      | N/A                                         |
+| `restrictionStartDate` | `string`   | Earliest selectable date.          | N/A                                         |
+| `restrictionEndDate`   | `string`   | Latest selectable date.            | N/A                                         |
+| `isSmall`              | `boolean`  | Small picker option.               | true                                        |
+| `value`                | `string`   | Current date.                      | N/A                                         |
+| `setResult`            | `function` | Updates state.                     | N/A                                         |
+| `width`                | `string`   | Input width.                       | `"100%"`                                    |
+| `color`                | `string`   | Accent color.                      | `"var(--colorCyan)"`                        |
+| `mode`                 | `enum`     | CSS width for layout flexibility   | `month-year` \| `year` \| `month` \| `date` |
 
 ### **Time Field**
 

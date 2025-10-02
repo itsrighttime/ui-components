@@ -134,6 +134,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         restrictionEndDate={field.restrictionEndDate}
         setResult={(v) => onChange(field.name, v)} // Update state on change
         showLabelAlways={settings.showLabelAlways}
+        mode={field.mode}
       />
     ),
     [FORM_FIELDS_TYPE.TIME]: (
@@ -168,6 +169,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <TextField
         key={field.name}
         label={field.label}
+        placeholder={field.placeholder || field.label}
         type={field.type || FORM_FIELDS_TYPE.TEXT}
         name={field.name}
         value={value[field.name]}

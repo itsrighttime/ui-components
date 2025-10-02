@@ -37,6 +37,7 @@ A custom React tooltip component that follows the cursor and smartly adjusts its
 | `color`           | `string`    | `"#272626"` | Text color of the tooltip.                      |
 | `backgroundColor` | `string`    | `"#eceaea"` | Background color of the tooltip.                |
 | `width`           | `string`    | `"250px"`   | Control the width of the tooltip.               |
+| `delay`           | `string`    | `"1500"`    | Give a delay after hovering on that content.    |
 
 ---
 

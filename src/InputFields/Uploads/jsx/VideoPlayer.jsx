@@ -44,6 +44,7 @@ export const VideoPlayer = ({
                 icon={resetFieldIcon}
                 onClick={onReupload}
                 color={color || "#52C9BD"}
+                label={"Re-Upload"}
               />
             )}
             {onRemove && (

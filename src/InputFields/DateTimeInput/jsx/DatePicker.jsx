@@ -13,6 +13,7 @@ export const DatePicker = ({
   isSmall = true,
   isBorder = false,
   width = "200px",
+  mode = "date", // "month-year" | "year" | "month" | "date"
 }) => {
   const [selectedDate, setSelectedDate] = useState(
     initialDate === null ? label || "Select a Date" : initialDate
@@ -56,6 +57,7 @@ export const DatePicker = ({
             color={color}
             restrictionStartDate={restrictionStartDate}
             restrictionEndDate={restrictionEndDate}
+            mode={mode}
           />
         </div>
       )}

@@ -29,6 +29,7 @@ export const Calendar = ({
   restrictionEndDate = null,
   height = "100%",
   width = "100%",
+  mode = "date", // "month-year" | "year" | "month" | "date"
 }) => {
   // Convert string dates to Date objects
   if (restrictionStartDate)
@@ -56,8 +57,22 @@ export const Calendar = ({
     return today;
   };
 
+  const getInitialView = () => {
+    switch (mode) {
+      case "year":
+        return "years";
+      case "month":
+      case "month-year":
+        return "months";
+      case "day":
+      case "date":
+      default:
+        return "date";
+    }
+  };
+
   const [currentDate, setCurrentDate] = useState(getInitialDate());
-  const [view, setView] = useState("calendar"); // "calendar", "months", or "years"
+  const [view, setView] = useState(getInitialView()); // "date", "months", or "years"
 
   const cssVariable = {
     "--color": color || "var(--colorCyan)",
@@ -113,7 +128,7 @@ export const Calendar = ({
           <Loading color={color} windowHeight="200px" windowWidth="100%" />
         }
       >
-        {view === "calendar" && (
+        {view === "date" && (
           <RenderCalendar
             isSmall={isSmall}
             date={currentDate}
@@ -127,9 +142,18 @@ export const Calendar = ({
           <RenderMonths
             isSmall={isSmall}
             year={currentDate.getFullYear()}
-            handleMonthClick={(monthYear) =>
-              handleMonthSelection(monthYear, setCurrentDate, setView)
-            }
+            handleMonthClick={(monthYear) => {
+              const [month, year] = monthYear?.split("-");
+              setCurrentDate(new Date(year, month, 1));
+
+              if (mode === "month") {
+                setResult(month); // return month only
+              } else if (mode === "month-year") {
+                setResult(`${month}-${year}`);
+              } else {
+                handleMonthSelection(monthYear, setCurrentDate, setView);
+              }
+            }}
             restrictionStartDate={restrictionStartDate}
             restrictionEndDate={restrictionEndDate}
           />
@@ -140,9 +164,14 @@ export const Calendar = ({
             isSmall={isSmall}
             startYear={currentDate.getFullYear() - 7}
             endYear={currentDate.getFullYear() + 8}
-            handleYearClick={(year) =>
-              handleYearSelection(year, setCurrentDate, setView)
-            }
+            handleYearClick={(year) => {
+              setCurrentDate(new Date(year, 0, 1));
+              if (mode === "year") {
+                setResult(year); // return only year
+              } else {
+                handleYearSelection(year, setCurrentDate, setView);
+              }
+            }}
             restrictionStartYear={
               restrictionStartDate ? restrictionStartDate.getFullYear() : null
             }

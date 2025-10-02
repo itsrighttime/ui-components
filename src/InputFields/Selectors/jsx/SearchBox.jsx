@@ -115,6 +115,7 @@ export const SearchBox = ({
             icon={searchIcon}
             onClick={handleIconClick}
             label={"Search"}
+            color={color}
           />
         </div>
       </div>

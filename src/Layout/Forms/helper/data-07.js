@@ -32,7 +32,7 @@ export const configData07 = {
     { name: "email", type: FORM_FIELDS_TYPE.EMAIL, label: "Email Address", placeholder: "Enter email" },
     { name: "mobile", type: FORM_FIELDS_TYPE.MOBILE, label: "Mobile Number" },
     { name: "password", type: FORM_FIELDS_TYPE.PASSWORD, label: "Password" },
-    { name: "date", type: FORM_FIELDS_TYPE.DATE, label: "Date Picker" },
+    { name: "date", type: FORM_FIELDS_TYPE.DATE, label: "Date Picker", mode: "month-year" },
     { name: "time", type: FORM_FIELDS_TYPE.TIME, label: "Time Picker" },
     { name: "address", type: FORM_FIELDS_TYPE.ADDRESS, label: "Address", isHouse: true, isStreet: true, isCity: true, isState: true, isPostal: true, isCountry: true, isLandmark: true },
     { name: "dropdown", type: FORM_FIELDS_TYPE.DROPDOWN, label: "Dropdown", options: ["Option 1", "Option 2"] },

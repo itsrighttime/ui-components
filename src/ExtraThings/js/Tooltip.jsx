@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "../css/ToolTip.module.css";
 
@@ -10,11 +10,13 @@ export const Tooltip = ({
   color = "#272626",
   backgroundColor = "#eceaea",
   width = "250px",
+  delay = 1500,
 }) => {
   const tooltipRef = useRef(null);
   const [visible, setVisible] = useState(false);
   const [style, setStyle] = useState({});
   const [position, setPosition] = useState("bottom");
+  const timerRef = useRef(null);
 
   const updateTooltipPosition = (x, y) => {
     const tooltip = tooltipRef.current;
@@ -62,11 +64,26 @@ export const Tooltip = ({
     requestAnimationFrame(() => updateTooltipPosition(clientX, clientY));
   };
 
+  const handleMouseEnter = () => {
+    timerRef.current = setTimeout(() => {
+      setVisible(true);
+    }, delay);
+  };
+
+  const handleMouseLeave = () => {
+    clearTimeout(timerRef.current);
+    setVisible(false);
+  };
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current); // cleanup on unmount
+  }, []);
+
   return (
     <>
       <span
-        onMouseEnter={() => setVisible(true)}
-        onMouseLeave={() => setVisible(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         style={{ display: "inline-block" }}
       >

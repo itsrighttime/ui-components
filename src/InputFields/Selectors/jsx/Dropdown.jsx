@@ -94,15 +94,20 @@ export const Dropdown = ({
       tabIndex={0}
       style={cssVariable}
     >
-      {showLabelAlways && label && <div className={styles.label}>{label}</div>}
+      {(selectedOptions.length > 0 || showLabelAlways) && label && (
+        <div className={styles.label}>{label}</div>
+      )}
 
       <div
         className={`${styles.dropdownHeader} ${isOpen ? styles.open : ""}`}
         onClick={handleHeaderClick}
       >
-        <span>
-          {selectedOptions.length ? selectedOptions.join(", ") : placeholder}
-        </span>
+        {selectedOptions.length ? (
+          <span>{selectedOptions.join(", ")}</span>
+        ) : (
+          <span style={{ color: "var(--colorGray4)" }}>{placeholder}</span>
+        )}
+
         <IconButton
           icon={isOpen ? arrowUpIcon : arrowDownIcon}
           label={isOpen ? "Close Dropdown" : "Open Dropdown"}
@@ -159,7 +164,7 @@ export const Dropdown = ({
               </div>
             )}
 
-            {multiple && selectedOptions.length > 0 && (
+            {selectedOptions.length > 0 && (
               <div className={styles.buttons}>
                 <Button
                   onClick={handleClearSelection}

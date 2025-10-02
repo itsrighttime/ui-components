@@ -210,11 +210,13 @@ export const FileUpload = ({
                     icon={resetFieldIcon}
                     onClick={() => handleReupload(index)}
                     color={color || "#52C9BD"}
+                    label={"Re-Upload"}
                   />
                   <IconButton
                     icon={crossIcon}
                     onClick={() => handleRemoveFile(index)}
                     color="#FF5969"
+                    label={"Remove"}
                   />
                 </div>
               </div>
