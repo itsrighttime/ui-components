@@ -47,4 +47,4 @@ jobs:
           git push origin package --follow-tags
           npm publish --registry=https://npm.pkg.github.com/
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_ENV }}
+          NODE_AUTH_TOKEN: ${{ secrets.SECRET }}
