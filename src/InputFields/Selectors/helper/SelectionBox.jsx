@@ -21,7 +21,7 @@ export const SelectionBox = ({
   );
 
   useEffect(() => {
-    if ((initialSelectedValues.length > 0) & (selectedValues.length === 0))
+    if ((initialSelectedValues?.length > 0) & (selectedValues?.length === 0))
       setSelectedValues(initialSelectedValues);
   }, [initialSelectedValues]);
 

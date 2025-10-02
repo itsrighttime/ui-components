@@ -60,7 +60,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         options={field.options || []}
         value={value[field.name]}
         multiple={false}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }} // Update state on change
       />
     ),
     [FORM_FIELDS_TYPE.MULTI_DROPDOWN]: (
@@ -74,7 +77,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         options={field.options || []}
         value={value[field.name]}
         multiple={true}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }} // Update state on change
       />
     ),
     [FORM_FIELDS_TYPE.EMAIL]: (
@@ -99,7 +105,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         label={field.label}
         placeholder={field.placeholder || field.label}
         value={value[field.name]}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }} // Update state on change
         showLabelAlways={settings.showLabelAlways}
       />
     ),
@@ -132,7 +141,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         initialDate={value[field.name] || field.initialDate}
         restrictionStartDate={field.restrictionStartDate}
         restrictionEndDate={field.restrictionEndDate}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }} // Update state on change
         mode={field.mode}
       />
     ),
@@ -142,7 +154,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         color={color}
         label={field.label}
         value={value[field.name]}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }} // Update state on change
       />
     ),
     [FORM_FIELDS_TYPE.ADDRESS]: (
@@ -277,7 +292,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         questions={field.questions}
         placeholder={field.label || field.placeholder}
         width={width}
-        setResult={(v) => onChange(field.name, v)}
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }}
         color={color}
         value={value[field.name]}
       />
@@ -297,7 +315,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     [FORM_FIELDS_TYPE.CHECKBOX]: (
       <CheckboxGroup
         width={width}
-        setResult={(v) => onChange(field.name, v)}
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }}
         color={color}
         options={field.options}
         initialSelectedValues={value[field.name]}
@@ -309,14 +330,20 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     ),
     [FORM_FIELDS_TYPE.COLOR]: (
       <ColorPicker
-        setResult={(files) => onChange(field.name, files)}
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }}
         color={value[field.name] || field.color || "#ff5969"}
       />
     ),
     [FORM_FIELDS_TYPE.RADIO]: (
       <RadioGroup
         width={width}
-        setResult={(v) => onChange(field.name, v)}
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }}
         color={color}
         options={field.options}
         initialSelectedValue={value[field.name]}
@@ -330,14 +357,20 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <SearchBox
         placeholder={field.label || field.placeholder}
         width={width}
-        setResult={(v) => onChange(field.name, v)}
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }}
         color={color}
         suggestions={field.suggestions}
       />
     ),
     [FORM_FIELDS_TYPE.SWITCH]: (
       <Switch
-        setResult={(v) => onChange(field.name, v)}
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }}
         color={color}
         initialValue={value[field.name]}
         label={field.label}
@@ -347,7 +380,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     ),
     [FORM_FIELDS_TYPE.SLIDER]: (
       <Slider
-        setResult={(v) => onChange(field.name, v)}
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }}
         color={color}
         label={field.label}
         value={value[field.name]}
@@ -362,7 +398,10 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     ),
     [FORM_FIELDS_TYPE.STEPPER]: (
       <Stepper
-        setResult={(v) => onChange(field.name, v)}
+        setResult={(v) => {
+          onChange(field.name, v);
+          onChange(field.name, true, true); // to update Error State as valid
+        }}
         color={color}
         width={width}
         label={field.label}

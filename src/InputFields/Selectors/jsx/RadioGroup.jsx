@@ -14,7 +14,7 @@ export const RadioGroup = ({
   return (
     <SelectionBox
       options={options}
-      initialSelectedValues={initialSelectedValue}
+      initialSelectedValues={initialSelectedValue || []}
       setResult={setResult}
       layout={layout}
       label={label}
