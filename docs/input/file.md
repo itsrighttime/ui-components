@@ -40,6 +40,7 @@ const { FileUpload } = UIInputs.Upload;
 | `width`           | `string`   | `"500px"`       | Width of the component.                                                           |
 | `height`          | `string`   | `"100px"`       | Height of the component.                                                          |
 | `backendError`    | `string`   | `""`            | To make sure if eny error occurs at the bakend that reaches to the correct field. |
+| `value`           | `-`        | `null`          | Initial value.                                                                    |
 
 ### Example Usage
 

@@ -125,6 +125,7 @@ The `AudioUpload` component provides a **file upload interface** for audio files
 | `width`           | `string`   | `"500px"`                     | Width of the audio upload/player block.                                           |
 | `height`          | `string`   | `"100px"`                     | Height of the upload area (ignored after audio is uploaded).                      |
 | `backendError`    | `string`   | `""`                          | To make sure if eny error occurs at the bakend that reaches to the correct field. |
+| `value`           | `-`        | `null`                        | Initial value.                                                                    |
 
 ## Features
 

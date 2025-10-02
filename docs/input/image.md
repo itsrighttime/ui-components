@@ -39,6 +39,7 @@ const { ImageUpload, ImagePreview } = UIInputs.Upload;
 | `height`              | `string`   | `"200px"`                                  | Display height                                  |
 | `previewBorderRadius` | `string`   | `"0%"`                                     | Border Radius of the preview image              |
 | `backendError`        | `string`   | `""`                                       | bakend error that reaches to the correct field. |
+| `value`               | `-`        | `null`                                     | Initial value.                                  |
 
 ### Features
 

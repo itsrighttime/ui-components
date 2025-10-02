@@ -119,6 +119,7 @@ The `DatePicker` is a customizable, reusable date selection component built in R
 | `isBorder`             | `boolean`                                   | Toggle border visibility             |
 | `width`                | `string`                                    | CSS width for layout flexibility     |
 | `mode`                 | `month-year` \| `year` \| `month` \| `date` | CSS width for layout flexibility     |
+| `value`                | `-`                                         | Initial value.                       |
 
 ## `TimePicker` Component
 

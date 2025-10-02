@@ -34,6 +34,7 @@ const { JsonField } = UIInputs.Text;
 | `width`              | `string`  | `300px` | to adjust the width of the Field                                                         |
 | `isBorder`           | `boolean` | `false` | Applies full border instead of bottom border only                                        |
 | `backendError`       | `string`  | `""`    | bakend error that reaches to the correct field.                                          |
+| `value`              | `-`       | `""`  | Initial value.                                                                           |
 
 ### Behavior
 

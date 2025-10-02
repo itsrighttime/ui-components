@@ -40,6 +40,7 @@ const { AddressField } = UIInputs.Text;
 | `isBorder`        | Boolean  | `false`     | If true, TextFields will show borders instead of only underlines                  |
 | `setIsFieldValid` | func     | `-`         | Callback to indicate whether the email is valid.                                  |
 | `backendError`    | String   | `""`        | To make sure if eny error occurs at the bakend that reaches to the correct field. |
+| `values`           | `-`      | `{}`        | Initial value.                                                                    |
 
 > backendError keys - `house`, `street`, `city`, `state`, `postal`, `country`, `landmark`, `addressLine`
 

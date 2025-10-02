@@ -117,6 +117,7 @@ const { OtpField, PasswordField, SecurityQuestion } = UIInputs.Security;
 | `color`       | `string` | `--colorCyan`         | Accent color                                 |
 | `placeholder` | `string` | `"Select a question"` | Dropdown placeholder                         |
 | `width`       | `string` | `"300px"`             | Component width                              |
+| `value`       | `-`      | `""`                  | Initial value.                               |
 
 ### Features
 
