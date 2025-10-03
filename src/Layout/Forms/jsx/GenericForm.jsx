@@ -4,11 +4,11 @@ import { Button } from "../../../InputFields/Actions/jsx/Button";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
 import styles from "../css/GenericForm.module.css";
-import {  deleteFile } from "../helper/indexedDb";
+import { deleteFile } from "../helper/indexedDb";
 import { useFormNavigation } from "./useFormNavigation";
 import { useFormPersistence } from "./useFormPersistence";
-import { buildValidationSchema } from "../helper/buildValidationSchema";
 import { validateFormData } from "../helper/validateFromData";
+import { registerValidations } from "../validation/registerValidations";
 
 /**
  * GenericForm
@@ -28,6 +28,10 @@ export function GenericForm({
 }) {
   const mode = config.mode || "single";
   const STORAGE_KEY = `genericForm_${config.title || "form"}`;
+
+  useEffect(() => {
+    registerValidations();
+  }, []);
 
   // Prevent writes while loading
   const mountedRef = useRef(true);
@@ -110,10 +114,10 @@ export function GenericForm({
   // submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const schema = buildValidationSchema(config.fields);
-    // const { isValid, errors } = validateFormData(formData, schema);
+    const { isValid, errors } = validateFormData(formData, config);
+    return;
 
-    // console.log("DDDD", isValid, errors);
+    console.log("DDDD", isValid, errors);
 
     await onSubmit(formData);
 

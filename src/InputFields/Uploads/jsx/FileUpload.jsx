@@ -24,6 +24,8 @@ export const FileUpload = ({
   const [files, setFiles] = useState(value || []);
   const [error, setError] = useState(null);
 
+  const _maxSize = maxSize * 1024 * 1024;
+
   useEffect(() => {
     if (value.length > 0 && files.length === 0) setFiles(value);
   }, [value]);
@@ -41,10 +43,8 @@ export const FileUpload = ({
       setError(`Invalid file type. Allowed types: ${allowedTypes.join(", ")}`);
       return false;
     }
-    if (file.size > maxSize) {
-      setError(
-        `File size exceeds limit of ${(maxSize / 1024 / 1024).toFixed(2)} MB`
-      );
+    if (file.size > _maxSize) {
+      setError(`File size exceeds limit of ${_maxSize.toFixed(2)} MB`);
       return false;
     }
     return true;

@@ -86,7 +86,6 @@ export const configData01 = {
     },
     {
       name: "education",
-      type: FORM_FIELDS_TYPE.TEXT_AREA,
       label: "Education Details (Repeatable)",
       repeatable: true,
       moreLabel: "Add Other Degree",

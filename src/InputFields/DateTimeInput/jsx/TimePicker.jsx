@@ -17,6 +17,8 @@ export const TimePicker = ({
   const [minutes, setMinutes] = useState(_minute);
   const [period, setPeriod] = useState(_period);
 
+  // console.log("DDDD", value)
+
   useEffect(() => {
     const [_time, _p] = value.split(" ");
     const [_h, _m] = _time.split(":");

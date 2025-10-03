@@ -48,6 +48,7 @@ export const configData02 = {
       maxFiles: 1,
       maxSize: 5 * 1024 * 1024, // 5MB
       allowedTypes: ["application/pdf"],
+      required: true,
       conditional: {
         dependsOn: "employmentStatus",
         operator: OPERATORS.in,
