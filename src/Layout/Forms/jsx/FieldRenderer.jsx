@@ -137,7 +137,6 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         key={field.name}
         label={field.label}
         required={field?.required || false}
-        isSmall={field?.isSmall || true}
         initialDate={value[field.name] || field.initialDate}
         restrictionStartDate={field.restrictionStartDate}
         restrictionEndDate={field.restrictionEndDate}
@@ -185,7 +184,6 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         key={field.name}
         label={field.label}
         placeholder={field.placeholder || field.label}
-        type={field.type || FORM_FIELDS_TYPE.TEXT}
         name={field.name}
         value={value[field.name]}
         setResult={(v) => onChange(field.name, v)} // Update state on change
@@ -226,7 +224,6 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         setIsFieldValid={(v) => onChange(field.name, v, true)}
         hideOnSave={field.hideOnSave}
         isBorder={field.isBorder}
-        backendError={field.backendError}
         value={value[field.name]}
       />
     ),
@@ -238,7 +235,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         multiple={field.multiple}
         maxFiles={field.maxFiles}
         color={color}
-        maxSize={field.maxSize}
+        maxSize={field.maxSizeMB}
         allowedTypes={field.allowedTypes}
         height={field.height || "200px"}
         setResult={(v) => onChange(field.name, v)}
@@ -289,7 +286,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     ),
     [FORM_FIELDS_TYPE.SECURTY_QUESTION]: (
       <SecurityQuestion
-        questions={field.questions}
+        questions={field.options}
         placeholder={field.label || field.placeholder}
         width={width}
         setResult={(v) => {
@@ -325,7 +322,6 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         layout={field.layout}
         label={field.label}
         disabled={field.disabled}
-        customStyles={field.customStyles}
       />
     ),
     [FORM_FIELDS_TYPE.COLOR]: (
@@ -350,7 +346,6 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         layout={field.layout}
         label={field.label}
         disabled={field.disabled}
-        customStyles={field.customStyles}
       />
     ),
     [FORM_FIELDS_TYPE.SEARCH]: (
@@ -362,7 +357,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
           onChange(field.name, true, true); // to update Error State as valid
         }}
         color={color}
-        suggestions={field.suggestions}
+        suggestions={field.options}
       />
     ),
     [FORM_FIELDS_TYPE.SWITCH]: (
@@ -375,7 +370,6 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         initialValue={value[field.name]}
         label={field.label}
         disabled={field.disabled}
-        customStyles={field.customStyles}
       />
     ),
     [FORM_FIELDS_TYPE.SLIDER]: (

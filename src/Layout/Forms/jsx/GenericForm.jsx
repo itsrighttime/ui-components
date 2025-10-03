@@ -4,9 +4,11 @@ import { Button } from "../../../InputFields/Actions/jsx/Button";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
 import styles from "../css/GenericForm.module.css";
-import { loadFile, saveFile, deleteFile } from "../helper/indexedDb";
+import {  deleteFile } from "../helper/indexedDb";
 import { useFormNavigation } from "./useFormNavigation";
 import { useFormPersistence } from "./useFormPersistence";
+import { buildValidationSchema } from "../helper/buildValidationSchema";
+import { validateFormData } from "../helper/validateFromData";
 
 /**
  * GenericForm
@@ -28,7 +30,6 @@ export function GenericForm({
   const STORAGE_KEY = `genericForm_${config.title || "form"}`;
 
   // Prevent writes while loading
-  const isLoadingRef = useRef(false);
   const mountedRef = useRef(true);
   useEffect(() => () => (mountedRef.current = false), []);
 
@@ -109,6 +110,11 @@ export function GenericForm({
   // submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // const schema = buildValidationSchema(config.fields);
+    // const { isValid, errors } = validateFormData(formData, schema);
+
+    // console.log("DDDD", isValid, errors);
+
     await onSubmit(formData);
 
     // clear storage on success
@@ -129,23 +135,6 @@ export function GenericForm({
       console.warn("GenericForm: failed to clear storage after submit", err);
     }
   };
-  // Step validation
-  const isStepValid = useCallback(() => {
-    const stepFields =
-      mode === "multi" ? config.steps[currentStep].fields : config.fields;
-    return stepFields.every(
-      (field) => formError[field.name] === VALIDITY.VALID
-    );
-  }, [config, currentStep, mode, formError]);
-
-  const handleNext = useCallback(() => {
-    if (isStepValid()) {
-      setCurrentStep((s) => s + 1);
-    } else {
-      // UX: your app may want a nicer error UI rather than alert
-      alert("Please complete all required fields in this step.");
-    }
-  }, [isStepValid]);
 
   // Fields to render for current step
   const fieldsToRender =
