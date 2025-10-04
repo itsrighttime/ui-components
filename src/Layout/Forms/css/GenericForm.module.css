@@ -58,8 +58,15 @@
   gap: 2rem;
 }
 
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
 .stepButtons {
-  width: 90%;
+  width: 100%;
   display: flex;
   gap: 10px;
   justify-content: space-between;
@@ -68,8 +75,7 @@
 
 .progressStatus {
   font-size: var(--size);
-  font-weight: var(--boldL2);
-  color: var(--colorGray4);
+  color: var(--colorGray3);
   text-align: center;
 }
 

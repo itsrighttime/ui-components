@@ -1,7 +1,12 @@
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
 import { OPERATORS } from "./operators";
 
 export const isConditional = (field, value) => {
-  const { dependsOn, operator, value: expected } = field.conditional;
+  const COND = field[FPs.CONDITIONAL];
+  const dependsOn = COND[FPs.DEPENDS_ON];
+  const expected = COND[FPs.VALUE];
+  const operator = COND[FPs.OPERATOR];
+
   const fieldValue = value[dependsOn];
 
   // Normalize both fieldValue and expected into arrays for flexible comparison
@@ -17,9 +22,17 @@ export const isConditional = (field, value) => {
     [OPERATORS.notIn]: fieldValues.every((fv) => !expectedValues.includes(fv)),
     [OPERATORS.equals]: expectedValues.some((ev) => fieldValues.includes(ev)),
 
-    [OPERATORS.notEquals]: expectedValues.every(
-      (ev) => !fieldValues.includes(ev)
-    ),
+    [OPERATORS.notEquals]: expectedValues.every((ev) => {
+      if (
+        Array.isArray(fieldValue) &&
+        !fieldValue.length &&
+        Array.isArray(ev) &&
+        !ev.length
+      )
+        return false;
+
+      return !fieldValues.includes(ev);
+    }),
 
     [OPERATORS.contains]: fieldValues.some((fv) =>
       typeof fv === "string" || Array.isArray(fv)

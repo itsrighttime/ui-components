@@ -1,8 +1,11 @@
 import { useCallback } from "react";
 import { VALIDITY } from "../helper/validity";
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
+import { isConditional } from "./conditional";
 
 export function useFormNavigation(
   config,
+  formData,
   formError,
   currentStep,
   setCurrentStep
@@ -12,8 +15,13 @@ export function useFormNavigation(
       config.mode === "multi"
         ? config.steps[currentStep].fields
         : config.fields;
-    console.log("DDDD", formError);
-    return fields.every((f) => formError[f.name] === VALIDITY.valid);
+    return fields.every((f) => {
+      if (f[FPs.CONDITIONAL]) {
+        const isMatch = isConditional(f, formData);
+        if (!isMatch) return true;
+      }
+      return formError[f[FPs.NAME]] === VALIDITY.valid;
+    });
   }, [config, currentStep, formError]);
 
   const next = () => isStepValid() && setCurrentStep((s) => s + 1);

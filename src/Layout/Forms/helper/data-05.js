@@ -110,7 +110,7 @@ export const configData05 = {
           label: "Upload Resume",
           multiple: false,
           maxFiles: 1,
-          maxSize: 2 * 1024 * 1024,
+          maxSizeMB: 2 * 1024 * 1024,
           allowedTypes: ["application/pdf"],
         },
         {
@@ -121,7 +121,7 @@ export const configData05 = {
           conditional: {
             dependsOn: "resume",
             operator: OPERATORS.notEquals,
-            value: [""],
+            value: ["", []],
           },
         },
       ],

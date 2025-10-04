@@ -10,6 +10,7 @@ import { useFormPersistence } from "./useFormPersistence";
 import { validateFormData } from "../helper/validateFromData";
 import { registerValidations } from "../validation/registerValidations";
 import { VALIDITY } from "../helper/validity";
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
 
 /**
  * GenericForm
@@ -75,8 +76,8 @@ export function GenericForm({
     const state = {},
       errors = {};
     allFields.forEach((f) => {
-      state[f.name] = f.defaultValue ?? (f.repeatable ? [{}] : "");
-      errors[f.name] = f.required ? VALIDITY.valid : VALIDITY.invalid;
+      state[f[FPs.NAME]] = f[FPs.VALUE] ?? (f[FPs.REPEATABLE] ? [{}] : "");
+      errors[f[FPs.NAME]] = f[FPs.REQUIRED] ? VALIDITY.invalid : VALIDITY.valid;
     });
     return { initialState: state, initialError: errors };
   }, [allFields]);
@@ -95,6 +96,7 @@ export function GenericForm({
 
   const { next, back } = useFormNavigation(
     config,
+    formData,
     formError,
     currentStep,
     setCurrentStep
@@ -119,10 +121,9 @@ export function GenericForm({
   // submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const { isValid, errors } = validateFormData(formData, config);
     return;
-
-    console.log("DDDD", isValid, errors);
 
     await onSubmit(formData);
 
@@ -173,7 +174,7 @@ export function GenericForm({
 
         {fieldsToRender.map((field) => (
           <FieldRenderer
-            key={field.name}
+            key={field[FPs.NAME]}
             field={field}
             value={formData}
             onChange={handleChange}
@@ -181,52 +182,60 @@ export function GenericForm({
           />
         ))}
 
-        {mode === "multi" && config.steps.length > 1 ? (
-          <div className={styles.stepButtons}>
-            {currentStep > 0 && (
-              <IconButton
-                icon={arrowLeftIcon}
-                label="Back"
-                onClick={back}
-                size="2"
-                color={color}
-              />
-            )}
+        <div className={styles.footer}>
+          {mode === "multi" && config.steps.length > 1 ? (
+            <div className={styles.stepButtons}>
+              {currentStep > 0 && (
+                <IconButton
+                  icon={arrowLeftIcon}
+                  label="Back"
+                  onClick={back}
+                  size="2"
+                  color={color}
+                />
+              )}
 
-            {currentStep < config.steps.length - 1 ? (
-              <IconButton
-                icon={arrowRightIcon}
-                label="Next"
-                onClick={next}
-                size="2"
-                color={color}
-              />
-            ) : (
+              {currentStep < config.steps.length - 1 ? (
+                <IconButton
+                  icon={arrowRightIcon}
+                  label="Next"
+                  onClick={next}
+                  size="2"
+                  color={color}
+                />
+              ) : (
+                <Button
+                  text={submitLabel}
+                  onClick={handleSubmit}
+                  color={color}
+                />
+              )}
+            </div>
+          ) : (
+            mode === "single" && (
               <Button text={submitLabel} onClick={handleSubmit} color={color} />
-            )}
-          </div>
-        ) : (
-          mode === "single" && (
-            <Button text={submitLabel} onClick={handleSubmit} color={color} />
-          )
-        )}
+            )
+          )}
 
-        {mode === "multi" && (
-          <>
-            <div className={styles.progressStatus}>
-              Step {currentStep + 1} of {config.steps.length}
-            </div>
-            <div className={styles.progressBarWrapper}>
-              <div
-                className={styles.progressBar}
-                style={{
-                  width: `${((currentStep + 1) / config.steps.length) * 100}%`,
-                  backgroundColor: color,
-                }}
-              />
-            </div>
-          </>
-        )}
+          {mode === "multi" && (
+            <>
+              <div className={styles.progressBarWrapper}>
+                <div
+                  className={styles.progressBar}
+                  style={{
+                    width: `${
+                      ((currentStep + 1) / config.steps.length) * 100
+                    }%`,
+                    backgroundColor: color,
+                  }}
+                />
+              </div>
+              <div className={styles.progressStatus}>
+                Step {currentStep + 1} of {config.steps.length}
+              </div>
+            </>
+          )}
+        </div>
       </form>
     </div>
   );

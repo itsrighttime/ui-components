@@ -1,3 +1,4 @@
+import { pushError } from "./helper/errorFormatter.js";
 import {
   FIELDS_PROPS as FPs,
 } from "./helper/fields.js";
@@ -28,6 +29,12 @@ export function validateResponse(schema, response) {
       (value === undefined || value === null || value === "")
     ) {
       pushError(errors, field, `This field is required`);
+    }
+    if (
+      !field[FPs.REQUIRED] &&
+      (value === undefined || value === null || value === "")
+    ) {
+      continue;
     }
 
     if (field[FPs.REPEATABLE]) {
