@@ -9,6 +9,7 @@ import { useFormNavigation } from "./useFormNavigation";
 import { useFormPersistence } from "./useFormPersistence";
 import { validateFormData } from "../helper/validateFromData";
 import { registerValidations } from "../validation/registerValidations";
+import { VALIDITY } from "../helper/validity";
 
 /**
  * GenericForm
@@ -75,7 +76,7 @@ export function GenericForm({
       errors = {};
     allFields.forEach((f) => {
       state[f.name] = f.defaultValue ?? (f.repeatable ? [{}] : "");
-      errors[f.name] = f.required ? "invalid" : "valid";
+      errors[f.name] = f.required ? VALIDITY.valid : VALIDITY.invalid;
     });
     return { initialState: state, initialError: errors };
   }, [allFields]);
@@ -105,7 +106,11 @@ export function GenericForm({
       if (!isError) setFormData((prev) => ({ ...prev, [name]: value }));
       setFormError((prev) => ({
         ...prev,
-        [name]: isError ? "invalid" : "valid",
+        [name]: isError
+          ? value
+            ? VALIDITY.valid
+            : VALIDITY.invalid
+          : prev[name],
       }));
     },
     [setFormData, setFormError]

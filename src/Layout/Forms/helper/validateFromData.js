@@ -1,7 +1,6 @@
-import {
-  validateFormConfig,
-  validateFormResponse,
-} from "../validation/formValidation";
+import { configToSchema } from "../validation/configToSchema";
+import { validateResponse } from "../validation/validateResponse";
+import { validateSchema } from "../validation/validateSchema";
 
 export const validateFormData = (formData, config) => {
   const errors = {};
@@ -9,8 +8,10 @@ export const validateFormData = (formData, config) => {
 
   console.log(formData, config);
 
-  const configRe1 = validateFormConfig(config);
-  const configRe2 = validateFormResponse(config, formData);
+  const schema = configToSchema(config);
+
+  const configRe1 = validateSchema(schema);
+  const configRe2 = validateResponse(schema, formData);
 
   console.log(configRe1, configRe2);
 

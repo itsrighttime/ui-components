@@ -21,7 +21,7 @@ export const configData07 = {
     { name: "textArea", type: FORM_FIELDS_TYPE.TEXT_AREA, label: "Text Area", placeholder: "Enter more text", required: false, minLength: 5, maxLength: 200  },
     { name: "email", type: FORM_FIELDS_TYPE.EMAIL, label: "Email Address", placeholder: "Enter email", required: true },
     { name: "mobile", type: FORM_FIELDS_TYPE.MOBILE, label: "Mobile Number", code: "+91", required: true },
-    { name: "password", type: FORM_FIELDS_TYPE.PASSWORD, label: "Password", required: true, minLength: 6 },
+    { name: "password", type: FORM_FIELDS_TYPE.PASSWORD, label: "Password", required: true },
     { name: "date", type: FORM_FIELDS_TYPE.DATE, label: "Date Picker", mode: "month-year", required: true, restrictionStartDate: "01-01-2020", restrictionEndDate: "31-12-2030" },
     { name: "time", type: FORM_FIELDS_TYPE.TIME, label: "Time Picker", required: true },
     { name: "address", type: FORM_FIELDS_TYPE.ADDRESS, label: "Address", required: true, isHouse: true, isStreet: true, isCity: true, isState: true, isPostal: true, isCountry: true, isLandmark: true },
@@ -39,8 +39,8 @@ export const configData07 = {
     { name: "audio", type: FORM_FIELDS_TYPE.AUDIO, label: "Audio Upload", maxSizeMB: 50, required: false },
     { name: "image", type: FORM_FIELDS_TYPE.IMAGE, label: "Image Upload", maxSizeMB: 5, requireSquare: false, required: false },
     { name: "video", type: FORM_FIELDS_TYPE.VIDEO, label: "Video Upload", maxSizeMB: 100, preview: true, required: false },
-    { name: "otp", type: FORM_FIELDS_TYPE.OTP, label: "OTP Field", length: 6, isNumeric: true, required: true },
+    // { name: "otp", type: FORM_FIELDS_TYPE.OTP, label: "OTP Field", userId: "dvfgvdv", length: 6, isNumeric: true, required: true },
     { name: "securityQuestion", type: FORM_FIELDS_TYPE.SECURTY_QUESTION, label: "Security Question", options: ["Que1", "Que2", "Que3"], required: true },
-    { name: "repeatableGroup", label: "Repeatable Example", repeatable: true, fields: [{ name: "field1", type: FORM_FIELDS_TYPE.TEXT, label: "Inner Field" }] }
+    { name: "repeatableGroup", label: "Repeatable Example", repeatable: true, moreLabel: "More", fields: [{ name: "field1", type: FORM_FIELDS_TYPE.TEXT, label: "Inner Field" }] }
   ],
 };

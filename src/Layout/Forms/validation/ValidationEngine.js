@@ -27,6 +27,10 @@ class ValidationEngine {
   getRegistry = () => {
     return this.registry;
   };
+
+  get = (type) => {
+    return this.registry[type];
+  };
 }
 
 export const validationEngine = new ValidationEngine();

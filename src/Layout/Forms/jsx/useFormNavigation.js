@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { VALIDITY } from "../helper/validity";
 
 export function useFormNavigation(
   config,
@@ -11,7 +12,8 @@ export function useFormNavigation(
       config.mode === "multi"
         ? config.steps[currentStep].fields
         : config.fields;
-    return fields.every((f) => formError[f.name] === "valid");
+    console.log("DDDD", formError);
+    return fields.every((f) => formError[f.name] === VALIDITY.valid);
   }, [config, currentStep, formError]);
 
   const next = () => isStepValid() && setCurrentStep((s) => s + 1);
