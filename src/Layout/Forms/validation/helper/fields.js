@@ -80,6 +80,7 @@ const LENGTH = "length";
 const FIELDS = "fields";
 const MORE_LABEL = "moreLabel";
 const HELP = "help";
+const NUMBER = "number";
 
 // --- Generic Properties ---
 export const GENERIC_PROP = {
@@ -279,5 +280,6 @@ export const FIELDS_PROPS = {
   LENGTH,
   FIELDS,
   MORE_LABEL,
-  HELP
+  HELP,
+  NUMBER,
 };

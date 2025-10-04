@@ -76,7 +76,7 @@ const App = () => {
         {/* <IconGallery /> */}
 
         <GenericForm
-          config={configData05}
+          config={configData07}
           onSubmit={(value) => {
             console.log("Submited", value);
           }} // Your custom submission logic

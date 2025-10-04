@@ -2,6 +2,7 @@
 import { FieldRenderer } from "./FieldRenderer";
 import { Button } from "../../../InputFields/Actions/jsx/Button";
 import styles from "../css/GenericForm.module.css";
+import { FIELDS_PROPS } from "../validation/helper/fields";
 
 export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
   const handleItemChange = (index, name, value) => {
@@ -13,12 +14,12 @@ export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
 
   return (
     <div className={styles.repeatableGroup}>
-      <label>{field.label}</label>
+      <label>{field[FIELDS_PROPS.LABEL]}</label>
       {values.map((item, idx) => (
         <div key={idx} className={styles.repeatableItem}>
-          {field.fields.map((subField) => (
+          {field[FIELDS_PROPS.FIELDS].map((subField) => (
             <FieldRenderer
-              key={subField.name}
+              key={subField[FIELDS_PROPS.NAME]}
               field={subField}
               value={item}
               onChange={(name, val) => handleItemChange(idx, name, val)}
@@ -28,7 +29,7 @@ export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
         </div>
       ))}
       <Button
-        text={field.moreLabel}
+        text={field[FIELDS_PROPS.MORE_LABEL]}
         onClick={() => onChange([...values, {}])}
         color={color}
       />

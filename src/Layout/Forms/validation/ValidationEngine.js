@@ -1,3 +1,5 @@
+import { FIELDS_PROPS } from "./helper/fields";
+
 // validationEngine.js
 class ValidationEngine {
   constructor() {
@@ -9,7 +11,7 @@ class ValidationEngine {
   }
 
   validateConfig(field) {
-    const type = field.type;
+    const type = field[FIELDS_PROPS.TYPE];
     if (!this.registry[type]) {
       throw new Error(`No validator registered for field type: ${type}`);
     }
@@ -17,7 +19,7 @@ class ValidationEngine {
   }
 
   validateResponse(field, value) {
-    const type = field.type;
+    const type = field[FIELDS_PROPS.TYPE];
     if (!this.registry[type]) {
       throw new Error(`No validator registered for field type: ${type}`);
     }

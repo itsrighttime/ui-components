@@ -68,7 +68,7 @@ export function GenericForm({
   // build initial states
   const allFields = useMemo(
     () =>
-      mode === "multi" ? config.steps.flatMap((s) => s.fields) : config.fields,
+      mode === "multi" ? config.steps.flatMap((s) => s[FPs.FIELDS]) : config[FPs.FIELDS],
     [config, mode]
   );
 
@@ -148,7 +148,7 @@ export function GenericForm({
 
   // Fields to render for current step
   const fieldsToRender =
-    mode === "multi" ? config.steps[currentStep].fields : config.fields;
+    mode === "multi" ? config.steps[currentStep][FPs.FIELDS] : config[FPs.FIELDS];
 
   // ------------------ Render ------------------
   return (

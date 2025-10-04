@@ -1,12 +1,14 @@
+import { FIELDS_PROPS as FPs } from "./fields";
+
 // --- utils/errors.js ---
 function makeError(field, message) {
   return {
-    name: field?.name || null,
-    label: field?.label || null,
+    name: field[FPs.NAME] || null,
+    label: field[FPs.LABEL] || null,
     error: message,
   };
 }
 
 export function pushError(errors, field, message) {
-  errors[field.name] = makeError(field, message);
+  errors[field[FPs.NAME]] = makeError(field, message);
 }

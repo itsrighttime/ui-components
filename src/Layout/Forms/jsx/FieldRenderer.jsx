@@ -25,6 +25,7 @@ import { Switch } from "../../../InputFields/Selectors/jsx/Switch";
 import { Slider } from "../../../InputFields/NumericInput.jsx/jsx/Slider";
 import { JsonField } from "../../../InputFields/TextInput/jsx/JsonField";
 import { Stepper } from "../../../InputFields/NumericInput.jsx/jsx/Stepper";
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
 
 export function FieldRenderer({ field, value, onChange, settings }) {
   // Conditional rendering
@@ -41,8 +42,8 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     return (
       <RepeatableGroup
         field={field}
-        values={value[field.name]}
-        onChange={(v) => onChange(field.name, v)}
+        values={value[field[FPs.NAME]]}
+        onChange={(v) => onChange(field[FPs.NAME], v)}
         settings={settings}
       />
     );
@@ -53,16 +54,16 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <Dropdown
         width={width}
         color={color}
-        key={field.name}
-        label={field.label}
-        placeholder={field.placeholder || field.label}
+        key={field[FPs.NAME]}
+        label={field[FPs.LABEL]}
+        placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
         showLabelAlways={settings.showLabelAlways}
-        options={field.options || []}
-        value={value[field.name]}
+        options={field[FPs.OPTIONS] || []}
+        value={value[field[FPs.NAME]]}
         multiple={false}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }} // Update state on change
       />
     ),
@@ -70,16 +71,16 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <Dropdown
         width={width}
         color={color}
-        key={field.name}
-        label={field.label}
-        placeholder={field.placeholder || field.label}
+        key={field[FPs.NAME]}
+        label={field[FPs.LABEL]}
+        placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
         showLabelAlways={settings.showLabelAlways}
-        options={field.options || []}
-        value={value[field.name]}
+        options={field[FPs.OPTIONS] || []}
+        value={value[field[FPs.NAME]]}
         multiple={true}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }} // Update state on change
       />
     ),
@@ -87,13 +88,13 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <EmailField
         width={width}
         color={color}
-        key={field.name}
-        label={field.label}
-        required={field?.required || false}
-        placeholder={field.placeholder || field.label}
-        value={value[field.name]}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        key={field[FPs.NAME]}
+        label={field[FPs.LABEL]}
+        required={field?.[FPs.REQUIRED] || false}
+        placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
+        value={value[field[FPs.NAME]]}
+        setResult={(v) => onChange(field[FPs.NAME], v)} // Update state on change
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
         showLabelAlways={settings.showLabelAlways}
       />
     ),
@@ -101,13 +102,13 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <PasswordField
         width={width}
         color={color}
-        key={field.name}
-        label={field.label}
-        placeholder={field.placeholder || field.label}
-        value={value[field.name]}
+        key={field[FPs.NAME]}
+        label={field[FPs.LABEL]}
+        placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
+        value={value[field[FPs.NAME]]}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }} // Update state on change
         showLabelAlways={settings.showLabelAlways}
       />
@@ -116,46 +117,49 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <MobileField
         width={width}
         color={color}
-        key={field.name}
-        label={field.label}
-        required={field?.required || false}
-        placeholder={field.placeholder || field.label}
-        value={value[field.name]?.number}
-        code={value[field.name]?.code}
+        key={field[FPs.NAME]}
+        label={field[FPs.LABEL]}
+        required={field?.[FPs.REQUIRED] || false}
+        placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
+        value={value[field[FPs.NAME]]?.[FPs.NUMBER]}
+        code={value[field[FPs.NAME]]?.[FPs.CODE]}
         setResult={(v) => {
-          const val = { code: v.countryCode, number: v.phoneNumber };
-          onChange(field.name, val);
+          const val = {
+            [FPs.CODE]: v.countryCode,
+            [FPs.NUMBER]: v.phoneNumber,
+          };
+          onChange(field[FPs.NAME], val);
         }} // Update state on change
         showLabelAlways={settings.showLabelAlways}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.DATE]: (
       <DatePicker
         width={width}
         color={color}
-        key={field.name}
-        label={field.label}
-        required={field?.required || false}
-        initialDate={value[field.name] || field.initialDate}
-        restrictionStartDate={field.restrictionStartDate}
-        restrictionEndDate={field.restrictionEndDate}
+        key={field[FPs.NAME]}
+        label={field[FPs.LABEL]}
+        required={field?.[FPs.REQUIRED] || false}
+        initialDate={value[field[FPs.NAME]] || field[FPs.VALUE]}
+        restrictionStartDate={field[FPs.RESTRICTION_START_DATE]}
+        restrictionEndDate={field[FPs.RESTRICTION_END_DATE]}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }} // Update state on change
-        mode={field.mode}
+        mode={field[FPs.MODE]}
       />
     ),
     [FORM_FIELDS_TYPE.TIME]: (
       <TimePicker
-        key={field.name}
+        key={field[FPs.NAME]}
         color={color}
-        label={field.label}
-        value={value[field.name]}
+        label={field[FPs.LABEL]}
+        value={value[field[FPs.NAME]]}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }} // Update state on change
       />
     ),
@@ -163,246 +167,246 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       <AddressField
         width={width}
         color={color}
-        key={field.name}
-        setResult={(v) => onChange(field.name, v)}
-        isHouse={field.isHouse}
-        isStreet={field.isStreet}
-        isCity={field.isCity}
-        isState={field.isState}
-        isPostal={field.isPostal}
-        isCountry={field.isCountry}
-        isAddressLine={field.isAddressLine}
-        isLandmark={field.isLandmark}
-        values={value[field.name]}
+        key={field[FPs.NAME]}
+        setResult={(v) => onChange(field[FPs.NAME], v)}
+        isHouse={field[FPs.IS_HOUSE]}
+        isStreet={field[FPs.IS_STREET]}
+        isCity={field[FPs.IS_CITY]}
+        isState={field[FPs.IS_STATE]}
+        isPostal={field[FPs.IS_POSTAL]}
+        isCountry={field[FPs.IS_COUNTRY]}
+        isAddressLine={field[FPs.IS_ADDRESS_LINE]}
+        isLandmark={field[FPs.IS_LANDMARK]}
+        values={value[field[FPs.NAME]]}
         showLabelAlways={settings.showLabelAlways}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
         gap={settings.gap}
       />
     ),
     [FORM_FIELDS_TYPE.TEXT]: (
       <TextField
-        key={field.name}
-        label={field.label}
-        placeholder={field.placeholder || field.label}
-        name={field.name}
-        value={value[field.name]}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
+        key={field[FPs.NAME]}
+        label={field[FPs.LABEL]}
+        placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
+        name={field[FPs.NAME]}
+        value={value[field[FPs.NAME]]}
+        setResult={(v) => onChange(field[FPs.NAME], v)} // Update state on change
         width={width}
         color={color}
         showLabelAlways={settings.showLabelAlways}
-        required={field?.required || false}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        required={field?.[FPs.REQUIRED] || false}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.TEXT_AREA]: (
       <TextArea
         width={width}
-        key={field.name}
+        key={field[FPs.NAME]}
         showLabelAlways={settings.showLabelAlways}
-        value={value[field.name]}
-        label={field.label}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
+        value={value[field[FPs.NAME]]}
+        label={field[FPs.LABEL]}
+        setResult={(v) => onChange(field[FPs.NAME], v)} // Update state on change
         color={color}
-        placeholder={field.placeholder || field.label}
-        minLength={field.minLength}
-        maxLength={field.maxLength}
-        maxTextAreaHeight={field.maxTextAreaHeight}
-        showCharacterCount={field.showCharacterCount}
-        showWordCount={field.showWordCount}
-        disabled={field.disabled}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
+        minLength={field[FPs.MIN_LENGTH]}
+        maxLength={field[FPs.MAX_LENGTH]}
+        maxTextAreaHeight={field[FPs.MAX_TEXTAREA_HEIGHT]}
+        showCharacterCount={field[FPs.SHOW_CHARACTER_COUNT]}
+        showWordCount={field[FPs.SHOW_WORD_COUNT]}
+        disabled={field[FPs.DISABLED]}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.JSON]: (
       <JsonField
         width={width}
         color={color}
-        label={field.label}
-        setResult={(v) => onChange(field.name, v)} // Update state on change
-        showCharacterCount={field.showCharacterCount}
-        showWordCount={field.showWordCount}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
-        hideOnSave={field.hideOnSave}
-        isBorder={field.isBorder}
-        value={value[field.name]}
+        label={field[FPs.LABEL]}
+        setResult={(v) => onChange(field[FPs.NAME], v)} // Update state on change
+        showCharacterCount={field[FPs.SHOW_CHARACTER_COUNT]}
+        showWordCount={field[FPs.SHOW_WORD_COUNT]}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
+        hideOnSave={field[FPs.HIDE_ON_SAVE]}
+        isBorder={field[FPs.IS_BORDER]}
+        value={value[field[FPs.NAME]]}
       />
     ),
     [FORM_FIELDS_TYPE.FILE]: (
       <FileUpload
-        value={value[field.name] || []}
-        label={field.label}
+        value={value[field[FPs.NAME]] || []}
+        label={field[FPs.LABEL]}
         width={width}
-        multiple={field.multiple}
-        maxFiles={field.maxFiles}
+        multiple={field[FPs.MULTIPLE]}
+        maxFiles={field[FPs.MAX_FILES]}
         color={color}
-        maxSize={field.maxSizeMB}
-        allowedTypes={field.allowedTypes}
-        height={field.height || "200px"}
-        setResult={(v) => onChange(field.name, v)}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        maxSize={field[FPs.MAX_SIZE_MB]}
+        allowedTypes={field[FPs.ALLOWED_TYPES]}
+        height={field[FPs.HEIGHT] || "200px"}
+        setResult={(v) => onChange(field[FPs.NAME], v)}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.AUDIO]: (
       <AudioUpload
-        label={field.label}
+        label={field[FPs.LABEL]}
         width={width}
-        height={field.height || "100px"}
-        maxSizeMB={field.maxSizeMB}
-        allowedTypes={field.allowedTypes}
-        setResult={(v) => onChange(field.name, v)}
-        value={value[field.name]}
+        height={field[FPs.HEIGHT] || "100px"}
+        maxSize={field[FPs.MAX_SIZE_MB]}
+        allowedTypes={field[FPs.ALLOWED_TYPES]}
+        setResult={(v) => onChange(field[FPs.NAME], v)}
+        value={value[field[FPs.NAME]]}
         color={color}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.IMAGE]: (
       <ImageUpload
-        label={field.label}
+        label={field[FPs.LABEL]}
         width={width}
-        height={field.height || "100px"}
-        value={value[field.name]}
-        maxSizeMB={field.maxSizeMB}
-        allowedTypes={field.allowedTypes}
-        requireSquare={field.requireSquare}
-        previewBorderRadius={field.previewBorderRadius}
-        setResult={(v) => onChange(field.name, v)}
+        height={field[FPs.HEIGHT] || "100px"}
+        value={value[field[FPs.NAME]]}
+        maxSize={field[FPs.MAX_SIZE_MB]}
+        allowedTypes={field[FPs.ALLOWED_TYPES]}
+        requireSquare={field[FPs.REQUIRE_SQUARE]}
+        previewBorderRadius={field[FPs.PREVIEW_BORDER_RADIUS]}
+        setResult={(v) => onChange(field[FPs.NAME], v)}
         color={color}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.VIDEO]: (
       <VideoUpload
-        label={field.label}
+        label={field[FPs.LABEL]}
         width={width}
-        height={field.height || "100px"}
-        maxSizeMB={field.maxSizeMB}
-        allowedTypes={field.allowedTypes}
-        preview={field.preview}
-        value={value[field.name]}
-        setResult={(v) => onChange(field.name, v)}
+        height={field[FPs.HEIGHT] || "100px"}
+        maxSize={field[FPs.MAX_SIZE_MB]}
+        allowedTypes={field[FPs.ALLOWED_TYPES]}
+        preview={field[FPs.PREVIEW]}
+        value={value[field[FPs.NAME]]}
+        setResult={(v) => onChange(field[FPs.NAME], v)}
         color={color}
-        setIsFieldValid={(v) => onChange(field.name, v, true)}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
       />
     ),
     [FORM_FIELDS_TYPE.SECURTY_QUESTION]: (
       <SecurityQuestion
-        questions={field.options}
-        placeholder={field.label || field.placeholder}
+        questions={field[FPs.OPTIONS]}
+        placeholder={field[FPs.LABEL] || field[FPs.PLACEHOLDER]}
         width={width}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
         color={color}
-        value={value[field.name]}
+        value={value[field[FPs.NAME]]}
       />
     ),
     [FORM_FIELDS_TYPE.OTP]: (
       <OtpField
         width={width}
-        setResult={(v) => onChange(field.name, v)}
+        setResult={(v) => onChange(field[FPs.NAME], v)}
         color={color}
-        length={field.length}
-        verifcationEndpoint={field.verifcationEndpoint}
-        userId={field.userId}
-        setError={field.setError}
-        isNumeric={field.isNumeric}
+        length={field[FPs.LENGTH]}
+        verifcationEndpoint={field[FPs.VERIFICATION_ENDPOINT]}
+        userId={field[FPs.USER_ID]}
+        // setError={() => {}}
+        isNumeric={field[FPs.IS_NUMERIC]}
       />
     ),
     [FORM_FIELDS_TYPE.CHECKBOX]: (
       <CheckboxGroup
         width={width}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
         color={color}
-        options={field.options}
-        initialSelectedValues={value[field.name]}
-        layout={field.layout}
-        label={field.label}
-        disabled={field.disabled}
+        options={field[FPs.OPTIONS]}
+        initialSelectedValues={value[field[FPs.NAME]]}
+        layout={field[FPs.LAYOUT]}
+        label={field[FPs.LABEL]}
+        disabled={field[FPs.DISABLED]}
       />
     ),
     [FORM_FIELDS_TYPE.COLOR]: (
       <ColorPicker
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
-        color={value[field.name] || field.color || "#ff5969"}
+        color={value[field[FPs.NAME]] || field[FPs.COLOR] || "#ff5969"}
       />
     ),
     [FORM_FIELDS_TYPE.RADIO]: (
       <RadioGroup
         width={width}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
         color={color}
-        options={field.options}
-        initialSelectedValue={value[field.name]}
-        layout={field.layout}
-        label={field.label}
-        disabled={field.disabled}
+        options={field[FPs.OPTIONS]}
+        initialSelectedValue={value[field[FPs.NAME]]}
+        layout={field[FPs.LAYOUT]}
+        label={field[FPs.LABEL]}
+        disabled={field[FPs.DISABLED]}
       />
     ),
     [FORM_FIELDS_TYPE.SEARCH]: (
       <SearchBox
-        placeholder={field.label || field.placeholder}
+        placeholder={field[FPs.LABEL] || field[FPs.PLACEHOLDER]}
         width={width}
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
         color={color}
-        suggestions={field.options}
+        suggestions={field[FPs.OPTIONS]}
       />
     ),
     [FORM_FIELDS_TYPE.SWITCH]: (
       <Switch
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
         color={color}
-        initialValue={value[field.name]}
-        label={field.label}
-        disabled={field.disabled}
+        initialValue={value[field[FPs.NAME]]}
+        label={field[FPs.LABEL]}
+        disabled={field[FPs.DISABLED]}
       />
     ),
     [FORM_FIELDS_TYPE.SLIDER]: (
       <Slider
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
         color={color}
-        label={field.label}
-        value={value[field.name]}
-        min={field.min}
-        max={field.max}
-        step={field.step}
-        showRange={field.showRange}
-        showValueSide={field.showValueSide}
-        precision={field.precision}
+        label={field[FPs.LABEL]}
+        value={value[field[FPs.NAME]]}
+        min={field[FPs.MIN]}
+        max={field[FPs.MAX]}
+        step={field[FPs.STEP]}
+        showRange={field[FPs.SHOW_RANGE]}
+        showValueSide={field[FPs.SHOW_VALUE_SIDE]}
+        precision={field[FPs.PRECISION]}
         width={width}
       />
     ),
     [FORM_FIELDS_TYPE.STEPPER]: (
       <Stepper
         setResult={(v) => {
-          onChange(field.name, v);
-          onChange(field.name, true, true); // to update Error State as valid
+          onChange(field[FPs.NAME], v);
+          onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
         color={color}
         width={width}
-        label={field.label}
-        value={value[field.name]}
-        min={field.min}
-        max={field.max}
-        step={field.step}
+        label={field[FPs.LABEL]}
+        value={value[field[FPs.NAME]]}
+        min={field[FPs.MIN]}
+        max={field[FPs.MAX]}
+        step={field[FPs.STEP]}
       />
     ),
   };

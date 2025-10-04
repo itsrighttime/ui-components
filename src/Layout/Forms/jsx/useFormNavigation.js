@@ -13,8 +13,8 @@ export function useFormNavigation(
   const isStepValid = useCallback(() => {
     const fields =
       config.mode === "multi"
-        ? config.steps[currentStep].fields
-        : config.fields;
+        ? config.steps[currentStep][FPs.FIELDS]
+        : config[FPs.FIELDS];
     return fields.every((f) => {
       if (f[FPs.CONDITIONAL]) {
         const isMatch = isConditional(f, formData);
