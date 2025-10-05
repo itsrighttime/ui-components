@@ -15,25 +15,19 @@ import { configToSchema } from "../validation/configToSchema";
 import { Loading } from "../../../SpecialPages/js/Loading";
 import { ErrorList } from "./ShowError";
 import { SuccessMessage } from "./SuccessMessage";
+import { submitToBackend } from "./submitTobackend";
 
-/**
- * GenericForm
- * - Persists simple fields in localStorage
- * - Persists files (single or arrays) in IndexedDB and stores a manifest in localStorage
- * - Restores both on load and merges with initial state
- *
- * Principles: KISS, modularity (small helpers), single responsibility for each function,
- * and clear async flow to avoid race conditions.
- */
 const FORM_STATUS = {
-  fill: "flling",
+  fill: "filling",
   error: "error",
-  submited: "submitted",
+  submitted: "submitted",
   submitting: "submitting",
+  failed: "failed",
 };
+
 export function GenericForm({
   config,
-  onSubmit,
+  onSubmit, // optional external callback
   submitLabel = "Submit",
   style,
   settings = {},
@@ -42,16 +36,15 @@ export function GenericForm({
   const STORAGE_KEY = `genericForm_${config.title || "form"}`;
   const [formStatus, setFormStatus] = useState(FORM_STATUS.fill);
   const [formStatusError, setFormStatusError] = useState({});
+  const mountedRef = useRef(true);
 
+  // --- Mount lifecycle ---
   useEffect(() => {
     registerValidations();
+    return () => (mountedRef.current = false);
   }, []);
 
-  // Prevent writes while loading
-  const mountedRef = useRef(true);
-  useEffect(() => () => (mountedRef.current = false), []);
-
-  // Settings + style
+  // --- Configurable styling ---
   const _settings = {
     showLabelAlways: false,
     gap: "2rem",
@@ -77,7 +70,7 @@ export function GenericForm({
 
   const color = _settings.color;
 
-  // build initial states
+  // --- Build initial state ---
   const allFields = useMemo(
     () =>
       mode === "multi"
@@ -96,7 +89,7 @@ export function GenericForm({
     return { initialState: state, initialError: errors };
   }, [allFields]);
 
-  // persistence + navigation
+  // --- Persistence & navigation ---
   const {
     formData,
     setFormData,
@@ -116,7 +109,7 @@ export function GenericForm({
     setCurrentStep
   );
 
-  // change handler
+  // --- Change handler ---
   const handleChange = useCallback(
     (name, value, isError) => {
       if (!isError) setFormData((prev) => ({ ...prev, [name]: value }));
@@ -132,10 +125,10 @@ export function GenericForm({
     [setFormData, setFormError]
   );
 
-  // submit
+  // --- Submit handler ---
   const handleSubmit = async (e) => {
-    setFormStatus(FORM_STATUS.submitting);
     e.preventDefault();
+    setFormStatus(FORM_STATUS.submitting);
 
     const schema = configToSchema(config);
     const { valid, errors } = validateResponse(schema, formData);
@@ -146,36 +139,49 @@ export function GenericForm({
       return;
     }
 
-    // clear storage on success
     try {
-      localStorage.removeItem(STORAGE_KEY);
-      Object.keys(formData).forEach(async (k) => {
-        const v = formData[k];
-        if (isFileLike(v)) await deleteFile(`${STORAGE_KEY}::${k}`);
-        if (isFileArray(v)) {
-          v.forEach(
-            async (_, idx) => await deleteFile(`${STORAGE_KEY}::${k}_${idx}`)
-          );
+      // 1 Submit to backend
+      const response = await submitToBackend(formData, config?.endpoint);
+
+      // 2 If success → clear data
+      if (response?.success) {
+        localStorage.removeItem(STORAGE_KEY);
+        for (const k of Object.keys(formData)) {
+          const v = formData[k];
+          if (isFileLike(v)) await deleteFile(`${STORAGE_KEY}::${k}`);
+          if (isFileArray(v)) {
+            for (let idx = 0; idx < v.length; idx++)
+              await deleteFile(`${STORAGE_KEY}::${k}_${idx}`);
+          }
         }
-      });
-      onSubmit(formData);
 
-      // Reset everything
-
-      setFormStatus(FORM_STATUS.submited);
+        // 3 Trigger external callback if any
+        if (onSubmit) onSubmit(formData);
+        setFormStatus(FORM_STATUS.submitted);
+      } else {
+        setFormStatus(FORM_STATUS.failed);
+        setFormStatusError({
+          general: { error: response?.message || "Submission failed" },
+        });
+      }
     } catch (err) {
-      console.warn("GenericForm: failed to clear storage after submit", err);
+      console.error("Form submit failed:", err);
+      setFormStatus(FORM_STATUS.failed);
+      setFormStatusError({
+        general: { error: err.message || "Network error" },
+      });
     }
   };
 
-  // Fields to render for current step
+  // --- Determine fields for current step ---
   const fieldsToRender =
     mode === "multi"
       ? config.steps[currentStep][FPs.FIELDS]
       : config[FPs.FIELDS];
 
+  // --- Conditional UI states ---
   if (formStatus === FORM_STATUS.submitting)
-    return <Loading color={color} text="Submitting" showText />;
+    return <Loading color={color} text="Submitting..." showText />;
 
   if (formStatus === FORM_STATUS.error)
     return (
@@ -186,17 +192,28 @@ export function GenericForm({
       />
     );
 
-  if (formStatus === FORM_STATUS.submited)
-    return <SuccessMessage color={color} onHomeClick={"/"} />;
+  if (formStatus === FORM_STATUS.failed)
+    return (
+      <ErrorList
+        errors={formStatusError}
+        color={"var(--colorRed)"}
+        onClick={() => setFormStatus(FORM_STATUS.fill)}
+      />
+    );
 
-  // ------------------ Render ------------------
+  if (formStatus === FORM_STATUS.submitted)
+    return (
+      <SuccessMessage
+        color={color}
+        message="Your form has been submitted successfully!"
+        onHomeClick={() => (window.location.href = "/")}
+      />
+    );
+
+  // --- Default form rendering ---
   return (
     <div className={styles.formWrapper}>
-      <form
-        className={styles.form}
-        style={formStyle}
-        onSubmit={(e) => e.preventDefault()}
-      >
+      <form className={styles.form} style={formStyle} onSubmit={handleSubmit}>
         <div className={styles.stepHeader}>
           <h2>{config.title}</h2>
           {config.description && <p>{config.description}</p>}
@@ -204,7 +221,7 @@ export function GenericForm({
 
         {mode === "multi" && (
           <div className={styles.stepHeader}>
-            <h2>{config.steps[currentStep].title}</h2>
+            <h3>{config.steps[currentStep].title}</h3>
             {config.steps[currentStep].description && (
               <p>{config.steps[currentStep].description}</p>
             )}
@@ -233,7 +250,6 @@ export function GenericForm({
                   color={color}
                 />
               )}
-
               {currentStep < config.steps.length - 1 ? (
                 <IconButton
                   icon={arrowRightIcon}
@@ -251,9 +267,7 @@ export function GenericForm({
               )}
             </div>
           ) : (
-            mode === "single" && (
-              <Button text={submitLabel} onClick={handleSubmit} color={color} />
-            )
+            <Button text={submitLabel} onClick={handleSubmit} color={color} />
           )}
 
           {mode === "multi" && (
