@@ -1,18 +1,20 @@
+import { FIELDS_PROPS as FPs } from "../helper/fields.js";
 import { FORM_FIELDS_TYPE } from "../helper/formFieldTypes.js";
 import { validationEngine as engine } from "../ValidationEngine.js";
 
 engine.register(FORM_FIELDS_TYPE.ADDRESS, {
   validateConfig: (field) => {
     const flags = [
-      "isHouse",
-      "isStreet",
-      "isCity",
-      "isState",
-      "isPostal",
-      "isCountry",
-      "isLandmark",
-      "isAddressLine",
+      FPs.IS_HOUSE,
+      FPs.IS_STREET,
+      FPs.IS_CITY,
+      FPs.IS_STATE,
+      FPs.IS_POSTAL,
+      FPs.IS_COUNTRY,
+      FPs.IS_LANDMARK,
+      FPs.IS_ADDRESS_LINE,
     ];
+
     for (const f of flags) {
       if (field[f] !== undefined && typeof field[f] !== "boolean") {
         return { valid: false, error: `${f} must be boolean` };
@@ -29,7 +31,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
     const subFieldConfigs = [
       {
         key: "house",
-        visible: field.isHouse,
+        visible: field[FPs.IS_HOUSE],
         regex: /^[A-Za-z0-9\s,\/.\-]*$/,
         min: 1,
         max: 10,
@@ -37,7 +39,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
       },
       {
         key: "street",
-        visible: field.isStreet,
+        visible: field[FPs.IS_STREET],
         regex: /^[A-Za-z0-9\s,]*$/,
         min: 1,
         max: 100,
@@ -45,7 +47,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
       },
       {
         key: "city",
-        visible: field.isCity,
+        visible: field[FPs.IS_CITY],
         regex: /^[A-Za-z0-9\s]*$/,
         min: 2,
         max: 50,
@@ -53,7 +55,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
       },
       {
         key: "state",
-        visible: field.isState,
+        visible: field[FPs.IS_STATE],
         regex: /^[A-Za-z\s]*$/,
         min: 2,
         max: 50,
@@ -61,7 +63,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
       },
       {
         key: "postal",
-        visible: field.isPostal,
+        visible: field[FPs.IS_POSTAL],
         regex: /^[0-9]*$/,
         min: 4,
         max: 8,
@@ -69,7 +71,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
       },
       {
         key: "country",
-        visible: field.isCountry,
+        visible: field[FPs.IS_COUNTRY],
         regex: /^[A-Za-z\s]*$/,
         min: 2,
         max: 50,
@@ -77,7 +79,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
       },
       {
         key: "landmark",
-        visible: field.isLandmark,
+        visible: field[FPs.IS_LANDMARK],
         regex: /^[A-Za-z0-9\s,]*$/,
         min: 2,
         max: 50,
@@ -85,7 +87,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
       },
       {
         key: "addressLine",
-        visible: field.isAddressLine,
+        visible: field[FPs.IS_ADDRESS_LINE],
         regex: /^[A-Za-z0-9\s,]*$/,
         min: 2,
         max: 50,
@@ -94,7 +96,7 @@ engine.register(FORM_FIELDS_TYPE.ADDRESS, {
     ];
 
     for (const sub of subFieldConfigs) {
-      if (!sub.visible) continue; // skip hidden parts
+      if (!sub.visible) continue;
 
       const val = value[sub.key];
       if (val == null || val === "") {

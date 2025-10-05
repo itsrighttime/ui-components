@@ -1,10 +1,11 @@
 import { FORM_FIELDS_TYPE } from "../helper/formFieldTypes.js";
 import { validationEngine as engine } from "../ValidationEngine.js";
+import { FIELDS_PROPS as FPs } from "../helper/fields.js";
 
 // MOBILE
 engine.register(FORM_FIELDS_TYPE.MOBILE, {
   validateConfig: (field) => {
-    if (field.code && typeof field.code !== "string") {
+    if (field[FPs.CODE] && typeof field[FPs.CODE] !== "string") {
       return { valid: false, error: "Country code must be a string" };
     }
     return { valid: true };
@@ -19,7 +20,7 @@ engine.register(FORM_FIELDS_TYPE.MOBILE, {
       };
     }
 
-    const { code, number } = value;
+    const { [FPs.CODE] :code, [FPs.NUMBER]: number } = value;
 
     // Validate code
     if (!code || typeof code !== "string" || !/^\+\d{1,4}$/.test(code)) {

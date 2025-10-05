@@ -1,5 +1,6 @@
 import { FORM_FIELDS_TYPE } from "../helper/formFieldTypes.js";
 import { validationEngine as engine } from "../ValidationEngine.js";
+import { FIELDS_PROPS as FPs } from "../helper/fields.js";
 
 // DATE
 engine.register(FORM_FIELDS_TYPE.DATE, {
@@ -7,7 +8,7 @@ engine.register(FORM_FIELDS_TYPE.DATE, {
     const modes = ["date", "month", "month-year", "year"];
 
     const pattern = /^\d{2}-\d{2}-\d{4}$/;
-    if (field.mode && !modes.includes(field.mode))
+    if (field[FPs.MODE] && !modes.includes(field[FPs.MODE]))
       return { valid: false, error: "Invalid mode" };
 
     const checkDate = (dateStr) => {
@@ -25,16 +26,16 @@ engine.register(FORM_FIELDS_TYPE.DATE, {
       return isValid;
     };
 
-    if (!checkDate(field.restrictionStartDate))
+    if (!checkDate(field[FPs.RESTRICTION_START_DATE]))
       return { valid: false, error: "Invalid start date" };
-    if (!checkDate(field.restrictionEndDate))
+    if (!checkDate(field[FPs.RESTRICTION_END_DATE]))
       return { valid: false, error: "Invalid end date" };
 
     return { valid: true };
   },
 
   validateResponse: (field, value) => {
-    const mode = field.mode || "date";
+    const mode = field[FPs.MODE] || "date";
     const patterns = {
       date: /^\d{2}-\d{2}-\d{4}$/,
       month: /^\d{2}$/,
@@ -87,14 +88,14 @@ engine.register(FORM_FIELDS_TYPE.DATE, {
 
     if (["date", "month-year", "year"].includes(mode)) {
       const valDate = toComparableDate(value);
-      if (field.restrictionStartDate) {
-        const [d, m, y] = field.restrictionStartDate.split("-");
+      if (field[FPs.RESTRICTION_START_DATE]) {
+        const [d, m, y] = field[FPs.RESTRICTION_START_DATE].split("-");
         const startDate = new Date(y, m - 1, d);
         if (valDate < startDate)
           return { valid: false, error: "Before allowed range" };
       }
-      if (field.restrictionEndDate) {
-        const [d, m, y] = field.restrictionEndDate.split("-");
+      if (field[FPs.RESTRICTION_END_DATE]) {
+        const [d, m, y] = field[FPs.RESTRICTION_END_DATE].split("-");
         const endDate = new Date(y, m - 1, d);
 
         if (valDate > endDate)

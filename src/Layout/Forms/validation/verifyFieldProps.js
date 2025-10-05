@@ -56,7 +56,7 @@ export const verifyFieldProps = (field, errors) => {
         const optKeys = Object.keys(opt);
 
         // compulsory
-        if (!opt[FPs.VALUE]) {
+        if (!opt.value) {
           pushError(
             errors,
             field,
@@ -65,7 +65,7 @@ export const verifyFieldProps = (field, errors) => {
             }`
           );
         }
-        if (!opt[FPs.LABEL]) {
+        if (!opt.label) {
           pushError(
             errors,
             field,
@@ -76,7 +76,14 @@ export const verifyFieldProps = (field, errors) => {
         }
 
         // check for invalid keys
-        const allowedKeys = [FPs.VALUE, FPs.LABEL, FPs.HELP, FPs.DISABLED];
+        const allowedKeys = [
+          FPs.VALUE,
+          FPs.LABEL,
+          "help",
+          "value",
+          "label",
+          "disabled",
+        ];
         for (const k of optKeys) {
           if (!allowedKeys.includes(k)) {
             pushError(

@@ -1,5 +1,6 @@
 import { FORM_FIELDS_TYPE } from "../helper/formFieldTypes.js";
 import { validationEngine as engine } from "../ValidationEngine.js";
+import { FIELDS_PROPS as FPs } from "../helper/fields.js";
 
 // PASSWORD
 engine.register(FORM_FIELDS_TYPE.PASSWORD, {

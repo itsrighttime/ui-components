@@ -1,10 +1,11 @@
 import { FORM_FIELDS_TYPE } from "../helper/formFieldTypes.js";
 import { validationEngine as engine } from "../ValidationEngine.js";
+import { FIELDS_PROPS as FPs } from "../helper/fields.js";
 
 // SEARCH
 engine.register(FORM_FIELDS_TYPE.SEARCH, {
   validateConfig: (field) => {
-    if (!Array.isArray(field.options)) {
+    if (!Array.isArray(field[FPs.OPTIONS])) {
       return { valid: false, error: "Search options must be array" };
     }
     return { valid: true };

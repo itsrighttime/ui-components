@@ -1,10 +1,11 @@
 import { FORM_FIELDS_TYPE } from "../helper/formFieldTypes.js";
 import { validationEngine as engine } from "../ValidationEngine.js";
+import { FIELDS_PROPS as FPs } from "../helper/fields.js";
 
 // SECURITY_QUESTION
 engine.register(FORM_FIELDS_TYPE.SECURTY_QUESTION, {
   validateConfig: (field) => {
-    if (!Array.isArray(field.options) || field.options.length === 0) {
+    if (!Array.isArray(field[FPs.OPTIONS]) || field[FPs.OPTIONS].length === 0) {
       return { valid: false, error: "Security Question must have options" };
     }
     return { valid: true };
@@ -24,7 +25,7 @@ engine.register(FORM_FIELDS_TYPE.SECURTY_QUESTION, {
     if (!question || typeof question !== "string") {
       return { valid: false, error: "Question must be a string" };
     }
-    if (!field.options.includes(question)) {
+    if (!field[FPs.OPTIONS].includes(question)) {
       return { valid: false, error: "Invalid security question selected" };
     }
 

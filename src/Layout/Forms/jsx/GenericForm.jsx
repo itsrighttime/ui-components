@@ -7,10 +7,14 @@ import styles from "../css/GenericForm.module.css";
 import { deleteFile } from "../helper/indexedDb";
 import { useFormNavigation } from "./useFormNavigation";
 import { useFormPersistence } from "./useFormPersistence";
-import { validateFormData } from "../helper/validateFromData";
 import { registerValidations } from "../validation/registerValidations";
 import { VALIDITY } from "../helper/validity";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
+import { validateResponse } from "../validation/validateResponse";
+import { configToSchema } from "../validation/configToSchema";
+import { Loading } from "../../../SpecialPages/js/Loading";
+import { ErrorList } from "./ShowError";
+import { SuccessMessage } from "./SuccessMessage";
 
 /**
  * GenericForm
@@ -21,6 +25,12 @@ import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
  * Principles: KISS, modularity (small helpers), single responsibility for each function,
  * and clear async flow to avoid race conditions.
  */
+const FORM_STATUS = {
+  fill: "flling",
+  error: "error",
+  submited: "submitted",
+  submitting: "submitting",
+};
 export function GenericForm({
   config,
   onSubmit,
@@ -30,6 +40,8 @@ export function GenericForm({
 }) {
   const mode = config.mode || "single";
   const STORAGE_KEY = `genericForm_${config.title || "form"}`;
+  const [formStatus, setFormStatus] = useState(FORM_STATUS.fill);
+  const [formStatusError, setFormStatusError] = useState({});
 
   useEffect(() => {
     registerValidations();
@@ -68,7 +80,9 @@ export function GenericForm({
   // build initial states
   const allFields = useMemo(
     () =>
-      mode === "multi" ? config.steps.flatMap((s) => s[FPs.FIELDS]) : config[FPs.FIELDS],
+      mode === "multi"
+        ? config.steps.flatMap((s) => s[FPs.FIELDS])
+        : config[FPs.FIELDS],
     [config, mode]
   );
 
@@ -120,18 +134,21 @@ export function GenericForm({
 
   // submit
   const handleSubmit = async (e) => {
+    setFormStatus(FORM_STATUS.submitting);
     e.preventDefault();
 
-    const { isValid, errors } = validateFormData(formData, config);
-    return;
+    const schema = configToSchema(config);
+    const { valid, errors } = validateResponse(schema, formData);
 
-    await onSubmit(formData);
+    if (!valid) {
+      setFormStatus(FORM_STATUS.error);
+      setFormStatusError(errors);
+      return;
+    }
 
     // clear storage on success
     try {
       localStorage.removeItem(STORAGE_KEY);
-      // optionally delete files from IndexedDB too — depends on your desired semantics
-      // If you want to remove files on submit uncomment below (careful: expensive).
       Object.keys(formData).forEach(async (k) => {
         const v = formData[k];
         if (isFileLike(v)) await deleteFile(`${STORAGE_KEY}::${k}`);
@@ -141,6 +158,11 @@ export function GenericForm({
           );
         }
       });
+      onSubmit(formData);
+
+      // Reset everything
+
+      setFormStatus(FORM_STATUS.submited);
     } catch (err) {
       console.warn("GenericForm: failed to clear storage after submit", err);
     }
@@ -148,7 +170,24 @@ export function GenericForm({
 
   // Fields to render for current step
   const fieldsToRender =
-    mode === "multi" ? config.steps[currentStep][FPs.FIELDS] : config[FPs.FIELDS];
+    mode === "multi"
+      ? config.steps[currentStep][FPs.FIELDS]
+      : config[FPs.FIELDS];
+
+  if (formStatus === FORM_STATUS.submitting)
+    return <Loading color={color} text="Submitting" showText />;
+
+  if (formStatus === FORM_STATUS.error)
+    return (
+      <ErrorList
+        errors={formStatusError}
+        color={color}
+        onClick={() => setFormStatus(FORM_STATUS.fill)}
+      />
+    );
+
+  if (formStatus === FORM_STATUS.submited)
+    return <SuccessMessage color={color} onHomeClick={"/"} />;
 
   // ------------------ Render ------------------
   return (

@@ -38,7 +38,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
   const width = "100%";
 
   // Repeatable group
-  if (field.repeatable) {
+  if (field[FPs.REPEATABLE]) {
     return (
       <RepeatableGroup
         field={field}
@@ -411,5 +411,5 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     ),
   };
 
-  return fieldMap[field.type] || null;
+  return fieldMap[field[FPs.TYPE]] || null;
 }

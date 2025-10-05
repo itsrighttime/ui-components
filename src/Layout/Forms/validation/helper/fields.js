@@ -81,6 +81,8 @@ const FIELDS = "fields";
 const MORE_LABEL = "moreLabel";
 const HELP = "help";
 const NUMBER = "number";
+const TITLE = "title";
+const DESCRIPTION = "description";
 
 // --- Generic Properties ---
 export const GENERIC_PROP = {
@@ -282,4 +284,6 @@ export const FIELDS_PROPS = {
   MORE_LABEL,
   HELP,
   NUMBER,
+  TITLE,
+  DESCRIPTION,
 };

@@ -1,13 +1,14 @@
 import { FORM_FIELDS_TYPE } from "../helper/formFieldTypes.js";
 import { validationEngine as engine } from "../ValidationEngine.js";
+import { FIELDS_PROPS as FPs } from "../helper/fields.js";
 
 // TEXT
 engine.register(FORM_FIELDS_TYPE.TEXT, {
   validateConfig: (field) => {
     if (
-      field.minLength &&
-      field.maxLength &&
-      field.minLength > field.maxLength
+      field[FPs.MIN_LENGTH] &&
+      field[FPs.MAX_LENGTH] &&
+      field[FPs.MIN_LENGTH] > field[FPs.MAX_LENGTH]
     ) {
       return { valid: false, error: "minLength cannot exceed maxLength" };
     }
@@ -16,9 +17,9 @@ engine.register(FORM_FIELDS_TYPE.TEXT, {
   validateResponse: (field, value) => {
     if (typeof value !== "string")
       return { valid: false, error: "Must be string" };
-    if (field.minLength && value.length < field.minLength)
+    if (field[FPs.MIN_LENGTH] && value.length < field[FPs.MIN_LENGTH])
       return { valid: false, error: "Too short" };
-    if (field.maxLength && value.length > field.maxLength)
+    if (field[FPs.MAX_LENGTH] && value.length > field[FPs.MAX_LENGTH])
       return { valid: false, error: "Too long" };
     return { valid: true };
   },
