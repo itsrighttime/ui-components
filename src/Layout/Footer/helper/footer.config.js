@@ -2,10 +2,10 @@ import { IMAGE_ASSETS_KEYS as IAK } from "../../../assets/productsLogo/productLo
 import { FOOTER_BRANDS_KEYS, BRANDS_PROPS_KEYS as KEYS } from "./KEYS";
 import { SOCIAL_MEDIA_KEYS as SM } from "./getIcon";
 
-const getIrtUrl = (route) => `${import.meta.url.IRT}${route}`;
-const getdevUrl = (route) => `${import.meta.url.DEV}${route}`;
-const getCreUrl = (route) => `${import.meta.url.CREATIVE}${route}`;
-const getWSUrl = (route) => `${import.meta.url.WORKSPACE}${route}`;
+const getIrtUrl = (route) => `${import.meta.env.VITE_IRT}${route}`;
+const getdevUrl = (route) => `${import.meta.env.VITE_DEV}${route}`;
+const getCreUrl = (route) => `${import.meta.env.VITE_CREATIVE}${route}`;
+const getWSUrl = (route) => `${import.meta.env.VITE_WORKSPACE}${route}`;
 
 const itsrighttime = {
   [KEYS.name]: FOOTER_BRANDS_KEYS.itsrighttime,

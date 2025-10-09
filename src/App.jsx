@@ -77,8 +77,8 @@ const App = () => {
         {/* <LoginForm /> */}
         {/* <IconGallery /> */}
 
-        {/* <GenericForm
-          config={configData07}
+        <GenericForm
+          config={configData05}
           onSubmit={(value) => {
             console.log("Submited", value);
           }} // Your custom submission logic
@@ -89,7 +89,7 @@ const App = () => {
             width: "550px",
             gap: "3rem",
           }}
-        /> */}
+        />
 
         {/* <Header
             tabs={[
@@ -106,12 +106,12 @@ const App = () => {
 
         {/* </div> */}
 
-        <WebStructure
+        {/* <WebStructure
           brandHeader={{ tabs, logoURL: logo }}
           brandFooter={[FOOTER_BRANDS_KEYS.dev]}
         >
           <IconGallery />
-        </WebStructure>
+        </WebStructure> */}
       </div>
     </BrowserRouter>
   );

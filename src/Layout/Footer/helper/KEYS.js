@@ -14,6 +14,7 @@ const KEYS = {
   contactus: "contactus",
   address: "address",
   email: "email",
+  mobile: "mobile",
   getInTouch: "getintouch",
   socialMedia: "socialmedia",
 };

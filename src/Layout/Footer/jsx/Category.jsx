@@ -5,6 +5,7 @@ import styles from "../css/Category.module.css";
 import { useSmartNavigate } from "../../../Hooks/useSmartNavigate";
 import { getIcon } from "../helper/getIcon";
 import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
+import { BRANDS_PROPS_KEYS } from "../helper/KEYS";
 
 export const Category = ({
   logo,
@@ -35,12 +36,12 @@ export const Category = ({
       {links.length > 0 && (
         <div className={styles.links}>
           {links.map((tab) => (
-            <div key={tab.name} className={styles.link}>
+            <div key={tab[BRANDS_PROPS_KEYS.name]} className={styles.link}>
               <PlainButton
                 style={{ textDecoration: "underline" }}
                 color={"var(--colorGray5)"}
-                text={tab.name}
-                onClick={(e) => handleNavigate(e, tab.goTo)}
+                text={tab[BRANDS_PROPS_KEYS.name]}
+                onClick={(e) => handleNavigate(e, tab[BRANDS_PROPS_KEYS.goTo])}
               />
             </div>
           ))}
@@ -48,22 +49,28 @@ export const Category = ({
       )}
       {contactus && (
         <div className={styles.contactus}>
-          {contactus?.address && (
-            <p className={styles.address}>{contactus.address}</p>
+          {contactus?.[BRANDS_PROPS_KEYS.address] && (
+            <p className={styles.address}>
+              {contactus[BRANDS_PROPS_KEYS.contactus]}
+            </p>
           )}
-          {contactus?.email && (
+          {contactus?.[BRANDS_PROPS_KEYS.email] && (
             <a href={`mailto:${contactus.email}`} className={styles.email}>
-              {contactus.email}
+              {contactus[BRANDS_PROPS_KEYS.email]}
             </a>
           )}
-          {contactus?.mobile && (
-            <p className={styles.mobile}>{contactus.mobile}</p>
+          {contactus?.[BRANDS_PROPS_KEYS.mobile] && (
+            <p className={styles.mobile}>
+              {contactus[BRANDS_PROPS_KEYS.mobile]}
+            </p>
           )}
 
           {getInTouch && (
             <PlainButton
-              text={getInTouch.name}
-              onClick={(e) => handleNavigate(e, getInTouch.goTo)}
+              text={getInTouch[BRANDS_PROPS_KEYS.name]}
+              onClick={(e) =>
+                handleNavigate(e, getInTouch[BRANDS_PROPS_KEYS.goTo])
+              }
               style={{ textDecoration: "underline" }}
               color={"var(--colorGray5)"}
             />
