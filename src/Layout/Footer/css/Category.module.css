@@ -52,7 +52,8 @@
   flex-direction: column;
 }
 
-.contactus p {
+.contactus p,
+.contactus a {
   font-size: calc(0.9 * var(--size));
   color: var(--colorGray5);
 }
@@ -62,9 +63,18 @@
   gap: 5px;
 }
 
+.contactus a {
+  text-decoration: underline;
+}
+
 .icon button,
 .icon svg {
   background-color: var(--colorGray2);
+}
+
+.contactus a:hover {
+  text-decoration: none;
+  opacity: 0.8;
 }
 
 .icon button:hover svg,

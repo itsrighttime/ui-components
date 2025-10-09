@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
+import { getProductLogo, IMAGE_ASSETS_KEYS as IAK } from "../../../assets/productsLogo/productLogo.assets";
 import styles from "../css/WorkspaceHomePage.module.css";
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 

@@ -13,6 +13,8 @@ import { configData06 } from "./Layout/Forms/helper/data-06.js";
 import { configData05 } from "./Layout/Forms/helper/data-05.js";
 import { configData01 } from "./Layout/Forms/helper/data-01.js";
 import { configData07 } from "./Layout/Forms/helper/data-07.js";
+import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure.jsx";
+import { FOOTER_BRANDS_KEYS } from "./Layout/Footer/helper/KEYS.js";
 
 const logo = getProductLogo("");
 
@@ -75,7 +77,7 @@ const App = () => {
         {/* <LoginForm /> */}
         {/* <IconGallery /> */}
 
-        <GenericForm
+        {/* <GenericForm
           config={configData07}
           onSubmit={(value) => {
             console.log("Submited", value);
@@ -87,7 +89,7 @@ const App = () => {
             width: "550px",
             gap: "3rem",
           }}
-        />
+        /> */}
 
         {/* <Header
             tabs={[
@@ -104,9 +106,12 @@ const App = () => {
 
         {/* </div> */}
 
-        {/* <WebStructure brandHeader={{ tabs, logoURL: logo }}>
+        <WebStructure
+          brandHeader={{ tabs, logoURL: logo }}
+          brandFooter={[FOOTER_BRANDS_KEYS.dev]}
+        >
           <IconGallery />
-        </WebStructure> */}
+        </WebStructure>
       </div>
     </BrowserRouter>
   );

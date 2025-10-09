@@ -46,13 +46,12 @@
 ```js
 import { UILayout } from "@itsrighttime/ui-components";
 
-const { Workspace, Form, Header, Footer, WebStructure } = UILayout;
+const { Workspace, Form, Header, Footer, WebStructure, KEYS } = UILayout;
 ```
 
 ### Example Usage:
 
 ```jsx
-
 function App() {
   const handleTabClick = (tabKey) => {
     console.log("Tab clicked:", tabKey);
@@ -93,7 +92,6 @@ The `Header` component is a responsive, reusable navigation header for any proje
 ### Example Usage:
 
 ```jsx
-
 const tabs = [
   { name: "Home", goTo: "/" },
   { name: "About", goTo: "about" },
@@ -129,50 +127,15 @@ The `Footer` component provides a customizable footer layout for your applicatio
 
 To use the `Footer` component, pass a `brand` object that contains details like the logo, tagline, social media links, navigation links, and contact information. The component will dynamically display the footer based on the `brand` object properties.
 
-### Props
-
-- **brand**: An object containing the following properties:
-
-  - **name**: The name of the brand (used for logo lookup).
-  - **tagLine**: A tagline for the brand displayed in the footer.
-  - **tabs**: An array of navigation links (objects with `name` and `goTo` properties).
-  - **contactus**: An object containing contact details (`address`, `email`, `mobile`).
-  - **socialMedia**: An array of social media platforms (objects with `name` and `goTo` properties).
-  - **getInTouch**: An object containing the label (`name`) and link (`goTo`) for a "Get In Touch" button.
-
 ### Example Usage
 
 ```jsx
-
-const brand = {
-  name: "itsRIGHTtime",
-  tagLine: "Your Solution for All Business Needs",
-  tabs: [
-    { name: "Home", goTo: "/" },
-    { name: "About", goTo: "/about" },
-    { name: "Contact", goTo: "/contact" },
-  ],
-  contactus: {
-    address: "Delhi, India",
-    mobile: "+91 95405 14188",
-    email: "info@itsrighttime.group",
-  },
-  socialMedia: [
-    { name: "youtube", goTo: "/youtube" },
-    { name: "linkedin", goTo: "/linkedin" },
-    { name: "x", goTo: "/x" },
-    { name: "facebook", goTo: "/facebook" },
-    { name: "instagram", goTo: "/instagram" },
-    { name: "github", goTo: "https://github.com" },
-    { name: "pinterest", goTo: "/pinterest" },
-  ],
-  getInTouch: { name: "Get In Touch", goTo: "/contact" },
-};
-
 const App = () => {
   return (
     <div>
-      <Footer brand={brand} />
+      <Footer
+        brand={[KEYS.FOOTER_BRANDS_KEYS.dev, KEYS.FOOTER_BRANDS_KEYS.workspace]}
+      />
     </div>
   );
 };
@@ -210,24 +173,7 @@ const headerTabs = [
   { name: "Contact", goTo: "/contact" },
 ];
 
-const brandFooter = {
-  name: "MyBrand",
-  tagLine: "Innovating Your Business",
-  tabs: [
-    { name: "Privacy Policy", goTo: "/privacy-policy" },
-    { name: "Terms of Service", goTo: "/terms" },
-  ],
-  contactus: {
-    address: "New York, USA",
-    mobile: "+1 234 567 890",
-    email: "contact@mybrand.com",
-  },
-  socialMedia: [
-    { name: "facebook", goTo: "/facebook" },
-    { name: "instagram", goTo: "/instagram" },
-  ],
-  getInTouch: { name: "Get in Touch", goTo: "/contact" },
-};
+const brandFooter = [KEYS.FOOTER_BRANDS_KEYS.dev];
 
 const App = () => {
   return (

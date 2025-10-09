@@ -87,6 +87,8 @@ import { translator, useTranslator } from "./service/translator";
 import { FORM_FIELDS_TYPE } from "./Layout/Forms/jsx/formFieldTypes";
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
 import { OPERATORS } from "./Layout/Forms/jsx/operators";
+import { useSmartNavigate } from "./Hooks/useSmartNavigate";
+import { FOOTER_BRANDS_KEYS } from "./Layout/Footer/helper/KEYS";
 
 export const UIAlert = {
   Alert,
@@ -184,7 +186,7 @@ export const UILayout = {
   Header,
   Footer,
   WebStructure,
-  KEYS: { FORM_FIELDS_TYPE, OPERATORS },
+  KEYS: { FORM_FIELDS_TYPE, OPERATORS, FOOTER_BRANDS_KEYS },
 };
 
 export const UIHooks = {
@@ -199,6 +201,7 @@ export const UIHooks = {
   useUserActiveOnTab,
   useUserPresentOnTab,
   useQueryParams,
+  useSmartNavigate,
 };
 
 export const UIUtils = {

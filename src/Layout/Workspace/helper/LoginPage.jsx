@@ -1,11 +1,10 @@
-import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
+import { getProductLogo, IMAGE_ASSETS_KEYS } from "../../../assets/productsLogo/productLogo.assets";
 import { LoginForm } from "../../../Auth/js/LoginForm";
 import { useAuth } from "../../../Context/jsx/AuthContext";
-import { getIconByKey } from "./getIconByKey";
 
 export const LoginPage = ({ handleToggleFullscreen = null }) => {
   const { handleLogin } = useAuth();
-  const irtLogo = getProductLogo("itsRIGHTtime");
+  const irtLogo = getProductLogo(IMAGE_ASSETS_KEYS.itsrighttime);
   return (
     <LoginForm
       handleLogin={handleLogin}

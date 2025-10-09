@@ -1,31 +1,10 @@
-import { useNavigate } from "react-router";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton";
-import {
-  socialFacebookIcon,
-  socialGitHubIcon,
-  socialInstaIcon,
-  socialLinkedinIcon,
-  socialPinterestIcon,
-  socialXIcon,
-  socialYouTubeIcon,
-  squareFilledIcon,
-} from "../../../utils/icons";
+
 import styles from "../css/Category.module.css";
-
-const getIcon = (key) => {
-  const iconMap = {
-    facebook: socialFacebookIcon,
-    github: socialGitHubIcon,
-    instagram: socialInstaIcon,
-    linkedin: socialLinkedinIcon,
-    pinterest: socialPinterestIcon,
-    x: socialXIcon,
-    youtube: socialYouTubeIcon,
-  };
-
-  return iconMap[key] || squareFilledIcon;
-};
+import { useSmartNavigate } from "../../../Hooks/useSmartNavigate";
+import { getIcon } from "../helper/getIcon";
+import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
 
 export const Category = ({
   logo,
@@ -35,30 +14,22 @@ export const Category = ({
   contactus = {},
   socialMedia = [],
   getInTouch,
+  homeURL = "/",
 }) => {
-  const navigate = useNavigate();
-
-  const handleClick = (to) => {
-    navigate(to);
-  };
-  const handleSocialMedia = (to) => {
-    window.open(to, "_blank");
-  };
+  const handleNavigate = useSmartNavigate();
 
   return (
     <div className={styles.category}>
       <div className={styles.namelogo}>
         {logo && (
           <img
-            src={logo}
+            src={getProductLogo(logo)}
             className={styles.logo}
-            onClick={() => {
-              navigate("/");
-            }}
+            onClick={(e) => handleNavigate(e, homeURL)}
             alt={name || "Category Logo"}
           />
         )}
-        {name && <p className={styles.name}>{name}</p>}
+        {name && !logo && <p className={styles.name}>{name}</p>}
       </div>
       {tagLine && <p className={styles.taglLine}>{tagLine}</p>}
       {links.length > 0 && (
@@ -69,7 +40,7 @@ export const Category = ({
                 style={{ textDecoration: "underline" }}
                 color={"var(--colorGray5)"}
                 text={tab.name}
-                onClick={() => handleClick(tab.goTo)}
+                onClick={(e) => handleNavigate(e, tab.goTo)}
               />
             </div>
           ))}
@@ -81,7 +52,9 @@ export const Category = ({
             <p className={styles.address}>{contactus.address}</p>
           )}
           {contactus?.email && (
-            <p className={styles.email}>{contactus.email}</p>
+            <a href={`mailto:${contactus.email}`} className={styles.email}>
+              {contactus.email}
+            </a>
           )}
           {contactus?.mobile && (
             <p className={styles.mobile}>{contactus.mobile}</p>
@@ -90,13 +63,14 @@ export const Category = ({
           {getInTouch && (
             <PlainButton
               text={getInTouch.name}
-              onClick={() => handleClick(getInTouch.goTo)}
+              onClick={(e) => handleNavigate(e, getInTouch.goTo)}
               style={{ textDecoration: "underline" }}
               color={"var(--colorGray5)"}
             />
           )}
         </div>
       )}
+
       {socialMedia.length > 0 && (
         <div className={styles.socialMedia}>
           {socialMedia.map((tab) => (
@@ -106,7 +80,7 @@ export const Category = ({
                 icon={getIcon(tab.name)}
                 size={1}
                 isBorder
-                onClick={() => handleSocialMedia(tab.goTo)}
+                onClick={(e) => handleNavigate(e, tab.goTo, true)}
               />
             </div>
           ))}

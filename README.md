@@ -152,6 +152,7 @@ const { Alert } = UIAlert;
 - [`useUserActiveOnTab`](./docs/hooks.md#4-useuseractiveontabtimeoutinminutes)
 - [`useUserPresentOnTab`](./docs/hooks.md#5-useuserpresentontab-onfocus-onblur-)
 - [`useQueryParams`](./docs/hooks/useQueryParams.md)
+- [`useSmartNavigate`](./docs/hooks/useSmartNavigate.md)
 
 ## [Utilities](./docs/utils.md)
 
