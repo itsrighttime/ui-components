@@ -21,6 +21,7 @@ const radioOptions = [
 export const configData07 = {
   [FPs.TITLE]: "All Fields Test Form",
   [FPs.DESCRIPTION]: "Test form including all field types for quick validation",
+  [FPs.ENDPOINT]: "http://localhost:4320/public/dev/schedule-meeting",
   [FPs.MODE]: "single",
   [FPs.FIELDS]: [
     {

@@ -19,7 +19,7 @@ import { UILayout } from "@itsrighttime/ui-components";
 
 const {
   Form,
-  KEYS: { FORM_FIELDS_TYPE, OPERATORS },
+  KEYS: { FORM_FIELDS_TYPE, OPERATORS, FIELDS_PROPS },
 } = UILayout;
 ```
 

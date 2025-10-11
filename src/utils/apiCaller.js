@@ -41,7 +41,7 @@ export const apiCaller = async ({
     });
 
     const response = await axios({
-      endpoint,
+      url: endpoint,
       method,
       data: body,
       headers,

@@ -83,6 +83,7 @@ const HELP = "help";
 const NUMBER = "number";
 const TITLE = "title";
 const DESCRIPTION = "description";
+const ENDPOINT = "endpoint";
 
 // --- Generic Properties ---
 export const GENERIC_PROP = {
@@ -286,4 +287,5 @@ export const FIELDS_PROPS = {
   NUMBER,
   TITLE,
   DESCRIPTION,
+  ENDPOINT,
 };

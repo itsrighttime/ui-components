@@ -141,7 +141,7 @@ export function GenericForm({
 
     try {
       // 1 Submit to backend
-      const response = await submitToBackend(formData, config?.endpoint);
+      const response = await submitToBackend(formData, config?.[FPs.ENDPOINT]);
 
       // 2 If success → clear data
       if (response?.success) {

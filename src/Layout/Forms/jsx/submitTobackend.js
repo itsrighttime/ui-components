@@ -1,9 +1,9 @@
 import { apiCaller } from "../../../utils/apiCaller";
 
 export const submitToBackend = async (formData, endpoint) => {
-    if (!endpoint) {
-      return { success: false, message: "No endpoint provided in config" };
-    }
+  if (!endpoint) {
+    return { success: false, message: "No endpoint provided in config" };
+  }
 
   try {
     // Convert to FormData automatically
