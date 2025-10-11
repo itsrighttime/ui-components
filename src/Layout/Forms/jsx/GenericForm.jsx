@@ -215,7 +215,7 @@ export function GenericForm({
     <div className={styles.formWrapper}>
       <form className={styles.form} style={formStyle} onSubmit={handleSubmit}>
         <div className={styles.stepHeader}>
-          <h2>{config.title}</h2>
+          <h3>{config.title}</h3>
           {config.description && <p>{config.description}</p>}
         </div>
 

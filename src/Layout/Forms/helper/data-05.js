@@ -3,7 +3,7 @@ import { OPERATORS } from "../jsx/operators";
 
 export const configData05 = {
   title: "Multi-Step Conditional Example",
-  description: "Testing conditions across steps",
+  description: "Testing conditions across steps. Testing conditions acros. Testing across steps. conditions across steps. Testing conditions across . ",
   mode: "multi",
   settings: {
     showLabelAlways: true,

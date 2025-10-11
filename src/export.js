@@ -89,6 +89,7 @@ import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
 import { OPERATORS } from "./Layout/Forms/jsx/operators";
 import { useSmartNavigate } from "./Hooks/useSmartNavigate";
 import { FOOTER_BRANDS_KEYS } from "./Layout/Footer/helper/KEYS";
+import { FIELDS_PROPS } from "./Layout/Forms/validation/helper/fields";
 
 export const UIAlert = {
   Alert,
@@ -186,7 +187,7 @@ export const UILayout = {
   Header,
   Footer,
   WebStructure,
-  KEYS: { FORM_FIELDS_TYPE, OPERATORS, FOOTER_BRANDS_KEYS },
+  KEYS: { FORM_FIELDS_TYPE, OPERATORS, FOOTER_BRANDS_KEYS, FIELDS_PROPS },
 };
 
 export const UIHooks = {

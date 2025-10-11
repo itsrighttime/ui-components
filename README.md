@@ -124,6 +124,7 @@ const { Alert } = UIAlert;
 - [`Footer`](./docs/layout.md#footer-component)
 - [`WebStructure`](./docs/web-structure.md)
 - [`Form`](./docs/form/generic-form-v02.md)
+- **KEY** : `{ FORM_FIELDS_TYPE, OPERATORS, FOOTER_BRANDS_KEYS, FIELDS_PROPS }`
 
 ## [Special Pages](./docs/pages.md)
 
