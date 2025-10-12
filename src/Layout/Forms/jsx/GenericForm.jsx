@@ -181,33 +181,45 @@ export function GenericForm({
 
   // --- Conditional UI states ---
   if (formStatus === FORM_STATUS.submitting)
-    return <Loading color={color} text="Submitting..." showText />;
+    return (
+      <div className={styles.formWrapper}>
+        <div className={styles.loading}>
+          <Loading color={color} text="Submitting..." showText />
+        </div>
+      </div>
+    );
 
   if (formStatus === FORM_STATUS.error)
     return (
-      <ErrorList
-        errors={formStatusError}
-        color={color}
-        onClick={() => setFormStatus(FORM_STATUS.fill)}
-      />
+      <div className={styles.formWrapper}>
+        <ErrorList
+          errors={formStatusError}
+          color={color}
+          onClick={() => setFormStatus(FORM_STATUS.fill)}
+        />
+      </div>
     );
 
   if (formStatus === FORM_STATUS.failed)
     return (
-      <ErrorList
-        errors={formStatusError}
-        color={"var(--colorRed)"}
-        onClick={() => setFormStatus(FORM_STATUS.fill)}
-      />
+      <div className={styles.formWrapper}>
+        <ErrorList
+          errors={formStatusError}
+          color={"var(--colorRed)"}
+          onClick={() => setFormStatus(FORM_STATUS.fill)}
+        />
+      </div>
     );
 
   if (formStatus === FORM_STATUS.submitted)
     return (
-      <SuccessMessage
-        color={color}
-        message="Your form has been submitted successfully!"
-        onHomeClick={() => (window.location.href = "/")}
-      />
+      <div className={styles.formWrapper}>
+        <SuccessMessage
+          color={color}
+          message="Your form has been submitted successfully!"
+          onHomeClick={() => (window.location.href = "/")}
+        />
+      </div>
     );
 
   // --- Default form rendering ---

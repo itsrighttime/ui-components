@@ -77,19 +77,19 @@ const App = () => {
         {/* <LoginForm /> */}
         {/* <IconGallery /> */}
 
-        <GenericForm
-          config={configData07}
-          onSubmit={(value) => {
-            console.log("Submited", value);
-          }} // Your custom submission logic
-          submitLabel="Create User"
-          settings={{
-            // showLabelAlways: true,
-            color: "var(--colorDarkBlue)",
-            width: "550px",
-            gap: "3rem",
-          }}
-        />
+          <GenericForm
+            config={configData07}
+            onSubmit={(value) => {
+              console.log("Submited", value);
+            }} // Your custom submission logic
+            submitLabel="Create User"
+            settings={{
+              // showLabelAlways: true,
+              color: "var(--colorDarkBlue)",
+              width: "550px",
+              gap: "3rem",
+            }}
+          />
 
         {/* <Header
             tabs={[
