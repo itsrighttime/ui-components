@@ -160,9 +160,12 @@ export function GenericForm({
         setFormStatus(FORM_STATUS.submitted);
       } else {
         setFormStatus(FORM_STATUS.failed);
-        setFormStatusError({
-          general: { error: response?.message || "Submission failed" },
-        });
+
+        setFormStatusError(
+          response.data || {
+            general: { error: response?.message || "Submission failed" },
+          }
+        );
       }
     } catch (err) {
       console.error("Form submit failed:", err);

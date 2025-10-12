@@ -61,7 +61,7 @@ export const apiCaller = async ({
     if (import.meta.env.VITE_PRINT_API_RESULT === "true")
       console.log(`API Response of endpoint (${endpoint}): `, data);
 
-    return { ...data, error: null };
+    return { success: true, error: null, data, status: response.status };
   } catch (error) {
     logger.error({
       message: `API Error → ${method} ${endpoint}`,
@@ -70,6 +70,11 @@ export const apiCaller = async ({
       error,
     });
 
-    return { error: error.message };
+    return {
+      message: error.message,
+      data: error.response.data,
+      success: false,
+      status: error.status,
+    };
   }
 };
