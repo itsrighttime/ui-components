@@ -67,7 +67,7 @@ export const Calendar = ({
       case "day":
       case "date":
       default:
-        return "date";
+        return "calendar";
     }
   };
 
@@ -128,7 +128,7 @@ export const Calendar = ({
           <Loading color={color} windowHeight="200px" windowWidth="100%" />
         }
       >
-        {view === "date" && (
+        {view === "calendar" && (
           <RenderCalendar
             isSmall={isSmall}
             date={currentDate}

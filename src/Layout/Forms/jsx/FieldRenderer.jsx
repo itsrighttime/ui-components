@@ -26,6 +26,7 @@ import { Slider } from "../../../InputFields/NumericInput.jsx/jsx/Slider";
 import { JsonField } from "../../../InputFields/TextInput/jsx/JsonField";
 import { Stepper } from "../../../InputFields/NumericInput.jsx/jsx/Stepper";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
+import { UrlTextField } from "../../../InputFields/TextInput/jsx/UrlTextField.jsx";
 
 export function FieldRenderer({ field, value, onChange, settings }) {
   // Conditional rendering
@@ -59,6 +60,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
         showLabelAlways={settings.showLabelAlways}
         options={field[FPs.OPTIONS] || []}
+        required={field?.[FPs.REQUIRED] || false}
         value={value[field[FPs.NAME]]}
         multiple={false}
         setResult={(v) => {
@@ -77,6 +79,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         showLabelAlways={settings.showLabelAlways}
         options={field[FPs.OPTIONS] || []}
         value={value[field[FPs.NAME]]}
+        required={field?.[FPs.REQUIRED] || false}
         multiple={true}
         setResult={(v) => {
           onChange(field[FPs.NAME], v);
@@ -105,6 +108,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         key={field[FPs.NAME]}
         label={field[FPs.LABEL]}
         placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
+        required={field?.[FPs.REQUIRED] || false}
         value={value[field[FPs.NAME]]}
         setResult={(v) => {
           onChange(field[FPs.NAME], v);
@@ -156,6 +160,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         key={field[FPs.NAME]}
         color={color}
         label={field[FPs.LABEL]}
+        required={field?.[FPs.REQUIRED] || false}
         value={value[field[FPs.NAME]]}
         setResult={(v) => {
           onChange(field[FPs.NAME], v);
@@ -199,7 +204,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       />
     ),
     [FORM_FIELDS_TYPE.URL]: (
-      <TextField
+      <UrlTextField
         key={field[FPs.NAME]}
         label={field[FPs.LABEL]}
         placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
@@ -228,6 +233,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         maxTextAreaHeight={field[FPs.MAX_TEXTAREA_HEIGHT]}
         showCharacterCount={field[FPs.SHOW_CHARACTER_COUNT]}
         showWordCount={field[FPs.SHOW_WORD_COUNT]}
+        required={field?.[FPs.REQUIRED] || false}
         disabled={field[FPs.DISABLED]}
         setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
       />
@@ -243,6 +249,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
         hideOnSave={field[FPs.HIDE_ON_SAVE]}
         isBorder={field[FPs.IS_BORDER]}
+        required={field?.[FPs.REQUIRED] || false}
         value={value[field[FPs.NAME]]}
       />
     ),
@@ -259,6 +266,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         height={field[FPs.HEIGHT] || "200px"}
         setResult={(v) => onChange(field[FPs.NAME], v)}
         setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.AUDIO]: (
@@ -272,6 +280,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         value={value[field[FPs.NAME]]}
         color={color}
         setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.IMAGE]: (
@@ -287,6 +296,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         setResult={(v) => onChange(field[FPs.NAME], v)}
         color={color}
         setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.VIDEO]: (
@@ -301,6 +311,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         setResult={(v) => onChange(field[FPs.NAME], v)}
         color={color}
         setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.SECURTY_QUESTION]: (
@@ -314,6 +325,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         }}
         color={color}
         value={value[field[FPs.NAME]]}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.OTP]: (
@@ -341,6 +353,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         layout={field[FPs.LAYOUT]}
         label={field[FPs.LABEL]}
         disabled={field[FPs.DISABLED]}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.COLOR]: (
@@ -350,6 +363,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
           onChange(field[FPs.NAME], true, true); // to update Error State as valid
         }}
         color={value[field[FPs.NAME]] || field[FPs.COLOR] || "#ff5969"}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.RADIO]: (
@@ -365,6 +379,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         layout={field[FPs.LAYOUT]}
         label={field[FPs.LABEL]}
         disabled={field[FPs.DISABLED]}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.SEARCH]: (
@@ -377,6 +392,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         }}
         color={color}
         suggestions={field[FPs.OPTIONS]}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.SWITCH]: (
@@ -389,6 +405,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         initialValue={value[field[FPs.NAME]]}
         label={field[FPs.LABEL]}
         disabled={field[FPs.DISABLED]}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.SLIDER]: (
@@ -407,6 +424,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         showValueSide={field[FPs.SHOW_VALUE_SIDE]}
         precision={field[FPs.PRECISION]}
         width={width}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
     [FORM_FIELDS_TYPE.STEPPER]: (
@@ -422,6 +440,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
         min={field[FPs.MIN]}
         max={field[FPs.MAX]}
         step={field[FPs.STEP]}
+        required={field?.[FPs.REQUIRED] || false}
       />
     ),
   };

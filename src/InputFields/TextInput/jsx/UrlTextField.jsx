@@ -14,6 +14,7 @@ export const UrlTextField = ({
   setIsFieldValid = () => {},
   required = false,
   errorMessage = "Invalid URL",
+  color,
   autoFocus = false,
   onBlur,
   onFocus,
@@ -94,7 +95,7 @@ export const UrlTextField = ({
     onClear?.();
   };
 
-  const cssVariable = { ...getCommonCssVariables(isBorder, undefined, width) };
+  const cssVariable = { ...getCommonCssVariables(isBorder, color, width) };
 
   return (
     <div className={styles.textField} style={{ ...style, ...cssVariable }}>

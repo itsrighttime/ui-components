@@ -16,6 +16,8 @@ import { Loading } from "../../../SpecialPages/js/Loading";
 import { ErrorList } from "./ShowError";
 import { SuccessMessage } from "./SuccessMessage";
 import { submitToBackend } from "./submitTobackend";
+import { useAlerts } from "../../../Hooks/useAlert";
+import { AlertContainer } from "../../../Alert/js/AlertContainer";
 
 const FORM_STATUS = {
   fill: "filling",
@@ -36,6 +38,7 @@ export function GenericForm({
   const STORAGE_KEY = `genericForm_${config.title || "form"}`;
   const [formStatus, setFormStatus] = useState(FORM_STATUS.fill);
   const [formStatusError, setFormStatusError] = useState({});
+  const { alertContainer, addAlert, removeAlert } = useAlerts();
   const mountedRef = useRef(true);
 
   // --- Mount lifecycle ---
@@ -106,7 +109,8 @@ export function GenericForm({
     formData,
     formError,
     currentStep,
-    setCurrentStep
+    setCurrentStep,
+    addAlert
   );
 
   // --- Change handler ---
@@ -158,6 +162,10 @@ export function GenericForm({
         // 3 Trigger external callback if any
         if (onSubmit) onSubmit(formData);
         setFormStatus(FORM_STATUS.submitted);
+        addAlert(
+          `${config[FPs.TITLE] || "Deatils"} Submitted Successfully`,
+          "success"
+        );
       } else {
         setFormStatus(FORM_STATUS.failed);
 
@@ -166,6 +174,7 @@ export function GenericForm({
             general: { error: response?.message || "Submission failed" },
           }
         );
+        addAlert(`Resolve the errors and submit again`, "error");
       }
     } catch (err) {
       console.error("Form submit failed:", err);
@@ -173,6 +182,7 @@ export function GenericForm({
       setFormStatusError({
         general: { error: err.message || "Network error" },
       });
+      addAlert(`Resolve the errors and submit again`, "error");
     }
   };
 
@@ -228,6 +238,10 @@ export function GenericForm({
   // --- Default form rendering ---
   return (
     <div className={styles.formWrapper}>
+      <AlertContainer
+        alertContainer={alertContainer}
+        removeAlert={removeAlert}
+      />
       <form className={styles.form} style={formStyle} onSubmit={handleSubmit}>
         <div className={styles.stepHeader}>
           <h3>{config[FPs.TITLE]}</h3>

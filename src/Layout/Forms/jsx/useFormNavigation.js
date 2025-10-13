@@ -8,7 +8,8 @@ export function useFormNavigation(
   formData,
   formError,
   currentStep,
-  setCurrentStep
+  setCurrentStep,
+  addAlert
 ) {
   const isStepValid = useCallback(() => {
     const fields =
@@ -24,8 +25,22 @@ export function useFormNavigation(
     });
   }, [config, currentStep, formError]);
 
-  const next = () => isStepValid() && setCurrentStep((s) => s + 1);
-  const back = () => setCurrentStep((s) => Math.max(0, s - 1));
+  const next = () => {
+    if (isStepValid()) {
+      setCurrentStep((s) => s + 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      addAlert(
+        "Either all the required fields are not filled in, or some contain invalid data.",
+        "error"
+      );
+    }
+  };
+
+  const back = () => {
+    setCurrentStep((s) => Math.max(0, s - 1));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return { isStepValid, next, back };
 }
