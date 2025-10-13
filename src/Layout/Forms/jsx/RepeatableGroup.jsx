@@ -3,20 +3,56 @@ import { FieldRenderer } from "./FieldRenderer";
 import { Button } from "../../../InputFields/Actions/jsx/Button";
 import styles from "../css/GenericForm.module.css";
 import { FIELDS_PROPS } from "../validation/helper/fields";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
+import { crossIcon } from "../../../utils/icons";
+import { useMemo } from "react";
 
 export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
+  // Ensure every item has a unique internal id (for React key)
+  const itemsWithIds = useMemo(
+    () =>
+      values.map((v) => ({
+        _uid: v._uid || crypto.randomUUID(),
+        ...v,
+      })),
+    [values]
+  );
+
   const handleItemChange = (index, name, value) => {
-    const updated = [...values];
+    const updated = [...itemsWithIds];
     updated[index][name] = value;
     onChange(updated);
   };
+
+  const handleCrossClick = (indx) => {
+    const updated = itemsWithIds.filter((_, i) => i !== indx);
+    onChange(updated);
+  };
+
   const color = settings.color;
 
   return (
     <div className={styles.repeatableGroup}>
       <label>{field[FIELDS_PROPS.LABEL]}</label>
-      {values.map((item, idx) => (
-        <div key={idx} className={styles.repeatableItem}>
+      {itemsWithIds.map((item, idx) => (
+        <div key={item._uid} className={styles.repeatableItem}>
+          {values.length > 1 && (
+            <div className={styles.repeatableCross}>
+              <IconButton
+                icon={crossIcon}
+                color={"var(--colorWhite)"}
+                size={1}
+                style={{
+                  borderRadius: "50%",
+                  backgroundColor: "var(--colorRed)",
+                }}
+                onClick={() => {
+                  handleCrossClick(idx);
+                }}
+              />
+            </div>
+          )}
+
           {field[FIELDS_PROPS.FIELDS].map((subField) => (
             <FieldRenderer
               key={subField[FIELDS_PROPS.NAME]}

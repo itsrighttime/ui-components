@@ -43,7 +43,7 @@ export function FieldRenderer({ field, value, onChange, settings }) {
     return (
       <RepeatableGroup
         field={field}
-        values={value[field[FPs.NAME]]}
+        values={value[field[FPs.NAME]] || [{}]}
         onChange={(v) => onChange(field[FPs.NAME], v)}
         settings={settings}
       />
