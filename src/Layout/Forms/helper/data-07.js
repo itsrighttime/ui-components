@@ -1,4 +1,5 @@
-import { FORM_FIELDS_TYPE } from "../jsx/formFieldTypes";
+import { FORM_FIELDS_TYPE } from "../validation/helper/fields.js";
+import { OPERATORS } from "../validation/helper/operators.js";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
 
 const checkboxOptions = [

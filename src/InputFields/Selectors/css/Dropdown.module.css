@@ -124,5 +124,15 @@
 }
 
 .buttons button {
- height: auto;
+  height: auto;
+}
+
+.required {
+  padding-top: 5px;
+  padding-right: 10px;
+  margin: 0 5px;
+  color: var(--colorRed);
+  font-weight: var(--boldL4);
+  text-align: end;
+  width: 100%;
 }

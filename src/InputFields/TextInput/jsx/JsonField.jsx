@@ -16,6 +16,7 @@ export const JsonField = ({
   isBorder = false,
   backendError = "",
   value = "",
+  required = false,
 }) => {
   const [jsonInput, setJsonInput] = useState(value);
   const [error, setError] = useState("");
@@ -70,6 +71,7 @@ export const JsonField = ({
               showWordCount={showWordCount}
               backendError={backendError}
               width="100%"
+              required={required}
             />
           </div>
 

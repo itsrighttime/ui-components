@@ -15,6 +15,7 @@ export const SelectionBox = ({
   disabled = false,
   customStyles = {}, // { customStyle.group = {}, customStyle.item = {} }
   width = "300px",
+  required = false,
 }) => {
   const [selectedValues, setSelectedValues] = useState(
     multiple ? initialSelectedValues : initialSelectedValues || null
@@ -81,7 +82,11 @@ export const SelectionBox = ({
       style={{ ...customStyles.group, ...cssVariable }}
       aria-labelledby={label}
     >
-      {label && <div className={styles.label}>{label}</div>}
+      {label && (
+        <div className={styles.label}>
+          {label} {required && <span className={styles.required}>*</span>}
+        </div>
+      )}
 
       {options.map((option, index) => {
         const selectedOption = isValueSelected(option.value);

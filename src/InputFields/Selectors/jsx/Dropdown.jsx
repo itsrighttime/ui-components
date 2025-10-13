@@ -17,6 +17,7 @@ export const Dropdown = ({
   setAddedOptions,
   width = "300px",
   showLabelAlways = false,
+  required = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [allOptions, setAllOptions] = useState(options);
@@ -102,6 +103,7 @@ export const Dropdown = ({
       {(selectedOptions.length > 0 || showLabelAlways) && label && (
         <div className={styles.label}>{label}</div>
       )}
+      {required && <p className={styles.required}>*</p>}
 
       <div
         className={`${styles.dropdownHeader} ${isOpen ? styles.open : ""}`}

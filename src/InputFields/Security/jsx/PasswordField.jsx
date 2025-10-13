@@ -12,6 +12,7 @@ export const PasswordField = ({
   width = "300px",
   setPasswordStrength: setPasswordStrengthProp,
   showLabelAlways = false,
+  required = false,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("");
@@ -107,7 +108,10 @@ export const PasswordField = ({
             setIsFocused(false);
           }}
         />
-        {showPassword ? hidePasswordIcon : showPasswordIcon}
+        <div className={style.eyeRequired}>
+          {showPassword ? hidePasswordIcon : showPasswordIcon}
+          {required && <span className={style.required}>*</span>}
+        </div>
       </div>
       {passwordStrength && (
         <p className={`${style.strength} ${style[passwordStrength]}`}>

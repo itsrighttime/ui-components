@@ -7,12 +7,13 @@ import { useEffect } from "react";
 export const Stepper = ({
   value = 0,
   setResult,
-  color,
+  color = "var(--colorCyan)",
   min = 0,
   max = 100,
   step = 5,
   label = "",
   width = "300px",
+  required = false,
 }) => {
   const [stepperValue, setStepperValue] = useState(value || 0);
 
@@ -43,6 +44,7 @@ export const Stepper = ({
 
   return (
     <div className={styles.stepperContainer} style={cssVariable}>
+      {required && <p className={styles.required}>*</p>}
       {label && <label className={styles.stepperLabel}>{label}</label>}
       <div className={styles.stepperControls}>
         <IconButton

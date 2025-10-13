@@ -1,4 +1,4 @@
-import { FORM_FIELDS_TYPE } from "../helper/formFieldTypes.js";
+import { FORM_FIELDS_TYPE } from "../helper/fields.js";
 import { validationEngine as engine } from "../ValidationEngine.js";
 import { FIELDS_PROPS as FPs } from "../helper/fields.js";
 

@@ -1,4 +1,4 @@
-import { FORM_FIELDS_TYPE } from "../jsx/formFieldTypes";
+import { FORM_FIELDS_TYPE } from "../validation/helper/fields.js";
 
 export const configData01 = {
   title: "Complete User Form",

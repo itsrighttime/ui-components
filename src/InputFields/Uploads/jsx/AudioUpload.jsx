@@ -14,6 +14,7 @@ export const AudioUpload = ({
   height = "100px",
   backendError = "",
   value = null,
+  required = false,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [audio, setAudio] = useState(value);
@@ -115,6 +116,8 @@ export const AudioUpload = ({
 
   return (
     <div className={style.audioUploadContainer} style={cssVariable}>
+      {required && <p className={style.required}>*</p>}
+
       {!audio ? (
         <div
           className={`${style.audioUpload} ${isDragging ? style.dragging : ""}`}

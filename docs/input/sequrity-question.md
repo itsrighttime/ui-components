@@ -81,6 +81,7 @@ const { OtpField, PasswordField, SecurityQuestion } = UIInputs.Security;
 | `width`               | `string`  | `300px`       | Width of the component                                 |
 | `setPasswordStrength` | `func`    | _optional_    | To get the information about the strengt               |
 | `showLabelAlways`     | `boolean` | `false`       | If true, always shows the label above the input field. |
+| `required`            | `boolean` | `false`       | If true, marks input as required                       |
 
 ### Features
 
@@ -110,14 +111,15 @@ const { OtpField, PasswordField, SecurityQuestion } = UIInputs.Security;
 
 ### Props
 
-| Prop          | Type     | Default               | Description                                  |
-| ------------- | -------- | --------------------- | -------------------------------------------- |
-| `questions`   | `array`  | `[]`                  | Array of question strings                    |
-| `setResult`   | `func`   | _required_            | Callback that returns `{ question, answer }` |
-| `color`       | `string` | `--colorCyan`         | Accent color                                 |
-| `placeholder` | `string` | `"Select a question"` | Dropdown placeholder                         |
-| `width`       | `string` | `"300px"`             | Component width                              |
-| `value`       | `-`      | `""`                  | Initial value.                               |
+| Prop          | Type      | Default               | Description                                  |
+| ------------- | --------- | --------------------- | -------------------------------------------- |
+| `questions`   | `array`   | `[]`                  | Array of question strings                    |
+| `setResult`   | `func`    | _required_            | Callback that returns `{ question, answer }` |
+| `color`       | `string`  | `--colorCyan`         | Accent color                                 |
+| `placeholder` | `string`  | `"Select a question"` | Dropdown placeholder                         |
+| `width`       | `string`  | `"300px"`             | Component width                              |
+| `value`       | `-`       | `""`                  | Initial value.                               |
+| `required`    | `boolean` | `false`               | If true, marks input as required             |
 
 ### Features
 

@@ -15,6 +15,7 @@ export const NumberField = ({
   min,
   max,
   width = "300px",
+  required = false,
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
   const [isFocused, setIsFocused] = useState(false);
@@ -55,6 +56,8 @@ export const NumberField = ({
           {label}
         </label>
       )}
+      {required && <p className={styles.required}>*</p>}
+
       <input
         type="text"
         value={inputValue}

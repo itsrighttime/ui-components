@@ -19,6 +19,7 @@ export const FileUpload = ({
   width = "500px",
   height = "200px",
   backendError = "",
+  required = false,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState(value || []);
@@ -170,6 +171,8 @@ export const FileUpload = ({
 
   return (
     <div className={styles.fileUploadContainer} style={cssVariable}>
+      {required && <p className={styles.required}>*</p>}
+
       {files.length === 0 && (
         <div
           className={`${styles.fileUpload} ${

@@ -10,6 +10,7 @@ export const CheckboxGroup = ({
   disabled = false,
   customStyles = {}, // {customStyle.group = {}, customStyle.item}
   width = "300px",
+  required = false,
 }) => {
   return (
     <SelectionBox
@@ -23,6 +24,7 @@ export const CheckboxGroup = ({
       customStyles={customStyles}
       multiple
       width={width}
+      required={required}
     />
   );
 };

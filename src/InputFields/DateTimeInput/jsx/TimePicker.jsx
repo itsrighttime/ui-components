@@ -9,6 +9,7 @@ export const TimePicker = ({
   setResult,
   color,
   width = "200px",
+  required = false,
 }) => {
   const [_time, _period] = value.split(" ");
   const [_hour, _minute] = _time.split(":");
@@ -60,6 +61,8 @@ export const TimePicker = ({
   return (
     <div className={styles.timeInputContainer} style={{ maxWidth: width }}>
       {label && <label className={styles.label}>{label}</label>}
+      {required && <p className={styles.required}>*</p>}
+
       <div className={styles.timeSelectors}>
         <CustomDropdown
           options={hoursOptions}

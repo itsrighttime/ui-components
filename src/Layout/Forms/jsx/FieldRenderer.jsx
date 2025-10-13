@@ -8,7 +8,7 @@ import { DatePicker } from "../../../InputFields/DateTimeInput/jsx/DatePicker";
 import { TimePicker } from "../../../InputFields/DateTimeInput/jsx/TimePicker";
 import { AddressField } from "../../../InputFields/Location/jsx/AddressField";
 import { Dropdown } from "../../../InputFields/Selectors/jsx/Dropdown";
-import { FORM_FIELDS_TYPE } from "./formFieldTypes";
+import { FORM_FIELDS_TYPE } from "../validation/helper/fields.js";
 import { RepeatableGroup } from "./RepeatableGroup";
 import { FileUpload } from "../../../InputFields/Uploads/jsx/FileUpload";
 import { isConditional } from "./conditional";
@@ -184,6 +184,21 @@ export function FieldRenderer({ field, value, onChange, settings }) {
       />
     ),
     [FORM_FIELDS_TYPE.TEXT]: (
+      <TextField
+        key={field[FPs.NAME]}
+        label={field[FPs.LABEL]}
+        placeholder={field[FPs.PLACEHOLDER] || field[FPs.LABEL]}
+        name={field[FPs.NAME]}
+        value={value[field[FPs.NAME]]}
+        setResult={(v) => onChange(field[FPs.NAME], v)} // Update state on change
+        width={width}
+        color={color}
+        showLabelAlways={settings.showLabelAlways}
+        required={field?.[FPs.REQUIRED] || false}
+        setIsFieldValid={(v) => onChange(field[FPs.NAME], v, true)}
+      />
+    ),
+    [FORM_FIELDS_TYPE.URL]: (
       <TextField
         key={field[FPs.NAME]}
         label={field[FPs.LABEL]}

@@ -3,7 +3,7 @@ import {
   FIELDS_PROPS as FPs,
   GENERIC_PROP,
 } from "./helper/fields.js";
-import { FORM_FIELDS_TYPE } from "./helper/formFieldTypes.js";
+import { FORM_FIELDS_TYPE } from "./helper/fields.js";
 import { pushError } from "./helper/errorFormatter.js";
 
 export const verifyFieldProps = (field, errors) => {

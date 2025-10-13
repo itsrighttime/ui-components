@@ -15,6 +15,7 @@ export const Slider = ({
   showValueSide = "none",
   precision = 10,
   width = "300px",
+  required = false,
 }) => {
   const [sliderValue, setSlidervalue] = useState(value || 0);
 
@@ -105,6 +106,7 @@ export const Slider = ({
             color={color}
             style={{ border: "none", borderRadius: "50%" }}
           />
+          {required && <p className={styles.required}>*</p>}
         </div>
         {showValueSide !== "none" && (
           <div className={`${styles.sliderValue}`}>{sliderValue}</div>

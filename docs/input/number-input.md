@@ -33,19 +33,20 @@ const { Slider, NumberField, Stepper } = UIInputs.Text;
 
 ### Props
 
-| Prop            | Type     | Default       | Description                                                                |
-| --------------- | -------- | ------------- | -------------------------------------------------------------------------- |
-| `value`         | `number` | `0`           | Initial slider value                                                       |
-| `setResult`     | `func`   | **required**  | Callback to pass updated value                                             |
-| `color`         | `string` | `--colorCyan` | Color for the filled slider portion                                        |
-| `min`           | `number` | `0`           | Minimum value                                                              |
-| `max`           | `number` | `100`         | Maximum value                                                              |
-| `step`          | `number` | `1`           | Slider steps                                                               |
-| `label`         | `string` | `""`          | Optional label                                                             |
-| `showRange`     | `bool`   | `true`        | Show min/max beside the slider                                             |
-| `showValueSide` | `string` | `"none"`      | Where to show the current value (`left`, `right`, `top`, `bottom`, `none`) |
-| `precision`     | `number` | `10`          | Rounds value to nearest `1/precision`                                      |
-| `width`         | `string` | `300px`       | Width of the component                                                     |
+| Prop            | Type      | Default       | Description                                                                |
+| --------------- | --------- | ------------- | -------------------------------------------------------------------------- |
+| `value`         | `number`  | `0`           | Initial slider value                                                       |
+| `setResult`     | `func`    | **required**  | Callback to pass updated value                                             |
+| `color`         | `string`  | `--colorCyan` | Color for the filled slider portion                                        |
+| `min`           | `number`  | `0`           | Minimum value                                                              |
+| `max`           | `number`  | `100`         | Maximum value                                                              |
+| `step`          | `number`  | `1`           | Slider steps                                                               |
+| `label`         | `string`  | `""`          | Optional label                                                             |
+| `showRange`     | `bool`    | `true`        | Show min/max beside the slider                                             |
+| `showValueSide` | `string`  | `"none"`      | Where to show the current value (`left`, `right`, `top`, `bottom`, `none`) |
+| `precision`     | `number`  | `10`          | Rounds value to nearest `1/precision`                                      |
+| `width`         | `string`  | `300px`       | Width of the component                                                     |
+| `required`      | `boolean` | `false`       | If true, marks input as required                                           |
 
 ### Example
 
@@ -83,6 +84,7 @@ const { Slider, NumberField, Stepper } = UIInputs.Text;
 | `min`              | `number`        | `undefined`   | Min allowed value                    |
 | `max`              | `number`        | `undefined`   | Max allowed value                    |
 | `width`            | `string`        | `300px`       | Component width                      |
+| `required`         | `boolean`       | `false`       | If true, marks input as required     |
 
 ### Example
 
@@ -105,16 +107,17 @@ const { Slider, NumberField, Stepper } = UIInputs.Text;
 
 ### Props
 
-| Prop        | Type     | Default       | Description                   |
-| ----------- | -------- | ------------- | ----------------------------- |
-| `value`     | `number` | `0`           | Initial stepper value         |
-| `setResult` | `func`   | **required**  | Callback on step change       |
-| `color`     | `string` | `--colorCyan` | Button & text color           |
-| `min`       | `number` | `0`           | Minimum value allowed         |
-| `max`       | `number` | `100`         | Maximum value allowed         |
-| `step`      | `number` | `5`           | Amount to increment/decrement |
-| `label`     | `string` | `""`          | Optional label                |
-| `width`     | `string` | `300px`       | Width of component            |
+| Prop        | Type      | Default       | Description                      |
+| ----------- | --------- | ------------- | -------------------------------- |
+| `value`     | `number`  | `0`           | Initial stepper value            |
+| `setResult` | `func`    | **required**  | Callback on step change          |
+| `color`     | `string`  | `--colorCyan` | Button & text color              |
+| `min`       | `number`  | `0`           | Minimum value allowed            |
+| `max`       | `number`  | `100`         | Maximum value allowed            |
+| `step`      | `number`  | `5`           | Amount to increment/decrement    |
+| `label`     | `string`  | `""`          | Optional label                   |
+| `width`     | `string`  | `300px`       | Width of component               |
+| `required`  | `boolean` | `false`       | If true, marks input as required |
 
 ### Example
 

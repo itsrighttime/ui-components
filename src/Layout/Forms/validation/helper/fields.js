@@ -23,6 +23,7 @@ export const FORM_FIELDS_TYPE = {
   SWITCH: "switch",
   SLIDER: "slider",
   STEPPER: "stepper",
+  URL: "url",
 };
 
 // --- Property Constants ---
@@ -84,6 +85,15 @@ const NUMBER = "number";
 const TITLE = "title";
 const DESCRIPTION = "description";
 const ENDPOINT = "endpoint";
+const SETTINGS = "settings";
+const SHOW_LABEL_ALWAYS = "showLabelAlways";
+const GAP = "gap";
+const WIDTH = "width";
+const BACKGROUND_COLOR = "backgroundColor";
+const TEXT_COLOR = "textColor";
+const LABEL_COLOR = "labelColor";
+const BORDER = "border";
+const BORDER_RADIUS = "borderRadius";
 
 // --- Generic Properties ---
 export const GENERIC_PROP = {
@@ -153,6 +163,10 @@ export const CORE_FIELDS_PROPS = {
   [FORM_FIELDS_TYPE.TEXT]: {
     compulsory: [],
     optional: [MIN_LENGTH, MAX_LENGTH],
+  },
+  [FORM_FIELDS_TYPE.URL]: {
+    compulsory: [],
+    optional: [],
   },
   [FORM_FIELDS_TYPE.TEXT_AREA]: {
     compulsory: [],
@@ -288,4 +302,13 @@ export const FIELDS_PROPS = {
   TITLE,
   DESCRIPTION,
   ENDPOINT,
+  SETTINGS,
+  SHOW_LABEL_ALWAYS,
+  GAP,
+  WIDTH,
+  BACKGROUND_COLOR,
+  TEXT_COLOR,
+  LABEL_COLOR,
+  BORDER,
+  BORDER_RADIUS,
 };

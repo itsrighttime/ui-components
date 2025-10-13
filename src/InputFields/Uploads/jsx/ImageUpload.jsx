@@ -16,6 +16,7 @@ export const ImageUpload = ({
   previewBorderRadius = "0%",
   backendError = "",
   value = null,
+  required = false,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [image, setImage] = useState(value); // image URL for preview
@@ -141,6 +142,8 @@ export const ImageUpload = ({
   return (
     <>
       <div className={style.imageUploadContainer} style={cssVariable}>
+        {required && <p className={style.required}>*</p>}
+
         {!image && (
           <label
             className={`${style.imageUpload} ${

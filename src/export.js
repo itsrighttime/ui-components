@@ -84,12 +84,15 @@ import { Header } from "./Layout/Header/jsx/Header";
 import { Footer } from "./Layout/Footer/jsx/Footer";
 import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure";
 import { translator, useTranslator } from "./service/translator";
-import { FORM_FIELDS_TYPE } from "./Layout/Forms/jsx/formFieldTypes";
 import { GenericForm } from "./Layout/Forms/jsx/GenericForm";
-import { OPERATORS } from "./Layout/Forms/jsx/operators";
 import { useSmartNavigate } from "./Hooks/useSmartNavigate";
 import { FOOTER_BRANDS_KEYS } from "./Layout/Footer/helper/KEYS";
-import { FIELDS_PROPS } from "./Layout/Forms/validation/helper/fields";
+import {
+  FIELDS_PROPS,
+  FORM_FIELDS_TYPE,
+} from "./Layout/Forms/validation/helper/fields";
+import { UrlTextField } from "./InputFields/TextInput/jsx/UrlTextField";
+import { OPERATORS } from "./Layout/Forms/validation/helper/operators";
 
 export const UIAlert = {
   Alert,
@@ -145,6 +148,7 @@ export const UIInputs = {
     NumberField,
     Stepper,
     Slider,
+    UrlTextField,
   },
   DateTime: {
     DatePicker,

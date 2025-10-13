@@ -10,6 +10,7 @@ export const SecurityQuestion = ({
   placeholder = "Select a question",
   width = "300px",
   value = {},
+  required = false,
 }) => {
   const [selectedQuestion, setSelectedQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -39,6 +40,7 @@ export const SecurityQuestion = ({
         label="Select a Security Question"
         color={color}
         width="100%"
+        required={required}
       />
 
       {selectedQuestion && (

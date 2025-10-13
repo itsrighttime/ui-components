@@ -1,5 +1,5 @@
-import { FORM_FIELDS_TYPE } from "../jsx/formFieldTypes";
-import { OPERATORS } from "../jsx/operators";
+import { FORM_FIELDS_TYPE } from "../validation/helper/fields.js";
+import { OPERATORS } from "../validation/helper/operators.js";
 
 export const configData06 = {
   title: "Repeatable Fields Example",

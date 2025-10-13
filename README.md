@@ -82,6 +82,7 @@ const { Alert } = UIAlert;
 - `NumberField`
 - `Stepper`
 - `Slider`
+- `UrlTextField`
 
 #### [Date & Time](./docs/input/date-time.md)
 

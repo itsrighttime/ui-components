@@ -40,6 +40,7 @@ const { ImageUpload, ImagePreview } = UIInputs.Upload;
 | `previewBorderRadius` | `string`   | `"0%"`                                     | Border Radius of the preview image              |
 | `backendError`        | `string`   | `""`                                       | bakend error that reaches to the correct field. |
 | `value`               | `-`        | `null`                                     | Initial value.                                  |
+| `required`            | `boolean`  | `false`                                    | If true, marks input as required                |
 
 ### Features
 

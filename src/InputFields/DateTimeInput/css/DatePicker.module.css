@@ -5,6 +5,7 @@
 
 .dateInput {
   padding: 5px;
+  padding-top: 0;
   cursor: pointer;
   text-align: center;
   margin-bottom: 5px;
@@ -23,4 +24,12 @@
   width: 100%;
   background-color: var(--colorBackground);
   z-index: 1000;
+}
+
+.required {
+  padding-top: 5px;
+  margin: 0 5px;
+  color: var(--colorRed);
+  font-weight: var(--boldL4);
+  text-align: end;
 }

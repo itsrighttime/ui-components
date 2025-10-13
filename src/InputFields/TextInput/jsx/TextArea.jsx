@@ -18,6 +18,7 @@ export const TextArea = ({
   width = "300px",
   showLabelAlways = false,
   backendError = "",
+  required = false,
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
   const [isFocused, setIsFocused] = useState(false);
@@ -102,6 +103,7 @@ export const TextArea = ({
           {label}
         </label>
       )}
+      {required && <p className={styles.required}>*</p>}
 
       <textarea
         id={label}

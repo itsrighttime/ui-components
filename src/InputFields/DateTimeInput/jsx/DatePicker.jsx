@@ -14,6 +14,7 @@ export const DatePicker = ({
   isBorder = false,
   width = "200px",
   mode = "date", // "month-year" | "year" | "month" | "date"
+  required = false,
 }) => {
   const _label = label || "Select a Date";
 
@@ -53,6 +54,7 @@ export const DatePicker = ({
   };
   return (
     <div className={styles.datePicker} ref={pickerRef} style={cssVariable}>
+      {required && <p className={styles.required}>*</p>}
       <div className={styles.dateInput} onClick={() => setIsOpen(true)}>
         {selectedDate}
       </div>

@@ -1,5 +1,7 @@
-import { FORM_FIELDS_TYPE } from "../jsx/formFieldTypes";
-import { OPERATORS } from "../jsx/operators";
+import { FORM_FIELDS_TYPE } from "../validation/helper/fields.js";
+import { OPERATORS } from "../validation/helper/operators.js";
+
+// import { OPERATORS } from "../jsx/operators";
 
 export const configData02 = {
   title: "Conditional Fields Example",

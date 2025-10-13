@@ -1,6 +1,6 @@
 import styles from "../css/ColorPicker.module.css";
 
-export const ColorPicker = ({ color, setResult }) => {
+export const ColorPicker = ({ color, setResult, required = false }) => {
   return (
     <div className={styles.colorPicker}>
       <input
@@ -9,7 +9,7 @@ export const ColorPicker = ({ color, setResult }) => {
         onChange={(e) => setResult(e.target.value)}
         className={styles.input}
       />
+      {required && <p className={styles.required}>*</p>}
     </div>
   );
 };
-

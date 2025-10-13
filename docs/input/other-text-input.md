@@ -34,7 +34,8 @@ const { JsonField } = UIInputs.Text;
 | `width`              | `string`  | `300px` | to adjust the width of the Field                                                         |
 | `isBorder`           | `boolean` | `false` | Applies full border instead of bottom border only                                        |
 | `backendError`       | `string`  | `""`    | bakend error that reaches to the correct field.                                          |
-| `value`              | `-`       | `""`  | Initial value.                                                                           |
+| `value`              | `-`       | `""`    | Initial value.                                                                           |
+| `required`           | `boolean` | `false` | If true, marks input as required                                                         |
 
 ### Behavior
 
@@ -97,6 +98,7 @@ const { TextArea } = UIInputs.text;
 | `showLabelAlways`    | `boolean` | `false`                                 | If true, always shows the label above the input field.                                      |
 | `backendError`       | `string`  | `""`                                    | bakend error that reaches to the correct field.                                             |
 | `errorMessage`       | `string`  | `"Please enter a valid email address."` | Custom error message                                                                        |
+| `required`           | `boolean` | `false`                                 | If true, marks input as required                                                            |
 
 ### Behavior
 

@@ -52,6 +52,7 @@ Both components are powered by a shared internal engine to ensure consistent beh
 | `color`                                                                          | `string`                                                                  | Optional color for selected icons (e.g., `"#00aaff"`). |
 | `disabled`                                                                       | `boolean`                                                                 | Disable all selections.                                |
 | `customStyles`                                                                   | `object`                                                                  | Override internal styles (`{ group, item, label }`).   |
+| `required`                                                                       | `boolean`                                                                 | If true, marks input as required                       |
 
 ## Usage Examples
 
@@ -133,10 +134,11 @@ A simple color input element that allows users to select a color value. Returns 
 
 ### Props:
 
-| Prop        | Type     | Required | Description                              |
-| ----------- | -------- | -------- | ---------------------------------------- |
-| `color`     | `string` | No       | Initial color value (hex format).        |
-| `setResult` | `func`   | Yes      | Callback to return selected color value. |
+| Prop        | Type      | Required | Description                              |
+| ----------- | --------- | -------- | ---------------------------------------- |
+| `color`     | `string`  | No       | Initial color value (hex format).        |
+| `setResult` | `func`    | Yes      | Callback to return selected color value. |
+| `required`  | `boolean` | No       | If true, marks input as required         |
 
 ### Usage:
 
@@ -157,13 +159,14 @@ A live-search input that shows matching suggestions based on user input. Returns
 
 ### Props:
 
-| Prop          | Type     | Required | Description                                                            |
-| ------------- | -------- | -------- | ---------------------------------------------------------------------- |
-| `suggestions` | `array`  | Yes      | Array of objects `{ name, code }` used for search.                     |
-| `setResult`   | `func`   | Yes      | Callback to return the `code` of the selected suggestion.              |
-| `color`       | `string` | No       | Optional color for accenting the input and suggestions (CSS variable). |
-| `placeholder` | `string` | No       | Placeholder text (default: `"Search..."`).                             |
-| `width`       | `string` | No       | Width of the input box (default: `"300px"`).                           |
+| Prop          | Type      | Required | Description                                                            |
+| ------------- | --------- | -------- | ---------------------------------------------------------------------- |
+| `suggestions` | `array`   | Yes      | Array of objects `{ name, code }` used for search.                     |
+| `setResult`   | `func`    | Yes      | Callback to return the `code` of the selected suggestion.              |
+| `color`       | `string`  | No       | Optional color for accenting the input and suggestions (CSS variable). |
+| `placeholder` | `string`  | No       | Placeholder text (default: `"Search..."`).                             |
+| `width`       | `string`  | No       | Width of the input box (default: `"300px"`).                           |
+| `required`    | `boolean` | No       | If true, marks input as required                                       |
 
 ### Suggestion Logic:
 
@@ -208,14 +211,15 @@ A toggle component (like a checkbox) that switches between `true`/`false`.
 
 ### Props:
 
-| Prop           | Type     | Required | Description                                          |
-| -------------- | -------- | -------- | ---------------------------------------------------- |
-| `initialValue` | `bool`   | Yes      | The default switch state (`true` or `false`).        |
-| `setResult`    | `func`   | Yes      | Callback that returns the new switch state.          |
-| `color`        | `string` | No       | Custom color (CSS variable, default: `--colorCyan`). |
-| `label`        | `string` | No       | Optional label shown before the switch.              |
-| `disabled`     | `bool`   | No       | Disables interaction if set to `true`.               |
-| `customStyles` | `object` | No       | Custom styles for `.container` and `.label`.         |
+| Prop           | Type      | Required | Description                                          |
+| -------------- | --------- | -------- | ---------------------------------------------------- |
+| `initialValue` | `bool`    | Yes      | The default switch state (`true` or `false`).        |
+| `setResult`    | `func`    | Yes      | Callback that returns the new switch state.          |
+| `color`        | `string`  | No       | Custom color (CSS variable, default: `--colorCyan`). |
+| `label`        | `string`  | No       | Optional label shown before the switch.              |
+| `disabled`     | `bool`    | No       | Disables interaction if set to `true`.               |
+| `customStyles` | `object`  | No       | Custom styles for `.container` and `.label`.         |
+| `required`     | `boolean` | No       | If true, marks input as required                     |
 
 ### Usage:
 
@@ -392,6 +396,7 @@ const MyComponent = () => {
 | `color`           | `string`        | `var(--colorCyan)` | Sets the primary color of the dropdown (CSS variable `--color`). |
 | `width`           | `string`        | `"300px"`          | Sets the width of the dropdown (CSS variable `--width`).         |
 | `showLabelAlways` | `boolean`       | `false`            | If true, always shows the label above the input field.           |
+| `required`        | `boolean`       | `false`            | If true, marks input as required                                 |
 
 ## **Features**
 

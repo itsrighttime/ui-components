@@ -49,3 +49,12 @@
   justify-content: center;
   align-items: center;
 }
+
+.required {
+  padding-top: 5px;
+  margin: 0 5px;
+  color: var(--colorRed);
+  font-weight: var(--boldL4);
+  text-align: end;
+  width: 100%;
+}

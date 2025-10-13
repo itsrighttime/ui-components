@@ -1,4 +1,5 @@
-import { FORM_FIELDS_TYPE } from "../jsx/formFieldTypes";
+import { FORM_FIELDS_TYPE } from "../validation/helper/fields.js";
+import { OPERATORS } from "../validation/helper/operators.js";
 import { configData07 } from "./data-07";
 
 // Edge case 1: Missing compulsory `label` in text

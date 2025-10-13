@@ -41,6 +41,7 @@ Provides a customizable audio player with:
 | `color`        | `string`   | Optional. Custom color for accent buttons and slider (e.g., `#52C9BD`).           |
 | `width`        | `string`   | Optional. Width of the audio player container (e.g., `"500px"`).                  |
 | `backendError` | `string`   | To make sure if eny error occurs at the bakend that reaches to the correct field. |
+| `required`     | `boolean`  | If true, marks input as required                                                  |
 
 ### Usage
 

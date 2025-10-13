@@ -1,10 +1,20 @@
 .colorPicker {
-    width: 55px;
+  display: flex;
+  gap: 20px;
 }
 
 .input {
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    background-color: var(--colorBackground);
+  width: 55px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: var(--colorBackground);
+}
+
+.required {
+  padding-top: 5px;
+  margin: 0 5px;
+  color: var(--colorRed);
+  font-weight: var(--boldL4);
+  text-align: end;
 }

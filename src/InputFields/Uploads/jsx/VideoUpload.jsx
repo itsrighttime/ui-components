@@ -17,7 +17,8 @@ export const VideoUpload = ({
   width = "400px",
   height = "200px",
   backendError,
-  value = null
+  value = null,
+  required = false,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [video, setVideo] = useState(value);
@@ -140,6 +141,7 @@ export const VideoUpload = ({
 
   return (
     <div className={style.videoUploadContainer} style={cssVariable}>
+      {required && <p className={style.required}>*</p>}
       {!video && (
         <div
           className={`${style.videoUpload} ${isDragging ? style.dragging : ""}`}

@@ -25,6 +25,10 @@
   padding-left: 10px;
 }
 
+.faviconPrefix {
+  height: 2rem;
+}
+
 .textFieldSuffix {
   padding-right: 10px;
 }

@@ -120,6 +120,7 @@ The `DatePicker` is a customizable, reusable date selection component built in R
 | `width`                | `string`                                    | CSS width for layout flexibility     |
 | `mode`                 | `month-year` \| `year` \| `month` \| `date` | CSS width for layout flexibility     |
 | `value`                | `-`                                         | Initial value.                       |
+| `required`             | `boolean`                                   | If true, marks input as required     |
 
 ## `TimePicker` Component
 
@@ -151,6 +152,7 @@ The `TimePicker` allows users to manually select time by choosing **hour**, **mi
 | `setResult` | `function` | Callback triggered once valid time is selected |
 | `color`     | `string`   | Custom accent color                            |
 | `width`     | `string`   | Max width of the input container               |
+| `required`  | `boolean`  | If true, marks input as required               |
 
 ## Styling Notes
 

@@ -1,21 +1,30 @@
 .timeInputContainer {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 100%;
 }
 
 .label {
-    margin-bottom: 5px;
-    padding-left: 5px;
+  margin-bottom: 5px;
+  padding-left: 5px;
 }
 
 .timeSelectors {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.timeSelectors>span {
-    margin: 0 5px;
+.timeSelectors > span {
+  margin: 0 5px;
+}
+
+.required {
+  padding-top: 5px;
+  padding-right: 5px;
+  margin: 0 5px;
+  color: var(--colorRed);
+  font-weight: var(--boldL4);
+  text-align: end;
 }

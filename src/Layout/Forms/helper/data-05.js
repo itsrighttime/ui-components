@@ -1,9 +1,10 @@
-import { FORM_FIELDS_TYPE } from "../jsx/formFieldTypes";
-import { OPERATORS } from "../jsx/operators";
+import { FORM_FIELDS_TYPE } from "../validation/helper/fields.js";
+import { OPERATORS } from "../validation/helper/operators.js";
 
 export const configData05 = {
   title: "Multi-Step Conditional Example",
-  description: "Testing conditions across steps. Testing conditions acros. Testing across steps. conditions across steps. Testing conditions across . ",
+  description:
+    "Testing conditions across steps. Testing conditions acros. Testing across steps. conditions across steps. Testing conditions across . ",
   mode: "multi",
   settings: {
     showLabelAlways: true,

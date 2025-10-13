@@ -8,6 +8,7 @@ export const Switch = ({
   label,
   disabled = false,
   customStyles = {},
+  required = false,
 }) => {
   const [switchValue, setSwitchValue] = useState(initialValue);
 
@@ -49,6 +50,7 @@ export const Switch = ({
       >
         <div className={styles.switchHandle} />
       </div>
+      {required && <p className={styles.required}>*</p>}
     </div>
   );
 };

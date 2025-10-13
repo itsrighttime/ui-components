@@ -22,6 +22,8 @@ import "./register/text.js";
 import "./register/textArea.js";
 import "./register/time.js";
 import "./register/video.js";
+import "./register/url.js";
+
 
 
 export const registerValidations = () => {
