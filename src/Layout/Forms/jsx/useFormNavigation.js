@@ -2,6 +2,9 @@ import { useCallback } from "react";
 import { VALIDITY } from "../helper/validity";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
 import { isConditional } from "./conditional";
+import { configToSchema } from "../validation/configToSchema";
+import { validateResponse } from "../validation/validateResponse";
+import { FORM_STATUS } from "./GenericForm";
 
 export function useFormNavigation(
   config,
@@ -9,7 +12,9 @@ export function useFormNavigation(
   formError,
   currentStep,
   setCurrentStep,
-  addAlert
+  addAlert,
+  setFormStatus,
+  setFormStatusError
 ) {
   const isStepValid = useCallback(() => {
     const fields =
@@ -28,18 +33,20 @@ export function useFormNavigation(
   const next = () => {
     if (isStepValid()) {
       setCurrentStep((s) => s + 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      addAlert(
-        "Either all the required fields are not filled in, or some contain invalid data.",
-        "error"
-      );
+      const subConfig = config[FPs.STEP][currentStep][FPs.FIELDS];
+      const { valid, errors } = validateResponse(subConfig, formData);
+
+      if (!valid) {
+        setFormStatus(FORM_STATUS.error);
+        setFormStatusError(errors);
+        return;
+      }
     }
   };
 
   const back = () => {
     setCurrentStep((s) => Math.max(0, s - 1));
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return { isStepValid, next, back };

@@ -18,10 +18,10 @@ export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
     [values]
   );
 
-  const handleItemChange = (index, name, value) => {
+  const handleItemChange = (index, name, value, isError) => {
     const updated = [...itemsWithIds];
-    updated[index][name] = value;
-    onChange(updated);
+    if (!isError) updated[index][name] = value;
+    onChange(updated, isError);
   };
 
   const handleCrossClick = (indx) => {
@@ -58,7 +58,9 @@ export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
               key={subField[FIELDS_PROPS.NAME]}
               field={subField}
               value={item}
-              onChange={(name, val) => handleItemChange(idx, name, val)}
+              onChange={(name, val, isError) =>
+                handleItemChange(idx, name, val, isError)
+              }
               settings={settings}
             />
           ))}

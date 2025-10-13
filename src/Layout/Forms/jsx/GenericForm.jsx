@@ -19,7 +19,7 @@ import { submitToBackend } from "./submitTobackend";
 import { useAlerts } from "../../../Hooks/useAlert";
 import { AlertContainer } from "../../../Alert/js/AlertContainer";
 
-const FORM_STATUS = {
+export const FORM_STATUS = {
   fill: "filling",
   error: "error",
   submitted: "submitted",
@@ -110,7 +110,9 @@ export function GenericForm({
     formError,
     currentStep,
     setCurrentStep,
-    addAlert
+    addAlert,
+    setFormStatus,
+    setFormStatusError
   );
 
   // --- Change handler ---
