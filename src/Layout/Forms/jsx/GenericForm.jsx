@@ -74,7 +74,7 @@ export function GenericForm({
   const allFields = useMemo(
     () =>
       mode === "multi"
-        ? config.steps.flatMap((s) => s[FPs.FIELDS])
+        ? config[FPs.STEP].flatMap((s) => s[FPs.FIELDS])
         : config[FPs.FIELDS],
     [config, mode]
   );
@@ -179,7 +179,7 @@ export function GenericForm({
   // --- Determine fields for current step ---
   const fieldsToRender =
     mode === "multi"
-      ? config.steps[currentStep][FPs.FIELDS]
+      ? config[FPs.STEP][currentStep][FPs.FIELDS]
       : config[FPs.FIELDS];
 
   // --- Conditional UI states ---
@@ -230,15 +230,15 @@ export function GenericForm({
     <div className={styles.formWrapper}>
       <form className={styles.form} style={formStyle} onSubmit={handleSubmit}>
         <div className={styles.stepHeader}>
-          <h3>{config.title}</h3>
-          {config.description && <p>{config.description}</p>}
+          <h3>{config[FPs.TITLE]}</h3>
+          {config[FPs.DESCRIPTION] && <p>{config[FPs.DESCRIPTION]}</p>}
         </div>
 
         {mode === "multi" && (
           <div className={styles.stepHeader}>
-            <h3>{config.steps[currentStep].title}</h3>
-            {config.steps[currentStep].description && (
-              <p>{config.steps[currentStep].description}</p>
+            <h3>{config[FPs.STEP][currentStep][FPs.TITLE]}</h3>
+            {config[FPs.STEP][currentStep][FPs.DESCRIPTION] && (
+              <p>{config[FPs.STEP][currentStep][FPs.DESCRIPTION]}</p>
             )}
           </div>
         )}
@@ -254,7 +254,7 @@ export function GenericForm({
         ))}
 
         <div className={styles.footer}>
-          {mode === "multi" && config.steps.length > 1 ? (
+          {mode === "multi" && config[FPs.STEP].length > 1 ? (
             <div className={styles.stepButtons}>
               {currentStep > 0 && (
                 <IconButton
@@ -265,7 +265,7 @@ export function GenericForm({
                   color={color}
                 />
               )}
-              {currentStep < config.steps.length - 1 ? (
+              {currentStep < config[FPs.STEP].length - 1 ? (
                 <IconButton
                   icon={arrowRightIcon}
                   label="Next"
@@ -292,14 +292,14 @@ export function GenericForm({
                   className={styles.progressBar}
                   style={{
                     width: `${
-                      ((currentStep + 1) / config.steps.length) * 100
+                      ((currentStep + 1) / config[FPs.STEP].length) * 100
                     }%`,
                     backgroundColor: color,
                   }}
                 />
               </div>
               <div className={styles.progressStatus}>
-                Step {currentStep + 1} of {config.steps.length}
+                Step {currentStep + 1} of {config[FPs.STEP].length}
               </div>
             </>
           )}
