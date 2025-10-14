@@ -169,6 +169,8 @@ const { Alert } = UIAlert;
 - [`getRedirectBackUrl`](./docs/utils.md#getredirectbackurlurl)
 - [`setDocumentTitle`](./docs/utils.md#setdocumenttitletitle)
 - [`setFavicon`](./docs/utils.md#setfaviconlogoname-extension--png)
+- `isValidFormStructure`
+- `validateSchema`
 
 ## [Icons](./docs/icons.md)
 
