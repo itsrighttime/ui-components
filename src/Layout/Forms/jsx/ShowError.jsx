@@ -1,10 +1,13 @@
 import { Button } from "../../../InputFields/Actions/jsx/Button";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
+import { crossIcon } from "../../../utils/icons";
 import styles from "../css/ShowError.module.css";
 
 export const ErrorList = ({
   errors = {},
   color = "var(--colorRed)",
   onClick,
+  clearFormPersistence,
 }) => {
   // Convert error object to array
   const errorData = Object.values(errors).map((err, index) => ({
@@ -49,7 +52,19 @@ export const ErrorList = ({
         </div>
       </div>
 
-      <Button color={color} text="Let's Update..." onClick={onClick} />
+      <div className={styles.buttons}>
+        <IconButton
+          icon={crossIcon}
+          label="Clear Every Thing"
+          onClick={() => {
+            clearFormPersistence();
+            onClick();
+          }}
+          size="2"
+          color={"var(--colorRed)"}
+        />
+        <Button color={color} text="Let's Update" onClick={onClick} />
+      </div>
     </div>
   );
 };

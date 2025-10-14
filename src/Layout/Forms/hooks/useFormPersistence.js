@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { loadFile, saveFile, deleteFile } from "../helper/indexedDb";
 
+const EXPIRY_DURATION = 24 * 60 * 60 * 1000; // 24 hours in ms
+
 export function useFormPersistence(STORAGE_KEY, initialState, initialError) {
   const [formData, setFormData] = useState(initialState);
   const [formError, setFormError] = useState(initialError);
@@ -10,7 +12,7 @@ export function useFormPersistence(STORAGE_KEY, initialState, initialError) {
   const isLoadingRef = useRef(false);
   const mountedRef = useRef(true);
 
-  // file helpers
+  // --- Helpers ---
   const isFileLike = (v) => v instanceof File || v instanceof Blob;
   const isFileArray = (v) =>
     Array.isArray(v) && v.every((it) => isFileLike(it));
@@ -55,13 +57,55 @@ export function useFormPersistence(STORAGE_KEY, initialState, initialError) {
     return Object.fromEntries(entries);
   }, []);
 
-  // load on mount
+  const cleanupFiles = useCallback(async (filesManifest) => {
+    if (!filesManifest) return;
+    for (const value of Object.values(filesManifest)) {
+      if (Array.isArray(value)) {
+        for (const key of value) await deleteFile(key);
+      } else {
+        await deleteFile(value);
+      }
+    }
+  }, []);
+
+  // --- Manual Clear Function ---
+  const clearFormPersistence = useCallback(async () => {
+    try {
+      const savedRaw = localStorage.getItem(STORAGE_KEY);
+      if (savedRaw) {
+        const saved = JSON.parse(savedRaw);
+        await cleanupFiles(saved.files);
+      }
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (err) {
+      console.error("Error clearing form persistence:", err);
+    } finally {
+      // Reset states to initial
+      setFormData(initialState);
+      setFormError(initialError);
+      setCurrentStep(0);
+    }
+  }, [STORAGE_KEY, initialState, initialError, cleanupFiles]);
+
+  // --- Load persisted data ---
   useEffect(() => {
     isLoadingRef.current = true;
+
     const loadAll = async () => {
       try {
         const savedRaw = localStorage.getItem(STORAGE_KEY);
-        const saved = savedRaw ? JSON.parse(savedRaw) : {};
+        if (!savedRaw) return;
+
+        const saved = JSON.parse(savedRaw);
+        const { savedAt } = saved;
+
+        // Auto-expire after 24h
+        if (Date.now() - savedAt > EXPIRY_DURATION) {
+          console.info(`[FormPersistence] Data expired for ${STORAGE_KEY}`);
+          await cleanupFiles(saved.files);
+          localStorage.removeItem(STORAGE_KEY);
+          return;
+        }
 
         let loadedFiles = {};
         if (saved.files) loadedFiles = await loadFilesFromManifest(saved.files);
@@ -74,6 +118,7 @@ export function useFormPersistence(STORAGE_KEY, initialState, initialError) {
         setFormError(saved.formError || initialError);
         setCurrentStep(saved.currentStep || 0);
       } catch (e) {
+        console.warn("Failed to load persisted form data:", e);
         setFormData(initialState);
         setFormError(initialError);
       } finally {
@@ -83,13 +128,20 @@ export function useFormPersistence(STORAGE_KEY, initialState, initialError) {
         }
       }
     };
+
     loadAll();
     return () => {
       mountedRef.current = false;
     };
-  }, [STORAGE_KEY, initialState, initialError, loadFilesFromManifest]);
+  }, [
+    STORAGE_KEY,
+    initialState,
+    initialError,
+    loadFilesFromManifest,
+    cleanupFiles,
+  ]);
 
-  // persist
+  // --- Persist updates ---
   useEffect(() => {
     if (!isInitialized || isLoadingRef.current) return;
     let cancelled = false;
@@ -119,6 +171,7 @@ export function useFormPersistence(STORAGE_KEY, initialState, initialError) {
     };
   }, [formData, formError, currentStep, isInitialized, saveFilesFromFormData]);
 
+  // --- Return API ---
   return {
     formData,
     setFormData,
@@ -128,5 +181,6 @@ export function useFormPersistence(STORAGE_KEY, initialState, initialError) {
     setCurrentStep,
     isFileLike,
     isFileArray,
+    clearFormPersistence,
   };
 }

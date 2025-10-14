@@ -1,18 +1,14 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { FieldRenderer } from "./FieldRenderer";
 import styles from "../css/GenericForm.module.css";
-import { deleteFile } from "../helper/indexedDb";
 import { useFormNavigation } from "../hooks/useFormNavigation";
 import { useFormPersistence } from "../hooks/useFormPersistence";
 import { registerValidations } from "../validation/registerValidations";
 import { VALIDITY } from "../helper/validity";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
-import { validateResponse } from "../validation/validateResponse";
-import { configToSchema } from "../validation/configToSchema";
 import { Loading } from "../../../SpecialPages/js/Loading";
 import { ErrorList } from "./ShowError";
 import { SuccessMessage } from "./SuccessMessage";
-import { submitToBackend } from "../helper/submitTobackend";
 import { useAlerts } from "../../../Hooks/useAlert";
 import { AlertContainer } from "../../../Alert/js/AlertContainer";
 import { useInitializeForm } from "../hooks/useInitializeForm";
@@ -60,8 +56,6 @@ export function GenericForm({
   // --- Initialize Field States ---
   const { initialState, initialError } = useInitializeForm(allFields);
 
-  console.log("DDDD", initialError, initialState);
-
   // --- Persistence & navigation ---
   const {
     formData,
@@ -72,6 +66,7 @@ export function GenericForm({
     setCurrentStep,
     isFileLike,
     isFileArray,
+    clearFormPersistence,
   } = useFormPersistence(STORAGE_KEY, initialState, initialError);
 
   const { next, back } = useFormNavigation(
@@ -138,6 +133,7 @@ export function GenericForm({
           errors={formStatusError}
           color={color}
           onClick={() => setFormStatus(FORM_STATUS.fill)}
+          clearFormPersistence={clearFormPersistence}
         />
       </div>
     );
@@ -149,6 +145,7 @@ export function GenericForm({
           errors={formStatusError}
           color={"var(--colorRed)"}
           onClick={() => setFormStatus(FORM_STATUS.fill)}
+          clearFormPersistence={clearFormPersistence}
         />
       </div>
     );
@@ -210,6 +207,7 @@ export function GenericForm({
           next={next}
           back={back}
           handleSubmit={handleSubmit}
+          clearFormPersistence={clearFormPersistence}
         />
       </form>
     </div>

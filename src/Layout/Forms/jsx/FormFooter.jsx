@@ -1,6 +1,6 @@
 import { Button } from "../../../InputFields/Actions/jsx/Button";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
+import { arrowLeftIcon, arrowRightIcon, crossIcon } from "../../../utils/icons";
 import styles from "../css/GenericForm.module.css";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
 
@@ -13,6 +13,7 @@ export function FormFooter({
   next,
   back,
   handleSubmit,
+  clearFormPersistence,
 }) {
   return (
     <div className={styles.footer}>
@@ -27,6 +28,15 @@ export function FormFooter({
               color={color}
             />
           )}
+
+          <IconButton
+            icon={crossIcon}
+            label="Clear Every Thing"
+            onClick={clearFormPersistence}
+            size="2"
+            color={'var(--colorRed)'}
+          />
+
           {currentStep < config[FPs.STEP].length - 1 ? (
             <IconButton
               icon={arrowRightIcon}
