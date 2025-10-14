@@ -100,10 +100,10 @@ export const Dropdown = ({
       tabIndex={0}
       style={cssVariable}
     >
+      {required && <p className={styles.required}>*</p>}
       {(selectedOptions.length > 0 || showLabelAlways) && label && (
         <div className={styles.label}>{label}</div>
       )}
-      {required && <p className={styles.required}>*</p>}
 
       <div
         className={`${styles.dropdownHeader} ${isOpen ? styles.open : ""}`}

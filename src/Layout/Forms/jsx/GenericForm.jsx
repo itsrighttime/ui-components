@@ -16,6 +16,9 @@ import { FormFooter } from "./FormFooter";
 import { FORM_STATUS } from "../helper/formStatus";
 import { useFormSettings } from "../hooks/useFormSettings";
 import { useFormSubmit } from "../hooks/useFormSubmit";
+import { isValidFormStructure } from "../validation/isValidFormStructure";
+import { validateSchema } from "../validation/validateSchema";
+import { configToSchema } from "../validation/configToSchema";
 
 export function GenericForm({
   config,
@@ -115,6 +118,27 @@ export function GenericForm({
     mode === "multi"
       ? config[FPs.STEP][currentStep][FPs.FIELDS]
       : config[FPs.FIELDS];
+
+  const _isValidFormStructure = isValidFormStructure(config);
+  let validStructure = false;
+  if (_isValidFormStructure) {
+    const schema = configToSchema(config);
+    const { valid, errors } = validateSchema(schema);
+    validStructure = valid;
+  }
+
+  if (validStructure) {
+    return (
+      <div className={styles.formWrapper}>
+        <SuccessMessage
+          color={"var(--colorRed)"}
+          message="Something wrong with the structure, contact to admin!"
+          onHomeClick={() => (window.location.href = "/")}
+          title="ERROR !!!"
+        />
+      </div>
+    );
+  }
 
   // --- Conditional UI states ---
   if (formStatus === FORM_STATUS.submitting)

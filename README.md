@@ -171,6 +171,8 @@ const { Alert } = UIAlert;
 - [`setFavicon`](./docs/utils.md#setfaviconlogoname-extension--png)
 - `isValidFormStructure`
 - `validateSchema`
+- `configToSchema`
+- `validateResponse`
 
 ## [Icons](./docs/icons.md)
 

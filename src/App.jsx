@@ -8,6 +8,7 @@ import { GenericForm } from "./Layout/Forms/jsx/GenericForm.jsx";
 import { configData07 } from "./Layout/Forms/helper/data-07.js";
 import { useEffect } from "react";
 import { apiCaller } from "./utils/apiCaller.js";
+import { useRef } from "react";
 
 const App = () => {
   const [formConfig, setFormConfig] = useState(null);
@@ -26,9 +27,11 @@ const App = () => {
     fetchData();
   }, []);
 
+  const scrollRef = useRef(null);
+
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" ref={scrollRef}>
         {formConfig && (
           <GenericForm
             config={formConfig}
@@ -43,6 +46,7 @@ const App = () => {
 
               gap: "3rem",
             }}
+            scrollRef={scrollRef}
           />
         )}
       </div>

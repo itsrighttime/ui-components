@@ -5,11 +5,12 @@ export const SuccessMessage = ({
   message = "Form submitted successfully!",
   color = "var(--colorGreen)",
   onHomeClick,
+  title = "Success!",
 }) => {
   return (
     <div className={styles.errorList}>
       <p className={styles.title} style={{ color }}>
-        Success!
+        {title}
       </p>
       <p className={styles.message}>{message}</p>
       <Button color={color} text="Go to Home" onClick={onHomeClick} />

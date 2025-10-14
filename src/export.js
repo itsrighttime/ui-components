@@ -95,6 +95,8 @@ import { UrlTextField } from "./InputFields/TextInput/jsx/UrlTextField";
 import { OPERATORS } from "./Layout/Forms/validation/helper/operators";
 import { isValidFormStructure } from "./Layout/Forms/validation/isValidFormStructure";
 import { validateSchema } from "./Layout/Forms/validation/validateSchema";
+import { configToSchema } from "./Layout/Forms/validation/configToSchema";
+import { validateResponse } from "./Layout/Forms/validation/validateResponse";
 
 export const UIAlert = {
   Alert,
@@ -229,6 +231,8 @@ export const UIUtils = {
   form: {
     isValidFormStructure,
     validateSchema,
+    configToSchema,
+    validateResponse,
   },
 };
 
