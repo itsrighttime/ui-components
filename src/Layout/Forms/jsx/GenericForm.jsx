@@ -127,7 +127,7 @@ export function GenericForm({
     validStructure = valid;
   }
 
-  if (validStructure) {
+  if (!validStructure) {
     return (
       <div className={styles.formWrapper}>
         <SuccessMessage
