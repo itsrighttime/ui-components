@@ -6,8 +6,13 @@ import { FIELDS_PROPS } from "../validation/helper/fields";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import { crossIcon } from "../../../utils/icons";
 import { useMemo } from "react";
+import useInitializeForm from "./useInitializeForm";
 
 export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
+  const { initialState, initialError } = useInitializeForm(
+    field[FIELDS_PROPS.FIELDS]
+  );
+
   // Ensure every item has a unique internal id (for React key)
   const itemsWithIds = useMemo(
     () =>
@@ -27,6 +32,11 @@ export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
   const handleCrossClick = (indx) => {
     const updated = itemsWithIds.filter((_, i) => i !== indx);
     onChange(updated);
+  };
+
+  const handleMore = () => {
+    onChange([...values, initialState]);
+    // onChange([...values, initialError, true]);
   };
 
   const color = settings.color;
@@ -68,7 +78,8 @@ export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
       ))}
       <Button
         text={field[FIELDS_PROPS.MORE_LABEL]}
-        onClick={() => onChange([...values, {}])}
+        // onClick={() => onChange([...values, {}])}
+        onClick={handleMore}
         color={color}
       />
     </div>

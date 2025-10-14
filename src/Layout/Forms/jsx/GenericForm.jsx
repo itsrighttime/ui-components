@@ -18,6 +18,7 @@ import { SuccessMessage } from "./SuccessMessage";
 import { submitToBackend } from "./submitTobackend";
 import { useAlerts } from "../../../Hooks/useAlert";
 import { AlertContainer } from "../../../Alert/js/AlertContainer";
+import useInitializeForm from "./useInitializeForm";
 
 export const FORM_STATUS = {
   fill: "filling",
@@ -82,15 +83,9 @@ export function GenericForm({
     [config, mode]
   );
 
-  const { initialState, initialError } = useMemo(() => {
-    const state = {},
-      errors = {};
-    allFields.forEach((f) => {
-      state[f[FPs.NAME]] = f[FPs.VALUE] ?? (f[FPs.REPEATABLE] ? [{}] : "");
-      errors[f[FPs.NAME]] = f[FPs.REQUIRED] ? VALIDITY.invalid : VALIDITY.valid;
-    });
-    return { initialState: state, initialError: errors };
-  }, [allFields]);
+  const { initialState, initialError } = useInitializeForm(allFields);
+
+  console.log("DDDD", initialError, initialState);
 
   // --- Persistence & navigation ---
   const {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "../css/Slider.module.css";
 import { minusIcon, plusIcon } from "../../../utils/icons";
 import { IconButton } from "../../Actions/jsx/IconButton";
@@ -18,6 +18,7 @@ export const Slider = ({
   required = false,
 }) => {
   const [sliderValue, setSlidervalue] = useState(value || 0);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     if (value !== 0 && sliderValue === 0) setSlidervalue(value || 0);
@@ -26,10 +27,11 @@ export const Slider = ({
   useEffect(() => {
     const updateSliderBackground = (value) => {
       const percentage = ((value - min) / (max - min)) * 100;
-      const slider = document.getElementById("slider");
-      slider.style.background = `linear-gradient(to right, ${
-        color || `var(--colorCyan)`
-      } ${percentage}%, var(--colorGray3) ${percentage}%)`;
+      if (sliderRef.current) {
+        sliderRef.current.style.background = `linear-gradient(to right, ${
+          color || `var(--colorCyan)`
+        } ${percentage}%, var(--colorGray3) ${percentage}%)`;
+      }
     };
 
     updateSliderBackground(sliderValue);
@@ -90,7 +92,7 @@ export const Slider = ({
           }
           {showRange ? <p>{min}</p> : null}
           <input
-            id="slider"
+            ref={sliderRef}
             type="range"
             value={sliderValue}
             onChange={handleChange}

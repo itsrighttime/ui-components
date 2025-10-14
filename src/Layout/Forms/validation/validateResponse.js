@@ -1,56 +1,75 @@
+import { isConditional } from "../jsx/conditional.js";
 import { pushError } from "./helper/errorFormatter.js";
-import {
-  FIELDS_PROPS as FPs,
-} from "./helper/fields.js";
-import { OPERATORS } from "./helper/operators.js";
+import { FIELDS_PROPS as FPs } from "./helper/fields.js";
 import { validationEngine as engine } from "./ValidationEngine.js";
 
-
-export function validateResponse(schema, response) {
+/**
+ * Recursively validates a form response against its schema.
+ * Supports:
+ *  - repeatable and nested repeatable fields
+ *  - conditional visibility
+ *  - group and primitive fields
+ */
+export function validateResponse(schema = [], response = {}, parentKey = "") {
   const errors = {};
 
   for (const field of schema) {
-    // --- Conditional visibility ---
+    const fieldName = field[FPs.NAME];
+    const value = response?.[fieldName];
+    const keyPath = parentKey ? `${parentKey}.${fieldName}` : fieldName;
+
+    // --- CONDITIONAL VISIBILITY ---
     if (field[FPs.CONDITIONAL]) {
-      const depValue = response[field[FPs.CONDITIONAL][FPs.DEPENDS_ON]];
-      const visible =
-        field[FPs.CONDITIONAL][FPs.OPERATOR] === OPERATORS.in
-          ? field[FPs.CONDITIONAL][FPs.VALUE].includes(depValue)
-          : false;
-
-      if (!visible) continue;
+      const visible = isConditional(field, response); // use shared logic
+      if (!visible) continue; // skip hidden fields entirely
     }
 
-    const value = response[field[FPs.NAME]];
+    // --- EMPTY CHECKS ---
+    const isEmpty =
+      value === undefined ||
+      value === null ||
+      value === "" ||
+      (Array.isArray(value) && value.length === 0);
 
-    // required check
-    if (
-      field[FPs.REQUIRED] &&
-      (value === undefined || value === null || value === "")
-    ) {
-      pushError(errors, field, `This field is required`);
-    }
-    if (
-      !field[FPs.REQUIRED] &&
-      (value === undefined || value === null || value === "")
-    ) {
-      continue;
-    }
-
+    // --- REPEATABLE FIELDS ---
     if (field[FPs.REPEATABLE]) {
       if (!Array.isArray(value)) {
-        pushError(errors, field, `Must be array`);
-      } else {
-        value.forEach((item) => {
-          const subCheck = validateResponse(field[FPs.FIELDS], item);
-          Object.assign(errors, subCheck.errors);
-        });
+        pushError(errors, field, `Must be an array`, keyPath);
+        continue;
       }
+
+      value.forEach((item, index) => {
+        const nestedKey = `${keyPath}[${index}]`;
+        const subResult = validateResponse(field[FPs.FIELDS], item, nestedKey);
+        Object.assign(errors, subResult.errors);
+      });
+
       continue;
     }
 
+    if (field[FPs.REQUIRED] && isEmpty) {
+      pushError(errors, field, `This field is required`, keyPath);
+      continue;
+    }
+
+    if (!field[FPs.REQUIRED] && !field[FPs.REPEATABLE] && isEmpty) {
+      continue; // optional empty → skip further validation
+    }
+
+    // --- NESTED GROUPS ---
+    if (Array.isArray(field[FPs.FIELDS]) && field[FPs.FIELDS].length > 0) {
+      const subResult = validateResponse(
+        field[FPs.FIELDS],
+        value || {},
+        keyPath
+      );
+      Object.assign(errors, subResult.errors);
+      continue;
+    }
+
+    // --- SIMPLE FIELD VALIDATION ---
     const res = engine.validateResponse(field, value);
-    if (!res.valid) pushError(errors, field, res.error);
+    if (!res.valid) pushError(errors, field, res.error, keyPath);
   }
 
   return { valid: Object.keys(errors).length === 0, errors };

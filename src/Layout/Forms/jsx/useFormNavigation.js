@@ -31,17 +31,14 @@ export function useFormNavigation(
   }, [config, currentStep, formError]);
 
   const next = () => {
-    if (isStepValid()) {
+    const subConfig = config[FPs.STEP][currentStep][FPs.FIELDS];
+    const { valid, errors } = validateResponse(subConfig, formData);
+
+    if (valid) {
       setCurrentStep((s) => s + 1);
     } else {
-      const subConfig = config[FPs.STEP][currentStep][FPs.FIELDS];
-      const { valid, errors } = validateResponse(subConfig, formData);
-
-      if (!valid) {
-        setFormStatus(FORM_STATUS.error);
-        setFormStatusError(errors);
-        return;
-      }
+      setFormStatus(FORM_STATUS.error);
+      setFormStatusError(errors);
     }
   };
 
