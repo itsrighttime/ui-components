@@ -1,4 +1,4 @@
-import { isConditional } from "../jsx/conditional.js";
+import { isConditional } from "./isConditional.js";
 import { pushError } from "./helper/errorFormatter.js";
 import { FIELDS_PROPS as FPs } from "./helper/fields.js";
 import { validationEngine as engine } from "./ValidationEngine.js";

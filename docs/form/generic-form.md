@@ -23,6 +23,57 @@ const {
 } = UILayout;
 ```
 
+# `GenericForm` Props Reference
+
+The `GenericForm` component is a dynamic, schema-driven form builder that supports single-step and multi-step forms with validation, persistence, and backend submission.
+
+| **Prop**      | **Type**          | **Default**  | **Description**                                                                                                                     |
+| ------------- | ----------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `config`      | `object`          | **Required** | The full configuration schema of the form. Defines structure, fields, steps, validation rules, and backend endpoint.                |
+| `onSubmit`    | `function`        | `undefined`  | Optional external callback executed after successful form submission. Receives the final `formData` as an argument.                 |
+| `submitLabel` | `string`          | `"Submit"`   | Label for the submit button (customizable per form).                                                                                |
+| `style`       | `object`          | `undefined`  | Inline style overrides for the form container (merged with internal styles).                                                        |
+| `settings`    | `object`          | `{}`         | Customizable visual and layout options for labels, spacing, colors, and borders. See **Settings Reference** below.                  |
+| `scrollRef`   | `React.RefObject` | `null`       | Reference to the scrollable container. When navigating steps (Next/Back), the component scrolls this container smoothly to the top. |
+
+### **Settings Reference**
+
+| **Setting Key**   | **Type**  | **Default**            | **Description**                                        |
+| ----------------- | --------- | ---------------------- | ------------------------------------------------------ |
+| `showLabelAlways` | `boolean` | `false`                | Always show labels even when placeholders are visible. |
+| `gap`             | `string`  | `"2rem"`               | Spacing between form fields.                           |
+| `color`           | `string`  | `"var(--colorCyan)"`   | Primary accent color for buttons and highlights.       |
+| `width`           | `string`  | `"100%"`               | Overall form width.                                    |
+| `height`          | `string`  | `"100%"`               | Overall form height.                                   |
+| `backgroundColor` | `string`  | `"var(--colorWhite)"`  | Background color of the form container.                |
+| `textColor`       | `string`  | `"var(--colorSimple)"` | Text color for labels and inputs.                      |
+| `labelColor`      | `string`  | `"var(--colorGray4)"`  | Label text color.                                      |
+| `border`          | `string`  | `"none"`               | Border style for the form container.                   |
+| `borderRadius`    | `string`  | `"5px"`                | Rounded corner radius for form sections.               |
+
+### Example Usage
+
+```jsx
+import { GenericForm } from "@/components/Form/GenericForm";
+import { useRef } from "react";
+
+export default function RegistrationForm() {
+  const scrollRef = useRef(null);
+
+  return (
+    <div ref={scrollRef} style={{ overflowY: "auto", maxHeight: "80vh" }}>
+      <Form
+        config={registrationConfig}
+        onSubmit={(data) => console.log("Form submitted:", data)}
+        submitLabel="Register"
+        settings={{ color: "var(--colorBlue)" }}
+        scrollRef={scrollRef}
+      />
+    </div>
+  );
+}
+```
+
 ## 1. Form Structure
 
 A form configuration is a JavaScript object with the following properties:
@@ -37,7 +88,8 @@ A form configuration is a JavaScript object with the following properties:
 }
 ```
 
-## 2. Settings 
+## 2. Settings
+
 - This was pass as the prop to the Form Component
 
 | Setting           | Description                                       | Example                |

@@ -6,7 +6,7 @@ import { FIELDS_PROPS } from "../validation/helper/fields";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
 import { crossIcon } from "../../../utils/icons";
 import { useMemo } from "react";
-import useInitializeForm from "./useInitializeForm";
+import { useInitializeForm } from "../hooks/useInitializeForm";
 
 export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
   const { initialState, initialError } = useInitializeForm(

@@ -1,10 +1,9 @@
 import { useCallback } from "react";
 import { VALIDITY } from "../helper/validity";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
-import { isConditional } from "./conditional";
-import { configToSchema } from "../validation/configToSchema";
+import { isConditional } from "../validation/isConditional";
 import { validateResponse } from "../validation/validateResponse";
-import { FORM_STATUS } from "./GenericForm";
+import { FORM_STATUS } from "../helper/formStatus";
 
 export function useFormNavigation(
   config,
@@ -14,7 +13,8 @@ export function useFormNavigation(
   setCurrentStep,
   addAlert,
   setFormStatus,
-  setFormStatusError
+  setFormStatusError,
+  scrollRef
 ) {
   const isStepValid = useCallback(() => {
     const fields =
@@ -36,6 +36,10 @@ export function useFormNavigation(
 
     if (valid) {
       setCurrentStep((s) => s + 1);
+      // Scroll to top of container (smooth)
+      if (scrollRef?.current) {
+        scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
+      }
     } else {
       setFormStatus(FORM_STATUS.error);
       setFormStatusError(errors);
@@ -44,6 +48,11 @@ export function useFormNavigation(
 
   const back = () => {
     setCurrentStep((s) => Math.max(0, s - 1));
+
+    // Scroll to top of container (smooth)
+    if (scrollRef?.current) {
+      scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return { isStepValid, next, back };

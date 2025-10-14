@@ -11,7 +11,7 @@ import { Dropdown } from "../../../InputFields/Selectors/jsx/Dropdown";
 import { FORM_FIELDS_TYPE } from "../validation/helper/fields.js";
 import { RepeatableGroup } from "./RepeatableGroup";
 import { FileUpload } from "../../../InputFields/Uploads/jsx/FileUpload";
-import { isConditional } from "./conditional";
+import { isConditional } from "../validation/isConditional.js";
 import { AudioUpload } from "../../../InputFields/Uploads/jsx/AudioUpload";
 import { ImageUpload } from "../../../InputFields/Uploads/jsx/ImageUpload";
 import { VideoUpload } from "../../../InputFields/Uploads/jsx/VideoUpload";

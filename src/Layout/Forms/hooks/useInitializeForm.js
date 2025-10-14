@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { VALIDITY } from "../helper/validity.js";
-import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields.js";
 
-function useInitializeForm(allFields = []) {
+export function useInitializeForm(allFields = []) {
   const { initialState, initialError } = useMemo(() => {
     /**
      * Recursively builds the state for a given field definition.
@@ -89,5 +89,3 @@ function useInitializeForm(allFields = []) {
 
   return { initialState, initialError };
 }
-
-export default useInitializeForm;

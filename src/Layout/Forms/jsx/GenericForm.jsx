@@ -1,12 +1,9 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { FieldRenderer } from "./FieldRenderer";
-import { Button } from "../../../InputFields/Actions/jsx/Button";
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
 import styles from "../css/GenericForm.module.css";
 import { deleteFile } from "../helper/indexedDb";
-import { useFormNavigation } from "./useFormNavigation";
-import { useFormPersistence } from "./useFormPersistence";
+import { useFormNavigation } from "../hooks/useFormNavigation";
+import { useFormPersistence } from "../hooks/useFormPersistence";
 import { registerValidations } from "../validation/registerValidations";
 import { VALIDITY } from "../helper/validity";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
@@ -15,18 +12,14 @@ import { configToSchema } from "../validation/configToSchema";
 import { Loading } from "../../../SpecialPages/js/Loading";
 import { ErrorList } from "./ShowError";
 import { SuccessMessage } from "./SuccessMessage";
-import { submitToBackend } from "./submitTobackend";
+import { submitToBackend } from "../helper/submitTobackend";
 import { useAlerts } from "../../../Hooks/useAlert";
 import { AlertContainer } from "../../../Alert/js/AlertContainer";
-import useInitializeForm from "./useInitializeForm";
-
-export const FORM_STATUS = {
-  fill: "filling",
-  error: "error",
-  submitted: "submitted",
-  submitting: "submitting",
-  failed: "failed",
-};
+import { useInitializeForm } from "../hooks/useInitializeForm";
+import { FormFooter } from "./FormFooter";
+import { FORM_STATUS } from "../helper/formStatus";
+import { useFormSettings } from "../hooks/useFormSettings";
+import { useFormSubmit } from "../hooks/useFormSubmit";
 
 export function GenericForm({
   config,
@@ -34,13 +27,16 @@ export function GenericForm({
   submitLabel = "Submit",
   style,
   settings = {},
+  scrollRef = null,
 }) {
   const mode = config.mode || "single";
   const STORAGE_KEY = `genericForm_${config.title || "form"}`;
   const [formStatus, setFormStatus] = useState(FORM_STATUS.fill);
   const [formStatusError, setFormStatusError] = useState({});
-  const { alertContainer, addAlert, removeAlert } = useAlerts();
   const mountedRef = useRef(true);
+
+  // --- Alerts & Notifications ---
+  const { alertContainer, addAlert, removeAlert } = useAlerts();
 
   // --- Mount lifecycle ---
   useEffect(() => {
@@ -48,33 +44,11 @@ export function GenericForm({
     return () => (mountedRef.current = false);
   }, []);
 
-  // --- Configurable styling ---
-  const _settings = {
-    showLabelAlways: false,
-    gap: "2rem",
-    color: "var(--colorCyan)",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "var(--colorWhite)",
-    textColor: "var(--colorSimple)",
-    labelColor: "var(--colorGray4)",
-    border: "none",
-    borderRadius: "5px",
-    ...settings,
-  };
-
-  const formStyle = {
-    gap: _settings.gap,
-    width: _settings.width,
-    height: _settings.height,
-    border: _settings.border,
-    borderRadius: _settings.borderRadius,
-    ...style,
-  };
-
+  // --- Styling Configuration ---
+  const { _settings, formStyle } = useFormSettings(settings, style);
   const color = _settings.color;
 
-  // --- Build initial state ---
+  // --- Compute All Fields (single/multi mode) ---
   const allFields = useMemo(
     () =>
       mode === "multi"
@@ -83,6 +57,7 @@ export function GenericForm({
     [config, mode]
   );
 
+  // --- Initialize Field States ---
   const { initialState, initialError } = useInitializeForm(allFields);
 
   console.log("DDDD", initialError, initialState);
@@ -107,7 +82,8 @@ export function GenericForm({
     setCurrentStep,
     addAlert,
     setFormStatus,
-    setFormStatusError
+    setFormStatusError,
+    scrollRef
   );
 
   // --- Change handler ---
@@ -126,62 +102,18 @@ export function GenericForm({
     [setFormData, setFormError]
   );
 
-  // --- Submit handler ---
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormStatus(FORM_STATUS.submitting);
-
-    const schema = configToSchema(config);
-    const { valid, errors } = validateResponse(schema, formData);
-
-    if (!valid) {
-      setFormStatus(FORM_STATUS.error);
-      setFormStatusError(errors);
-      return;
-    }
-
-    try {
-      // 1 Submit to backend
-      const response = await submitToBackend(formData, config?.[FPs.ENDPOINT]);
-
-      // 2 If success → clear data
-      if (response?.success) {
-        localStorage.removeItem(STORAGE_KEY);
-        for (const k of Object.keys(formData)) {
-          const v = formData[k];
-          if (isFileLike(v)) await deleteFile(`${STORAGE_KEY}::${k}`);
-          if (isFileArray(v)) {
-            for (let idx = 0; idx < v.length; idx++)
-              await deleteFile(`${STORAGE_KEY}::${k}_${idx}`);
-          }
-        }
-
-        // 3 Trigger external callback if any
-        if (onSubmit) onSubmit(formData);
-        setFormStatus(FORM_STATUS.submitted);
-        addAlert(
-          `${config[FPs.TITLE] || "Deatils"} Submitted Successfully`,
-          "success"
-        );
-      } else {
-        setFormStatus(FORM_STATUS.failed);
-
-        setFormStatusError(
-          response.data || {
-            general: { error: response?.message || "Submission failed" },
-          }
-        );
-        addAlert(`Resolve the errors and submit again`, "error");
-      }
-    } catch (err) {
-      console.error("Form submit failed:", err);
-      setFormStatus(FORM_STATUS.failed);
-      setFormStatusError({
-        general: { error: err.message || "Network error" },
-      });
-      addAlert(`Resolve the errors and submit again`, "error");
-    }
-  };
+  // --- Submit Handler (delegated to hook) ---
+  const { handleSubmit } = useFormSubmit({
+    config,
+    formData,
+    setFormStatus,
+    setFormStatusError,
+    addAlert,
+    onSubmit,
+    STORAGE_KEY,
+    isFileLike,
+    isFileArray,
+  });
 
   // --- Determine fields for current step ---
   const fieldsToRender =
@@ -239,12 +171,15 @@ export function GenericForm({
         alertContainer={alertContainer}
         removeAlert={removeAlert}
       />
+
       <form className={styles.form} style={formStyle} onSubmit={handleSubmit}>
+        {/* Form Header */}
         <div className={styles.stepHeader}>
           <h3>{config[FPs.TITLE]}</h3>
           {config[FPs.DESCRIPTION] && <p>{config[FPs.DESCRIPTION]}</p>}
         </div>
 
+        {/* Step Header (for multi-step) */}
         {mode === "multi" && (
           <div className={styles.stepHeader}>
             <h3>{config[FPs.STEP][currentStep][FPs.TITLE]}</h3>
@@ -254,6 +189,7 @@ export function GenericForm({
           </div>
         )}
 
+        {/* Field Renderer */}
         {fieldsToRender.map((field) => (
           <FieldRenderer
             key={field[FPs.NAME]}
@@ -264,57 +200,17 @@ export function GenericForm({
           />
         ))}
 
-        <div className={styles.footer}>
-          {mode === "multi" && config[FPs.STEP].length > 1 ? (
-            <div className={styles.stepButtons}>
-              {currentStep > 0 && (
-                <IconButton
-                  icon={arrowLeftIcon}
-                  label="Back"
-                  onClick={back}
-                  size="2"
-                  color={color}
-                />
-              )}
-              {currentStep < config[FPs.STEP].length - 1 ? (
-                <IconButton
-                  icon={arrowRightIcon}
-                  label="Next"
-                  onClick={next}
-                  size="2"
-                  color={color}
-                />
-              ) : (
-                <Button
-                  text={submitLabel}
-                  onClick={handleSubmit}
-                  color={color}
-                />
-              )}
-            </div>
-          ) : (
-            <Button text={submitLabel} onClick={handleSubmit} color={color} />
-          )}
-
-          {mode === "multi" && (
-            <>
-              <div className={styles.progressBarWrapper}>
-                <div
-                  className={styles.progressBar}
-                  style={{
-                    width: `${
-                      ((currentStep + 1) / config[FPs.STEP].length) * 100
-                    }%`,
-                    backgroundColor: color,
-                  }}
-                />
-              </div>
-              <div className={styles.progressStatus}>
-                Step {currentStep + 1} of {config[FPs.STEP].length}
-              </div>
-            </>
-          )}
-        </div>
+        {/* Footer Buttons & Progress */}
+        <FormFooter
+          mode={mode}
+          config={config}
+          currentStep={currentStep}
+          color={color}
+          submitLabel={submitLabel}
+          next={next}
+          back={back}
+          handleSubmit={handleSubmit}
+        />
       </form>
     </div>
   );
