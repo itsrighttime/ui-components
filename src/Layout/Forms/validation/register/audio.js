@@ -37,10 +37,13 @@ engine.register(FORM_FIELDS_TYPE.AUDIO, {
       };
     }
 
-    if (allowedTypes && !allowedTypes.includes(value.type)) {
+    if (
+      field[FPs.ALLOWED_TYPES] &&
+      !field[FPs.ALLOWED_TYPES].includes(file[FPs.ALLOWED_TYPES])
+    ) {
       return {
         valid: false,
-        error: `Audio type ${value.type} not allowed`,
+        error: `File type ${file[FPs.ALLOWED_TYPES]} not allowed`,
       };
     }
 

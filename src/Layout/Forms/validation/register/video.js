@@ -32,10 +32,14 @@ engine.register(FORM_FIELDS_TYPE.VIDEO, {
     }
     if (
       field[FPs.ALLOWED_TYPES] &&
-      !field[FPs.ALLOWED_TYPES].includes(value.type)
+      !field[FPs.ALLOWED_TYPES].includes(file[FPs.ALLOWED_TYPES])
     ) {
-      return { valid: false, error: `Video type ${value.type} not allowed` };
+      return {
+        valid: false,
+        error: `File type ${file[FPs.ALLOWED_TYPES]} not allowed`,
+      };
     }
+
     return { valid: true };
   },
 });

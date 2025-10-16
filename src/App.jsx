@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await apiCaller({
-        endpoint: "http://localhost:4320/public/irt/candidate-form-config",
+        endpoint: "http://localhost:5000/public/irt/candidate-form-config",
         method: "GET",
       });
 

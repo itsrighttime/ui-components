@@ -77,6 +77,7 @@ export function useFormPersistence(STORAGE_KEY, initialState, initialError) {
         await cleanupFiles(saved.files);
       }
       localStorage.removeItem(STORAGE_KEY);
+      window.location.reload();
     } catch (err) {
       console.error("Error clearing form persistence:", err);
     } finally {

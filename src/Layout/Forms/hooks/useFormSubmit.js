@@ -18,13 +18,13 @@ export function useFormSubmit({
 }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus(FORM_STATUS.SUBMITTING);
+    setFormStatus(FORM_STATUS.submitting);
 
     const schema = configToSchema(config);
     const { valid, errors } = validateResponse(schema, formData);
 
     if (!valid) {
-      setFormStatus(FORM_STATUS.ERROR);
+      setFormStatus(FORM_STATUS.error);
       setFormStatusError(errors);
       return;
     }
@@ -43,13 +43,13 @@ export function useFormSubmit({
         }
 
         if (onSubmit) onSubmit(formData);
-        setFormStatus(FORM_STATUS.SUBMITTED);
+        setFormStatus(FORM_STATUS.submitted);
         addAlert(
           `${config[FPs.TITLE] || "Details"} Submitted Successfully`,
           "success"
         );
       } else {
-        setFormStatus(FORM_STATUS.FAILED);
+        setFormStatus(FORM_STATUS.failed);
         setFormStatusError(
           response.data || {
             general: { error: response?.message || "Submission failed" },
@@ -58,7 +58,7 @@ export function useFormSubmit({
         addAlert("Resolve the errors and submit again", "error");
       }
     } catch (err) {
-      setFormStatus(FORM_STATUS.FAILED);
+      setFormStatus(FORM_STATUS.failed);
       setFormStatusError({
         general: { error: err.message || "Network error" },
       });
