@@ -45,9 +45,9 @@ engine.register(FORM_FIELDS_TYPE.FILE, {
       }
       if (
         field[FPs.ALLOWED_TYPES] &&
-        !field[FPs.ALLOWED_TYPES].includes(file[FPs.ALLOWED_TYPES])
+        !field[FPs.ALLOWED_TYPES].includes(file.type)
       ) {
-        return { valid: false, error: `File type ${file[FPs.ALLOWED_TYPES]} not allowed` };
+        return { valid: false, error: `File type ${file.type} not allowed` };
       }
     }
     return { valid: true };

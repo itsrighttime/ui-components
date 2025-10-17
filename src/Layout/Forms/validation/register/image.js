@@ -32,15 +32,11 @@ engine.register(FORM_FIELDS_TYPE.IMAGE, {
     }
     if (
       field[FPs.ALLOWED_TYPES] &&
-      !field[FPs.ALLOWED_TYPES].includes(file[FPs.ALLOWED_TYPES])
+      !field[FPs.ALLOWED_TYPES].includes(value.type)
     ) {
-      return {
-        valid: false,
-        error: `File type ${file[FPs.ALLOWED_TYPES]} not allowed`,
-      };
+      return { valid: false, error: `Image type ${value.type} not allowed` };
     }
-
-    if (field[FPs.REQUIRE_SQUARE] && value[FPs.HEIGHT] !== value[FPs.WIDTH]) {
+    if (field[FPs.REQUIRE_SQUARE] && value.width !== value.height) {
       return { valid: false, error: "Image must be square" };
     }
     return { valid: true };
