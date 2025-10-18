@@ -58,8 +58,7 @@ export const submitToBackend = async (formData, endpoint) => {
   if (response?.status === 200 || response?.success)
     return { success: true, data: response };
 
-  if (response?.status === 400)
-    return { success: false, data: response.data.errors };
+  if (response?.status === 400) return { success: false, data: response.data };
 
   return {
     success: false,

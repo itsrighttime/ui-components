@@ -50,17 +50,22 @@ export function useFormSubmit({
         );
       } else {
         setFormStatus(FORM_STATUS.failed);
-        setFormStatusError(
-          response.data || {
-            general: { error: response?.message || "Submission failed" },
-          }
-        );
+        setFormStatusError({
+          general: {
+            label: "Backend Validation",
+            error:
+              response.data?.message || response?.message || "Submission failed",
+          },
+        });
         addAlert("Resolve the errors and submit again", "error");
       }
     } catch (err) {
       setFormStatus(FORM_STATUS.failed);
       setFormStatusError({
-        general: { error: err.message || "Network error" },
+        general: {
+          label: "Backend Validation",
+          error: err.message || "Network error",
+        },
       });
       addAlert("Resolve the errors and submit again", "error");
     }
