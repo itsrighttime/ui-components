@@ -9,6 +9,8 @@ import { configData07 } from "./Layout/Forms/helper/data-07.js";
 import { useEffect } from "react";
 import { apiCaller } from "./utils/apiCaller.js";
 import { useRef } from "react";
+import { WebStructure } from "./Layout/WebStructure/jsx/WebStructure.jsx";
+import { FOOTER_BRANDS_KEYS } from "./Layout/Footer/helper/KEYS.js";
 
 const App = () => {
   const [formConfig, setFormConfig] = useState(null);
@@ -32,7 +34,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App" ref={scrollRef}>
-        {formConfig && (
+        {/* {formConfig && (
           <GenericForm
             config={formConfig}
             onSubmit={(value) => {
@@ -48,7 +50,21 @@ const App = () => {
             }}
             scrollRef={scrollRef}
           />
-        )}
+        )} */}
+
+        <WebStructure
+          brandFooter={{
+            brands: [FOOTER_BRANDS_KEYS.dev],
+            baseURLs: {
+              [FOOTER_BRANDS_KEYS.itsrighttime]: "http://localhost:5173/irt",
+              [FOOTER_BRANDS_KEYS.dev]: "http://localhost:5173",
+              [FOOTER_BRANDS_KEYS.creative]:
+                "https://creative.itsrighttime.com",
+              [FOOTER_BRANDS_KEYS.workspace]:
+                "https://workspace.itsrighttime.com",
+            },
+          }}
+        ></WebStructure>
       </div>
     </BrowserRouter>
   );

@@ -20,7 +20,7 @@ export const WebStructure = ({ children, brandFooter, brandHeader }) => {
       <div className={styles.top} id="body-layout-scroll">
         <div className={styles.body}>{children}</div>
         <div className={styles.footer}>
-          <Footer brand={brandFooter} />
+          <Footer brands={brandFooter.brands} baseURLs={brandFooter.baseURLs} />
         </div>
       </div>
     </div>

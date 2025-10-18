@@ -3,8 +3,8 @@ import { getFooterBrands } from "../helper/footer.config";
 import { BRANDS_PROPS_KEYS as BPK } from "../helper/KEYS";
 import { Category } from "./Category";
 
-export const Footer = ({ brand = [] }) => {
-  const brandsToRender = getFooterBrands(brand);
+export const Footer = ({ brands = [], baseURLs }) => {
+  const brandsToRender = getFooterBrands(brands, baseURLs);
 
   return (
     <footer className={styles.footer}>

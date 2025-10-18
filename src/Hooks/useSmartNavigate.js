@@ -15,6 +15,8 @@ export const useSmartNavigate = () => {
   const handleNavigate = (event, to) => {
     if (!to) return;
 
+    console.log("Navigating to:", to);
+
     // Detect modifier keys or middle click
     const openInNewTab =
       event?.ctrlKey || event?.metaKey || event?.button === 1;

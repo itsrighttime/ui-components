@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `WebStructure` component provides a standardized layout wrapper for React pages. It includes a customizable `Header`, `Footer`, and a `children` area to render page-specific content. This component is ideal for building brand-consistent pages with a shared structure.
+The `WebStructure` component provides a standardized layout wrapper for React pages. It includes a customizable `Header`, `Footer`, and a `children` area to render page-specific content. This component is ideal for building brand-consistent pages with a shared structure and environment-aware URLs.
 
 ## Importing
 
@@ -23,7 +23,7 @@ const { WebStructure } = UILayout;
 ### Components Used:
 
 - `Header`: A responsive navigation bar with dynamic tab highlighting.
-- `Footer`: A brand-aware footer with customizable links, contact info, and social media.
+- `Footer`: A brand-aware footer with dynamic URLs and customizable links, contact info, and social media.
 - `children`: Injected main content of the page.
 
 ## Usage
@@ -32,6 +32,15 @@ const { WebStructure } = UILayout;
 
 ```jsx
 import { WebStructure } from "path-to/WebStructure";
+import { baseURL } from "path-to/baseURL";
+import { FOOTER_BRANDS } from "path-to/footer.config";
+
+const baseURLs = baseURL({
+  itsrighttime: "https://itsrighttime.com",
+  dev: "https://dev.itsrighttime.com",
+  creative: "https://creative.itsrighttime.com",
+  workspace: "https://workspace.itsrighttime.com",
+});
 
 const brandHeader = {
   tabs: [
@@ -45,37 +54,20 @@ const brandHeader = {
   loginRegisterTabName: "Login",
   loginRegisterURL: "/login",
   color: "#E63946",
-  brand: "myBrandName",
+  brand: "itsRIGHTtime",
 };
 
 const brandFooter = {
-  name: "myBrandName",
-  logo: "/assets/logo.png",
-  tagLine: "Empowering Innovation.",
-  tabs: [
-    { name: "Home", goTo: "/" },
-    { name: "Contact", goTo: "/contact" },
-  ],
-  contactus: {
-    address: "City, Country",
-    mobile: "+1234567890",
-    email: "info@mybrand.com",
-  },
-  socialMedia: [
-    { name: "linkedin", goTo: "https://linkedin.com/company/mybrand" },
-    { name: "github", goTo: "https://github.com/mybrand" },
-  ],
-  getInTouch: { name: "Get In Touch", goTo: "/contact" },
+  brands: ["itsrighttime", "dev"], // brand keys
+  baseURLs, // inject URLs
 };
 
-const Page = () => {
-  return (
-    <WebStructure brandHeader={brandHeader} brandFooter={brandFooter}>
-      <h1>Welcome</h1>
-      <p>This is the homepage content.</p>
-    </WebStructure>
-  );
-};
+const Page = () => (
+  <WebStructure brandHeader={brandHeader} brandFooter={brandFooter}>
+    <h1>Welcome</h1>
+    <p>This is the homepage content.</p>
+  </WebStructure>
+);
 ```
 
 ## WebStructure Props
@@ -107,40 +99,65 @@ const Page = () => {
 
 ## Footer Configuration (`brandFooter`)
 
-| Prop          | Type     | Description                                              |
-| ------------- | -------- | -------------------------------------------------------- |
-| `name`        | `string` | Brand name used to derive a default logo if not supplied |
-| `logo`        | `string` | Optional logo override                                   |
-| `tagLine`     | `string` | Brand tagline or motto                                   |
-| `tabs`        | `array`  | Footer navigation links: `{ name, goTo }[]`              |
-| `contactus`   | `object` | Contact details: `address`, `mobile`, `email`            |
-| `socialMedia` | `array`  | Social links: `{ name, goTo }[]`                         |
-| `getInTouch`  | `object` | Call-to-action link: `{ name, goTo }`                    |
+| Prop       | Type     | Description                                                |
+| ---------- | -------- | ---------------------------------------------------------- |
+| `brands`   | `array`  | Brand keys to render, e.g., `["itsrighttime", "dev"]`      |
+| `baseURLs` | `object` | `baseURL` instance providing environment-aware URL methods |
 
-**Rendering Notes**:
+### `FOOTER_BRANDS_KEYS`
 
-- Uses `getProductLogo(brand.name)` if no logo is provided.
-- Multiple `Category` sections may be rendered, including a default fallback.
-- Copyright message is included.
+`FOOTER_BRANDS_KEYS` is an object containing predefined keys for each supported brand:
+
+```js
+export const FOOTER_BRANDS_KEYS = {
+  itsrighttime: "itsrighttime",
+  dev: "dev",
+  creative: "creative",
+  workspace: "workspace",
+};
+```
+
+- Use these keys when specifying which brands to render in the footer.
+- Ensures consistency between code and data-driven footer rendering.
+
+### Footer Brands (`FOOTER_BRANDS(urls)`)
+
+Each brand object contains:
+
+| Prop          | Type     | Description                                 |
+| ------------- | -------- | ------------------------------------------- |
+| `name`        | `string` | Brand key name (`FOOTER_BRANDS_KEYS`)       |
+| `logo`        | `string` | Optional logo override                      |
+| `tagLine`     | `string` | Brand tagline or motto                      |
+| `tabs`        | `array`  | Footer navigation links: `{ name, goTo }[]` |
+| `contactus`   | `object` | Contact details: `address`, `email`         |
+| `socialMedia` | `array`  | Social links: `{ name, goTo }[]`            |
+| `getInTouch`  | `object` | Call-to-action link: `{ name, goTo }`       |
+
+**URL Handling**:
+
+- All links (`tabs`, `getInTouch`) are generated dynamically using the injected `baseURLs` instance.
+- Example: `urls.getIrtUrl("/about-us")` for `itsrighttime`, `urls.getDevUrl("/contact")` for `dev`, etc.
 
 ## Behavior Summary
 
 ### Header
 
-- Mobile-first navigation with toggle icon
-- Automatic tab highlighting based on path
-- Redirection logic for login/register tab
-- Uses React Router (`useNavigate`, `useLocation`)
+- Mobile-first navigation with toggle icon.
+- Automatic tab highlighting based on URL.
+- Redirection logic for `loginRegisterTabName`.
+- Uses React Router (`useNavigate`, `useLocation`).
 
 ### Footer
 
-- Renders branding, contact info, and navigation links
-- Supports dynamic or static footer sections
-- Social media links are passed as data, not hardcoded
+- Renders multiple brands dynamically using `FOOTER_BRANDS(urls)`.
+- Brand URLs are environment-aware via `baseURLs`.
+- Renders contact info, navigation links, CTA buttons.
+- Social media links passed as data, not hardcoded.
 
 ## Best Practices
 
 - Keep navigation tabs consistent between `Header` and `Footer`.
-- Use `loginRegisterTabName` only when redirection is required.
-- Use environment-based `logoURL` or pass via `getProductLogo()`.
-- Include `WebStructure` at the route layout level, not within individual components.
+- Always provide `baseURLs` to ensure environment-aware URLs.
+- Use `brands` keys (`FOOTER_BRANDS_KEYS`) to selectively render footer brands.
+- Include `WebStructure` at the route layout level, not inside individual components.
