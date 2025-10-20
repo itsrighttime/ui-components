@@ -53,7 +53,7 @@ export const FOOTER_BRANDS = (urls) => {
     ],
     [KEYS.contactus]: {
       [KEYS.address]: "Delhi, India, Asia",
-      [KEYS.email]: "creative@itsrighttime.group",
+      [KEYS.email]: "hello@itsrighttime.group",
     },
     [KEYS.getInTouch]: {
       [KEYS.name]: "Get in Touch",
