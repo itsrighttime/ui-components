@@ -1,6 +1,6 @@
 {
   "name": "@itsrighttime/ui-components",
-  "version": "0.0.57",
+  "version": "0.0.58",
   "description": "A reusable and customizable React UI components library including inputs, buttons, notifications, cards, icons, and more.",
   "author": {
     "name": "Danishan",
