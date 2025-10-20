@@ -46,11 +46,14 @@ export const FOOTER_BRANDS = (urls) => {
     [KEYS.tagLine]: "Your Space, Your Style, Our Expertise",
     [KEYS.tabs]: [
       { [KEYS.name]: "Home", [KEYS.goTo]: urls.getCreUrl("/") },
-      { [KEYS.name]: "About", [KEYS.goTo]: urls.getCreUrl("/about-us") },
+      { [KEYS.name]: "Services", [KEYS.goTo]: urls.getCreUrl("/services") },
+      { [KEYS.name]: "Gallery", [KEYS.goTo]: urls.getCreUrl("/gallery") },
+      { [KEYS.name]: "Why We", [KEYS.goTo]: urls.getCreUrl("/whywe") },
+      { [KEYS.name]: "About Us", [KEYS.goTo]: urls.getCreUrl("/about-us") },
     ],
     [KEYS.contactus]: {
       [KEYS.address]: "Delhi, India, Asia",
-      [KEYS.email]: "hello@itsrighttime.group",
+      [KEYS.email]: "creative@itsrighttime.group",
     },
     [KEYS.getInTouch]: {
       [KEYS.name]: "Get in Touch",
