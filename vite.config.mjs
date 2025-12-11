@@ -5,8 +5,10 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   build: {
+    sourcemap: false, // Avoid broken sourcemaps
+    emptyOutDir: true,
     lib: {
-      entry: path.resolve("src/export.js"), // or export.jsx
+      entry: path.resolve("src/export.js"),
       name: "ItsRightTimeUI",
       formats: ["es", "cjs"],
       fileName: (format) => `ui-components.${format}.js`,
