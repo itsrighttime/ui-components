@@ -9,7 +9,7 @@ const IconGallery = () => {
 
   const copyToClipboard = (name) => {
     navigator.clipboard.writeText(name);
-    console.log(`Copied: ${name}`);
+    // console.log(`Copied: ${name}`);
     addAlert(`Copied: ${name}`, "success");
   };
 
@@ -28,7 +28,7 @@ const IconGallery = () => {
               className={styles.iconCard}
             >
               <IconButton icon={IconComponent} size="2" />
-              <div className={styles.iconName}>{name}</div>
+              {/* <div className={styles.iconName}>{name}</div> */}
             </div>
           );
         })}
