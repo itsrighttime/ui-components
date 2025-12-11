@@ -1,14 +1,18 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/export.js"],
+  entry: ["src/export.js"],   // or index.js (use your real entry)
   format: ["esm", "cjs"],
-  dts: false, // ❌ no types needed for JS
-  sourcemap: false,
+  outDir: "dist",
   clean: true,
   external: ["react", "react-dom"],
-  cssModules: true, // ✅ important
+  cssModules: true,
   minify: true,
-  skipNodeModulesBundle: true,
-  jsx: "automatic"
+  legacyOutput: true,
+
+  // Most important part:
+  esbuildOptions(options) {
+    options.jsx = "automatic";
+    options.jsxImportSource = "react";
+  }
 });
