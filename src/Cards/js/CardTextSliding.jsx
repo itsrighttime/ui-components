@@ -32,8 +32,8 @@ export const CardTextSliding = ({
   orientation = "V",
   borderRadius = "10px",
 }) => {
-  const cardContentCss = `${style.cardContent} | ${style.flow}`;
-  const cardContentContainerCss = `${style.cardContentContainer} | ${style.flow}`;
+  const cardContentCss = `${style.cardContent} ${style.flow}`;
+  const cardContentContainerCss = `${style.cardContentContainer} ${style.flow}`;
   const orientCss =
     orientation === "V"
       ? "vertical"
