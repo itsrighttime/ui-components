@@ -1,6 +1,6 @@
 {
   "name": "@itsrighttime/ui-components",
-  "version": "0.0.69",
+  "version": "0.0.70",
   "description": "A reusable and customizable React UI components library including inputs, buttons, notifications, cards, icons, and more.",
   "author": {
     "name": "Danishan",
@@ -16,6 +16,7 @@
   },
   "main": "dist/export.cjs",
   "module": "dist/export.js",
+  "style":"dist/export.css",
   "files": [
     "dist"
   ],
