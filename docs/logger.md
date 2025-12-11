@@ -1,41 +1,58 @@
-# Developer Guide: Using `Logger`
 
-This guide explains how to use the `Logger` utility for structured, colored, and environment-configurable logging within your React (or frontend) application.
+# **Developer Guide: Using `Logger` (Updated for Library Mode)**
 
-## Introduction
+This guide explains how to use the `Logger` system inside your application when using the
+`@itsrighttime/ui-components` npm library.
 
-The `UIEssentials` provides:
+The logger now supports:
 
-- Uniform log structure
-- Colored, formatted output
-- Conditional logging based on allowed types (`error`, `warn`, etc.)
-- Optional tracking codes for easier debugging
-- Simple wrapper around your custom logger system (similar to `winston`)
+* Uniform, structured console logging
+* Colored logs
+* Environment-based filtering (configured in the *consumer project*)
+* Tracking code generation
+* Zero runtime errors (safe in all bundlers: Vite, Webpack, Next.js, CRA, etc.)
 
-## Importing
+---
+
+# **1. Importing**
 
 ```js
-import { UIEssentials } from "@itsrighttime/ui-components";
+import { UIUtils } from "@itsrighttime/ui-components";
 
-const { logger, getTrackingCode, codeTypes } = UIEssentials;
+const { logger, getTrackingCode, codeTypes, setAllowedTypes } = UIUtils;
 ```
 
-## Setup in `.env`
+---
 
-Set the log types you want to enable in development (comma-separated):
+# **2. Configuring Allowed Log Types (IMPORTANT)**
+
+Since this is now a reusable library, environment variables are **taken from your project**,
+**NOT from inside the library**.
+
+### **In your app (e.g., Vite, React app, Next.js, etc.):**
+
+```js
+
+setAllowedTypes(
+  import.meta.env.VITE_LOG_TYPES?.split(",") || [codeTypes.error, codeTypes.warn, codeTypes.info]
+);
+```
+
+### Example `.env`
 
 ```env
-# For Vite
 VITE_LOG_TYPES=error,warn,info
 ```
 
-Restart your dev server after modifying `.env`.
+✔ You fully control which logs are visible
+✔ Library does **not** depend on unstable `import.meta.env`
+✔ No crashes when bundled
 
-## Usage
+---
 
-### Logging Messages
+# **3. Logging Messages**
 
-Each log type (`info`, `warn`, `error`, `debug`, etc.) is available via the `logger` object.
+Each level (`info`, `warn`, `debug`, `error`, etc.) is available via `logger`.
 
 ```js
 logger.info({
@@ -45,7 +62,9 @@ logger.info({
 });
 ```
 
-### Logging Errors
+---
+
+# **4. Logging Errors**
 
 ```js
 try {
@@ -60,20 +79,23 @@ try {
 }
 ```
 
-## Tracking Code
+---
 
-Optionally use `getTrackingCode(type, code)` to generate a formatted tracking code:
+# **5. Tracking Code**
+
+Tracking codes help uniquely identify log sources.
 
 ```js
 const trackingCode = getTrackingCode(codeTypes.warn, "USR-003");
-console.log(trackingCode); // ui-components-warn-USR-003
+console.log(trackingCode); 
+// Output: ui-components-warn-USR-003
 ```
 
-This helps identify where the log was triggered from and the type of the event.
+---
 
-## Allowed Log Types
+# **6. Allowed Log Types Logic**
 
-Only logs included in `VITE_LOG_TYPES` will appear in the console. Others will be silently ignored.
+Only log levels included inside `setAllowedTypes()` will print.
 
 Example:
 
@@ -81,45 +103,65 @@ Example:
 VITE_LOG_TYPES=error,warn
 ```
 
-Above config will show only `error` and `warn` logs. All `info`, `debug`, etc., will be skipped.
+Result:
 
-> Note: error & warn are also default. If you do not specify the VITE_LOG_TYPES then these will show
+* `error`, `warn` → **visible**
+* `info`, `debug`, `verbose`, `silly` → **ignored**
 
-## Log Format (in Console)
+### Default (if not set):
+
+```js
+["error", "warn"]
+```
+
+---
+
+# **7. Example Log Output**
 
 ```
 [ui-components - 14:32:21] info: Component loaded | Code: UI-101
 |- Context: {
      "component": "MainComponent",
      "userId": 123
-    }
+  }
 ```
 
-Error logs include full stack trace automatically.
+---
 
-## Available Log Levels
-
-Use constants from `codeTypes`:
+# **8. Available Log Levels**
 
 ```js
-codeTypes.info; // "info"
-codeTypes.warn; // "warn"
-codeTypes.error; // "error"
-codeTypes.verbose; // "verbose"
-codeTypes.debug; // "debug"
-codeTypes.silly; // "silly"
+codeTypes.info     // "info"
+codeTypes.warn     // "warn"
+codeTypes.error    // "error"
+codeTypes.verbose  // "verbose"
+codeTypes.debug    // "debug"
+codeTypes.silly    // "silly"
 ```
 
-## Best Practices
+---
 
-- Always include a meaningful `message`.
-- Use `code` for error traceability and monitoring.
-- Use `context` to attach relevant variables for better debugging.
-- Do not log sensitive data in production.
+# **9. Best Practices**
 
-## Example
+* Always provide meaningful `message`
+* Use `code` for tracking and debugging
+* Include `context` to make debugging easier
+* Do **not** log sensitive data in production
+* Configure logs per-environment for performance
+
+---
+
+# **10. Complete Example**
 
 ```js
+
+// Initialize logging rules from ENV
+setAllowedTypes(
+  import.meta.env.VITE_LOG_TYPES?.split(",") || [codeTypes.error, codeTypes.warn, codeTypes.info]
+);
+
+const { logger } = UtilsLogger;
+
 logger.debug({
   message: "Search executed",
   context: { query: "home decor", userId: "U123" },
@@ -127,12 +169,15 @@ logger.debug({
 });
 ```
 
-## Export Summary
+---
+
+# **11. Export Summary**
 
 ```js
-export const UIEssentials = {
-  logger, // Logging methods (info, warn, error, etc.)
-  codeTypes, // Standard log level keys
-  getTrackingCode, // For generating codes like 'ui-components-info-UI-101'
+export const UtilsLogger = {
+  logger,         // Log methods: info, warn, debug, error, etc.
+  codeTypes,      // Standard log levels
+  getTrackingCode,// Generate codes like ui-components-info-UI-101
+  setAllowedTypes // Configure allowed log types (from consumer app)
 };
 ```

@@ -24,6 +24,7 @@ export const apiCaller = async ({
   headers = {},
   params = {},
   timeout = 10000,
+  printResult = false,
 }) => {
   // const baseURL = import.meta.env.VITE_APP_SERVER_API_PROXY;
   // const url = `${baseURL}${endpoint}`;
@@ -58,7 +59,7 @@ export const apiCaller = async ({
       code: "00003",
     });
 
-    if (import.meta.env.VITE_PRINT_API_RESULT === "true")
+    if (printResult === "true")
       console.log(`API Response of endpoint (${endpoint}): `, data);
 
     return { success: true, error: null, data, status: response.status };

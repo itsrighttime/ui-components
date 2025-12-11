@@ -224,6 +224,7 @@ export const UIUtils = {
   logger: UtilsLogger.logger,
   codeTypes: UtilsLogger.codeTypes,
   getTrackingCode: UtilsLogger.getTrackingCode,
+  setAllowedTypes: UtilsLogger.setAllowedTypes,
   fromKebabCase,
   toKebabCase,
   getColorCode,

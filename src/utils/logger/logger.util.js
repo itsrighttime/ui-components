@@ -1,14 +1,38 @@
 import { getTrackingCode as getTrackingCodeHelper } from "./get-tracking-code.js";
 import { __logger } from "./helper/logger.helper.js";
 
-const allowedTypes = import.meta.env.VITE_LOG_TYPES?.split(",") || [
-  "error",
-  "warn",
-];
+// ---------- CONFIGURABLE FROM OUTSIDE ------------
+
+// ----------- Tracking Code Types -----------
+
+const codeTypes = {
+  info: "info",
+  error: "error",
+  warn: "warn",
+  verbose: "verbose",
+  debug: "debug",
+  silly: "silly",
+};
+
+// Default types
+let allowedTypes = [codeTypes.error, codeTypes.warn, codeTypes.info];
+
+/**
+ * Consumer project can override this.
+ * Example usage:
+ *
+ * import { UtilsLogger } from "@itsrighttime/ui-components";
+ * UtilsLogger.setAllowedTypes([codeTypes.error, codeTypes.warn, codeTypes.info]);
+ */
+export const setAllowedTypes = (types) => {
+  if (Array.isArray(types)) {
+    allowedTypes = types;
+  }
+};
+
+// -------------------------------------------------
 
 const SERVICE_NAME = "ui-components";
-
-// Initialize a single logger manager instance for the product
 const loggerManager = __logger(SERVICE_NAME);
 
 // ----------- UTILITY METHODS -----------
@@ -20,10 +44,10 @@ const getTrackingCode = (codeType, code) =>
 
 const logWrapper = (logFn, type) => {
   return ({ message, context = null, code = "NA-LOGGER" }) => {
-    const formatedCode = getTrackingCode(type, code);
+    const formattedCode = getTrackingCode(type, code);
 
     if (allowedTypes.includes(type)) {
-      logFn({ message, context, code: formatedCode });
+      logFn({ message, context, code: formattedCode });
     }
   };
 };
@@ -31,19 +55,14 @@ const logWrapper = (logFn, type) => {
 const errorLogWrapper = (logFn, type) => {
   return ({ message, error, context = null, code = "NA-LOGGER" }) => {
     if (allowedTypes.includes(type)) {
-      logFn({error, message, context, code: getTrackingCode(type, code) });
+      logFn({
+        error,
+        message,
+        context,
+        code: getTrackingCode(type, code),
+      });
     }
   };
-};
-
-// ----------- Tracking Code Types -----------
-const codeTypes = {
-  info: "info",
-  error: "error",
-  warn: "warn",
-  verbose: "verbose",
-  debug: "debug",
-  silly: "silly",
 };
 
 // ----------- FILE LOGGER -----------
@@ -57,18 +76,21 @@ const logger = {
   error: errorLogWrapper(loggerManager.error, codeTypes.error),
 };
 
-// ----------- FOLDER LOGGER -----------
-
 // ----------- EXPORT UTILS LOGGER -----------
 
 export const UtilsLogger = {
   logger,
   codeTypes,
   getTrackingCode,
+  setAllowedTypes, // 🔥 consumer can configure log types
 };
 
 /*
+Example usage:
 
-const { getTrackingCode, logger, codeTypes } = UtilsLogger;
+import { UtilsLogger } from "@itsrighttime/ui-components";
+
+UtilsLogger.setAllowedTypes([codeTypes.error, codeTypes.warn, codeTypes.info]);
+UtilsLogger.logger.debug({ message: "Test debug" });
 
 */
