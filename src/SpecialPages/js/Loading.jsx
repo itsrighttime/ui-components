@@ -3,18 +3,30 @@ import { SecondaryLoading } from "./SecondaryLoading.jsx";
 import styles from "../css/Loading.module.css";
 
 const CubesLoader = lazy(() =>
-  import("./LoadingStyle").then((module) => ({ default: module.CubesLoader }))
+  import("./LoadingStyle.jsx").then((module) => ({
+    default: module.CubesLoader,
+  }))
 );
 const FoldingLoader = lazy(() =>
-  import("./LoadingStyle").then((module) => ({ default: module.FoldingLoader }))
+  import("./LoadingStyle.jsx").then((module) => ({
+    default: module.FoldingLoader,
+  }))
 );
 const BounceLoader = lazy(() =>
-  import("./LoadingStyle").then((module) => ({ default: module.BounceLoader }))
+  import("./LoadingStyle.jsx").then((module) => ({
+    default: module.BounceLoader,
+  }))
 );
 const PulseLoader = lazy(() =>
-  import("./LoadingStyle").then((module) => ({ default: module.PulseLoader }))
+  import("./LoadingStyle.jsx").then((module) => ({
+    default: module.PulseLoader,
+  }))
 );
-const LoadingChat = lazy(() => import("./LoadingChat"));
+const LoadingChat = lazy(() =>
+  import("./LoadingChat.jsx").then((module) => ({
+    default: module.LoadingChat,
+  }))
+);
 
 /**
  * Default Values:

@@ -17,9 +17,9 @@ import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 import { Loading } from "../../../SpecialPages/js/Loading.jsx";
 
 // // Dynamically import components
-const RenderCalendar = React.lazy(() => import("../helper/RenderDates"));
-const RenderMonths = React.lazy(() => import("../helper/RenderMonths"));
-const RenderYears = React.lazy(() => import("../helper/RenderYears"));
+const RenderCalendar = React.lazy(() => import("../helper/RenderDates.jsx"));
+const RenderMonths = React.lazy(() => import("../helper/RenderMonths.jsx"));
+const RenderYears = React.lazy(() => import("../helper/RenderYears.jsx"));
 
 export const Calendar = ({
   isSmall = false,
