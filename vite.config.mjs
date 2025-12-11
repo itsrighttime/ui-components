@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import postcss from "rollup-plugin-postcss";
 
 export default defineConfig({
   plugins: [react()],
@@ -30,10 +31,14 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
       },
-    },
 
-    esbuild: {
-      sourcemap: false,
+      plugins: [
+        // postcss({
+        //   extract: "style.css", // <-- IMPORTANT
+        //   modules: false, // <-- ONLY extracts; Vite already processed modules
+        //   minimize: true,
+        // }),
+      ],
     },
   },
 });
