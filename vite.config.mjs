@@ -4,24 +4,13 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-
-  css: {
-    modules: {
-      localsConvention: "camelCaseOnly",
-    },
-  },
-
   build: {
-    sourcemap: false,
-    emptyOutDir: true,
-
     lib: {
-      entry: path.resolve("src/export.js"),
+      entry: path.resolve("src/export.js"), // or export.jsx
       name: "ItsRightTimeUI",
       formats: ["es", "cjs"],
       fileName: (format) => `ui-components.${format}.js`,
     },
-
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime"],
       output: {
@@ -30,8 +19,6 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
       },
-
-     
     },
   },
 });
