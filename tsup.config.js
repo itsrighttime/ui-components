@@ -10,4 +10,5 @@ export default defineConfig({
   cssModules: true, // ✅ important
   minify: true,
   skipNodeModulesBundle: true,
+  jsx: "automatic"
 });
