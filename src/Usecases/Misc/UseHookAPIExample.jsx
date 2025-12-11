@@ -1,4 +1,4 @@
-import { useAPICaller } from "../../Hooks/useAPICaller";
+import { useAPICaller } from "../../Hooks/useAPICaller.js";
 
 export const UseHookAPIExample = () => {
   const { data, loading, error } = useAPICaller({

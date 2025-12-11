@@ -1,4 +1,4 @@
-import { Tooltip } from "./Tooltip";
+import { Tooltip } from "./Tooltip.jsx";
 import "./tooltip.css";
 
 export const UseTooltipExample = () => {

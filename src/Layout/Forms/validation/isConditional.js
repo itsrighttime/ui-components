@@ -1,5 +1,5 @@
-import { FIELDS_PROPS as FPs } from "./helper/fields";
-import { OPERATORS } from "./helper/operators";
+import { FIELDS_PROPS as FPs } from "./helper/fields.js";
+import { OPERATORS } from "./helper/operators.js";
 
 export const isConditional = (field, value) => {
   const COND = field[FPs.CONDITIONAL];

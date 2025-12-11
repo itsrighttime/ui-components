@@ -1,6 +1,6 @@
-import { NumberField } from "../../InputFields/NumericInput.jsx/jsx/NumberField";
-import { Slider } from "../../InputFields/NumericInput.jsx/jsx/Slider";
-import { Stepper } from "../../InputFields/NumericInput.jsx/jsx/Stepper";
+import { NumberField } from "../../InputFields/NumericInput.jsx/jsx/NumberField.jsx";
+import { Slider } from "../../InputFields/NumericInput.jsx/jsx/Slider.jsx";
+import { Stepper } from "../../InputFields/NumericInput.jsx/jsx/Stepper.jsx";
 
 export const UseNumberExample = () => {
   return (

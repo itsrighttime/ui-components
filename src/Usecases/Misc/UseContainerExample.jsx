@@ -1,5 +1,5 @@
-import { FlexContainer } from "../../Layout/Containers/jsx/FlexContainer";
-import { GridContainer } from "../../Layout/Containers/jsx/GridContainer";
+import { FlexContainer } from "../../Layout/Containers/jsx/FlexContainer.jsx";
+import { GridContainer } from "../../Layout/Containers/jsx/GridContainer.jsx";
 
 export const UseContainerExample = () => {
   return (

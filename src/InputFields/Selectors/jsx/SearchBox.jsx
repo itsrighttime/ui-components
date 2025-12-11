@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../css/SearchBox.module.css";
-import { searchIcon } from "../../../utils/icons";
+import { searchIcon } from "../../../utils/icons.jsx";
 import {
   filterSuggestions,
   handleKeyDown,
   handleClickOutside,
-} from "../helper/searchBoxHelper";
-import { IconButton } from "../../Actions/jsx/IconButton";
+} from "../helper/searchBoxHelper.js";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 
 export const SearchBox = ({
   suggestions,

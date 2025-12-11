@@ -1,11 +1,11 @@
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
+import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton.jsx";
 
 import styles from "../css/Category.module.css";
-import { useSmartNavigate } from "../../../Hooks/useSmartNavigate";
-import { getIcon } from "../helper/getIcon";
-import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
-import { BRANDS_PROPS_KEYS } from "../helper/KEYS";
+import { useSmartNavigate } from "../../../Hooks/useSmartNavigate.js";
+import { getIcon } from "../helper/getIcon.js";
+import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets.js";
+import { BRANDS_PROPS_KEYS } from "../helper/KEYS.js";
 
 export const Category = ({
   logo,

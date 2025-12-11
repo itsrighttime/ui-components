@@ -1,4 +1,4 @@
-import { getColorCode } from "../../utils/COLOR";
+import { getColorCode } from "../../utils/COLOR.js";
 import style from "../css/CardSimpleInfo.module.css";
 
 /**

@@ -1,9 +1,9 @@
-import { workspaceKeys } from "./workspaceKeys";
-import { getIconByKey } from "./getIconByKey";
-import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
-import { homeIcon, profileIcon, reminderIcon } from "../../../utils/icons";
-import { workspaceLabels } from "./workspaceLabels";
-import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets";
+import { workspaceKeys } from "./workspaceKeys.js";
+import { getIconByKey } from "./getIconByKey.js";
+import { workspaceLayoutKeys } from "./workspaceLayoutKeys.js";
+import { homeIcon, profileIcon, reminderIcon } from "../../../utils/icons.jsx";
+import { workspaceLabels } from "./workspaceLabels.js";
+import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets.js";
 
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 

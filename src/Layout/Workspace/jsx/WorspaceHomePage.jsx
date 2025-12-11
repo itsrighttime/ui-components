@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router";
-import { getProductLogo, IMAGE_ASSETS_KEYS as IAK } from "../../../assets/productsLogo/productLogo.assets";
+import { getProductLogo, IMAGE_ASSETS_KEYS as IAK } from "../../../assets/productsLogo/productLogo.assets.js";
 import styles from "../css/WorkspaceHomePage.module.css";
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
-import { WorkspaceHomePageTabs } from "../helper/WorspaceHomePageTabs";
-import { makeUrl } from "../helper/urlFormatter";
-import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys";
+import { WorkspaceHomePageTabs } from "../helper/WorspaceHomePageTabs.jsx";
+import { makeUrl } from "../helper/urlFormatter.js";
+import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys.js";
 import { useState } from "react";
 
 export const WorkspaceHomePage = ({ apps = [], toggleFullscreen }) => {

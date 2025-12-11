@@ -1,9 +1,9 @@
 // components/WorkspaceLayout.jsx
-import { useWorkspaceLayout } from "../helper/useWorkspaceLayout";
-import { ErrorPage } from "../../../SpecialPages/js/ErrorPage";
-import { useMediaQuery } from "../../../Hooks/useMediaQuery";
-import { SmallScreenLayout } from "./SmallScreenLayout";
-import { LargeScreenLayout } from "./LargeScreenLayout";
+import { useWorkspaceLayout } from "../helper/useWorkspaceLayout.js";
+import { ErrorPage } from "../../../SpecialPages/js/ErrorPage.jsx";
+import { useMediaQuery } from "../../../Hooks/useMediaQuery.js";
+import { SmallScreenLayout } from "./SmallScreenLayout.jsx";
+import { LargeScreenLayout } from "./LargeScreenLayout.jsx";
 
 export const WorkspaceLayout = ({
   api,

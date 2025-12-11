@@ -1,10 +1,10 @@
-import { EmailField } from "../../InputFields/CommunicationInput/jsx/EmailInput";
-import { MobileField } from "../../InputFields/CommunicationInput/jsx/MobileInput";
-import { AddressField } from "../../InputFields/Location/jsx/AddressField";
-import { JsonField } from "../../InputFields/TextInput/jsx/JsonField";
-import { Label } from "../../InputFields/TextInput/jsx/Label";
-import { TextArea } from "../../InputFields/TextInput/jsx/TextArea";
-import { TextField } from "../../InputFields/TextInput/jsx/TextField";
+import { EmailField } from "../../InputFields/CommunicationInput/jsx/EmailInput.jsx";
+import { MobileField } from "../../InputFields/CommunicationInput/jsx/MobileInput.jsx";
+import { AddressField } from "../../InputFields/Location/jsx/AddressField.jsx";
+import { JsonField } from "../../InputFields/TextInput/jsx/JsonField.jsx";
+import { Label } from "../../InputFields/TextInput/jsx/Label.jsx";
+import { TextArea } from "../../InputFields/TextInput/jsx/TextArea.jsx";
+import { TextField } from "../../InputFields/TextInput/jsx/TextField.jsx";
 
 export const UseCommunicationExample = () => {
   return (

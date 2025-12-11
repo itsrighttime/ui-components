@@ -1,9 +1,9 @@
 import { useCallback } from "react";
-import { VALIDITY } from "../helper/validity";
-import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
-import { isConditional } from "../validation/isConditional";
-import { validateResponse } from "../validation/validateResponse";
-import { FORM_STATUS } from "../helper/formStatus";
+import { VALIDITY } from "../helper/validity.js";
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields.js";
+import { isConditional } from "../validation/isConditional.js";
+import { validateResponse } from "../validation/validateResponse.js";
+import { FORM_STATUS } from "../helper/formStatus.js";
 
 export function useFormNavigation(
   config,

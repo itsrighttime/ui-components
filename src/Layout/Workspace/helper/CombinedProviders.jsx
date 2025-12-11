@@ -1,7 +1,7 @@
 // CombinedProviders.js
-import { AuthProvider } from "../../../Context/jsx/AuthContext";
-import { DynamicProvider } from "../../../Context/jsx/DynamicContext";
-import { TabsHandlerProvider } from "../../../Context/jsx/TabsHandlerContext";
+import { AuthProvider } from "../../../Context/jsx/AuthContext.jsx";
+import { DynamicProvider } from "../../../Context/jsx/DynamicContext.jsx";
+import { TabsHandlerProvider } from "../../../Context/jsx/TabsHandlerContext.jsx";
 
 export const CombinedProviders = ({ children, tabClickHandler, workspace }) => (
   <AuthProvider workspace={workspace}>

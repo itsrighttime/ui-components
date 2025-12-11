@@ -1,13 +1,13 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import styles from "../css/Navigator.module.css";
-import { FlexContainer } from "../../Containers/jsx/FlexContainer";
-import { Tab } from "./Tab";
-// import { DropdownSimple } from "../../../InputFields/Selectors/jsx/DropdownSimple";
-// import { toCSSValue } from "../../Containers/helper/toCSSValue";
-// import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-// import { arrowDownIcon, arrowUpIcon } from "../../../utils/icons";
-// import { DropdownSimpleValue } from "./DropdownSimpleValue";
-import { useOutsideClick } from "../../../Hooks/useOutsideClick";
+import { FlexContainer } from "../../Containers/jsx/FlexContainer.jsx";
+import { Tab } from "./Tab.jsx";
+// import { DropdownSimple } from "../../../InputFields/Selectors/jsx/DropdownSimple.jsx";
+// import { toCSSValue } from "../../Containers/helper/toCSSValue.js";
+// import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
+// import { arrowDownIcon, arrowUpIcon } from "../../../utils/icons.jsx";
+// import { DropdownSimpleValue } from "./DropdownSimpleValue.jsx";
+import { useOutsideClick } from "../../../Hooks/useOutsideClick.js";
 
 export const Tabs = ({ tabs, direction }) => {
   const containerRef = useRef(null);

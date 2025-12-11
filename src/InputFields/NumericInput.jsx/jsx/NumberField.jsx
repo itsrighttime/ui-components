@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../css/NumberField.module.css"; // Make sure to create this CSS file for styling
-import { getCommonCssVariables } from "../../helper/getCommonCssVariables";
+import { getCommonCssVariables } from "../../helper/getCommonCssVariables.js";
 
 export const NumberField = ({
   value,

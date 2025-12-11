@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./css/SelectionBox.module.css";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { tickSingleIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { tickSingleIcon } from "../../../utils/icons.jsx";
 import { useEffect } from "react";
 
 export const SelectionBox = ({

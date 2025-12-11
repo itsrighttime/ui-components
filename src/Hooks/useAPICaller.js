@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { apiCaller } from "../utils/apiCaller";
+import { apiCaller } from "../utils/apiCaller.js";
 
 export const useAPICaller = ({
   endpoint = "/",

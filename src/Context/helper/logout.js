@@ -1,4 +1,4 @@
-import { apiCaller } from "../../utils/apiCaller";
+import { apiCaller } from "../../utils/apiCaller.js";
 
 export const logout = async (setUserDetails, navigate) => {
   // const response = await apiCaller({

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../css/Stepper.module.css"; // Ensure to create this CSS file for styling
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { minusIcon, plusIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { minusIcon, plusIcon } from "../../../utils/icons.jsx";
 import { useEffect } from "react";
 
 export const Stepper = ({

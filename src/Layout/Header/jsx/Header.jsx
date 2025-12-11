@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import style from "../css/Header.module.css";
-import { crossIcon, linesIcon } from "./../../../utils/icons";
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-import { redirectURL } from "../../../utils/redirectURL";
-import { setDocumentTitle } from "../../../utils/setDocumentTitle";
+import { crossIcon, linesIcon } from "./../../../utils/icons.jsx";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
+import { redirectURL } from "../../../utils/redirectURL.js";
+import { setDocumentTitle } from "../../../utils/setDocumentTitle.js";
 
 export const Header = ({
   tabs = [], // Example: [{ name: "Home", goTo: "/" }, { name: "About", goTo: "about" }]

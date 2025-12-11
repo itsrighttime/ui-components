@@ -1,4 +1,4 @@
-import { SmoothInfiniteScroll } from "../../Scroller/jsx/SmoothInfiniteScroll";
+import { SmoothInfiniteScroll } from "../../Scroller/jsx/SmoothInfiniteScroll.jsx";
 
 const dummyData = Array.from({ length: 1000 }, (_, i) => `Message #${i + 1}`);
 

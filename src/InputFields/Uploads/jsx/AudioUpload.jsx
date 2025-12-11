@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "../css/AudioUpload.module.css";
-import { AudioPlayer } from "./AudioPlayer";
+import { AudioPlayer } from "./AudioPlayer.jsx";
 import { useEffect } from "react";
 
 export const AudioUpload = ({

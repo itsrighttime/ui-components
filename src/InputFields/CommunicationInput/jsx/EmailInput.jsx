@@ -1,4 +1,4 @@
-import { TextField } from "../../TextInput/jsx/TextField";
+import { TextField } from "../../TextInput/jsx/TextField.jsx";
 
 export const EmailField = ({
   label = "Email",

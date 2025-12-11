@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import style from "../css/ImageUpload.module.css"; // Adjust the path as needed
-import { crossIcon, resetFieldIcon } from "../../../utils/icons";
-import { IconButton } from "../../Actions/jsx/IconButton";
+import { crossIcon, resetFieldIcon } from "../../../utils/icons.jsx";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 
 export const ImageUpload = ({
   label = "Upload Image",

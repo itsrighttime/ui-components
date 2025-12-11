@@ -7,7 +7,7 @@ import {
   socialXIcon,
   socialYouTubeIcon,
   squareFilledIcon,
-} from "../../../utils/icons";
+} from "../../../utils/icons.jsx";
 
 const SM = {
   facebook: "facebook",

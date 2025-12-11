@@ -1,4 +1,4 @@
-import { FIELDS_PROPS as FPs } from "./fields";
+import { FIELDS_PROPS as FPs } from "./fields.js";
 
 // --- utils/errors.js ---
 function makeError(field, message) {

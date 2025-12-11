@@ -1,15 +1,15 @@
 // hooks/useWorkspaceLayout.js
 import { useEffect, useState, useMemo } from "react";
-import { workspaceLayoutApi } from "../helper/workspaceLayoutApi";
-import { formateTabsDetails } from "../helper/formateTabsDetails";
-import { workspaceKeys } from "./workspaceKeys";
-import { useTabHandler } from "../../../Context/jsx/TabsHandlerContext";
-import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
-import { useAuth } from "../../../Context/jsx/AuthContext";
-import { setDocumentTitle } from "../../../utils/setDocumentTitle";
+import { workspaceLayoutApi } from "../helper/workspaceLayoutApi.js";
+import { formateTabsDetails } from "../helper/formateTabsDetails.js";
+import { workspaceKeys } from "./workspaceKeys.js";
+import { useTabHandler } from "../../../Context/jsx/TabsHandlerContext.jsx";
+import { useDynamicContent } from "../../../Context/jsx/DynamicContext.jsx";
+import { useAuth } from "../../../Context/jsx/AuthContext.jsx";
+import { setDocumentTitle } from "../../../utils/setDocumentTitle.js";
 import { useNavigate, useParams } from "react-router-dom";
-import { makeUrl } from "./urlFormatter";
-import { fromKebabCase } from "../../../utils/caseConverter";
+import { makeUrl } from "./urlFormatter.js";
+import { fromKebabCase } from "../../../utils/caseConverter.js";
 
 export const useWorkspaceLayout = ({
   api,

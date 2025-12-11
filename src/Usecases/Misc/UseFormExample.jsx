@@ -1,4 +1,4 @@
-import { GenericForm } from "../../Layout/Forms/jsx/GenericForm";
+import { GenericForm } from "../../Layout/Forms/jsx/GenericForm.jsx";
 
 const formConfig = {
   title: "Create New User", // Title of the form

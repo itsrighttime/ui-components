@@ -1,4 +1,4 @@
-import { translator, useTranslator } from "../../service/translator";
+import { translator, useTranslator } from "../../service/translator.js";
 
 export const UseTranslationExample = () => {
   const translations = {

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { DroppableArea } from "../../DragAndDrop/jsx/DroppableArea";
-import { DraggableItem } from "../../DragAndDrop/jsx/DraggableItm";
+import { DroppableArea } from "../../DragAndDrop/jsx/DroppableArea.jsx";
+import { DraggableItem } from "../../DragAndDrop/jsx/DraggableItm.jsx";
 
 /**
  * 

@@ -1,6 +1,6 @@
-import { OtpField } from "../../InputFields/Security/jsx/OtpField";
-import { PasswordField } from "../../InputFields/Security/jsx/PasswordField";
-import { SecurityQuestion } from "../../InputFields/Security/jsx/SecurityQuestion";
+import { OtpField } from "../../InputFields/Security/jsx/OtpField.jsx";
+import { PasswordField } from "../../InputFields/Security/jsx/PasswordField.jsx";
+import { SecurityQuestion } from "../../InputFields/Security/jsx/SecurityQuestion.jsx";
 
 export const UseSecurityExample = () => {
   return (

@@ -1,5 +1,5 @@
 // helper/formatSingleTab.js
-import { getIconByKey } from "./getIconByKey";
+import { getIconByKey } from "./getIconByKey.js";
 
 export const formatSingleTab = (tab, clickHandler, section) => ({
   ...tab,

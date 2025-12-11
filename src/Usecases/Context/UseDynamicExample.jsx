@@ -2,7 +2,7 @@
 import {
   DynamicProvider,
   useDynamicContext,
-} from "../../Context/jsx/DynamicContext";
+} from "../../Context/jsx/DynamicContext.jsx";
 
 export const App = () => (
   <DynamicProvider>

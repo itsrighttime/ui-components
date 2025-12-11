@@ -1,6 +1,6 @@
 // src/useTranslator.js
 import { useState, useEffect } from "react";
-import { translator } from "./Translator";
+import { translator } from "./Translator.js";
 
 /**
  * React hook for accessing translations

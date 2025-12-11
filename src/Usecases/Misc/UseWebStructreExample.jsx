@@ -1,4 +1,4 @@
-import { WebStructure } from "./components/WebStructure/WebStructure";
+import { WebStructure } from "./components/WebStructure/WebStructure.jsx";
 
 const headerTabs = [
   { name: "Home", goTo: "/" },

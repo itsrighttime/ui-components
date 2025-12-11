@@ -1,6 +1,6 @@
-import { Calendar } from "../../InputFields/DateTimeInput/jsx/Calendar";
-import { DatePicker } from "../../InputFields/DateTimeInput/jsx/DatePicker";
-import { TimePicker } from "../../InputFields/DateTimeInput/jsx/TimePicker";
+import { Calendar } from "../../InputFields/DateTimeInput/jsx/Calendar.jsx";
+import { DatePicker } from "../../InputFields/DateTimeInput/jsx/DatePicker.jsx";
+import { TimePicker } from "../../InputFields/DateTimeInput/jsx/TimePicker.jsx";
 
 export const UseDateTimeExample = () => {
   return (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../../Context/jsx/AuthContext";
-import { Loading } from "../../../SpecialPages/js/Loading";
+import { useAuth } from "../../../Context/jsx/AuthContext.jsx";
+import { Loading } from "../../../SpecialPages/js/Loading.jsx";
 
 export const ProtectedRoutes = ({ children }) => {
   const { userDetails } = useAuth();

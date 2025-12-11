@@ -1,8 +1,8 @@
-import * as Icons from "../../utils/icons"; // your icon file
+import * as Icons from "../../utils/icons.jsx"; // your icon file
 import styles from "../css/IconGallery.module.css";
-import { IconButton } from "../../InputFields/Actions/jsx/IconButton";
-import { AlertContainer } from "../../Alert/js/AlertContainer";
-import { useAlerts } from "../../Hooks/useAlert";
+import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
+import { AlertContainer } from "../../Alert/js/AlertContainer.jsx";
+import { useAlerts } from "../../Hooks/useAlert.js";
 
 const IconGallery = () => {
   const { alertContainer, addAlert, removeAlert } = useAlerts();

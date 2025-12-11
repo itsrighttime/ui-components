@@ -1,7 +1,7 @@
-import { CardImg } from "../../Cards/js/CardImg";
-import { CardSimpleInfo } from "../../Cards/js/CardSimpleInfo";
-import { CardTextOn } from "../../Cards/js/CardTextOn";
-import { CardTextSliding } from "../../Cards/js/CardTextSliding";
+import { CardImg } from "../../Cards/js/CardImg.jsx";
+import { CardSimpleInfo } from "../../Cards/js/CardSimpleInfo.jsx";
+import { CardTextOn } from "../../Cards/js/CardTextOn.jsx";
+import { CardTextSliding } from "../../Cards/js/CardTextSliding.jsx";
 
 import img from "../../Images/danishan.jpeg";
 import img2 from "../../Images/img.jpeg";

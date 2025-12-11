@@ -1,7 +1,7 @@
 // helper/formateTabsDetails.js
-import { formatSingleTab } from "./formatSingleTab";
-import { getSpecialTabs } from "./getSpecialTabs";
-import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
+import { formatSingleTab } from "./formatSingleTab.js";
+import { getSpecialTabs } from "./getSpecialTabs.js";
+import { workspaceLayoutKeys } from "./workspaceLayoutKeys.js";
 
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 

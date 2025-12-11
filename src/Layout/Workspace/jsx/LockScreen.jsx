@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "../css/LockScreen.module.css";
-import { OtpField } from "../../../InputFields/Security/jsx/OtpField";
-import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton";
-import { useAuth } from "../../../Context/jsx/AuthContext";
+import { OtpField } from "../../../InputFields/Security/jsx/OtpField.jsx";
+import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton.jsx";
+import { useAuth } from "../../../Context/jsx/AuthContext.jsx";
 
 export const LockScreen = ({ handleForgot, handleUnlock }) => {
   const [error, setError] = useState(null);

@@ -7,9 +7,9 @@ import {
   playIcon,
   resetFieldIcon,
   speakerOnIcon,
-} from "../../../utils/icons";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { Slider } from "../../NumericInput.jsx/jsx/Slider";
+} from "../../../utils/icons.jsx";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { Slider } from "../../NumericInput.jsx/jsx/Slider.jsx";
 
 export const AudioPlayer = ({
   audioSrc,

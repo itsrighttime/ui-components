@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import style from "../css/Alert.module.css";
-import { crossIcon } from "../../utils/icons";
-import { IconButton } from "../../InputFields/Actions/jsx/IconButton";
+import { crossIcon } from "../../utils/icons.jsx";
+import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
 
 /**
  * Alert Component - Displays a single alert message with a countdown bar and dismiss transition.

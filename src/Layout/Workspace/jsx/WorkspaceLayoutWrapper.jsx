@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { FullscreenWrapper } from "./FullscreenWrapper";
-import { WorkspaceLayout } from "./WorkspaceLayout";
-import { LockScreen } from "./LockScreen";
-import { useUserActiveOnTab } from "../../../Hooks/useUserActiveOnTab";
-import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
+import { FullscreenWrapper } from "./FullscreenWrapper.jsx";
+import { WorkspaceLayout } from "./WorkspaceLayout.jsx";
+import { LockScreen } from "./LockScreen.jsx";
+import { useUserActiveOnTab } from "../../../Hooks/useUserActiveOnTab.js";
+import { useDynamicContent } from "../../../Context/jsx/DynamicContext.jsx";
 import { useEffect } from "react";
-import { workspaceKeys } from "../helper/workspaceKeys";
-import { useAuth } from "../../../Context/jsx/AuthContext";
-import { ErrorPage } from "../../../SpecialPages/js/ErrorPage";
+import { workspaceKeys } from "../helper/workspaceKeys.js";
+import { useAuth } from "../../../Context/jsx/AuthContext.jsx";
+import { ErrorPage } from "../../../SpecialPages/js/ErrorPage.jsx";
 
 export const ScreenType = {
   MAGIC_SCREEN: "magicScreen",

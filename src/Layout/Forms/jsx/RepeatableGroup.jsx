@@ -1,12 +1,12 @@
 // RepeatableGroup.jsx
-import { FieldRenderer } from "./FieldRenderer";
-import { Button } from "../../../InputFields/Actions/jsx/Button";
+import { FieldRenderer } from "./FieldRenderer.jsx";
+import { Button } from "../../../InputFields/Actions/jsx/Button.jsx";
 import styles from "../css/GenericForm.module.css";
-import { FIELDS_PROPS } from "../validation/helper/fields";
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-import { crossIcon } from "../../../utils/icons";
+import { FIELDS_PROPS } from "../validation/helper/fields.js";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
+import { crossIcon } from "../../../utils/icons.jsx";
 import { useMemo } from "react";
-import { useInitializeForm } from "../hooks/useInitializeForm";
+import { useInitializeForm } from "../hooks/useInitializeForm.js";
 
 export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
   const { initialState, initialError } = useInitializeForm(

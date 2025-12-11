@@ -177,6 +177,7 @@ const { Alert } = UIAlert;
 ## [Icons](./docs/icons.md)
 
 - All icons available via: `Icons`
+- IconGallery
 
 ## [Services]
 

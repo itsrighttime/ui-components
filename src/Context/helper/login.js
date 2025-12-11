@@ -1,7 +1,7 @@
-import { makeUrl } from "../../Layout/Workspace/helper/urlFormatter";
-import { workspaceLayoutKeys } from "../../Layout/Workspace/helper/workspaceLayoutKeys";
-import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutWrapper";
-import { apiCaller } from "../../utils/apiCaller";
+import { makeUrl } from "../../Layout/Workspace/helper/urlFormatter.js";
+import { workspaceLayoutKeys } from "../../Layout/Workspace/helper/workspaceLayoutKeys.js";
+import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutWrapper.jsx";
+import { apiCaller } from "../../utils/apiCaller.js";
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 
 export const login = async ({

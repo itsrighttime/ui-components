@@ -1,7 +1,7 @@
 // import styles from "./../css/WorkspaceLayout.module.css";
-// import { Navigator } from "./Navigator";
-// import { WorkspaceLayout } from "./WorkspaceLayout";
-import { workspaceLayoutKeys } from "./../helper/workspaceLayoutKeys";
+// import { Navigator } from "./Navigator.jsx";
+// import { WorkspaceLayout } from "./WorkspaceLayout.jsx";
+import { workspaceLayoutKeys } from "./../helper/workspaceLayoutKeys.js";
 
 const { ZONES } = workspaceLayoutKeys;
 

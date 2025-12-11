@@ -1,8 +1,8 @@
-import { Button } from "../../../InputFields/Actions/jsx/Button";
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-import { arrowLeftIcon, arrowRightIcon, crossIcon } from "../../../utils/icons";
+import { Button } from "../../../InputFields/Actions/jsx/Button.jsx";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
+import { arrowLeftIcon, arrowRightIcon, crossIcon } from "../../../utils/icons.jsx";
 import styles from "../css/GenericForm.module.css";
-import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields.js";
 
 export function FormFooter({
   mode,

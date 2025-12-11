@@ -1,7 +1,7 @@
 import style from "../css/VideoPlayer.module.css";
-import { crossIcon, videoNotIcon, resetFieldIcon } from "../../../utils/icons";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { IconError } from "../../../SpecialPages/js/IconError";
+import { crossIcon, videoNotIcon, resetFieldIcon } from "../../../utils/icons.jsx";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { IconError } from "../../../SpecialPages/js/IconError.jsx";
 
 export const VideoPlayer = ({
   videoFile,

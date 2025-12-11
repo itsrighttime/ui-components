@@ -1,5 +1,5 @@
 import React from "react";
-import { CubesLoader } from "./LoadingStyle";
+import { CubesLoader } from "./LoadingStyle.jsx";
 
 export const SecondaryLoading = () => {
   return (

@@ -1,11 +1,11 @@
 import { useState, useRef } from "react";
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
+import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton.jsx";
 import styles from "../css/Navigator.module.css";
-import { useOutsideClick } from "../../../Hooks/useOutsideClick";
-import { DropdownSimple } from "../../../InputFields/Selectors/jsx/DropdownSimple";
-import { useDynamicContent } from "../../../Context/jsx/DynamicContext";
-import { workspaceKeys } from "./workspaceKeys";
+import { useOutsideClick } from "../../../Hooks/useOutsideClick.js";
+import { DropdownSimple } from "../../../InputFields/Selectors/jsx/DropdownSimple.jsx";
+import { useDynamicContent } from "../../../Context/jsx/DynamicContext.jsx";
+import { workspaceKeys } from "./workspaceKeys.js";
 
 export const Tab = ({
   tabRef,

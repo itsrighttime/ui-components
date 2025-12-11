@@ -1,5 +1,5 @@
-import * as Icons from "../../../utils/icons";
-import { workspaceKeys } from "./workspaceKeys";
+import * as Icons from "../../../utils/icons.jsx";
+import { workspaceKeys } from "./workspaceKeys.js";
 
 const IconsMap = {
   [workspaceKeys.magicLock]: Icons.lockIcon,

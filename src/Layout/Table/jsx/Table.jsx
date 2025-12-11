@@ -1,5 +1,5 @@
-import { TableHeader } from "./TableHeader";
-import { TableBody } from "./TableBody";
+import { TableHeader } from "./TableHeader.jsx";
+import { TableBody } from "./TableBody.jsx";
 import styles from "../css/Table.module.css";
 
 export const Table = ({

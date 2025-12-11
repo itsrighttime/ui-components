@@ -1,7 +1,7 @@
 import styles from "../css/Footer.module.css";
-import { getFooterBrands } from "../helper/footer.config";
-import { BRANDS_PROPS_KEYS as BPK } from "../helper/KEYS";
-import { Category } from "./Category";
+import { getFooterBrands } from "../helper/footer.config.js";
+import { BRANDS_PROPS_KEYS as BPK } from "../helper/KEYS.js";
+import { Category } from "./Category.jsx";
 
 export const Footer = ({ brands = [], baseURLs }) => {
   const brandsToRender = getFooterBrands(brands, baseURLs);

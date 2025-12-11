@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { AudioPlayer } from "../../InputFields/Uploads/jsx/AudioPlayer";
-import { AudioUpload } from "../../InputFields/Uploads/jsx/AudioUpload";
-import { FileUpload } from "../../InputFields/Uploads/jsx/FileUpload";
+import { AudioPlayer } from "../../InputFields/Uploads/jsx/AudioPlayer.jsx";
+import { AudioUpload } from "../../InputFields/Uploads/jsx/AudioUpload.jsx";
+import { FileUpload } from "../../InputFields/Uploads/jsx/FileUpload.jsx";
 import { ImagePreview } from "../../InputFields/Uploads/jsx/ImagePreview";
-import { ImageUpload } from "../../InputFields/Uploads/jsx/ImageUpload";
-import { VideoPlayer } from "../../InputFields/Uploads/jsx/VideoPlayer";
-import { VideoUpload } from "../../InputFields/Uploads/jsx/VideoUpload";
+import { ImageUpload } from "../../InputFields/Uploads/jsx/ImageUpload.jsx";
+import { VideoPlayer } from "../../InputFields/Uploads/jsx/VideoPlayer.jsx";
+import { VideoUpload } from "../../InputFields/Uploads/jsx/VideoUpload.jsx";
 import video from "../../assets/video.mp4";
 import audio from "../../assets/audio.mp3";
 import image from "../../assets/image.jpeg";

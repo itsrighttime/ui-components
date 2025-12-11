@@ -1,4 +1,4 @@
-import { useUserPresentOnTab } from "../../Hooks/useUserPresentOnTab";
+import { useUserPresentOnTab } from "../../Hooks/useUserPresentOnTab.js";
 
 export const UseUserActivityExample = () => {
   useUserPresentOnTab({

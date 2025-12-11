@@ -1,6 +1,6 @@
 // src/pages/LoginPage.jsx
 import React, { useState } from "react";
-import { useAuth } from "../../Context/jsx/AuthContext";
+import { useAuth } from "../../Context/jsx/AuthContext.jsx";
 import { Navigate } from "react-router-dom";
 
 export const LoginPage = () => {

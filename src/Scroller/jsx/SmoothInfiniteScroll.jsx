@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import style from "../css/SmoothInfiniteScroll.module.css"; // Custom styles
-import { useInfiniteScroll } from "../../Hooks/useInfiniteScroll";
-import { Button } from "../../InputFields/Actions/jsx/Button";
+import { useInfiniteScroll } from "../../Hooks/useInfiniteScroll.js";
+import { Button } from "../../InputFields/Actions/jsx/Button.jsx";
 
 export const SmoothInfiniteScroll = ({
   data,

@@ -1,8 +1,8 @@
-import { FlexContainer } from "../../Containers/jsx/FlexContainer";
+import { FlexContainer } from "../../Containers/jsx/FlexContainer.jsx";
 import styles from "../css/Navigator.module.css";
-import { Tabs } from "../helper/Tabs";
-import { validateTabsIcons } from "../helper/validateTabsIcons";
-import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys";
+import { Tabs } from "../helper/Tabs.jsx";
+import { validateTabsIcons } from "../helper/validateTabsIcons.js";
+import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys.js";
 
 const { POSITIONS } = workspaceLayoutKeys;
 

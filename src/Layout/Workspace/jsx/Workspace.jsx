@@ -1,11 +1,11 @@
 // Workspace.jsx
 import { Route, Routes, useNavigate } from "react-router";
-import { CombinedProviders } from "../helper/CombinedProviders";
-import { WorkspaceLayoutWrapper } from "./WorkspaceLayoutWrapper";
-import { ErrorPage } from "../../../SpecialPages/js/ErrorPage";
-import { WorkspaceHomePage } from "./WorspaceHomePage";
-import { FullscreenWrapper } from "./FullscreenWrapper";
-import { LoginPage } from "../helper/LoginPage";
+import { CombinedProviders } from "../helper/CombinedProviders.jsx";
+import { WorkspaceLayoutWrapper } from "./WorkspaceLayoutWrapper.jsx";
+import { ErrorPage } from "../../../SpecialPages/js/ErrorPage.jsx";
+import { WorkspaceHomePage } from "./WorspaceHomePage.jsx";
+import { FullscreenWrapper } from "./FullscreenWrapper.jsx";
+import { LoginPage } from "../helper/LoginPage.jsx";
 
 export const Workspace = ({ tabClickHandler, workspace = "letsDiscuss" }) => {
   const navigate = useNavigate();

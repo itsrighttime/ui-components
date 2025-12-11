@@ -1,9 +1,9 @@
 import img from "../../Images/danishan.jpeg";
-import { Button } from "../../InputFields/Actions/jsx/Button";
-import { IconButton } from "../../InputFields/Actions/jsx/IconButton";
-import { ImageButton } from "../../InputFields/Actions/jsx/ImageButton";
-import { Link } from "../../InputFields/Actions/jsx/Link";
-import { resetFieldIcon } from "../../utils/icons";
+import { Button } from "../../InputFields/Actions/jsx/Button.jsx";
+import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
+import { ImageButton } from "../../InputFields/Actions/jsx/ImageButton.jsx";
+import { Link } from "../../InputFields/Actions/jsx/Link.jsx";
+import { resetFieldIcon } from "../../utils/icons.jsx";
 
 export const UseActionExample = () => {
   return (

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "../css/FileUpload.module.css";
-import { crossIcon, resetFieldIcon } from "../../../utils/icons";
-import { getFileTypeLabel } from "../helper/getFileType";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { formatFileSize } from "../helper/formatFileSize";
+import { crossIcon, resetFieldIcon } from "../../../utils/icons.jsx";
+import { getFileTypeLabel } from "../helper/getFileType.js";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { formatFileSize } from "../helper/formatFileSize.js";
 import { useEffect } from "react";
 
 export const FileUpload = ({

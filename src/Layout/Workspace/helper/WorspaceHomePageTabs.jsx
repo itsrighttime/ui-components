@@ -1,17 +1,17 @@
 import { useEffect } from "react";
-import { useAuth } from "../../../Context/jsx/AuthContext";
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
+import { useAuth } from "../../../Context/jsx/AuthContext.jsx";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
 import {
   logoutIcon,
   profileIcon,
   reminderIcon,
   screenModeIcon,
-} from "../../../utils/icons";
+} from "../../../utils/icons.jsx";
 import styles from "../css/WorkspaceHomePage.module.css";
-import { Tab } from "./Tab";
-import { workspaceKeys } from "./workspaceKeys";
-import { workspaceLabels } from "./workspaceLabels";
-import { getWorspaceHomeTabsApi } from "./workspaceLayoutApi";
+import { Tab } from "./Tab.jsx";
+import { workspaceKeys } from "./workspaceKeys.js";
+import { workspaceLabels } from "./workspaceLabels.js";
+import { getWorspaceHomeTabsApi } from "./workspaceLayoutApi.js";
 
 function convertToDictionary(dataArray) {
   const result = {};

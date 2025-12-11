@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import styles from "../css/TextField.module.css";
-import { crossIcon } from "../../../utils/icons";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { getCommonCssVariables } from "../../helper/getCommonCssVariables";
+import { crossIcon } from "../../../utils/icons.jsx";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { getCommonCssVariables } from "../../helper/getCommonCssVariables.js";
 
 const defaultLinkIcon = "https://itsrighttime.group";
 

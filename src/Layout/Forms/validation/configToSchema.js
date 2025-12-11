@@ -1,4 +1,4 @@
-import { FIELDS_PROPS } from "./helper/fields";
+import { FIELDS_PROPS } from "./helper/fields.js";
 
 // --- Preprocess form config ---
 export const configToSchema = (config) => {

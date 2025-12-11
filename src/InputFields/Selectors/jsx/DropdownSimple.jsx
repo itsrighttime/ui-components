@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import styles from "../css/DropdownSimple.module.css";
-import { useSmartPosition } from "../../../Hooks/useSmartPosition";
+import { useSmartPosition } from "../../../Hooks/useSmartPosition.js";
 
 export const DropdownSimple = ({ items, onSelect }) => {
   const dropdownRef = useRef(null);

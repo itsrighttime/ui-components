@@ -47,7 +47,7 @@ const { FileUpload } = UIInputs.Upload;
 
 ```jsx
 import { useState } from "react";
-import { FileUpload } from "./components/FileUpload/jsx/FileUpload";
+import { FileUpload } from "./components/FileUpload/jsx/FileUpload.jsx";
 
 const UploadForm = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);

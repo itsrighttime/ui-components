@@ -1,24 +1,24 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { FieldRenderer } from "./FieldRenderer";
+import { FieldRenderer } from "./FieldRenderer.jsx";
 import styles from "../css/GenericForm.module.css";
-import { useFormNavigation } from "../hooks/useFormNavigation";
-import { useFormPersistence } from "../hooks/useFormPersistence";
-import { registerValidations } from "../validation/registerValidations";
-import { VALIDITY } from "../helper/validity";
-import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
-import { Loading } from "../../../SpecialPages/js/Loading";
-import { ErrorList } from "./ShowError";
-import { SuccessMessage } from "./SuccessMessage";
-import { useAlerts } from "../../../Hooks/useAlert";
-import { AlertContainer } from "../../../Alert/js/AlertContainer";
-import { useInitializeForm } from "../hooks/useInitializeForm";
-import { FormFooter } from "./FormFooter";
-import { FORM_STATUS } from "../helper/formStatus";
-import { useFormSettings } from "../hooks/useFormSettings";
-import { useFormSubmit } from "../hooks/useFormSubmit";
-import { isValidFormStructure } from "../validation/isValidFormStructure";
-import { validateSchema } from "../validation/validateSchema";
-import { configToSchema } from "../validation/configToSchema";
+import { useFormNavigation } from "../hooks/useFormNavigation.js";
+import { useFormPersistence } from "../hooks/useFormPersistence.js";
+import { registerValidations } from "../validation/registerValidations.js";
+import { VALIDITY } from "../helper/validity.js";
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields.js";
+import { Loading } from "../../../SpecialPages/js/Loading.jsx";
+import { ErrorList } from "./ShowError.jsx";
+import { SuccessMessage } from "./SuccessMessage.jsx";
+import { useAlerts } from "../../../Hooks/useAlert.js";
+import { AlertContainer } from "../../../Alert/js/AlertContainer.jsx";
+import { useInitializeForm } from "../hooks/useInitializeForm.js";
+import { FormFooter } from "./FormFooter.jsx";
+import { FORM_STATUS } from "../helper/formStatus.js";
+import { useFormSettings } from "../hooks/useFormSettings.js";
+import { useFormSubmit } from "../hooks/useFormSubmit.js";
+import { isValidFormStructure } from "../validation/isValidFormStructure.js";
+import { validateSchema } from "../validation/validateSchema.js";
+import { configToSchema } from "../validation/configToSchema.js";
 
 export function GenericForm({
   config,

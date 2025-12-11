@@ -1,4 +1,4 @@
-import { FOOTER_BRANDS_KEYS as FBKs } from "./KEYS";
+import { FOOTER_BRANDS_KEYS as FBKs } from "./KEYS.js";
 
 class BaseURL {
   constructor(urls) {

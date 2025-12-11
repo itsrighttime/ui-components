@@ -1,6 +1,6 @@
-import { getProductLogo, IMAGE_ASSETS_KEYS } from "../../../assets/productsLogo/productLogo.assets";
-import { LoginForm } from "../../../Auth/js/LoginForm";
-import { useAuth } from "../../../Context/jsx/AuthContext";
+import { getProductLogo, IMAGE_ASSETS_KEYS } from "../../../assets/productsLogo/productLogo.assets.js";
+import { LoginForm } from "../../../Auth/js/LoginForm.jsx";
+import { useAuth } from "../../../Context/jsx/AuthContext.jsx";
 
 export const LoginPage = ({ handleToggleFullscreen = null }) => {
   const { handleLogin } = useAuth();

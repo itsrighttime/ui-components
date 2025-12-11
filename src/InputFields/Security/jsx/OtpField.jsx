@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import style from "../css/OtpField.module.css";
-import { apiCaller } from "../../../utils/apiCaller";
-import { UtilsLogger } from "../../../utils/logger/logger.util";
+import { apiCaller } from "../../../utils/apiCaller.js";
+import { UtilsLogger } from "../../../utils/logger/logger.util.js";
 
 const logger = UtilsLogger.logger;
 

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import style from "../css/VideoUpload.module.css"; // Adjust the path as necessary
-import { VideoPlayer } from "./VideoPlayer";
-import { crossIcon, resetFieldIcon } from "../../../utils/icons";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { formatFileSize } from "../helper/formatFileSize";
+import { VideoPlayer } from "./VideoPlayer.jsx";
+import { crossIcon, resetFieldIcon } from "../../../utils/icons.jsx";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { formatFileSize } from "../helper/formatFileSize.js";
 import { useEffect } from "react";
 
 export const VideoUpload = ({

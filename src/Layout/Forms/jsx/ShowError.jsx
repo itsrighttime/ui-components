@@ -1,6 +1,6 @@
-import { Button } from "../../../InputFields/Actions/jsx/Button";
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
-import { crossIcon } from "../../../utils/icons";
+import { Button } from "../../../InputFields/Actions/jsx/Button.jsx";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
+import { crossIcon } from "../../../utils/icons.jsx";
 import styles from "../css/ShowError.module.css";
 
 export const ErrorList = ({

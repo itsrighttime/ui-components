@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Calendar } from "./Calendar"; // Assuming Calendar is your existing component
+import { Calendar } from "./Calendar.jsx"; // Assuming Calendar is your existing component
 import styles from "../css/DatePicker.module.css";
-import { getCommonCssVariables } from "../../helper/getCommonCssVariables";
+import { getCommonCssVariables } from "../../helper/getCommonCssVariables.js";
 
 export const DatePicker = ({
   label,

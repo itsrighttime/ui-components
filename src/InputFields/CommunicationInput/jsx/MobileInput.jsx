@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TextField } from "../../TextInput/jsx/TextField";
+import { TextField } from "../../TextInput/jsx/TextField.jsx";
 import styles from "../css/MobileInput.module.css";
 
 export const MobileField = ({

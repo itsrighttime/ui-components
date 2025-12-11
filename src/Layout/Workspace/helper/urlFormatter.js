@@ -1,4 +1,4 @@
-import { toKebabCase } from "../../../utils/caseConverter";
+import { toKebabCase } from "../../../utils/caseConverter.js";
 
 export const makeUrl = (
   { level, zone, position, key, workspaceId },

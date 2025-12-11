@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "../css/PasswordField.module.css";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { eyeCrossIcon, eyeIcon } from "../../../utils/icons";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { eyeCrossIcon, eyeIcon } from "../../../utils/icons.jsx";
 
 export const PasswordField = ({
   label = "Password",

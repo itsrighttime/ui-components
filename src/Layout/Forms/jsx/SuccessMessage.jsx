@@ -1,4 +1,4 @@
-import { Button } from "../../../InputFields/Actions/jsx/Button";
+import { Button } from "../../../InputFields/Actions/jsx/Button.jsx";
 import styles from "../css/ShowError.module.css"; // Reuse styles for wrapper and list
 
 export const SuccessMessage = ({

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../css/DropdownSimpleValue.module.css";
-import { Tab } from "./Tab";
+import { Tab } from "./Tab.jsx";
 
 export const DropdownSimpleValue = ({ items, onSelect }) => {
   const dropdownRef = useRef(null);

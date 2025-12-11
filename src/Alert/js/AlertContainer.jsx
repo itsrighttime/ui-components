@@ -1,4 +1,4 @@
-import { Alert } from "./Alert";
+import { Alert } from "./Alert.jsx";
 import style from "../css/Alert.module.css";
 
 /**

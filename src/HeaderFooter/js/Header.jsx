@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import style from "../css/Header.module.css";
-import { crossIcon, linesIcon, redirectURL } from "../../utils";
-import { IconButton } from "../../InputFields";
+import { crossIcon, linesIcon, redirectURL } from "../../utils/icons.jsx";
 import { useLocation, useNavigate } from "react-router";
+import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
 
 const resolveStringToId = (str) => str.replace(/\s+/g, "").toLowerCase();
 

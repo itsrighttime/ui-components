@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { ColorPicker } from "../../InputFields/Selectors/jsx/ColorPicker";
-import { Dropdown } from "../../InputFields/Selectors/jsx/Dropdown";
-import { RadioGroup } from "../../InputFields/Selectors/jsx/RadioGroup";
-import { SearchBox } from "../../InputFields/Selectors/jsx/SearchBox";
-import { Switch } from "../../InputFields/Selectors/jsx/Switch";
-import { CheckboxGroup } from "../../InputFields/Selectors/jsx/CheckboxGroup";
+import { ColorPicker } from "../../InputFields/Selectors/jsx/ColorPicker.jsx";
+import { Dropdown } from "../../InputFields/Selectors/jsx/Dropdown.jsx";
+import { RadioGroup } from "../../InputFields/Selectors/jsx/RadioGroup.jsx";
+import { SearchBox } from "../../InputFields/Selectors/jsx/SearchBox.jsx";
+import { Switch } from "../../InputFields/Selectors/jsx/Switch.jsx";
+import { CheckboxGroup } from "../../InputFields/Selectors/jsx/CheckboxGroup.jsx";
 
 export const UseSelectorExample = () => {
   const [selected, setSelected] = useState("male");

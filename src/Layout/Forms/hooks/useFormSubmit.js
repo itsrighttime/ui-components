@@ -1,9 +1,9 @@
-import { deleteFile } from "../helper/indexedDb";
-import { configToSchema } from "../validation/configToSchema";
-import { validateResponse } from "../validation/validateResponse";
-import { submitToBackend } from "../helper/submitTobackend";
-import { FORM_STATUS } from "../helper/formStatus";
-import { FIELDS_PROPS as FPs } from "../validation/helper/fields";
+import { deleteFile } from "../helper/indexedDb.js";
+import { configToSchema } from "../validation/configToSchema.js";
+import { validateResponse } from "../validation/validateResponse.js";
+import { submitToBackend } from "../helper/submitTobackend.js";
+import { FORM_STATUS } from "../helper/formStatus.js";
+import { FIELDS_PROPS as FPs } from "../validation/helper/fields.js";
 
 export function useFormSubmit({
   config,

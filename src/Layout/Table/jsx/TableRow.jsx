@@ -1,7 +1,7 @@
 import React from "react";
-import { TableCell } from "./TableCell";
+import { TableCell } from "./TableCell.jsx";
 import styles from "../css/Table.module.css";
-import { IconButton } from "../../../InputFields/Actions/jsx/IconButton";
+import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
 
 
 export const TableRow = ({

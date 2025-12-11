@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
-import { login } from "../helper/login";
-import { logout } from "../helper/logout";
-import { checkSession } from "../helper/checkSession";
+import { login } from "../helper/login.js";
+import { logout } from "../helper/logout.js";
+import { checkSession } from "../helper/checkSession.js";
 import { useNavigate } from "react-router-dom";
 
 // Create AuthContext

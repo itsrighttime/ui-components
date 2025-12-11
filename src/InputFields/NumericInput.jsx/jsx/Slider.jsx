@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../css/Slider.module.css";
-import { minusIcon, plusIcon } from "../../../utils/icons";
-import { IconButton } from "../../Actions/jsx/IconButton";
+import { minusIcon, plusIcon } from "../../../utils/icons.jsx";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 
 export const Slider = ({
   value = 0,

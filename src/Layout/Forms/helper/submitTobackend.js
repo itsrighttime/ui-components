@@ -1,4 +1,4 @@
-import { apiCaller } from "../../../utils/apiCaller";
+import { apiCaller } from "../../../utils/apiCaller.js";
 
 export const submitToBackend = async (formData, endpoint) => {
   if (!endpoint) {

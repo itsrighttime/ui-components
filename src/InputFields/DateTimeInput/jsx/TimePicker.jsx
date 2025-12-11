@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../css/TimePicker.module.css";
-import { CustomDropdown } from "../helper/CustomDropdown";
+import { CustomDropdown } from "../helper/CustomDropdown.jsx";
 import { useEffect } from "react";
 
 export const TimePicker = ({

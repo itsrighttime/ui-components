@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { IconError } from "../../../SpecialPages/js/IconError";
-import { imageNotIcon } from "../../../utils/icons";
+import { IconError } from "../../../SpecialPages/js/IconError.jsx";
+import { imageNotIcon } from "../../../utils/icons.jsx";
 
 export const ImagePreview = ({
   image,

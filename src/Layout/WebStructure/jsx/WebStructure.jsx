@@ -1,5 +1,5 @@
-import { Footer } from "../../Footer/jsx/Footer";
-import { Header } from "../../Header/jsx/Header";
+import { Footer } from "../../Footer/jsx/Footer.jsx";
+import { Header } from "../../Header/jsx/Header.jsx";
 import styles from "../css/WebStructure.module.css";
 
 export const WebStructure = ({ children, brandFooter, brandHeader }) => {

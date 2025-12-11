@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { loadFile, saveFile, deleteFile } from "../helper/indexedDb";
+import { loadFile, saveFile, deleteFile } from "../helper/indexedDb.js";
 
 const EXPIRY_DURATION = 24 * 60 * 60 * 1000; // 24 hours in ms
 

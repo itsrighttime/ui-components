@@ -1,4 +1,4 @@
-import { SelectionBox } from "../helper/SelectionBox";
+import { SelectionBox } from "../helper/SelectionBox.jsx";
 
 export const CheckboxGroup = ({
   options = [],

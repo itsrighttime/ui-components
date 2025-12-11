@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { TextArea } from "./TextArea";
-import { Button } from "../../Actions/jsx/Button";
+import { TextArea } from "./TextArea.jsx";
+import { Button } from "../../Actions/jsx/Button.jsx";
 import styles from "../css/JsonField.module.css";
-import { getCommonCssVariables } from "../../helper/getCommonCssVariables";
+import { getCommonCssVariables } from "../../helper/getCommonCssVariables.js";
 
 export const JsonField = ({
   label,

@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "../css/Dropdown.module.css";
-import { arrowDownIcon, arrowUpIcon } from "../../../utils/icons";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { Button } from "../../Actions/jsx/Button";
-import { useSmartPosition } from "../../../Hooks/useSmartPosition";
+import { arrowDownIcon, arrowUpIcon } from "../../../utils/icons.jsx";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { Button } from "../../Actions/jsx/Button.jsx";
+import { useSmartPosition } from "../../../Hooks/useSmartPosition.js";
 
 export const Dropdown = ({
   options = [],

@@ -1,4 +1,4 @@
-import { Tooltip } from "../../../ExtraThings/js/Tooltip";
+import { Tooltip } from "../../../ExtraThings/js/Tooltip.jsx";
 import styles from "../css/IconButton.module.css";
 
 /**

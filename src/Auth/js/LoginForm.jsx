@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { PasswordField } from "../../InputFields/Security/jsx/PasswordField";
-import { TextField } from "../../InputFields/TextInput/jsx/TextField";
+import { PasswordField } from "../../InputFields/Security/jsx/PasswordField.jsx";
+import { TextField } from "../../InputFields/TextInput/jsx/TextField.jsx";
 import styles from "../css/LoginForm.module.css";
-import { Button } from "../../InputFields/Actions/jsx/Button";
-import { PlainButton } from "../../InputFields/Actions/jsx/PlainButton";
-import { IconButton } from "../../InputFields/Actions/jsx/IconButton";
-import { screenModeIcon } from "../../utils/icons";
-import { workspaceLabels } from "../../Layout/Workspace/helper/workspaceLabels";
+import { Button } from "../../InputFields/Actions/jsx/Button.jsx";
+import { PlainButton } from "../../InputFields/Actions/jsx/PlainButton.jsx";
+import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
+import { screenModeIcon } from "../../utils/icons.jsx";
+import { workspaceLabels } from "../../Layout/Workspace/helper/workspaceLabels.js";
 
 const ExtraButtons = ({ handleForgotId, handleForgotPassword }) => (
   <div className={styles.extra}>

@@ -1,4 +1,4 @@
-import { workspaceLayoutKeys } from "./workspaceLayoutKeys";
+import { workspaceLayoutKeys } from "./workspaceLayoutKeys.js";
 
 const { LEVELS, ZONES, POSITIONS } = workspaceLayoutKeys;
 

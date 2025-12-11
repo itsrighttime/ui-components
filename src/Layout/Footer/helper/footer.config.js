@@ -1,6 +1,6 @@
-import { IMAGE_ASSETS_KEYS as IAK } from "../../../assets/productsLogo/productLogo.assets";
-import { baseURL } from "./baseURL";
-import { FOOTER_BRANDS_KEYS as FBKs, BRANDS_PROPS_KEYS as KEYS } from "./KEYS";
+import { IMAGE_ASSETS_KEYS as IAK } from "../../../assets/productsLogo/productLogo.assets.js";
+import { baseURL } from "./baseURL.js";
+import { FOOTER_BRANDS_KEYS as FBKs, BRANDS_PROPS_KEYS as KEYS } from "./KEYS.js";
 
 export const FOOTER_BRANDS = (urls) => {
   const itsrighttime = {

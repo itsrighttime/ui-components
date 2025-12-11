@@ -1,8 +1,8 @@
 import React, { useState, Suspense } from "react";
 import styles from "../css/CalendarBox.module.css";
-import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons";
-import { convertStrDate2Date } from "../helper/handleDateChange";
-import { isAfterDate } from "../helper/handleDateCompare";
+import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons.jsx";
+import { convertStrDate2Date } from "../helper/handleDateChange.js";
+import { isAfterDate } from "../helper/handleDateCompare.js";
 import {
   canMoveNext,
   canMovePrev,
@@ -13,8 +13,8 @@ import {
   handleViewChange,
   handleYearSelection,
 } from "../helper/helperCalnedar";
-import { IconButton } from "../../Actions/jsx/IconButton";
-import { Loading } from "../../../SpecialPages/js/Loading";
+import { IconButton } from "../../Actions/jsx/IconButton.jsx";
+import { Loading } from "../../../SpecialPages/js/Loading.jsx";
 
 // // Dynamically import components
 const RenderCalendar = React.lazy(() => import("../helper/RenderDates"));

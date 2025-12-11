@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Dropdown } from "../../Selectors/jsx/Dropdown";
-import { TextField } from "../../TextInput/jsx/TextField";
+import { Dropdown } from "../../Selectors/jsx/Dropdown.jsx";
+import { TextField } from "../../TextInput/jsx/TextField.jsx";
 import styles from "../css/SecurityQuestion.module.css";
 
 export const SecurityQuestion = ({

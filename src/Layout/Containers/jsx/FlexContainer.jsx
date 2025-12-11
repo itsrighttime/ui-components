@@ -1,5 +1,5 @@
 import styles from "../css/Container.module.css";
-import { toCSSValue } from "../helper/toCSSValue";
+import { toCSSValue } from "../helper/toCSSValue.js";
 
 export const FlexContainer = ({
   children,

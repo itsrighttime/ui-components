@@ -1,5 +1,5 @@
-import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutWrapper";
-import { apiCaller } from "../../utils/apiCaller";
+import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutWrapper.jsx";
+import { apiCaller } from "../../utils/apiCaller.js";
 
 export const checkSession = async (setUserDetails, setLoading) => {
   // const response = await apiCaller({
