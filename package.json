@@ -1,6 +1,6 @@
 {
   "name": "@itsrighttime/ui-components",
-  "version": "0.0.83",
+  "version": "0.0.84",
   "description": "A reusable and customizable React UI components library including inputs, buttons, notifications, cards, icons, and more.",
   "author": {
     "name": "Danishan",
@@ -15,11 +15,14 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "type": "module",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "files": [
-    "dist"
-  ],
+  "main": "src/export.js",
+  "module": "src/export.js",
+  "exports": {
+    ".": {
+      "import": "./src/export.js",
+      "require": "./src/export.js"
+    }
+  },
   "keywords": [
     "react",
     "ui-components",
