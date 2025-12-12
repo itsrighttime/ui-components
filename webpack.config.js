@@ -45,7 +45,7 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              esModule: false,        // <-- REQUIRED
+              esModule: false, // <-- REQUIRED
               modules: {
                 // auto: true,
                 localIdentName: "[hash:base64:6]",
@@ -64,7 +64,7 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              esModule: true,        // <-- REQUIRED
+              esModule: true, // <-- REQUIRED
             },
           },
         ],
@@ -73,10 +73,11 @@ module.exports = {
       // IMAGES
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
-        type: "asset/resource",
-        generator: {
-          filename: "assets/[name][hash][ext]",
-        },
+        type: "asset/inline",
+        // type: "asset/resource",
+        // generator: {
+        //   filename: "assets/[name][hash][ext]",
+        // },
       },
     ],
   },
