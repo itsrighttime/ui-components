@@ -254,3 +254,17 @@ export const UIServices = {
     translator,
   },
 };
+
+
+export default {
+  UIAlert,
+  UICards,
+  UIExtra,
+  UIEssentials,
+  UIIcons,
+  UIPages,
+  UIInputs,
+  UILayout,
+  UIHooks,
+  UIUtils,
+};

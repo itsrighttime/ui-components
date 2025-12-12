@@ -1,7 +1,8 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// webpack.config.js
+import path from "path";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-module.exports = {
+export default {
   mode: "production",
 
   entry: {
@@ -10,7 +11,7 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve("./dist"),
     filename: "[name].js",
     library: {
       type: "module",
@@ -28,7 +29,6 @@ module.exports = {
 
   module: {
     rules: [
-      // JS / JSX
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -36,8 +36,6 @@ module.exports = {
           loader: "babel-loader",
         },
       },
-
-      // CSS MODULES (*.module.css)
       {
         test: /\.module\.css$/,
         use: [
@@ -45,7 +43,7 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              esModule: false,        // <-- REQUIRED
+              esModule: false,
               modules: {
                 // auto: true,
                 localIdentName: "[hash:base64:6]",
@@ -54,8 +52,6 @@ module.exports = {
           },
         ],
       },
-
-      // NORMAL CSS
       {
         test: /\.css$/,
         exclude: /\.module\.css$/,
@@ -64,20 +60,18 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              esModule: true,        // <-- REQUIRED
+              esModule: true,
             },
           },
         ],
       },
-
-      // // IMAGES
-      // {
-      //   test: /\.(png|jpg|jpeg|gif|svg)$/i,
-      //   type: "asset/resource",
-      //   generator: {
-      //     filename: "assets/[name][hash][ext]",
-      //   },
-      // },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/[name][hash][ext]",
+        },
+      },
     ],
   },
 
@@ -85,14 +79,5 @@ module.exports = {
     extensions: [".js", ".jsx"],
   },
 
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    }),
-  ],
-
-  // Optional: remove asset size warnings
-  performance: {
-    hints: false,
-  },
+  plugins: [new MiniCssExtractPlugin()],
 };

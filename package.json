@@ -1,6 +1,6 @@
 {
   "name": "@itsrighttime/ui-components",
-  "version": "0.0.80",
+  "version": "0.0.82",
   "description": "A reusable and customizable React UI components library including inputs, buttons, notifications, cards, icons, and more.",
   "author": {
     "name": "Danishan",
@@ -14,6 +14,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
+  "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "files": [
@@ -39,7 +40,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "webpack": "npx webpack --config ./webpack.config.js"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

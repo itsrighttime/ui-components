@@ -1,5 +1,5 @@
-import { handleDateChange } from "./handleDateChange";
-import { isAfterDate, isBeforeDate } from "./handleDateCompare";
+import { handleDateChange } from "./handleDateChange.js";
+import { isAfterDate, isBeforeDate } from "./handleDateCompare.js";
 
 // New function to get header text based on the current view
 export const getHeaderText = (currentDate, view,) => {

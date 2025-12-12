@@ -1,4 +1,4 @@
-import { convertStrDate2Date } from "./handleDateChange";
+import { convertStrDate2Date } from "./handleDateChange.js";
 
 
 /**
