@@ -13,9 +13,8 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
     library: {
-      type: "commonjs2",
+      type: "module",
     },
-    clean: true, // Clean dist folder before build
   },
 
   experiments: {
@@ -46,7 +45,7 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              esModule: false, // <-- REQUIRED
+              esModule: false,        // <-- REQUIRED
               modules: {
                 // auto: true,
                 localIdentName: "[hash:base64:6]",
@@ -65,21 +64,20 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              esModule: true, // <-- REQUIRED
+              esModule: true,        // <-- REQUIRED
             },
           },
         ],
       },
 
-      // IMAGES
-      {
-        test: /\.(png|jpg|jpeg|gif|svg)$/i,
-        // type: "asset/inline",
-        type: "asset/resource",
-        generator: {
-          filename: "assets/[name][hash][ext]",
-        },
-      },
+      // // IMAGES
+      // {
+      //   test: /\.(png|jpg|jpeg|gif|svg)$/i,
+      //   type: "asset/resource",
+      //   generator: {
+      //     filename: "assets/[name][hash][ext]",
+      //   },
+      // },
     ],
   },
 
