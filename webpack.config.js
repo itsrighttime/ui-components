@@ -13,8 +13,9 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
     library: {
-      type: "module",
+      type: "commonjs2",
     },
+    clean: true, // Clean dist folder before build
   },
 
   experiments: {
@@ -73,11 +74,11 @@ module.exports = {
       // IMAGES
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
-        type: "asset/inline",
-        // type: "asset/resource",
-        // generator: {
-        //   filename: "assets/[name][hash][ext]",
-        // },
+        // type: "asset/inline",
+        type: "asset/resource",
+        generator: {
+          filename: "assets/[name][hash][ext]",
+        },
       },
     ],
   },
