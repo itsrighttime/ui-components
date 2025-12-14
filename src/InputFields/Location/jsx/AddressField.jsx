@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { TextField } from "../../TextInput/jsx/TextField.jsx";
 import styles from "../css/AddressField.module.css";

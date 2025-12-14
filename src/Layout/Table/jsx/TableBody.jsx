@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { TableRow } from "./TableRow.jsx";
 import styles from "../css/Table.module.css";

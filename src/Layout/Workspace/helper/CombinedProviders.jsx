@@ -1,3 +1,5 @@
+"use client";
+
 // CombinedProviders.js
 import { AuthProvider } from "../../../Context/jsx/AuthContext.jsx";
 import { DynamicProvider } from "../../../Context/jsx/DynamicContext.jsx";

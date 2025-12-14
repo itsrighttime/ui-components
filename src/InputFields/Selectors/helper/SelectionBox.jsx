@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import styles from "./css/SelectionBox.module.css";
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";

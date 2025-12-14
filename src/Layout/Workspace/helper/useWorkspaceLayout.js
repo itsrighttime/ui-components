@@ -1,3 +1,5 @@
+"use client";
+
 // hooks/useWorkspaceLayout.js
 import { useEffect, useState, useMemo } from "react";
 import { workspaceLayoutApi } from "../helper/workspaceLayoutApi.js";

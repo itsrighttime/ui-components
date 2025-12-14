@@ -1,3 +1,5 @@
+"use client";
+
 import { useLayoutEffect, useRef, useState } from "react";
 import styles from "../css/Navigator.module.css";
 import { FlexContainer } from "../../Containers/jsx/FlexContainer.jsx";

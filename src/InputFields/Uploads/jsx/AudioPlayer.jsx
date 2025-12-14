@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState, useEffect, useMemo } from "react";
 import style from "../css/AudioPlayer.module.css";
 import {

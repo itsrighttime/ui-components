@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "../../../InputFields/Actions/jsx/Button.jsx";
 import styles from "../css/ShowError.module.css"; // Reuse styles for wrapper and list
 

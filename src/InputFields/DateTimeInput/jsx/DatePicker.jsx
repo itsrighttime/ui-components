@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { Calendar } from "./Calendar.jsx"; // Assuming Calendar is your existing component
 import styles from "../css/DatePicker.module.css";

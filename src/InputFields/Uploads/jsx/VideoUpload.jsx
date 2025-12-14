@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import style from "../css/VideoUpload.module.css"; // Adjust the path as necessary
 import { VideoPlayer } from "./VideoPlayer.jsx";

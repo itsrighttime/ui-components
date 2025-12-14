@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import styles from "../css/SearchBox.module.css";
 import { searchIcon } from "../../../utils/icons.jsx";

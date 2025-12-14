@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { TableCell } from "./TableCell.jsx";
 import styles from "../css/Table.module.css";

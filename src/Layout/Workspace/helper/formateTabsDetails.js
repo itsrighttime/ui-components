@@ -1,3 +1,5 @@
+"use client";
+
 // helper/formateTabsDetails.js
 import { formatSingleTab } from "./formatSingleTab.js";
 import { getSpecialTabs } from "./getSpecialTabs.js";

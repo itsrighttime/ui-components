@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import styles from "../css/NumberField.module.css"; // Make sure to create this CSS file for styling
 import { getCommonCssVariables } from "../../helper/getCommonCssVariables.js";
@@ -5,7 +7,7 @@ import { getCommonCssVariables } from "../../helper/getCommonCssVariables.js";
 /**
  * NumberField Component
  *
- * A numeric input field that supports integer and decimal validation, 
+ * A numeric input field that supports integer and decimal validation,
  * minimum and maximum value constraints, and configurable decimal places.
  * The component maintains internal state for the input value and notifies
  * the parent component via `setResult` when the value changes.

@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import { PasswordField } from "../../InputFields/Security/jsx/PasswordField.jsx";
 import { TextField } from "../../InputFields/TextInput/jsx/TextField.jsx";

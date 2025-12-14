@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "../../InputFields/Actions/jsx/Button.jsx";
 import { getColorCode } from "../../utils/COLOR.js";
 import style from "../css/CardTextSliding.module.css";

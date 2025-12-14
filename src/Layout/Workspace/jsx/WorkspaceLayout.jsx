@@ -1,3 +1,5 @@
+"use client";
+
 // components/WorkspaceLayout.jsx
 import { useWorkspaceLayout } from "../helper/useWorkspaceLayout.js";
 import { ErrorPage } from "../../../SpecialPages/js/ErrorPage.jsx";

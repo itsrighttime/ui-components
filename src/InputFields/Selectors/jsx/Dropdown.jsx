@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef, useEffect } from "react";
 import styles from "../css/Dropdown.module.css";
 import { arrowDownIcon, arrowUpIcon } from "../../../utils/icons.jsx";
@@ -8,9 +10,9 @@ import { useSmartPosition } from "../../../Hooks/useSmartPosition.js";
 /**
  * `Dropdown` is a React component that renders a customizable dropdown/select input.
  * It supports single or multiple selections, search filtering, and optional ability to add new options.
- * 
+ *
  * @component
- * 
+ *
  * @param {Object} props - Component props.
  * @param {Array<string>} [props.options=[]] - List of initial options to display in the dropdown.
  * @param {boolean} [props.multiple=false] - Whether multiple selections are allowed.
@@ -24,7 +26,7 @@ import { useSmartPosition } from "../../../Hooks/useSmartPosition.js";
  * @param {string} [props.width="300px"] - Width of the dropdown.
  * @param {boolean} [props.showLabelAlways=false] - Whether to always show the label even if nothing is selected.
  * @param {boolean} [props.required=false] - Whether the field is required (renders an asterisk if true).
- * 
+ *
  * @example
  * <Dropdown
  *   options={['Option 1', 'Option 2']}
@@ -34,7 +36,7 @@ import { useSmartPosition } from "../../../Hooks/useSmartPosition.js";
  *   color="#52c9bd"
  *   addNew={true}
  * />
- * 
+ *
  * @returns {JSX.Element} A dropdown component supporting search, multiple selection, and add-new-option functionality.
  */
 export const Dropdown = ({

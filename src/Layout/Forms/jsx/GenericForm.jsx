@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { FieldRenderer } from "./FieldRenderer.jsx";
 import styles from "../css/GenericForm.module.css";

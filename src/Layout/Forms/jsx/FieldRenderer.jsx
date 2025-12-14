@@ -1,3 +1,5 @@
+"use client";
+
 // FieldRenderer.jsx
 import { TextField } from "../../../InputFields/TextInput/jsx/TextField.jsx";
 import { TextArea } from "../../../InputFields/TextInput/jsx/TextArea.jsx";

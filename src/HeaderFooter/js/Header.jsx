@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import style from "../css/Header.module.css";
 import { crossIcon, linesIcon, redirectURL } from "../../utils/icons.jsx";

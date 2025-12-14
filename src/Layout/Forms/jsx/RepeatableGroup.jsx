@@ -1,3 +1,5 @@
+"use client";
+
 // RepeatableGroup.jsx
 import { FieldRenderer } from "./FieldRenderer.jsx";
 import { Button } from "../../../InputFields/Actions/jsx/Button.jsx";

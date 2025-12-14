@@ -1,3 +1,5 @@
+"use client";
+
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { SecondaryLoading } from "./SecondaryLoading.jsx";
 import styles from "../css/Loading.module.css";

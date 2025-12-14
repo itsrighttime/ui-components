@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { IconError } from "../../../SpecialPages/js/IconError.jsx";
 import { imageNotIcon } from "../../../utils/icons.jsx";

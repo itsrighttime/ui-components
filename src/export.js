@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * @module @itsrighttime/ui-components
  * @description A reusable and customizable React UI components library
@@ -132,7 +134,6 @@ export const UIEssentials = {
 export const UIIcons = {
   Icons: Icons,
   IconGallery,
-
 };
 
 export const UIPages = {
@@ -259,7 +260,6 @@ export const UIServices = {
     translator,
   },
 };
-
 
 export default {
   UIAlert,

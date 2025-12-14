@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import styles from "../css/TextField.module.css";
 import { crossIcon } from "../../../utils/icons.jsx";

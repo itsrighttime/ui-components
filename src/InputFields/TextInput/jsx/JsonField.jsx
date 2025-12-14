@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { TextArea } from "./TextArea.jsx";
 import { Button } from "../../Actions/jsx/Button.jsx";

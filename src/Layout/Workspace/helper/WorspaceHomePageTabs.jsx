@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { useAuth } from "../../../Context/jsx/AuthContext.jsx";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";

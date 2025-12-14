@@ -1,3 +1,5 @@
+"use client";
+
 import style from "../css/VideoPlayer.module.css";
 import {
   crossIcon,
@@ -26,7 +28,7 @@ import { IconError } from "../../../SpecialPages/js/IconError.jsx";
  * - If `videoFile` is a string, it is used directly as the video source.
  * - If no video is provided, a fallback error icon is displayed.
  * - Re-upload and remove buttons are shown if corresponding callbacks are provided.
- * 
+ *
  * @example
  * Example usage:
  * <VideoPlayer

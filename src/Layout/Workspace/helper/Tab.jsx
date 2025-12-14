@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef } from "react";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
 import { PlainButton } from "../../../InputFields/Actions/jsx/PlainButton.jsx";

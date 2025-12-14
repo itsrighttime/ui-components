@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import styles from "../css/LockScreen.module.css";
 import { OtpField } from "../../../InputFields/Security/jsx/OtpField.jsx";

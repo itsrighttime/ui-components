@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import styles from "../css/DropdownSimpleValue.module.css";
 import { Tab } from "./Tab.jsx";

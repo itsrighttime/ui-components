@@ -1,15 +1,17 @@
+"use client";
+
 import { useState } from "react";
 import style from "../css/PasswordField.module.css";
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 import { eyeCrossIcon, eyeIcon } from "../../../utils/icons.jsx";
 
 /**
- * `PasswordField` is a React component that renders a password input field with 
- * optional show/hide toggle and password strength indicator. It supports custom labels, 
+ * `PasswordField` is a React component that renders a password input field with
+ * optional show/hide toggle and password strength indicator. It supports custom labels,
  * colors, width, and validation feedback.
- * 
+ *
  * @component
- * 
+ *
  * @param {Object} props - Component props.
  * @param {string} [props.label="Password"] - Label for the password field.
  * @param {string} [props.value] - Initial value of the password input.
@@ -20,7 +22,7 @@ import { eyeCrossIcon, eyeIcon } from "../../../utils/icons.jsx";
  * @param {function} [props.setPasswordStrength] - Callback to receive the password strength value.
  * @param {boolean} [props.showLabelAlways=false] - Whether to always show the label above the input.
  * @param {boolean} [props.required=false] - Whether the password field is required.
- * 
+ *
  * @example
  * <PasswordField
  *   label="Enter Password"
@@ -31,7 +33,7 @@ import { eyeCrossIcon, eyeIcon } from "../../../utils/icons.jsx";
  *   setPasswordStrength={(strength) => console.log(strength)}
  *   required={true}
  * />
- * 
+ *
  * @returns {JSX.Element} The password input component with toggle and strength indicator.
  */
 export const PasswordField = ({

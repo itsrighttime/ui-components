@@ -1,3 +1,5 @@
+"use client"
+
 import React, { createContext, useState, useEffect } from "react";
 import { login } from "../helper/login.js";
 import { logout } from "../helper/logout.js";

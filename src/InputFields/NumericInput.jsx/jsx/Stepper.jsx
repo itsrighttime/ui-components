@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import styles from "../css/Stepper.module.css"; // Ensure to create this CSS file for styling
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";

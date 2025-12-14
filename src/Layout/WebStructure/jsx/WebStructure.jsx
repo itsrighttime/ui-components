@@ -1,3 +1,5 @@
+"use client";
+
 import { Footer } from "../../Footer/jsx/Footer.jsx";
 import { Header } from "../../Header/jsx/Header.jsx";
 import styles from "../css/WebStructure.module.css";

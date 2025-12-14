@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "../css/Footer.module.css";
 import { getFooterBrands } from "../helper/footer.config.js";
 import { BRANDS_PROPS_KEYS as BPK } from "../helper/KEYS.js";

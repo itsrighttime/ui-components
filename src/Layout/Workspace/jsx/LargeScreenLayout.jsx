@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./../css/WorkspaceLayout.module.css";
 import { Navigator } from "./Navigator.jsx";
 import { WorkspaceLayout } from "./WorkspaceLayout.jsx"; // for recursion

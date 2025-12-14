@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react";
 import style from "../css/Alert.module.css";
 import { crossIcon } from "../../utils/icons.jsx";

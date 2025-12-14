@@ -1,3 +1,5 @@
+"use client";
+
 import { FlexContainer } from "../../Containers/jsx/FlexContainer.jsx";
 import styles from "../css/Navigator.module.css";
 import { Tabs } from "../helper/Tabs.jsx";

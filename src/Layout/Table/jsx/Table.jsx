@@ -1,3 +1,5 @@
+"use client";
+
 import { TableHeader } from "./TableHeader.jsx";
 import { TableBody } from "./TableBody.jsx";
 import styles from "../css/Table.module.css";

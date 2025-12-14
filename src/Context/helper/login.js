@@ -1,3 +1,5 @@
+"use client";
+
 import { makeUrl } from "../../Layout/Workspace/helper/urlFormatter.js";
 import { workspaceLayoutKeys } from "../../Layout/Workspace/helper/workspaceLayoutKeys.js";
 import { ScreenType } from "../../Layout/Workspace/jsx/WorkspaceLayoutWrapper.jsx";

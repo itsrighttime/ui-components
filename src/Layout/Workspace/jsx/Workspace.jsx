@@ -1,3 +1,5 @@
+"use client";
+
 // Workspace.jsx
 import { Route, Routes, useNavigate } from "react-router";
 import { CombinedProviders } from "../helper/CombinedProviders.jsx";

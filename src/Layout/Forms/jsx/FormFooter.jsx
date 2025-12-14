@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "../../../InputFields/Actions/jsx/Button.jsx";
 import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
 import {

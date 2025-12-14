@@ -1,3 +1,5 @@
+"use client";
+
 import { TextField } from "../../TextInput/jsx/TextField.jsx";
 
 /**
@@ -57,7 +59,7 @@ export const EmailField = ({
   width = "300px",
   isBorder = false,
   errorMessage = "Please enter a valid email address.",
-  backendError= ""
+  backendError = "",
 }) => {
   return (
     <TextField

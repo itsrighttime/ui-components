@@ -1,3 +1,5 @@
+"use client";
+
 import { SelectionBox } from "../helper/SelectionBox.jsx";
 
 /**

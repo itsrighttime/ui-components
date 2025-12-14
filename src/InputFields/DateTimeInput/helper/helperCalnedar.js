@@ -1,3 +1,5 @@
+"use client";
+
 import { handleDateChange } from "./handleDateChange.js";
 import { isAfterDate, isBeforeDate } from "./handleDateCompare.js";
 

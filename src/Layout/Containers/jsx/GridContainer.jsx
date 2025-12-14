@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "../css/Container.module.css";
 
 /**

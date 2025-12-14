@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useEffect } from "react";
 import style from "../css/SmoothInfiniteScroll.module.css"; // Custom styles
 import { useInfiniteScroll } from "../../Hooks/useInfiniteScroll.js";

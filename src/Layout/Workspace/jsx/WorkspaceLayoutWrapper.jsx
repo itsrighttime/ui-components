@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { FullscreenWrapper } from "./FullscreenWrapper.jsx";
 import { WorkspaceLayout } from "./WorkspaceLayout.jsx";

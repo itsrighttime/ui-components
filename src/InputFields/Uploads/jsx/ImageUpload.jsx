@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import style from "../css/ImageUpload.module.css"; // Adjust the path as needed
 import { crossIcon, resetFieldIcon } from "../../../utils/icons.jsx";

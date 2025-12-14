@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import styles from "../css/Slider.module.css";
 import { minusIcon, plusIcon } from "../../../utils/icons.jsx";

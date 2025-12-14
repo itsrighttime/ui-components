@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, Suspense } from "react";
 import styles from "../css/CalendarBox.module.css";
 import { arrowLeftIcon, arrowRightIcon } from "../../../utils/icons.jsx";

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import styles from "../css/TimePicker.module.css";
 import { CustomDropdown } from "../helper/CustomDropdown.jsx";
