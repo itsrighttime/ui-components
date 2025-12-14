@@ -1,3 +1,5 @@
+"use client";
+
 import * as Icons from "../../utils/icons.jsx"; // your icon file
 import styles from "../css/IconGallery.module.css";
 import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
