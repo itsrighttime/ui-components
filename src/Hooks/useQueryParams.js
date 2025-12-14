@@ -1,7 +1,89 @@
 import { useCallback } from "react";
 
 /**
- * A custom hook for managing URL query parameters in React Router.
+ * useQueryParams Hook
+ *
+ * Custom React hook for managing URL query parameters
+ * when using React Router navigation.
+ *
+ * Provides a declarative API to read, write, update, delete,
+ * toggle, and batch-manage query parameters while keeping
+ * navigation behavior consistent.
+ *
+ * Particularly useful for filters, pagination, feature flags,
+ * and UI state that should be reflected in the URL.
+ *
+ * @hook
+ *
+ * @param {Object} options - Hook configuration
+ *
+ * @param {Function} options.navigate
+ * Navigation function from React Router (`useNavigate`).
+ *
+ * @param {Object} options.location
+ * Location object from React Router (`useLocation`).
+ *
+ * @returns {Object} Query parameter helpers
+ *
+ * @property {Function} getParam
+ * Retrieves the value of a specific query parameter.
+ * @param {string} key
+ * @returns {string|null}
+ *
+ * @property {Function} hasParam
+ * Checks whether a query parameter exists.
+ * @param {string} key
+ * @returns {boolean}
+ *
+ * @property {Function} setParam
+ * Sets or updates a single query parameter.
+ * @param {string} key
+ * @param {string} value
+ * @param {Object} [options={ replace: true }]
+ *
+ * @property {Function} setParams
+ * Replaces all query parameters with the provided set.
+ * Removes any existing parameters not included.
+ * @param {Object} newParams
+ * @param {Object} [options={ replace: true }]
+ *
+ * @property {Function} deleteParam
+ * Removes a specific query parameter.
+ * @param {string} key
+ * @param {Object} [options={ replace: true }]
+ *
+ * @property {Function} replaceParams
+ * Replaces all existing query parameters.
+ * @param {Object} paramsObj
+ * @param {Object} [options={ replace: true }]
+ *
+ * @property {Function} toggleParam
+ * Toggles a boolean query parameter (`true` / `false`).
+ * @param {string} key
+ * @param {Object} [options={ replace: true }]
+ *
+ * @property {Function} appendParam
+ * Appends a value to a comma-separated query parameter.
+ * Prevents duplicate values.
+ * @param {string} key
+ * @param {string} value
+ * @param {Object} [options={ replace: true }]
+ *
+ * @property {Function} clearAllParams
+ * Removes all query parameters from the URL.
+ * @param {Object} [options={ replace: true }]
+ *
+ * @example
+ * const query = useQueryParams({ navigate, location });
+ *
+ * query.setParam("page", "2");
+ * query.appendParam("tags", "react");
+ * query.toggleParam("debug");
+ *
+ * @notes
+ * - Uses `URLSearchParams` for safe query manipulation
+ * - Defaults to `replace: true` to avoid polluting history
+ * - Ideal for stateful URLs in dashboards and complex UIs
  */
 export const useQueryParams = ({ navigate, location }) => {
   const { search, pathname } = location;

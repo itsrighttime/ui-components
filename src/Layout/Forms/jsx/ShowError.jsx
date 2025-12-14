@@ -3,6 +3,25 @@ import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
 import { crossIcon } from "../../../utils/icons.jsx";
 import styles from "../css/ShowError.module.css";
 
+/**
+ * ErrorList Component
+ *
+ * Displays a structured list of form validation errors in a tabular format
+ * along with actions to clear or update the form.
+ *
+ * Props:
+ * @param {Object} errors - An object containing form field errors.
+ *                          Each key represents a field and value contains
+ *                          error details (label, name, error message).
+ * @param {string} color - Optional primary color for buttons (default: "var(--colorRed)").
+ * @param {Function} onClick - Callback fired when the user chooses to reattempt form update.
+ * @param {Function} clearFormPersistence - Callback to clear the persisted form data.
+ *
+ * Behavior:
+ * - Converts the errors object into an array for rendering.
+ * - Displays each field label and its corresponding error message in a table.
+ * - Provides buttons to either clear all form data or allow the user to retry updating the form.
+ */
 export const ErrorList = ({
   errors = {},
   color = "var(--colorRed)",

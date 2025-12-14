@@ -8,6 +8,27 @@ import { crossIcon } from "../../../utils/icons.jsx";
 import { useMemo } from "react";
 import { useInitializeForm } from "../hooks/useInitializeForm.js";
 
+/**
+ * RepeatableGroup Component
+ *
+ * Renders a group of fields that can be repeated multiple times within a form.
+ * Useful for dynamic lists or arrays of similar inputs (e.g., multiple addresses, contacts, or items).
+ *
+ * Props:
+ * @param {Object} field - Field configuration object containing label, sub-fields, and more-label.
+ * @param {Array<Object>} [values=[{}]] - Array of values representing each repeated item.
+ * @param {Function} onChange - Callback fired when any field value changes or items are added/removed.
+ *                               Receives updated values array and error status.
+ * @param {Object} settings - Additional settings like color and other UI configurations.
+ *
+ * Behavior:
+ * - Initializes each repeated item with default state.
+ * - Adds a unique internal _uid to each item for consistent React keys.
+ * - Allows adding new items using the "More" button.
+ * - Allows removing items via a cross icon if there are multiple items.
+ * - Delegates individual field rendering to FieldRenderer.
+ * - Updates parent form state via onChange whenever any sub-field changes.
+ */
 export function RepeatableGroup({ field, values = [{}], onChange, settings }) {
   const { initialState, initialError } = useInitializeForm(
     field[FIELDS_PROPS.FIELDS]

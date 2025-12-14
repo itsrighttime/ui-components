@@ -3,6 +3,38 @@ import style from "../css/AudioUpload.module.css";
 import { AudioPlayer } from "./AudioPlayer.jsx";
 import { useEffect } from "react";
 
+/**
+ * `AudioUpload` is a React component that allows users to upload, preview, and manage audio files.
+ * It supports drag-and-drop and file input selection, validates audio type and size, and integrates
+ * with the `AudioPlayer` component for playback, re-upload, and removal.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props.
+ * @param {string} props.label - Label text displayed in the upload area.
+ * @param {function} props.setResult - Callback function to return the uploaded file or null.
+ * @param {string} [props.color] - Primary color for controls and upload area.
+ * @param {function} [props.setIsFieldValid] - Callback to indicate if the field is valid (default: noop).
+ * @param {string[]} [props.allowedTypes=["audio/mpeg","audio/wav"]] - Array of allowed MIME types for upload.
+ * @param {number} [props.maxSizeMB=10] - Maximum allowed file size in megabytes.
+ * @param {string} [props.width="500px"] - Width of the upload container.
+ * @param {string} [props.height="100px"] - Height of the upload container.
+ * @param {string|File|Blob|null} [props.value=null] - Initial value: can be a URL string, File/Blob, or null.
+ * @param {string} [props.backendError=""] - Error message from the backend to display in the component.
+ * @param {boolean} [props.required=false] - Whether the upload field is required.
+ *
+ * @example
+ * <AudioUpload
+ *   label="Upload your audio"
+ *   setResult={(file) => console.log(file)}
+ *   color="#52C9BD"
+ *   allowedTypes={["audio/mpeg"]}
+ *   maxSizeMB={5}
+ *   required
+ * />
+ *
+ * @returns {JSX.Element} A file upload interface with audio preview, drag-and-drop support, and validation.
+ */
 export const AudioUpload = ({
   label,
   setResult,

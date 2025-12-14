@@ -1,6 +1,36 @@
 import { useEffect, useRef, useState } from "react";
 
-/** timeout in minutes */
+/**
+ * useUserActiveOnTab Hook
+ *
+ * Custom React hook that tracks user activity on the current browser tab
+ * and marks the user as inactive after a specified period of inactivity.
+ *
+ * Useful for features like auto-logout, session management, or
+ * temporarily pausing updates when the user is inactive.
+ *
+ * @hook
+ *
+ * @param {number} [timeout=5] - Inactivity timeout in minutes after which the user is considered inactive.
+ *
+ * @returns {boolean} isActive - Boolean indicating whether the user is currently active on the tab.
+ *
+ * @example
+ * const isUserActive = useUserActiveOnTab(10); // 10-minute inactivity timeout
+ *
+ * useEffect(() => {
+ *   if (!isUserActive) {
+ *     console.log("User is inactive");
+ *   }
+ * }, [isUserActive]);
+ *
+ * @notes
+ * - Listens to multiple user events such as mouse movements, key presses,
+ *   touch events, scrolls, and visibility changes
+ * - Automatically resets timer whenever activity is detected
+ * - Cleans up all event listeners and timers on component unmount
+ */
+
 export const useUserActiveOnTab = (timeout = 5) => {
   const [isActive, setIsActive] = useState(true);
   const timeoutId = useRef(null);

@@ -11,6 +11,31 @@ import {
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 import { Slider } from "../../NumericInput.jsx/jsx/Slider.jsx";
 
+/**
+ * `AudioPlayer` is a React component for rendering a customizable audio player with play/pause,
+ * seek, hover preview, volume control, mute/unmute, and optional remove or re-upload actions.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props.
+ * @param {string} props.audioSrc - Source URL of the audio file.
+ * @param {function} [props.onRemove=null] - Callback fired when the remove button is clicked.
+ * @param {string} [props.color] - Primary color for controls and progress.
+ * @param {function} [props.onReupload=null] - Callback fired when the re-upload button is clicked.
+ * @param {string} [props.width="500px"] - Width of the audio player container.
+ *
+ * @example
+ * <AudioPlayer
+ *   audioSrc="https://example.com/audio.mp3"
+ *   onRemove={() => console.log("Removed")}
+ *   onReupload={() => console.log("Re-upload")}
+ *   color="#52C9BD"
+ *   width="600px"
+ * />
+ *
+ * @returns {JSX.Element} A fully featured audio player with custom controls.
+ */
+
 export const AudioPlayer = ({
   audioSrc,
   onRemove = null,

@@ -3,6 +3,61 @@ import { TextField } from "../../TextInput/jsx/TextField.jsx";
 import styles from "../css/AddressField.module.css";
 import { useMemo } from "react";
 
+/**
+ * AddressField Component
+ *
+ * A dynamic and reusable form component to capture structured address information.
+ * It supports multiple address subfields such as house number, street, city, state,
+ * postal code, country, landmark, and additional address lines. Each field is validated
+ * using patterns, min/max length, and backend error integration.
+ *
+ * @component
+ *
+ * @param {Object} props - Configuration props for AddressField
+ * @param {function} props.setResult - Callback to receive the full address object
+ * @param {string} [props.color] - Custom color for input fields
+ * @param {Object} [props.values={}] - Initial values for the address fields (e.g., { house: "123" })
+ * @param {boolean} [props.isHouse=false] - Show/enable house number field
+ * @param {boolean} [props.isStreet=false] - Show/enable street field
+ * @param {boolean} [props.isCity=false] - Show/enable city field
+ * @param {boolean} [props.isState=false] - Show/enable state field
+ * @param {boolean} [props.isPostal=false] - Show/enable postal code field
+ * @param {boolean} [props.isCountry=false] - Show/enable country field
+ * @param {boolean} [props.isAddressLine=false] - Show/enable additional address line field
+ * @param {boolean} [props.isLandmark=false] - Show/enable landmark field
+ * @param {boolean} [props.showLabelAlways=false] - Always display field labels
+ * @param {string} [props.width="300px"] - Width of the address field container
+ * @param {boolean} [props.isBorder=false] - Whether to show borders around inputs
+ * @param {string} [props.gap="10px"] - Gap between input fields
+ * @param {function} [props.setIsFieldValid] - Callback to track overall field validity
+ * @param {Object} [props.backendErrors={}] - Backend error messages keyed by field
+ *
+ * @returns {JSX.Element} Rendered AddressField component
+ *
+ * @example
+ * <AddressField
+ *   setResult={(address) => console.log(address)}
+ *   color="#00bcd4"
+ *   values={{ house: "123", city: "New York" }}
+ *   isHouse
+ *   isStreet
+ *   isCity
+ *   isState
+ *   isPostal
+ *   isCountry
+ *   showLabelAlways
+ *   width="400px"
+ *   isBorder
+ *   setIsFieldValid={(valid) => console.log(valid)}
+ *   backendErrors={{ city: "Invalid city name" }}
+ * />
+ *
+ * @notes
+ * - Fields are dynamically rendered based on boolean props.
+ * - Each field supports frontend validation and integrates backend error messages.
+ * - The component maintains local state for each field and notifies parent on changes.
+ */
+
 export const AddressField = ({
   setResult,
   color,

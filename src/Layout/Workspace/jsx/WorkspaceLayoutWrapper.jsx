@@ -15,6 +15,31 @@ export const ScreenType = {
   LOGOUT_SCREEN: "logoutScreen",
 };
 
+/**
+ * WorkspaceLayoutWrapper Component
+ *
+ * Wraps the workspace layout and handles dynamic screen states including:
+ * - Magic lock screen (requires user input to unlock)
+ * - Full workspace screen
+ * - Logout/error screen
+ *
+ * Props:
+ * @param {function} toggleFullscreen - Callback to toggle fullscreen mode for the workspace.
+ *
+ * Behavior:
+ * - Uses `useAuth` to get user details.
+ * - Tracks user activity with `useUserActiveOnTab` hook (defaults to 5 minutes inactivity timeout).
+ * - Uses `useDynamicContent` to register a lock callback for the workspace.
+ * - Manages `locked` state to determine which screen to display:
+ *   - `MAGIC_SCREEN`: Shows the `LockScreen` component for user authentication.
+ *   - `FULL_SCREEN`: Displays the main `WorkspaceLayout` component.
+ *   - Any other state or error: Renders the `ErrorPage`.
+ * - Automatically locks the workspace if the user becomes inactive and the screen is not already locked.
+ * - Unlocking the magic screen updates `locked` state to `FULL_SCREEN`.
+ *
+ * Usage:
+ * <WorkspaceLayoutWrapper toggleFullscreen={handleFullscreenToggle} />
+ */
 export const WorkspaceLayoutWrapper = ({ toggleFullscreen }) => {
   const { userDetails } = useAuth();
   const isActive = useUserActiveOnTab(5); // 5 minutes inactivity timeout

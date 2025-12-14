@@ -4,7 +4,67 @@ import { crossIcon, linesIcon, redirectURL } from "../../utils/icons.jsx";
 import { useLocation, useNavigate } from "react-router";
 import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
 
+/**
+ * resolveStringToId
+ *
+ * Utility function to normalize tab labels into
+ * lowercase, whitespace-free identifiers.
+ *
+ * @param {string} str - Input string to normalize
+ * @returns {string} Normalized string ID
+ */
+
 const resolveStringToId = (str) => str.replace(/\s+/g, "").toLowerCase();
+
+/**
+ * Header Component
+ *
+ * Responsive navigation header component that renders a logo and
+ * a set of navigation tabs with active-state handling and
+ * mobile-friendly toggle behavior.
+ *
+ * The header adapts its layout based on a configurable breakpoint,
+ * supports URL-synced active tab state, and handles special redirect
+ * flows (e.g., login/register via external auth proxy).
+ *
+ * @component
+ *
+ * @param {Object} props - Component props
+ *
+ * @param {string[]} [props.tabs=[]]
+ * List of tab labels displayed in the header navigation.
+ * Each label is normalized to a route-friendly ID.
+ *
+ * @param {string|Object} [props.logoURL={}]
+ * Source URL for the header logo image.
+ *
+ * @param {string} [props.defaultTab="home"]
+ * Default active tab when the route path is `/`.
+ *
+ * @param {number} [props.breakpoint=800]
+ * Screen width (in pixels) at which the header switches
+ * between mobile and desktop layouts.
+ *
+ * @returns {JSX.Element} Responsive navigation header
+ *
+ * @example
+ * <Header
+ *   logoURL="/logo.svg"
+ *   tabs={[
+ *     "Home",
+ *     "About",
+ *     "Projects",
+ *     "Login/Register"
+ *   ]}
+ *   defaultTab="home"
+ * />
+ *
+ * @notes
+ * - Automatically syncs active tab with `react-router` location
+ * - Splits tabs into two columns for large-screen layouts
+ * - Collapsible navigation for small screens
+ * - Handles external auth redirection for `login/register`
+ */
 
 const Header = ({
   tabs = [],

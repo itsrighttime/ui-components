@@ -6,6 +6,40 @@ import { getCommonCssVariables } from "../../helper/getCommonCssVariables.js";
 
 const defaultLinkIcon = "https://itsrighttime.group";
 
+/**
+ * `UrlTextField` is a React component for entering and validating URLs with dynamic favicon display.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props.
+ * @param {string} [props.label] - Label text displayed above the input field.
+ * @param {string} [props.placeholder="Link"] - Placeholder text for the input.
+ * @param {string} [props.value=""] - Initial value of the input.
+ * @param {function} props.setResult - Callback to return the current input value.
+ * @param {function} [props.setIsFieldValid] - Callback to indicate whether the input is valid.
+ * @param {boolean} [props.required=false] - Whether the field is required.
+ * @param {string} [props.errorMessage="Invalid URL"] - Error message displayed when URL is invalid.
+ * @param {string} [props.color] - Color for input and border.
+ * @param {boolean} [props.autoFocus=false] - Whether the input should automatically focus on mount.
+ * @param {function} [props.onBlur] - Optional callback fired on blur.
+ * @param {function} [props.onFocus] - Optional callback fired on focus.
+ * @param {function} [props.onClear] - Optional callback fired when the clear button is clicked.
+ * @param {string} [props.width="300px"] - Width of the input container.
+ * @param {Object} [props.style={}] - Additional custom styles.
+ * @param {boolean} [props.showLabelAlways=false] - Whether to always show the label.
+ * @param {boolean} [props.isBorder=false] - Whether to show border around the input.
+ *
+ * @example
+ * <UrlTextField
+ *   label="Website"
+ *   placeholder="Enter website URL"
+ *   value="https://example.com"
+ *   setResult={(val) => console.log(val)}
+ *   required
+ * />
+ *
+ * @returns {JSX.Element} A styled input field for URLs with favicon display, validation, and optional clear button.
+ */
 export const UrlTextField = ({
   label,
   placeholder = "Link",

@@ -6,6 +6,42 @@ import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 import { formatFileSize } from "../helper/formatFileSize.js";
 import { useEffect } from "react";
 
+/**
+ * `FileUpload` is a React component that provides an interface for uploading one or multiple files
+ * with drag-and-drop support, validation for file type and size, and the ability to preview, re-upload,
+ * remove, or reset uploaded files. It integrates with the parent via `setResult` and `setIsFieldValid`
+ * callbacks to keep the form state synchronized.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props.
+ * @param {File[]} [props.value=[]] - Initial list of files.
+ * @param {string} [props.label="Upload File"] - Label displayed in the upload area.
+ * @param {function} props.setResult - Callback to return the updated array of files.
+ * @param {string} [props.color] - Primary color used for controls and buttons.
+ * @param {function} [props.setIsFieldValid] - Callback to indicate field validation status.
+ * @param {string[]} [props.allowedTypes=[]] - Array of allowed MIME types for validation.
+ * @param {number} [props.maxSize=Infinity] - Maximum file size in MB.
+ * @param {boolean} [props.multiple=false] - Whether multiple file uploads are allowed.
+ * @param {number} [props.maxFiles=Infinity] - Maximum number of files that can be uploaded.
+ * @param {string} [props.width="500px"] - Width of the upload container.
+ * @param {string} [props.height="200px"] - Height of the upload container.
+ * @param {string} [props.backendError=""] - Error message from backend to display.
+ * @param {boolean} [props.required=false] - Whether the upload field is required.
+ *
+ * @example
+ * <FileUpload
+ *   label="Upload Documents"
+ *   setResult={(files) => console.log(files)}
+ *   allowedTypes={["application/pdf", "image/png"]}
+ *   maxSize={5}
+ *   multiple
+ *   maxFiles={3}
+ *   required
+ * />
+ *
+ * @returns {JSX.Element} A file upload interface with drag-and-drop, preview, re-upload, and validation.
+ */
 export const FileUpload = ({
   value = [],
   label = "Upload File",

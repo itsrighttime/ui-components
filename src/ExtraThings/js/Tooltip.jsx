@@ -4,6 +4,52 @@ import styles from "../css/ToolTip.module.css";
 
 const OFFSET = 15;
 
+/**
+ * Tooltip Component
+ *
+ * A cursor-following, portal-based tooltip component that displays
+ * contextual content on hover with configurable delay, positioning,
+ * and styling.
+ *
+ * The tooltip dynamically adjusts its position to remain within
+ * the viewport and renders using `ReactDOM.createPortal` to avoid
+ * layout and overflow issues.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props
+ *
+ * @param {React.ReactNode} props.children
+ * The element that triggers the tooltip on hover.
+ *
+ * @param {React.ReactNode|string} props.content
+ * Content rendered inside the tooltip.
+ *
+ * @param {string} [props.color="#272626"]
+ * Text color of the tooltip content.
+ *
+ * @param {string} [props.backgroundColor="#eceaea"]
+ * Background color of the tooltip container.
+ *
+ * @param {string} [props.width="250px"]
+ * CSS width of the tooltip. Passed as a CSS custom property.
+ *
+ * @param {number} [props.delay=1500]
+ * Delay in milliseconds before the tooltip becomes visible on hover.
+ *
+ * @returns {JSX.Element} Tooltip wrapper with portal-rendered content
+ *
+ * @example
+ * <Tooltip content="Smart tooltip near your cursor">
+ *   <button>Hover me</button>
+ * </Tooltip>
+ *
+ * @notes
+ * - Tooltip follows the cursor and repositions using `requestAnimationFrame`
+ * - Automatically flips between top and bottom when near viewport edges
+ * - Pointer events are disabled on tooltip to avoid hover conflicts
+ * - Cleans up timers on component unmount
+ */
 export const Tooltip = ({
   children,
   content,

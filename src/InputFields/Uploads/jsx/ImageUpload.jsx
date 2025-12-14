@@ -3,6 +3,47 @@ import style from "../css/ImageUpload.module.css"; // Adjust the path as needed
 import { crossIcon, resetFieldIcon } from "../../../utils/icons.jsx";
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 
+/**
+ * ImageUpload Component
+ *
+ * A reusable React component for uploading and previewing images with support for:
+ * - Drag & drop
+ * - File type and size validation
+ * - Optional square image requirement
+ * - Preview with configurable border radius
+ * - Re-upload and remove actions
+ * - Backend error handling
+ *
+ * Props:
+ * @param {string} label - Label for the upload input.
+ * @param {function} setResult - Callback to receive the uploaded File object.
+ * @param {string} [color] - Primary color for styling.
+ * @param {function} [setIsFieldValid] - Callback to update field validity status.
+ * @param {Array<string>} [allowedTypes=["image/jpeg","image/png","image/gif"]] - Allowed MIME types.
+ * @param {number} [maxSizeMB=5] - Maximum allowed file size in MB.
+ * @param {boolean} [requireSquare=true] - Whether the uploaded image must be square.
+ * @param {string} [width="200px"] - Width of the upload container.
+ * @param {string} [height="200px"] - Height of the upload container.
+ * @param {string} [previewBorderRadius="0%"] - Border radius of the image preview.
+ * @param {string} [backendError=""] - Error message from backend to display.
+ * @param {string|File|null} [value=null] - Initial value (URL or File).
+ * @param {boolean} [required=false] - Whether the field is required.
+ * @example
+ * Example usage:
+ * <ImageUpload
+ *   label="Upload Profile Picture"
+ *   setResult={(file) => console.log(file)}
+ *   color="#52C9BD"
+ *   maxSizeMB={5}
+ *   requireSquare={true}
+ *   width="250px"
+ *   height="250px"
+ *   previewBorderRadius="50%"
+ *   backendError=""
+ *   value={null}
+ *   required={true}
+ * />
+ */
 export const ImageUpload = ({
   label = "Upload Image",
   setResult,

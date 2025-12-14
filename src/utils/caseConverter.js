@@ -1,3 +1,13 @@
+/**
+ * Converts a string to kebab-case.
+ * Examples:
+ *  "helloWorld" -> "hello-world"
+ *  "Hello World" -> "hello-world"
+ *  "some_value" -> "some-value"
+ *
+ * @param {string} str - The input string.
+ * @returns {string} - The kebab-cased string.
+ */
 export const toKebabCase = (str) => {
   return str
     .replace(/([a-z])([A-Z])/g, "$1-$2") // handle camelCase to kebab
@@ -6,6 +16,27 @@ export const toKebabCase = (str) => {
     .toLowerCase(); // all lowercase
 };
 
+
+/**
+ * Converts a kebab-case string to other formats.
+ *
+ * Supported formats:
+ *  - "camel"         : camelCase
+ *  - "pascal"        : PascalCase
+ *  - "snake"         : snake_case
+ *  - "snake-upper"   : SNAKE_UPPER_CASE
+ *  - "sentence"      : Sentence case
+ *  - "capitalized"   : Capitalized words
+ *
+ * @param {string} str - The kebab-case input string.
+ * @param {string} [format="camel"] - Desired output format.
+ * @returns {string} - Converted string.
+ *
+ * @example
+ * fromKebabCase("hello-world") => "helloWorld"
+ * fromKebabCase("hello-world", "pascal") => "HelloWorld"
+ * fromKebabCase("hello-world", "snake") => "hello_world"
+ */
 export const fromKebabCase = (str, format = "camel") => {
   const words = str.split("-");
 

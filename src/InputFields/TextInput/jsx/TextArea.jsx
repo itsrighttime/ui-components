@@ -1,6 +1,46 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../css/TextArea.module.css";
 
+/**
+ * `TextArea` is a React component that renders a resizable textarea input with optional label,
+ * character and word counters, validation, and error handling.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props.
+ * @param {string} [props.label] - Optional label text displayed above the textarea.
+ * @param {string} [props.value] - Initial value for the textarea.
+ * @param {function} props.setResult - Callback function to receive the current value on blur.
+ * @param {string} [props.color] - Text and border color for the textarea.
+ * @param {string} [props.placeholder="Enter text here..."] - Placeholder text for the textarea.
+ * @param {number} [props.minLength] - Minimum number of characters required.
+ * @param {number} [props.maxLength] - Maximum number of characters allowed.
+ * @param {number} [props.maxTextAreaHeight=200] - Maximum height of the textarea before scroll appears.
+ * @param {function} [props.setIsFieldValid] - Callback to notify parent component about field validity.
+ * @param {boolean} [props.showCharacterCount=false] - Whether to show the character count.
+ * @param {boolean} [props.showWordCount=false] - Whether to show the word count.
+ * @param {boolean} [props.disabled=false] - Disable user input if true.
+ * @param {Object} [props.style={}] - Additional custom CSS styles.
+ * @param {string} [props.width="300px"] - Width of the textarea container.
+ * @param {boolean} [props.showLabelAlways=false] - Whether to always show the label.
+ * @param {string} [props.backendError=""] - Error message from backend to display in the component.
+ * @param {boolean} [props.required=false] - Whether this field is required.
+ *
+ * @example
+ * <TextArea
+ *   label="Description"
+ *   value="Initial text"
+ *   setResult={(val) => console.log(val)}
+ *   color="#52c9bd"
+ *   placeholder="Enter your description"
+ *   maxLength={500}
+ *   showCharacterCount={true}
+ *   showWordCount={true}
+ *   required
+ * />
+ *
+ * @returns {JSX.Element} A styled textarea input with label, validation, and optional counters.
+ */
 export const TextArea = ({
   label,
   value,

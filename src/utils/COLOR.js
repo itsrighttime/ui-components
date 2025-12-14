@@ -13,7 +13,14 @@ const COLOR = {
   gray5: "#7f7f7f",
   gray6: "#404040",
   white: "#fff",
-  black: "#221d1d"
+  black: "#221d1d",
 };
 
+/**
+ * Returns the hex color code for a given color name.
+ * Defaults to 'cyan' if the color name is not found.
+ *
+ * @param {string} colorName - The name of the color (e.g., 'red', 'blue').
+ * @returns {string} - Hex color code (e.g., '#ff5969').
+ */
 export const getColorCode = (colorName) => COLOR[colorName] || COLOR.cyan;

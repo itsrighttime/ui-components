@@ -3,6 +3,52 @@ import styles from "../css/Slider.module.css";
 import { minusIcon, plusIcon } from "../../../utils/icons.jsx";
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 
+/**
+ * Slider Component
+ *
+ * A customizable slider input component with optional plus/minus buttons,
+ * dynamic background fill, label, min/max display, and value positioning.
+ * Supports controlled value via `value` prop and notifies parent via `setResult`.
+ *
+ * @component
+ *
+ * @param {Object} props - Slider configuration props
+ * @param {number} [props.value=0] - Initial slider value
+ * @param {function} props.setResult - Callback invoked with the current slider value
+ * @param {string} [props.color] - Slider color (fill and buttons)
+ * @param {number} [props.min=0] - Minimum slider value
+ * @param {number} [props.max=100] - Maximum slider value
+ * @param {number} [props.step=1] - Step size for slider
+ * @param {string} [props.label=""] - Label displayed above the slider
+ * @param {boolean} [props.showRange=true] - Show min/max values next to the slider
+ * @param {"none"|"left"|"right"|"top"|"bottom"} [props.showValueSide="none"] - Position of the current value relative to slider
+ * @param {number} [props.precision=10] - Precision for rounding slider value
+ * @param {string} [props.width="300px"] - Width of the slider component
+ * @param {boolean} [props.required=false] - Mark slider as required (displays asterisk)
+ *
+ * @returns {JSX.Element} Rendered Slider component
+ *
+ * @example
+ * <Slider
+ *   value={50}
+ *   setResult={(val) => console.log(val)}
+ *   min={0}
+ *   max={100}
+ *   step={5}
+ *   label="Volume"
+ *   showRange
+ *   showValueSide="right"
+ *   color="#1E90FF"
+ *   width="400px"
+ *   required
+ * />
+ *
+ * @notes
+ * - Supports increment/decrement via plus and minus buttons.
+ * - Updates slider background dynamically to reflect current value.
+ * - `setResult` is called whenever the slider value changes.
+ * - Handles rounding according to specified precision to avoid floating-point issues.
+ */
 export const Slider = ({
   value = 0,
   setResult,

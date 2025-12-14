@@ -1,6 +1,23 @@
 import { useRef, useEffect } from "react";
 import styles from "../css/FullscreenWrapper.module.css";
 
+/**
+ * FullscreenWrapper Component
+ *
+ * Provides a container that can toggle fullscreen mode for its content.
+ * Supports programmatic toggling and keyboard shortcut activation.
+ *
+ * Props:
+ * @param {React.ReactNode|function} children - Content to render inside the wrapper.
+ *   - If a function is provided, it receives an object `{ toggleFullscreen }`
+ *     to allow manual fullscreen toggling from within the children.
+ * @param {string} shortcutKey - Keyboard key used in combination with Ctrl to toggle fullscreen (default: "`").
+ *
+ * Behavior:
+ * - Wraps its children in a container with a ref to request fullscreen.
+ * - Uses browser-specific APIs to enter and exit fullscreen mode.
+ * - Listens for `Ctrl + shortcutKey` to toggle fullscreen.
+ */
 export const FullscreenWrapper = ({ children, shortcutKey = "`" }) => {
   const containerRef = useRef();
 

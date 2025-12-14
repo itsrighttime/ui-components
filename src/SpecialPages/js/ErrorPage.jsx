@@ -1,5 +1,35 @@
 import styles from "../css/ErrorPage.module.css";
 
+/**
+ * ErrorPage Component
+ *
+ * Displays a full-page error message with optional details and navigation.
+ *
+ * Props:
+ * @param {string|number} statusCode - HTTP status code or custom error code (default: "404").
+ * @param {string} ErrorMsg - Brief error message describing what went wrong (default: "not found").
+ * @param {string|null} statusDetail - Optional detailed description of the error.
+ * @param {string|number|null} responseCode - Optional response code from server or API.
+ * @param {Function} handleNavigate - Callback function to navigate back or to a specified page.
+ * @param {string} navigateTo - Label for the navigation link/button (default: "Home Page").
+ *
+ * Features:
+ * - Renders an SVG warning icon alongside the status code.
+ * - Displays main error message and optional detailed info.
+ * - Provides a button for users to navigate back to a specified page.
+ * - Fully styled via `ErrorPage.module.css`.
+ *
+ * @example
+ * Usage:
+ * <ErrorPage
+ *   statusCode="500"
+ *   ErrorMsg="server error"
+ *   statusDetail="Database connection failed"
+ *   responseCode="DB1001"
+ *   handleNavigate={() => navigate("/")}
+ *   navigateTo="Dashboard"
+ * />
+ */
 export const ErrorPage = ({
   statusCode = "404",
   ErrorMsg = "not found",

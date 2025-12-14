@@ -7,6 +7,39 @@ import { getIcon } from "../helper/getIcon.js";
 import { getProductLogo } from "../../../assets/productsLogo/productLogo.assets.js";
 import { BRANDS_PROPS_KEYS } from "../helper/KEYS.js";
 
+/**
+ * Category Component
+ *
+ * Renders a category card with optional logo, name, tagline, links, contact info, and social media icons.
+ *
+ * Props:
+ * @param {string} logo - Key for the category logo, resolved via `getProductLogo`.
+ * @param {string} name - Name of the category.
+ * @param {string} tagLine - Tagline or description for the category.
+ * @param {Array<Object>} links - Array of link objects, each containing a `name` and `goTo` property.
+ * @param {Object} contactus - Contact information object containing optional `address`, `email`, and `mobile`.
+ * @param {Array<Object>} socialMedia - Array of social media objects, each with `name` and `goTo`.
+ * @param {Object} getInTouch - Optional call-to-action object with `name` and `goTo`.
+ * @param {string} homeURL - URL to navigate when the logo is clicked.
+ *
+ * Notes:
+ * - Clicking on logo, links, or social media icons uses `useSmartNavigate` for navigation.
+ * - Links and social media buttons are rendered with `PlainButton` and `IconButton` respectively.
+ *
+ * @example
+ * Example usage:
+ * <Category
+ *   logo="dev"
+ *   name="Dev Team"
+ *   tagLine="Build the future"
+ *   links={[{ name: "Projects", goTo: "/projects" }]}
+ *   contactus={{ email: "dev@example.com" }}
+ *   socialMedia={[{ name: "twitter", goTo: "https://twitter.com/dev" }]}
+ *   getInTouch={{ name: "Contact Us", goTo: "/contact" }}
+ *   homeURL="/home"
+ * />
+ */
+
 export const Category = ({
   logo,
   name,

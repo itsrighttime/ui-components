@@ -28,6 +28,22 @@ import { Stepper } from "../../../InputFields/NumericInput.jsx/jsx/Stepper.jsx";
 import { FIELDS_PROPS as FPs } from "../validation/helper/fields.js";
 import { UrlTextField } from "../../../InputFields/TextInput/jsx/UrlTextField.jsx";
 
+/**
+ * FieldRenderer Component
+ *
+ * Dynamically renders a form field based on its configuration.
+ *
+ * Props:
+ * @param {Object} field - Configuration object for the field (type, label, conditional logic, etc.).
+ * @param {*} value - Current value of the field.
+ * @param {Function} onChange - Callback function to update the field's value.
+ * @param {Object} settings - Additional settings or context for rendering the field.
+ *
+ * Notes:
+ * - If `field.conditional` is defined, the field is only rendered when the condition passes.
+ * - The function `isConditional(field, value)` is used to evaluate the conditional logic.
+ */
+
 export function FieldRenderer({ field, value, onChange, settings }) {
   // Conditional rendering
   if (field.conditional) {

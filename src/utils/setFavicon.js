@@ -1,4 +1,9 @@
-// Manually update the favicon
+/**
+ * Updates the favicon of the current document.
+ *
+ * @param {string} logoName - The name of the favicon file (without extension).
+ * @param {string} [extension="png"] - The file extension of the favicon (e.g., "png", "ico").
+ */
 export const setFavicon = (logoName, extension = "png") => {
     const link = document.querySelector("link[rel*='icon']") || document.createElement("link");
     link.type = `image/${extension}`;

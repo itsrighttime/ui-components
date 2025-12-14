@@ -4,13 +4,28 @@ import { crossIcon } from "../../utils/icons.jsx";
 import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
 
 /**
- * Alert Component - Displays a single alert message with a countdown bar and dismiss transition.
+ * Alert component to display a dismissible notification with an auto-fade timer.
+ *
+ * This component shows a message of a given type (e.g., "success", "error") and
+ * automatically fades out after a set time limit (10 seconds by default). Users
+ * can also manually dismiss the alert by clicking the close icon.
+ *
+ * The component includes a progress/status bar that visually indicates the
+ * remaining time before automatic dismissal.
  *
  * @component
- * @param {Object} props
- * @param {string} props.message - The alert message text.
- * @param {"success"|"error"|"info"} props.type - Type of alert, determines styling.
- * @param {Function} props.onDismiss - Callback when alert is removed.
+ *
+ * @param {Object} props - Component props
+ * @param {string} props.message - The text message to display inside the alert.
+ * @param {('success'|'error'|'info'|'warning')} props.type - The type of alert, which determines styling.
+ * @param {function} props.onDismiss - Callback function called when the alert is dismissed, either manually or automatically.
+ *
+ * @example
+ * <Alert
+ *   message="Data saved successfully!"
+ *   type="success"
+ *   onDismiss={() => console.log("Alert dismissed")}
+ * />
  */
 export const Alert = ({ message, type, onDismiss }) => {
   const TIME_LIMIT = 10;

@@ -20,6 +20,29 @@ import { isValidFormStructure } from "../validation/isValidFormStructure.js";
 import { validateSchema } from "../validation/validateSchema.js";
 import { configToSchema } from "../validation/configToSchema.js";
 
+/**
+ * GenericForm Component
+ *
+ * A fully dynamic and configurable form component supporting both single-step and multi-step workflows.
+ *
+ * Props:
+ * @param {Object} config - Configuration object defining the form structure, fields, steps, titles, and descriptions.
+ * @param {Function} [onSubmit] - Optional external callback function invoked when the form is successfully submitted.
+ * @param {string} [submitLabel="Submit"] - Label for the form submit button.
+ * @param {Object} [style] - Inline styles to apply to the form container.
+ * @param {Object} [settings={}] - Additional form settings like color, spacing, etc.
+ * @param {React.Ref} [scrollRef=null] - Ref to scroll container for multi-step navigation.
+ *
+ * Behavior:
+ * - Handles form state, validation, and persistence automatically.
+ * - Supports conditional rendering of fields based on values.
+ * - Supports file uploads and file array management.
+ * - Integrates with alerts and notifications for success or error states.
+ * - Handles multi-step navigation with progress bar, next/back buttons.
+ * - Displays appropriate UI for submitting, errors, failed submission, and successful submission.
+ * - Validates form structure and schema; prevents rendering if configuration is invalid.
+ */
+
 export function GenericForm({
   config,
   onSubmit, // optional external callback

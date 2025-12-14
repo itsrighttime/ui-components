@@ -5,17 +5,39 @@ import { UtilsLogger } from "./logger/logger.util.js";
 const logger = UtilsLogger.logger;
 
 /**
- * Base API caller function using Axios.
- * Usable in services, actions, or anywhere outside React.
+ * apiCaller
  *
- * @param {Object} config
- * @param {string} config.endpoint - API endpoint (relative).
- * @param {string} [config.method="GET"] - HTTP method.
- * @param {Object|null} [config.body=null] - Request body.
- * @param {Object} [config.headers={}] - Custom headers.
- * @param {Object} [config.params={}] - URL query parameters.
- * @param {number} [config.timeout=10000] - Axios timeout in ms.
- * @returns {Promise<any>} - Axios response data.
+ * A generic utility function to make HTTP API requests with Axios,
+ * integrated with structured logging using `logger`.
+ *
+ * @param {Object} options - Configuration object for the API call.
+ * @param {string} [options.endpoint="/"] - API endpoint URL.
+ * @param {string} [options.method="GET"] - HTTP method ("GET", "POST", "PUT", "DELETE", etc.).
+ * @param {Object|null} [options.body=null] - Request payload for POST/PUT requests.
+ * @param {Object} [options.headers={}] - Custom HTTP headers.
+ * @param {Object} [options.params={}] - Query parameters for GET requests.
+ * @param {number} [options.timeout=10000] - Timeout in milliseconds.
+ * @param {boolean|string} [options.printResult=false] - If true or "true", logs API response to console.
+ *
+ * @returns {Promise<Object>} - Returns a promise that resolves to an object:
+ *  - success {boolean} : Indicates if the request succeeded.
+ *  - error {Object|null} : Error object if the request failed.
+ *  - data {any} : Response data from the API.
+ *  - status {number} : HTTP status code of the response.
+ *
+ * @example
+ * const result = await apiCaller({
+ *   endpoint: "/users",
+ *   method: "POST",
+ *   body: { name: "John Doe" },
+ *   headers: { Authorization: "Bearer token" },
+ * });
+ *
+ * if (result.success) {
+ *   console.log(result.data);
+ * } else {
+ *   console.error(result.error);
+ * }
  */
 export const apiCaller = async ({
   endpoint = "/",
@@ -26,14 +48,6 @@ export const apiCaller = async ({
   timeout = 10000,
   printResult = false,
 }) => {
-  // const baseURL = import.meta.env.VITE_APP_SERVER_API_PROXY;
-  // const url = `${baseURL}${endpoint}`;
-
-  // if (!baseURL)
-  //   throw new Error(
-  //     "Missing VITE_APP_SERVER_API_PROXY in environment variables"
-  //   );
-
   try {
     logger.debug({
       message: `API Call → ${method} ${endpoint}`,

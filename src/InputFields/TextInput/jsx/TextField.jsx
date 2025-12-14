@@ -4,6 +4,72 @@ import { crossIcon } from "../../../utils/icons.jsx";
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 import { getCommonCssVariables } from "../../helper/getCommonCssVariables.js";
 
+/**
+ * TextField Component
+ *
+ * A fully-featured, reusable input field component for React.
+ * Supports text, password, and custom input types with validation,
+ * character counting, icons, labels, and styling options.
+ *
+ * Provides controlled input behavior with optional external state syncing.
+ * Can handle backend errors, pattern validation, min/max length, and required fields.
+ *
+ * @component
+ *
+ * @param {Object} props - Props for configuring the TextField
+ *
+ * @param {string} [props.type="text"] - Input type (e.g., "text", "password")
+ * @param {string} props.label - Label text for the input
+ * @param {string} [props.placeholder] - Placeholder text
+ * @param {string} [props.value=""] - Controlled value
+ * @param {Function} props.setResult - Callback to update parent state
+ * @param {Function} [props.setIsFieldValid] - Callback to indicate validation status
+ * @param {string} [props.color] - Custom text or border color
+ * @param {boolean} [props.required=false] - Whether input is required
+ * @param {number} [props.minLength] - Minimum character length
+ * @param {number} [props.maxLength] - Maximum character length
+ * @param {string|RegExp} [props.pattern] - Regex pattern for validation
+ * @param {string} [props.errorMessage="Invalid Input"] - Validation error message
+ * @param {string} [props.autoComplete="off"] - HTML autocomplete attribute
+ * @param {boolean} [props.disabled=false] - Disable input
+ * @param {ReactNode} [props.prefix] - Prefix element
+ * @param {ReactNode} [props.suffix] - Suffix element
+ * @param {boolean} [props.showCharacterCount=false] - Show character count
+ * @param {boolean} [props.spellCheck=false] - Enable spell check
+ * @param {string} [props.ariaLabel] - ARIA label for accessibility
+ * @param {boolean} [props.autoFocus=false] - Autofocus input
+ * @param {Object} [props.style] - Inline styles
+ * @param {boolean} [props.isBorder=false] - Whether to show border
+ * @param {boolean} [props.isApplyStrictPattern=true] - Apply strict pattern validation
+ * @param {boolean} [props.showLabelAlways=false] - Always show label
+ * @param {Function} [props.onBlur] - Callback on blur
+ * @param {Function} [props.onFocus] - Callback on focus
+ * @param {Function} [props.onClear] - Callback on clear
+ * @param {ReactNode} [props.icon] - Icon inside input
+ * @param {string} [props.width="300px"] - Width of the input field
+ * @param {string} [props.backendError=""] - Error message from backend
+ *
+ * @returns {JSX.Element} Rendered TextField component
+ *
+ * @example
+ * <TextField
+ *   label="Username"
+ *   value={username}
+ *   setResult={setUsername}
+ *   required
+ *   minLength={3}
+ *   maxLength={20}
+ *   errorMessage="Username must be between 3-20 characters"
+ *   showCharacterCount
+ * />
+ *
+ * @notes
+ * - Validates input on change and blur events
+ * - Supports prefix, suffix, and inline icons
+ * - Displays error messages and character count
+ * - Automatically handles backend validation errors
+ * - Compatible with both controlled and semi-controlled usage
+ */
 export const TextField = ({
   type = "text",
   label,

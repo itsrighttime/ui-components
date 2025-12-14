@@ -44,7 +44,67 @@ creating a continuous and memory-efficient scrolling experience.
 
 
 */
-
+/**
+ * useInfiniteScroll Hook
+ *
+ * Custom React hook for implementing bidirectional infinite scrolling
+ * within a scrollable container.
+ *
+ * This hook dynamically manages a sliding window over a large dataset,
+ * appending items when scrolling to the bottom and restoring items
+ * when scrolling back to the top, while preserving scroll position
+ * to ensure a smooth user experience.
+ *
+ * Designed for high-performance rendering of long lists such as
+ * logs, feeds, chat messages, or activity streams.
+ *
+ * @hook
+ *
+ * @param {Object} options - Configuration options
+ *
+ * @param {Array<any>} options.data
+ * Full dataset to be virtually scrolled.
+ *
+ * @param {number} options.initialChunk
+ * Number of items initially rendered.
+ *
+ * @param {number} [options.chunkSize=10]
+ * Number of items to append or restore per scroll action.
+ *
+ * @param {number} [options.maxItems=50]
+ * Maximum number of items allowed in the visible window.
+ *
+ * @param {React.RefObject<HTMLElement>} options.scrollContainerRef
+ * Ref pointing to the scrollable container element.
+ *
+ * @returns {Object} Infinite scroll state and handlers
+ *
+ * @property {Array<any>} visibleData
+ * Currently visible slice of the dataset.
+ *
+ * @property {Function} appendItems
+ * Appends the next chunk of items when scrolling reaches the bottom.
+ *
+ * @property {Function} restoreItems
+ * Restores previous items when scrolling reaches the top.
+ *
+ * @example
+ * const { visibleData } = useInfiniteScroll({
+ *   data: messages,
+ *   initialChunk: 20,
+ *   chunkSize: 10,
+ *   maxItems: 60,
+ *   scrollContainerRef
+ * });
+ *
+ * @notes
+ * - Preserves scroll position during append and restore operations
+ * - Uses throttling to optimize scroll event handling
+ * - Supports large datasets without rendering all items at once
+ * - Requires helper utilities:
+ *   `getAppendIndices`, `getRestoreIndices`,
+ *   `preserveScrollOnAppend`, `preserveScrollOnRestore`
+ */
 export const useInfiniteScroll = ({
   data,
   initialChunk,

@@ -6,6 +6,46 @@ import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 import { formatFileSize } from "../helper/formatFileSize.js";
 import { useEffect } from "react";
 
+/**
+ * VideoUpload Component
+ *
+ * A reusable React component for uploading video files with drag-and-drop support,
+ * file input fallback, validation, size limits, and optional preview.
+ *
+ * Props:
+ * @param {string} [label="Upload Video"] - Label displayed on the upload area.
+ * @param {string} [color] - Primary color for styling buttons and UI elements.
+ * @param {function} setResult - Callback to receive the selected video file.
+ * @param {function} [setIsFieldValid=()=>{}] - Callback to notify if the field is valid.
+ * @param {string[]} [allowedTypes=["video/mp4","video/webm"]] - Allowed video MIME types.
+ * @param {number} [maxSizeMB=50] - Maximum allowed video size in MB.
+ * @param {boolean} [preview=false] - Whether to show a full video preview using VideoPlayer.
+ * @param {string} [width="400px"] - Width of the upload container or video player.
+ * @param {string} [height="200px"] - Height of the upload container or video player.
+ * @param {string} [backendError] - Error message from backend to display.
+ * @param {File|string|null} [value=null] - Preloaded video file or URL.
+ * @param {boolean} [required=false] - Whether the field is required.
+ *
+ * Behavior:
+ * - Supports drag-and-drop and file input for video selection.
+ * - Validates file type and size.
+ * - Shows error messages for invalid uploads or backend errors.
+ * - Supports re-upload and remove actions via buttons.
+ * - Optional full video preview when `preview` is true.
+ *
+ * @example
+ * Example usage:
+ * <VideoUpload
+ *   label="Upload Video"
+ *   setResult={(file) => setVideo(file)}
+ *   setIsFieldValid={(valid) => setValid(valid)}
+ *   preview={true}
+ *   width="500px"
+ *   height="280px"
+ *   allowedTypes={["video/mp4"]}
+ *   maxSizeMB={100}
+ * />
+ */
 export const VideoUpload = ({
   label = "Upload Video",
   color,

@@ -29,18 +29,34 @@ const LoadingChat = lazy(() =>
 );
 
 /**
- * Default Values:
- *  - type = "CubesLoader"
- *  - display = "top"
- *  - position = "relative"
- *  - windowHeight = "100vh"
- *  - windowWidth = "100vw"
- * type can be [CubesLoader || FoldingLoader || BounceLoader || PulseLoader || LoadingChat]
- * @param type Allow to change based on this
- * @param display Allow to chage type of Screen [top || block]
- * @param windowHeight Loading page Height
- * @param windowWidth Loading page Width
- * @returns jsx
+ * Loading component to display a customizable loader with optional text.
+ *
+ * This component supports multiple loader types, optional display positions,
+ * window sizing, and dynamic loading text animation with dots.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props
+ * @param {('CubesLoader'|'FoldingLoader'|'BounceLoader'|'PulseLoader'|'LoadingChat')} [props.type='CubesLoader'] - Type of loader to display.
+ * @param {('top'|'center')} [props.display='top'] - Determines where the loader is displayed.
+ * @param {('relative'|'absolute')} [props.position='relative'] - CSS position property for the loader container.
+ * @param {string} [props.windowHeight='100%'] - Height of the loader container.
+ * @param {string} [props.windowWidth='100%'] - Width of the loader container.
+ * @param {string} [props.color] - Color for the loader component.
+ * @param {boolean} [props.showText=false] - Whether to show loading text below the loader.
+ * @param {string} [props.text='Loading'] - Text to display alongside the loading dots.
+ *
+ * @example
+ * <Loading
+ *   type="BounceLoader"
+ *   display="top"
+ *   position="relative"
+ *   windowHeight="200px"
+ *   windowWidth="200px"
+ *   color="#00f"
+ *   showText={true}
+ *   text="Loading data"
+ * />
  */
 export const Loading = ({
   type = "CubesLoader",

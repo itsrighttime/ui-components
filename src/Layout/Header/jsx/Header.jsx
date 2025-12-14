@@ -6,6 +6,30 @@ import { IconButton } from "../../../InputFields/Actions/jsx/IconButton.jsx";
 import { redirectURL } from "../../../utils/redirectURL.js";
 import { setDocumentTitle } from "../../../utils/setDocumentTitle.js";
 
+/**
+ * Header Component
+ *
+ * A responsive navigation header that displays a logo and tabs, supporting
+ * dynamic active tab highlighting and small-screen toggle behavior.
+ *
+ * Props:
+ * @param {Array<{name: string, goTo: string}>} tabs - Array of tab objects with `name` and `goTo` URL.
+ * @param {string} logoURL - URL of the logo image to display in the header.
+ * @param {{name: string, goTo: string}} defaultTab - Default active tab if no match with current URL.
+ * @param {number} breakpoint - Screen width in pixels to switch to small screen layout (default: 800).
+ * @param {string} loginRegisterTabName - Name of the login/register tab that triggers a redirect.
+ * @param {string} loginRegisterURL - URL to navigate for login/register, with redirect back parameter.
+ * @param {string} color - Primary color used for active tab highlighting and styling.
+ * @param {string} brand - Brand name used for setting the document title.
+ *
+ * Behavior:
+ * - Highlights the active tab based on the current URL path.
+ * - On small screens (below `breakpoint`), toggles navigation menu with a hamburger icon.
+ * - Clicking tabs updates the URL and active state; login/register tab triggers redirect with return URL.
+ * - Updates document title to reflect the active tab and brand.
+ * - Splits tabs into two columns for larger screen layouts.
+ */
+
 export const Header = ({
   tabs = [], // Example: [{ name: "Home", goTo: "/" }, { name: "About", goTo: "about" }]
   logoURL = "",

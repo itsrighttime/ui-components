@@ -2,6 +2,49 @@ import { useEffect, useState } from "react";
 import { TextField } from "../../TextInput/jsx/TextField.jsx";
 import styles from "../css/MobileInput.module.css";
 
+/**
+ * MobileField Component
+ *
+ * A specialized input component for phone numbers, supporting country code and number inputs.
+ * Built on top of the `TextField` component for both the country code and the phone number.
+ * Includes validation, custom styling, backend error handling, and controlled input behavior.
+ *
+ * @component
+ *
+ * @param {Object} props - Props for configuring the MobileField
+ *
+ * @param {string} [props.value=""] - Phone number value
+ * @param {string} [props.placeholder="Enter phone number"] - Placeholder for phone number input
+ * @param {boolean} [props.required=false] - Whether the phone number is required
+ * @param {string} [props.color] - Custom text or border color
+ * @param {string} [props.code="+91"] - Default country code
+ * @param {Function} props.setResult - Callback to receive `{ countryCode, phoneNumber }`
+ * @param {Function} [props.setIsFieldValid] - Callback for phone number validation status
+ * @param {number} [props.noOfDigits=10] - Number of digits for the phone number
+ * @param {boolean} [props.showLabelAlways=false] - Always show labels
+ * @param {Object} [props.style={}] - Inline styles for the container
+ * @param {string} [props.width="300px"] - Width of the component
+ * @param {boolean} [props.isBorder=false] - Show border around input fields
+ * @param {string} [props.errorMessage="Not a valid Numbers"] - Validation error message for phone number
+ * @param {string} [props.backendError=""] - Error message coming from backend
+ *
+ * @returns {JSX.Element} Rendered MobileField component
+ *
+ * @example
+ * <MobileField
+ *   value={mobile}
+ *   setResult={({ countryCode, phoneNumber }) => setMobile(`${countryCode}${phoneNumber}`)}
+ *   setIsFieldValid={setIsValid}
+ *   required
+ * />
+ *
+ * @notes
+ * - Country code input allows `+` followed by digits (max 4 digits)
+ * - Phone number input allows only numeric digits
+ * - Both inputs use `TextField` internally
+ * - Supports controlled behavior and syncing with parent state
+ * - Displays backend validation errors and custom error messages
+ */
 export const MobileField = ({
   value = "",
   placeholder = "Enter phone number",

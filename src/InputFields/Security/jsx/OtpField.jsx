@@ -5,6 +5,36 @@ import { UtilsLogger } from "../../../utils/logger/logger.util.js";
 
 const logger = UtilsLogger.logger;
 
+/**
+ * `OtpField` is a React component that renders a multi-input OTP (One-Time Password) field.
+ * It supports numeric or alphanumeric input, handles backspace and paste events, 
+ * and automatically submits the OTP to a backend verification endpoint.
+ * 
+ * @component
+ * 
+ * @param {Object} props - Component props.
+ * @param {number} [props.length=6] - Number of OTP input fields.
+ * @param {function} props.setResult - Callback function to return the valid OTP.
+ * @param {string} [props.color] - Primary color for the OTP input fields.
+ * @param {string} [props.width="300px"] - Width of the OTP input container.
+ * @param {string} [props.verifcationEndpoint] - API endpoint for OTP verification.
+ * @param {string|number} [props.userId] - User ID to send along with OTP verification request.
+ * @param {function} [props.setError] - Callback function to set error messages from verification.
+ * @param {boolean} [props.isNumeric=true] - Whether the OTP should accept numeric characters only.
+ * 
+ * @example
+ * <OtpField
+ *   length={6}
+ *   color="#00AEEF"
+ *   width="250px"
+ *   userId="12345"
+ *   verifcationEndpoint="/api/verify-otp"
+ *   setResult={(otp) => console.log("Verified OTP:", otp)}
+ *   setError={(err) => console.error("OTP Error:", err)}
+ * />
+ * 
+ * @returns {JSX.Element} The OTP input field component.
+ */
 export const OtpField = ({
   length = 6,
   setResult,

@@ -1,8 +1,43 @@
 import style from "../css/VideoPlayer.module.css";
-import { crossIcon, videoNotIcon, resetFieldIcon } from "../../../utils/icons.jsx";
+import {
+  crossIcon,
+  videoNotIcon,
+  resetFieldIcon,
+} from "../../../utils/icons.jsx";
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 import { IconError } from "../../../SpecialPages/js/IconError.jsx";
 
+/**
+ * VideoPlayer Component
+ *
+ * A reusable React component to preview a video file or URL with built-in controls.
+ * Supports re-upload and remove actions, as well as dynamic styling.
+ *
+ * Props:
+ * @param {File|string|null} videoFile - The video to preview (can be a File/Blob or a URL string).
+ * @param {function} [onRemove=null] - Callback invoked when the remove button is clicked.
+ * @param {function} [onReupload=null] - Callback invoked when the re-upload button is clicked.
+ * @param {string} [color] - Primary color for styling buttons and UI elements.
+ * @param {string} [width="400px"] - Width of the video container.
+ * @param {string} [height="200px"] - Height of the video container.
+ *
+ * Behavior:
+ * - If `videoFile` is provided as a Blob/File, a temporary URL is created for preview.
+ * - If `videoFile` is a string, it is used directly as the video source.
+ * - If no video is provided, a fallback error icon is displayed.
+ * - Re-upload and remove buttons are shown if corresponding callbacks are provided.
+ * 
+ * @example
+ * Example usage:
+ * <VideoPlayer
+ *   videoFile={selectedFile}
+ *   onRemove={() => setVideo(null)}
+ *   onReupload={() => openFileDialog()}
+ *   color="#52C9BD"
+ *   width="500px"
+ *   height="280px"
+ * />
+ */
 export const VideoPlayer = ({
   videoFile,
   onRemove = null,

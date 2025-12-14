@@ -7,6 +7,28 @@ import { WorkspaceHomePage } from "./WorspaceHomePage.jsx";
 import { FullscreenWrapper } from "./FullscreenWrapper.jsx";
 import { LoginPage } from "../helper/LoginPage.jsx";
 
+/**
+ * Workspace Component
+ *
+ * Acts as the main entry point for the workspace section of the application.
+ * Handles routing, fullscreen mode, and provider context for all nested workspace components.
+ *
+ * Props:
+ * @param {function} tabClickHandler - Optional callback invoked when a tab in the workspace is clicked.
+ * @param {string} workspace - Workspace identifier (default: "letsDiscuss") to load a specific workspace context.
+ *
+ * Behavior:
+ * - Wraps workspace content inside CombinedProviders for shared state and context.
+ * - Wraps content in FullscreenWrapper to enable fullscreen toggle via keyboard or programmatic triggers.
+ * - Sets up routes:
+ *   - "/workspace/:workspaceId/:level/:zone/:position/:tabKey": Renders WorkspaceLayoutWrapper with toggleFullscreen.
+ *   - Index route: Renders WorkspaceHomePage with predefined apps and toggleFullscreen.
+ *   - "/login": Renders LoginPage with fullscreen toggle support.
+ *   - Catch-all "*": Renders ErrorPage with navigation back to root.
+ *
+ * Usage:
+ * <Workspace workspace="letsDiscuss" tabClickHandler={handleTabClick} />
+ */
 export const Workspace = ({ tabClickHandler, workspace = "letsDiscuss" }) => {
   const navigate = useNavigate();
 

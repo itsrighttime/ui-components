@@ -1,6 +1,36 @@
 import styles from "../css/Container.module.css";
 import { toCSSValue } from "../helper/toCSSValue.js";
 
+/**
+ * FlexContainer Component
+ *
+ * A reusable wrapper component for creating flexible layouts using CSS Flexbox.
+ * Supports direction, alignment, justification, wrapping, and gap control via props.
+ *
+ * Props:
+ * @param {React.ReactNode} children - The content to be wrapped inside the flex container.
+ * @param {"row"|"column"} [direction="row"] - Flex direction.
+ * @param {"start"|"center"|"end"|"between"|"around"|"evenly"} [justify="start"] - Justify content.
+ * @param {"start"|"center"|"end"|"stretch"} [align="stretch"] - Align items.
+ * @param {"wrap"|"nowrap"|"wrap-reverse"} [wrap="wrap"] - Flex wrapping behavior.
+ * @param {string|number} [gap="8px"] - Gap between flex items.
+ * @param {string} [className=""] - Additional CSS class names to apply.
+ * @param {React.CSSProperties} [style={}] - Inline styles to merge with the component.
+ * @param {React.Ref<HTMLDivElement>} [flexRef=null] - Ref to access the container DOM element.
+ *
+ * @example
+ * Example usage:
+ * <FlexContainer
+ *   direction="column"
+ *   justify="center"
+ *   align="start"
+ *   gap="16px"
+ * >
+ *   <ChildComponent1 />
+ *   <ChildComponent2 />
+ * </FlexContainer>
+ */
+
 export const FlexContainer = ({
   children,
   direction = "row", // row | column

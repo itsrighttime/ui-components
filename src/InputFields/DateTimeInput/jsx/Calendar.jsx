@@ -21,6 +21,46 @@ const RenderCalendar = React.lazy(() => import("../helper/RenderDates.jsx"));
 const RenderMonths = React.lazy(() => import("../helper/RenderMonths.jsx"));
 const RenderYears = React.lazy(() => import("../helper/RenderYears.jsx"));
 
+/**
+ * Calendar Component
+ *
+ * A versatile calendar component for selecting dates, months, or years.
+ * Supports restrictions on selectable date ranges, small/compact display,
+ * and different modes ("date", "month", "month-year", "year").
+ * Uses lazy-loaded subcomponents for rendering calendar, months, and years.
+ *
+ * @component
+ *
+ * @param {Object} props - Props to configure the Calendar
+ * @param {boolean} [props.isSmall=false] - If true, renders a compact calendar
+ * @param {function} props.setResult - Callback to return selected value (date, month, or year)
+ * @param {string} [props.color] - Custom color for calendar highlights and icons
+ * @param {string|null} [props.restrictionStartDate=null] - Earliest selectable date in "dd-mm-yyyy" format
+ * @param {string|null} [props.restrictionEndDate=null] - Latest selectable date in "dd-mm-yyyy" format
+ * @param {string} [props.height="100%"] - Height of the calendar container
+ * @param {string} [props.width="100%"] - Width of the calendar container
+ * @param {string} [props.mode="date"] - Mode of selection: "date", "month", "month-year", or "year"
+ *
+ * @returns {JSX.Element} Rendered Calendar component
+ *
+ * @example
+ * <Calendar
+ *   isSmall={true}
+ *   setResult={(value) => console.log(value)}
+ *   color="#00bcd4"
+ *   restrictionStartDate="01-01-2024"
+ *   restrictionEndDate="31-12-2024"
+ *   mode="month-year"
+ * />
+ *
+ * @notes
+ * - Internally uses lazy-loaded components for performance (`RenderCalendar`, `RenderMonths`, `RenderYears`)
+ * - Automatically adjusts initial date based on restrictions
+ * - Validates that `restrictionStartDate` <= `restrictionEndDate`
+ * - Clicking the header toggles between views (calendar, months, years)
+ * - Arrows navigate within allowed date range
+ */
+
 export const Calendar = ({
   isSmall = false,
   setResult,

@@ -8,6 +8,24 @@ import { IconButton } from "../../InputFields/Actions/jsx/IconButton.jsx";
 import { screenModeIcon } from "../../utils/icons.jsx";
 import { workspaceLabels } from "../../Layout/Workspace/helper/workspaceLabels.js";
 
+/**
+ * ExtraButtons Component
+ *
+ * Renders secondary action buttons for login-related recovery flows
+ * such as "Forgot ID" and "Forgot Password".
+ *
+ * Buttons are rendered conditionally based on the availability
+ * of their respective handler functions.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props
+ * @param {Function|null} props.handleForgotId - Callback triggered when "Forgot ID" is clicked
+ * @param {Function|null} props.handleForgotPassword - Callback triggered when "Forgot Password" is clicked
+ *
+ * @returns {JSX.Element}
+ */
+
 const ExtraButtons = ({ handleForgotId, handleForgotPassword }) => (
   <div className={styles.extra}>
     {handleForgotId && (
@@ -27,6 +45,62 @@ const ExtraButtons = ({ handleForgotId, handleForgotPassword }) => (
   </div>
 );
 
+/**
+ * LoginForm Component
+ *
+ * A reusable authentication form for user login workflows.
+ * Supports optional fullscreen toggle, registration flow,
+ * password/ID recovery actions, and error display.
+ *
+ * Designed to be flexible for multiple authentication contexts
+ * within the workspace ecosystem.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props
+ *
+ * @param {Function|null} [props.handleToggleFullscreen=null]
+ * Callback for toggling fullscreen / screen mode.
+ *
+ * @param {Function|null} [props.handleForgotId=null]
+ * Callback for handling "Forgot ID" recovery flow.
+ *
+ * @param {Function|null} [props.handleForgotPassword=null]
+ * Callback for handling "Forgot Password" recovery flow.
+ *
+ * @param {Function|null} [props.handleRegister=null]
+ * Callback for navigating to the registration flow.
+ *
+ * @param {Function} [props.handleLogin]
+ * Login handler invoked with user credentials.
+ * @param {string} id - User-entered identifier
+ * @param {string} password - User-entered password
+ *
+ * @param {string} [props.formTitle="Welcome Back"]
+ * Title text displayed at the top of the login form.
+ *
+ * @param {string|null} [props.formIcon=null]
+ * Optional image source for the form icon / logo.
+ *
+ * @param {string} [props.errorMsg=""]
+ * Error message displayed below the form when login fails.
+ *
+ * @returns {JSX.Element} Rendered login form UI
+ *
+ * @example
+ * <LoginForm
+ *   handleLogin={(id, password) => authenticate(id, password)}
+ *   handleForgotPassword={openForgotPasswordModal}
+ * />
+ *
+ * @example
+ * <LoginForm
+ *   formTitle="Sign in to WorkSpace"
+ *   formIcon="/logo.svg"
+ *   handleRegister={navigateToRegister}
+ *   handleToggleFullscreen={toggleFullscreen}
+ * />
+ */
 export const LoginForm = ({
   handleToggleFullscreen = null,
   handleForgotId = null,

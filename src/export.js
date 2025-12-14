@@ -1,3 +1,8 @@
+/**
+ * @module @itsrighttime/ui-components
+ * @description A reusable and customizable React UI components library
+ */
+
 import "./index.css";
 
 import { Alert } from "./Alert/js/Alert.jsx";

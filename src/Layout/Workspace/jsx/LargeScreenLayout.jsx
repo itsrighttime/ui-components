@@ -5,6 +5,31 @@ import { workspaceLayoutKeys } from "./../helper/workspaceLayoutKeys.js";
 
 const { ZONES } = workspaceLayoutKeys;
 
+/**
+ * LargeScreenLayout Component
+ *
+ * Renders a workspace layout optimized for large screens with multiple zones.
+ * Supports recursive nesting for secondary tabs/content, creating multi-level workspaces.
+ *
+ * Props:
+ * @param {string|number} height - Height of the layout container.
+ * @param {string|number} width - Width of the layout container.
+ * @param {object} cssVariable - Additional CSS variables to apply to the container.
+ * @param {number} navigatorSize - Size of the navigators rendered in different zones.
+ * @param {object} tabsPrimary - Object containing primary zone tabs keyed by ZONES constants (commandBar, sidebar, tools, statusBar).
+ * @param {object} tabsSecondary - Optional object for secondary tabs to render recursively.
+ * @param {any} content - The main content to display within the workspace.
+ * @param {object} api - Optional API or data passed down for nested layouts.
+ * @param {number} level - Current recursion level (used internally for nested layouts).
+ * @param {number} maxDepth - Maximum depth allowed for recursive rendering.
+ * @param {function} toggleFullscreen - Function to toggle fullscreen mode (optional).
+ *
+ * Behavior:
+ * - Renders primary zones: commandBar (top), sidebar (left), tools (right), statusBar (bottom).
+ * - Middle area displays either nested WorkspaceLayout (if level < maxDepth) or the provided content.
+ * - Navigators are rendered for each zone if tabs are provided.
+ * - Supports recursive layouts for complex workspace structures.
+ */
 export const LargeScreenLayout = ({
   height,
   width,

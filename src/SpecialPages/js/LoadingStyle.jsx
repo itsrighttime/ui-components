@@ -1,5 +1,17 @@
 import styles from "../css/LoadingStyle.module.css";
 
+/**
+ * CubesLoader Component
+ *
+ * Displays a 3x3 cube animation loader.
+ *
+ * Props:
+ * @param {string} color - The color of the cubes (default: "var(--colorCyan)").
+ *
+ * Usage:
+ * <CubesLoader color="var(--colorRed)" />
+ */
+
 export const CubesLoader = ({ color }) => {
   const cssVariables = {
     "--color": color || "var(--colorCyan)",
@@ -19,6 +31,17 @@ export const CubesLoader = ({ color }) => {
   );
 };
 
+/**
+ * FoldingLoader Component
+ *
+ * Displays a folding cube animation loader.
+ *
+ * Props:
+ * @param {string} color - The color of the folding cubes (default: "var(--colorCyan)").
+ *
+ * Usage:
+ * <FoldingLoader color="var(--colorBlue)" />
+ */
 export const FoldingLoader = ({ color }) => {
   const cssVariables = {
     "--color": color || "var(--colorCyan)",
@@ -33,6 +56,17 @@ export const FoldingLoader = ({ color }) => {
   );
 };
 
+/**
+ * BounceLoader Component
+ *
+ * Displays three bouncing dots animation loader.
+ *
+ * Props:
+ * @param {string} color - The color of the dots (default: "var(--colorCyan)").
+ *
+ * Usage:
+ * <BounceLoader color="var(--colorGreen)" />
+ */
 export const BounceLoader = ({ color }) => {
   const cssVariables = {
     "--color": color || "var(--colorCyan)",
@@ -46,6 +80,18 @@ export const BounceLoader = ({ color }) => {
   );
 };
 
+/**
+ * PulseLoader Component
+ *
+ * Displays a pulsing line chart animation loader using SVG polyline.
+ *
+ * Props:
+ * @param {string} color - The color of the pulse line (default: "var(--colorCyan)").
+ *
+ * @example
+ * Usage:
+ * <PulseLoader color="var(--colorOrange)" />
+ */
 export const PulseLoader = ({ color }) => {
   const cssVariables = {
     "--color": color || "var(--colorCyan)",

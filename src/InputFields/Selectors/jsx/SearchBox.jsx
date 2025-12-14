@@ -8,6 +8,32 @@ import {
 } from "../helper/searchBoxHelper.js";
 import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 
+/**
+ * `SearchBox` is a React component that provides an input field with autocomplete suggestions.
+ * Users can type a query, see filtered suggestions, navigate them with keyboard arrows, and select an option.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props.
+ * @param {Array<Object>} props.suggestions - Array of suggestion objects. Each suggestion should have:
+ *   @param {string} suggestion.name - Display name of the suggestion.
+ *   @param {string|number} suggestion.code - Unique code or value associated with the suggestion.
+ * @param {function} props.setResult - Callback fired when a suggestion is selected. Receives the selected suggestion's code.
+ * @param {string} [props.color] - Optional color for styling the component.
+ * @param {string} [props.placeholder="Search..."] - Placeholder text for the input field.
+ * @param {string} [props.width="300px"] - Width of the search box component.
+ *
+ * @example
+ * <SearchBox
+ *   suggestions={[{ name: "Apple", code: "A" }, { name: "Banana", code: "B" }]}
+ *   setResult={(value) => console.log("Selected code:", value)}
+ *   color="var(--colorCyan)"
+ *   placeholder="Search fruits"
+ *   width="400px"
+ * />
+ *
+ * @returns {JSX.Element} A search input with filtered suggestions and keyboard navigation support.
+ */
 export const SearchBox = ({
   suggestions,
   setResult,

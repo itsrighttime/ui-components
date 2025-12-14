@@ -5,6 +5,29 @@ import { validateTabsIcons } from "../helper/validateTabsIcons.js";
 import { workspaceLayoutKeys } from "../helper/workspaceLayoutKeys.js";
 
 const { POSITIONS } = workspaceLayoutKeys;
+/**
+ * Navigator Component
+ *
+ * Renders a navigational bar with tabs, supporting both row and column layouts.
+ *
+ * Props:
+ * @param {object} style - Custom CSS styles applied to the navigator container.
+ * @param {"row"|"column"} direction - Layout direction of the navigator. Default is "row".
+ * @param {string} size - Size of the navigator (height if row, width if column). Default is "35px".
+ * @param {object} tabs - Tabs to render in the navigator, structured by position:
+ *   {
+ *     left: [{ key, value, icon, onClick }],
+ *     mid: [{ key, value, icon, onClick }],
+ *     right: [{ key, value, icon, onClick }]
+ *   }
+ *
+ * Behavior:
+ * - Validates that each tab has an icon using `validateTabsIcons`.
+ * - Maps tabs to three positions: start/center/end for rendering.
+ * - Uses `FlexContainer` to arrange tabs according to the specified direction and size.
+ * - Each tab is rendered via the `Tabs` component.
+ * - Returns an empty fragment if no tabs are provided.
+ */
 
 export const Navigator = ({
   style,

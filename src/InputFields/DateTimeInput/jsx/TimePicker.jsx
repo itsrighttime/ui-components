@@ -3,6 +3,41 @@ import styles from "../css/TimePicker.module.css";
 import { CustomDropdown } from "../helper/CustomDropdown.jsx";
 import { useEffect } from "react";
 
+/**
+ * TimePicker Component
+ *
+ * A reusable time picker input that allows users to select hours, minutes,
+ * and period (AM/PM) using dropdowns. Provides formatted time to parent component
+ * via the `setResult` callback.
+ *
+ * @component
+ *
+ * @param {Object} props - Props to configure the TimePicker
+ * @param {string} props.label - Label for the time input
+ * @param {string} [props.value="--:-- --"] - Initial time value in "hh:mm AM/PM" format
+ * @param {function} props.setResult - Callback function that receives the formatted time
+ * @param {string} [props.color] - Custom color for the dropdowns
+ * @param {string} [props.width="200px"] - Maximum width of the TimePicker
+ * @param {boolean} [props.required=false] - If true, marks the field as required
+ *
+ * @returns {JSX.Element} Rendered TimePicker component
+ *
+ * @example
+ * <TimePicker
+ *   label="Select Time"
+ *   value="08:30 AM"
+ *   setResult={(time) => console.log(time)}
+ *   color="#00bcd4"
+ *   width="250px"
+ *   required={true}
+ * />
+ *
+ * @notes
+ * - Splits the time value into hours, minutes, and period for independent selection
+ * - Updates parent component with formatted time once all fields are selected
+ * - Uses `CustomDropdown` for each selector
+ */
+
 export const TimePicker = ({
   label,
   value = "--:-- --",

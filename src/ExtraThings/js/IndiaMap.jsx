@@ -3,6 +3,30 @@
 import React, { useState } from "react";
 import style from "../css/IndiaMap.module.css";
 
+/**
+ * Tooltip Component
+ *
+ * A lightweight UI component for displaying contextual information
+ * at a specific screen position.
+ *
+ * Commonly used to show labels or metadata on hover interactions,
+ * such as map locations or visual markers.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props
+ *
+ * @param {string} props.title
+ * Text content displayed inside the tooltip.
+ *
+ * @param {number} props.x
+ * Horizontal (left) position of the tooltip in pixels.
+ *
+ * @param {number} props.y
+ * Vertical (top) position of the tooltip in pixels.
+ *
+ * @returns {JSX.Element} Positioned tooltip element
+ */
 const Tooltip = ({ title, x, y }) => {
   return (
     <div className={style.tooltip} style={{ left: x, top: y }}>
@@ -11,6 +35,30 @@ const Tooltip = ({ title, x, y }) => {
   );
 };
 
+/**
+ * IndiaMap Component
+ *
+ * Interactive map visualization for displaying India-based
+ * locations with hover-driven tooltips.
+ *
+ * Maintains internal tooltip state for visibility, position,
+ * and displayed content.
+ *
+ * Intended for showcasing geographic presence such as offices,
+ * hubs, or operational regions.
+ *
+ * @component
+ *
+ * @param {Object} props - Component props
+ *
+ * @param {string} [props.mapTitle="Our Loactions"]
+ * Title displayed above the map.
+ *
+ * @returns {JSX.Element} Rendered India map with interactive tooltips
+ *
+ * @example
+ * <IndiaMap mapTitle="Our Presence Across India" />
+ */
 export const IndiaMap = ({ mapTitle = "Our Loactions" }) => {
   const [tooltip, setTooltip] = useState({
     visible: false,

@@ -5,6 +5,38 @@ import { IconButton } from "../../Actions/jsx/IconButton.jsx";
 import { Button } from "../../Actions/jsx/Button.jsx";
 import { useSmartPosition } from "../../../Hooks/useSmartPosition.js";
 
+/**
+ * `Dropdown` is a React component that renders a customizable dropdown/select input.
+ * It supports single or multiple selections, search filtering, and optional ability to add new options.
+ * 
+ * @component
+ * 
+ * @param {Object} props - Component props.
+ * @param {Array<string>} [props.options=[]] - List of initial options to display in the dropdown.
+ * @param {boolean} [props.multiple=false] - Whether multiple selections are allowed.
+ * @param {string} [props.placeholder="Select..."] - Placeholder text when no option is selected.
+ * @param {string} [props.label] - Label to display above the dropdown.
+ * @param {function} props.setResult - Callback invoked with the currently selected option(s).
+ * @param {string} [props.color] - Primary color for the dropdown (used for highlights, buttons, etc.).
+ * @param {Array<string>} [props.value=[]] - Initial selected option(s).
+ * @param {boolean} [props.addNew=false] - Whether to allow adding new options dynamically.
+ * @param {function} [props.setAddedOptions] - Callback invoked with updated options when a new option is added.
+ * @param {string} [props.width="300px"] - Width of the dropdown.
+ * @param {boolean} [props.showLabelAlways=false] - Whether to always show the label even if nothing is selected.
+ * @param {boolean} [props.required=false] - Whether the field is required (renders an asterisk if true).
+ * 
+ * @example
+ * <Dropdown
+ *   options={['Option 1', 'Option 2']}
+ *   multiple={true}
+ *   label="Choose Options"
+ *   setResult={(selected) => console.log(selected)}
+ *   color="#52c9bd"
+ *   addNew={true}
+ * />
+ * 
+ * @returns {JSX.Element} A dropdown component supporting search, multiple selection, and add-new-option functionality.
+ */
 export const Dropdown = ({
   options = [],
   multiple = false,

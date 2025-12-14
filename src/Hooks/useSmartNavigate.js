@@ -1,14 +1,49 @@
 import { useNavigate } from "react-router-dom";
 
 /**
- * useSmartNavigate
+ * useSmartNavigate Hook
  *
- * Smart navigation hook for both internal (React Router)
- * and external (absolute URL) navigation.
- * Supports modifier keys (Ctrl/Cmd/Middle-click) for new tab behavior.
+ * Custom React hook that provides a unified navigation handler
+ * for both internal routes (React Router) and external URLs.
  *
- * @returns {Function} handleNavigate - (event, to)
+ * Automatically detects modifier keys (Ctrl, Cmd) and middle-click
+ * interactions to support opening links in a new browser tab,
+ * mimicking native anchor (`<a>`) behavior.
+ *
+ * Useful for buttons, list items, cards, or custom link components
+ * that need intelligent navigation handling without duplicating logic.
+ *
+ * @hook
+ *
+ * @returns {Function} handleNavigate
+ * Navigation handler function.
+ *
+ * @param {MouseEvent} event
+ * Mouse or click event used to detect modifier keys or middle-click.
+ *
+ * @param {string} to
+ * Target path or URL.
+ * Can be a relative internal route (e.g., `/dashboard`)
+ * or an absolute external URL (e.g., `https://example.com`).
+ *
+ * @example
+ * const handleNavigate = useSmartNavigate();
+ *
+ * <div onClick={(e) => handleNavigate(e, "/profile")}>
+ *   Go to Profile
+ * </div>
+ *
+ * <div onClick={(e) => handleNavigate(e, "https://example.com")}>
+ *   External Link
+ * </div>
+ *
+ * @notes
+ * - Supports Ctrl / Cmd + click and middle-click for new tab behavior
+ * - Automatically distinguishes between internal and external URLs
+ * - Uses `react-router-dom` navigation for internal routes
+ * - Falls back to `window.location` for external navigation
  */
+
 export const useSmartNavigate = () => {
   const navigate = useNavigate();
 

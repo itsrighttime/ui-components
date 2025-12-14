@@ -2,26 +2,37 @@ import { Button } from "../../InputFields/Actions/jsx/Button.jsx";
 import { getColorCode } from "../../utils/COLOR.js";
 import style from "../css/CardTextSliding.module.css";
 // import { Button } from "../../InputFields";
-
 /**
- * CardTextSliding Component
+ * CardTextSliding component to display a sliding card with image, product name, description, and action button.
  *
- * A modern card with animated text overlay and CTA button.
- * Suitable for products, promotions, or interactive storytelling.
+ * This component supports vertical, horizontal, or square orientations and allows
+ * customizing text color, border radius, and optional Product ID. The card includes
+ * a background image with sliding content overlay and an action button.
  *
  * @component
- * @param {string} imgP - Background image source.
- * @param {string} productName - Title or name of the product/content.
- * @param {string} desc - Description or details.
- * @param {Function|string} [setResult="#"] - Callback function or link to handle CTA click.
- * @param {string|null} [productID=null] - Optional product ID.
- * @param {'cyan'|'red'|'yellow'|'green'|'blue'|'gray' | 'white' | 'black'} [colorName="white"] - The border theme color.
- * @param {'H'|'V'|'S'} [orientation="V"] - Orientation type: Horizontal, Vertical, Square.
- * @param {string} [borderRadius="10px"] - Border Radius.
  *
- * @returns {JSX.Element}
+ * @param {Object} props - Component props
+ * @param {string} props.img - URL of the background image for the card.
+ * @param {string} props.productName - Name of the product displayed as the card title.
+ * @param {string} props.desc - Description text for the product.
+ * @param {function|string} [props.setResult="#"] - Function or link to handle the action button click.
+ * @param {string|null} [props.productID=null] - Optional product ID displayed below the card.
+ * @param {string} props.colorName - Name of the color for text and button accents. Maps to a color code via `getColorCode`.
+ * @param {('V'|'H'|'S')} [props.orientation='V'] - Card orientation: Vertical ('V'), Horizontal ('H'), or Square ('S').
+ * @param {string} [props.borderRadius='10px'] - Border radius for the card container.
+ *
+ * @example
+ * <CardTextSliding
+ *   img="https://example.com/product.jpg"
+ *   productName="Smart Gadget"
+ *   desc="A high-tech gadget with innovative features."
+ *   setResult={() => console.log('Get Expert View clicked')}
+ *   productID="PROD456"
+ *   colorName="blue"
+ *   orientation="H"
+ *   borderRadius="12px"
+ * />
  */
-
 export const CardTextSliding = ({
   img,
   productName,

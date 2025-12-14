@@ -1,5 +1,25 @@
 import styles from "../css/LoadingChat.module.css";
 
+/**
+ * LoadingChat Component
+ *
+ * Displays an animated "gooey" blob loader, typically used to indicate
+ * a chat or messaging interface is loading or processing.
+ *
+ * Props:
+ * @param {string} color - The color of the animated blobs (default: "var(--colorCyan)").
+ * @param {string} height - The height of the loader container (default: "100%").
+ * @param {string} width - The width of the loader container (default: "100%").
+ *
+ * Features:
+ * - Uses multiple divs styled with CSS to create animated blobs.
+ * - Includes an SVG filter for a "gooey" merging effect.
+ * - Fully responsive through CSS variables.
+ *
+ * @example
+ * Usage:
+ * <LoadingChat color="var(--colorRed)" height="50px" width="150px" />
+ */
 export const LoadingChat = ({ color, height = "100%", width = "100%" }) => {
   const cssVariables = {
     "--color": color || "var(--colorCyan)",
