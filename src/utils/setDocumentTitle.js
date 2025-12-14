@@ -6,5 +6,7 @@
  */
 
 export const setDocumentTitle = (title) => {
+  if (typeof document === "undefined") return;
+
   document.title = title;
 };

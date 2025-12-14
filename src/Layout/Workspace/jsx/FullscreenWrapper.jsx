@@ -31,12 +31,16 @@ export const FullscreenWrapper = ({ children, shortcutKey = "`" }) => {
   };
 
   const exitFullScreen = () => {
+    if (typeof document === "undefined") return;
+
     if (document.exitFullscreen) document.exitFullscreen();
     else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
     else if (document.msExitFullscreen) document.msExitFullscreen();
   };
 
   const toggleFullscreen = () => {
+    if (typeof document === "undefined") return;
+
     if (!document.fullscreenElement) enterFullScreen();
     else exitFullScreen();
   };

@@ -37,6 +37,10 @@ import { useEffect } from "react";
  */
 export const useUserPresentOnTab = ({ onFocus, onBlur }) => {
   useEffect(() => {
+    if (typeof window === "undefined" || typeof document === "undefined") {
+      return;
+    }
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
         onBlur?.("TAB_HIDDEN");

@@ -129,6 +129,8 @@ export const AudioUpload = ({
   };
 
   const handleReupload = () => {
+    if (typeof document === "undefined") return;
+    
     const input = document.createElement("input");
     input.type = "file";
     input.accept = allowedTypes.join(",");

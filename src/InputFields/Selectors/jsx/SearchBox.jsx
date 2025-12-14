@@ -83,6 +83,9 @@ export const SearchBox = ({
   };
 
   useEffect(() => {
+    if (typeof window === "undefined" || typeof document === "undefined") {
+      return;
+    }
     const handleOutsideClick = handleClickOutside(
       searchBoxRef,
       setShowSuggestions

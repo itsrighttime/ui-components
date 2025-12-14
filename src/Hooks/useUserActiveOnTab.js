@@ -31,6 +31,7 @@ import { useEffect, useRef, useState } from "react";
  *   touch events, scrolls, and visibility changes
  * - Automatically resets timer whenever activity is detected
  * - Cleans up all event listeners and timers on component unmount
+ * - Only runs in browser environment (client-side)
  */
 
 export const useUserActiveOnTab = (timeout = 5) => {
@@ -47,6 +48,11 @@ export const useUserActiveOnTab = (timeout = 5) => {
   };
 
   useEffect(() => {
+    // Guard: Only run in browser environment
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
     const events = [
       "mousemove",
       "mousedown",
@@ -55,6 +61,7 @@ export const useUserActiveOnTab = (timeout = 5) => {
       "scroll",
       "visibilitychange",
     ];
+    
     const handleActivity = () => {
       if (document.visibilityState === "visible") resetTimer();
     };

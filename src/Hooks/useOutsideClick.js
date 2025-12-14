@@ -36,10 +36,14 @@ import { useEffect } from "react";
  * - Listens to `mousedown` events at the document level
  * - Automatically cleans up event listeners on unmount
  * - Safe against null or unmounted refs
+ * - Only runs in browser environment (client-side)
  */
 
 export const useOutsideClick = (ref, handler) => {
   useEffect(() => {
+    // Guard: Only run in browser environment
+    if (typeof document === 'undefined') return;
+
     const listener = (event) => {
       if (!ref.current || ref.current.contains(event.target)) return;
       handler();

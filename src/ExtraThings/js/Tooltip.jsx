@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
@@ -64,7 +64,13 @@ export const Tooltip = ({
   const [visible, setVisible] = useState(false);
   const [style, setStyle] = useState({});
   const [position, setPosition] = useState("bottom");
+  const [mounted, setMounted] = useState(false); // ✅ Add mounted state
   const timerRef = useRef(null);
+
+  // ✅ Set mounted on client-side only
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const updateTooltipPosition = (x, y) => {
     const tooltip = tooltipRef.current;
@@ -138,25 +144,26 @@ export const Tooltip = ({
         {children}
       </span>
 
-      {ReactDOM.createPortal(
-        <div
-          ref={tooltipRef}
-          style={{
-            ...style,
-            opacity: visible ? 1 : 0,
-            visibility: visible && content ? "visible" : "hidden",
-            transition: "opacity 0.15s ease, visibility 0.15s ease",
-          }}
-          className={`${styles.tooltip} ${styles[position]}`}
-        >
-          {content}
-        </div>,
-        document.body
-      )}
+      {/* ✅ Only render portal when mounted (client-side) */}
+      {mounted &&
+        ReactDOM.createPortal(
+          <div
+            ref={tooltipRef}
+            style={{
+              ...style,
+              opacity: visible ? 1 : 0,
+              visibility: visible && content ? "visible" : "hidden",
+              transition: "opacity 0.15s ease, visibility 0.15s ease",
+            }}
+            className={`${styles.tooltip} ${styles[position]}`}
+          >
+            {content}
+          </div>,
+          document.body
+        )}
     </>
   );
 };
-
 /*
 
 import Tooltip from "./Tooltip";

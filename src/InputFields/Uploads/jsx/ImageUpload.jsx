@@ -169,6 +169,8 @@ export const ImageUpload = ({
   };
 
   const handleReupload = () => {
+    if (typeof document === "undefined") return;
+
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = allowedTypes.join(",");
