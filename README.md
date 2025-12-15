@@ -42,6 +42,7 @@ const { Alert } = UIAlert;
 | [`UILayout`](./docs/layout.md)        | Layout components like containers & workspace |
 | [`UIHooks`](./docs/hooks.md)          | Custom React hooks                            |
 | [`UIUtils`](./docs/utils.md)          | Utility functions and helpers                 |
+| [`UIContext`](#context)          | Utility functions and helpers                 |
 
 ## Imports
 
@@ -183,7 +184,9 @@ const { Alert } = UIAlert;
 
 - [`Translation`](./docs/services/translation.md)
 
-- All icons available via: `Icons`
+## [Context]
+
+- [`DynamicContext`](./docs/context/dynamic.md)
 
 ## License
 
