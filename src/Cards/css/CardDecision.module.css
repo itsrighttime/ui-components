@@ -1,0 +1,84 @@
+.decision {
+  width: 100%;
+  max-width: 460px;
+
+  padding: 1rem;
+
+  background-color: var(--neutral0);
+  border: 1px solid var(--neutral200);
+  border-radius: var(--borderRadiusLg);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
+  transition: background-color 0.2s ease, border-left-color 0.2s ease;
+  text-align: left;
+}
+
+.decision:hover {
+  background-color: var(--neutral100);
+  border-color: var(--color-secondary);
+}
+
+/* =========================
+   Decision Text
+   ========================= */
+
+.decisionText {
+  font-size: 1rem;
+  font-weight: var(--boldL3);
+  color: var(--neutral900);
+  line-height: 1.35;
+}
+
+/* =========================
+   Reason & Impact
+   ========================= */
+
+.reason,
+.impact {
+  font-size: 0.88rem;
+  color: var(--neutral700);
+  line-height: 1.45;
+}
+
+.reason span,
+.impact span {
+  font-weight: var(--boldL2);
+  color: var(--neutral900);
+}
+
+.description {
+  font-size: 0.9rem;
+  text-align: justify;
+}
+
+/* =====================================================
+   Responsive Adjustments
+   ===================================================== */
+
+@media (max-width: 768px) {
+  .decision {
+    padding: 0.85rem;
+    max-width: 100%;
+  }
+
+  .decisionText {
+    font-size: 0.95rem;
+  }
+
+  .reason,
+  .impact {
+    font-size: 0.84rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .decision {
+    padding: 0.75rem;
+  }
+}

@@ -42,7 +42,7 @@ const { Alert } = UIAlert;
 | [`UILayout`](./docs/layout.md)        | Layout components like containers & workspace |
 | [`UIHooks`](./docs/hooks.md)          | Custom React hooks                            |
 | [`UIUtils`](./docs/utils.md)          | Utility functions and helpers                 |
-| [`UIContext`](#context)          | Utility functions and helpers                 |
+| [`UIContext`](#context)               | Utility functions and helpers                 |
 
 ## Imports
 
@@ -60,6 +60,14 @@ const { Alert } = UIAlert;
 - `CardSimpleInfo`
 - `CardTextOn`
 - `CardTextSliding`
+- `CardDecision`
+- `CardEvent`
+- `CardExperience`
+- `CardMedia`
+- `CardMilestone`
+- `CardPhase`
+- `CardProduct`
+- `CardGallery`
 
 ## [Inputs](./docs/input.md)
 
@@ -156,6 +164,7 @@ const { Alert } = UIAlert;
 - [`useUserPresentOnTab`](./docs/hooks.md#5-useuserpresentontab-onfocus-onblur-)
 - [`useQueryParams`](./docs/hooks/useQueryParams.md)
 - [`useSmartNavigate`](./docs/hooks/useSmartNavigate.md)
+- [`useScrollPoints`](./docs/hooks/useScrollPoints.md)
 
 ## [Utilities](./docs/utils.md)
 

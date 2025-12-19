@@ -1,0 +1,161 @@
+.product {
+  width: 100%;
+  max-width: 460px;
+
+  padding: 0.9rem 1rem;
+
+  background-color: var(--neutral0);
+  border: 1px solid var(--neutral200);
+  border-radius: var(--borderRadiusLg);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  text-align: left;
+}
+
+.product:hover {
+  background-color: var(--neutral100);
+  border-color: var(--color-secondary);
+}
+
+/* =========================
+   Header
+   ========================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.titleBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: var(--boldL3);
+  color: var(--neutral900);
+  line-height: 1.3;
+}
+
+.version {
+  font-size: 0.8rem;
+  font-weight: var(--boldL2);
+  color: var(--neutral500);
+}
+
+/* =========================
+   Status Badge
+   ========================= */
+
+.status {
+  font-size: 0.7rem;
+  font-weight: var(--boldL2);
+  text-transform: uppercase;
+
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+/* Status variants */
+.released {
+  color: var(--colorGreen);
+  border-color: var(--colorGreen);
+}
+
+.beta {
+  color: var(--colorYellow);
+  border-color: var(--colorYellow);
+}
+
+.deprecated {
+  color: var(--colorRed);
+  border-color: var(--colorRed);
+}
+
+.tagline {
+  font-size: 0.9rem;
+  color: var(--neutral700);
+  line-height: 1.45;
+  font-weight: var(--boldL3);
+}
+
+/* =========================
+   Highlights
+   ========================= */
+
+.highlights {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.highlights li {
+  font-size: 0.85rem;
+  color: var(--neutral700);
+  line-height: 1;
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.link {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: var(--boldL2);
+  color: var(--color-primary);
+  align-self: flex-start;
+}
+
+.link:hover {
+  color: var(--color-secondary);
+  cursor: pointer;
+}
+
+/* =====================================================
+   Responsive Adjustments
+   ===================================================== */
+
+@media (max-width: 768px) {
+  .product {
+    padding: 0.75rem 0.85rem;
+    max-width: 100%;
+  }
+
+  .name {
+    font-size: 0.95rem;
+  }
+
+  .highlights li {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .status {
+    font-size: 0.65rem;
+  }
+}

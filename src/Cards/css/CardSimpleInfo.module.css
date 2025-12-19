@@ -25,12 +25,14 @@
   font-size: calc(var(--size) * 1.8);
   font-weight: var(--boldL3);
   line-height: 25px;
+  text-align: left;
 }
 
 .position {
   text-align: center;
   font-size: calc(var(--size) * 0.8);
   font-weight: var(--boldL3);
+  text-align: left;
 }
 
 .desc {

@@ -41,6 +41,23 @@ a {
   --colorGray5: #7f7f7f;
   --colorGray6: #404040;
 
+  --color-primary: var(--colorDarkBlue);
+  --color-secondary: var(--colorCyan);
+  --color-tertiary: var(--colorYellow);
+
+  --neutral0: #ffffff;
+  --neutral100: #f5f7fa;
+  --neutral200: #e5e7eb;
+  --neutral500: #6b7280;
+  --neutral700: #374151;
+  --neutral900: #111827;
+
+  --borderRadiusExlg: 15px;
+  --borderRadiusLg: 10px;
+  --borderRadiusMd: 7px;
+  --borderRadiusSm: 5px;
+  --borderRadiusExsm: 3px;
+
   --boldL1: 500;
   --boldL2: 600;
   --boldL3: 700;

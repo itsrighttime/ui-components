@@ -1,0 +1,87 @@
+.media {
+  width: 100%;
+  max-width: 460px;
+
+  padding: 0.8rem;
+
+  background-color: var(--neutral0);
+  border: 1px solid var(--neutral200);
+  border-radius: var(--borderRadiusLg);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  text-align: left;
+}
+
+.media:hover {
+  background-color: var(--neutral100);
+  border-color: var(--color-secondary);
+}
+
+/* =========================
+   Image & Video
+   ========================= */
+
+.image,
+.video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* =========================
+   Quote
+   ========================= */
+
+.quote {
+  font-size: 0.95rem;
+  font-weight: var(--boldL2);
+  color: var(--neutral900);
+  line-height: 1.5;
+
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--color-primary);
+}
+
+/* =========================
+   Caption
+   ========================= */
+
+.caption {
+  font-size: 0.8rem;
+  color: var(--neutral500);
+  line-height: 1.4;
+  text-align: right;
+}
+
+/* =====================================================
+   Responsive Adjustments
+   ===================================================== */
+
+@media (max-width: 768px) {
+  .media {
+    padding: 0.7rem;
+    max-width: 100%;
+  }
+
+  .quote {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .media {
+    padding: 0.65rem;
+  }
+
+  .caption {
+    font-size: 0.75rem;
+  }
+}

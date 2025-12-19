@@ -108,6 +108,15 @@ import { validateSchema } from "./Layout/Forms/validation/validateSchema.js";
 import { configToSchema } from "./Layout/Forms/validation/configToSchema.js";
 import { validateResponse } from "./Layout/Forms/validation/validateResponse.js";
 import IconGallery from "./Usecases/Misc/IconGallery.jsx";
+import { useScrollPoints } from "./Hooks/useScrollPoints.js";
+import { CardDecision } from "./Cards/js/CardDecision.jsx";
+import { CardEvent } from "./Cards/js/CardEvent.jsx";
+import { CardExperience } from "./Cards/js/CardExperience.jsx";
+import { CardMedia } from "./Cards/js/CardMedia.jsx";
+import { CardMilestone } from "./Cards/js/CardMilestone.jsx";
+import { CardPhase } from "./Cards/js/CardPhase.jsx";
+import { CardProduct } from "./Cards/js/CardProduct.jsx";
+import { CardShowcase } from "./Usecases/Misc/CardGallery.jsx";
 
 export const UIAlert = {
   Alert,
@@ -120,6 +129,14 @@ export const UICards = {
   CardSimpleInfo,
   CardTextOn,
   CardTextSliding,
+  CardDecision,
+  CardEvent,
+  CardExperience,
+  CardMedia,
+  CardMilestone,
+  CardPhase,
+  CardProduct,
+  CardGallery: CardShowcase,
 };
 
 export const UIExtra = {
@@ -223,6 +240,7 @@ export const UIHooks = {
   useUserPresentOnTab,
   useQueryParams,
   useSmartNavigate,
+  useScrollPoints,
 };
 
 export const UIUtils = {
@@ -259,17 +277,4 @@ export const UIServices = {
     useTranslator,
     translator,
   },
-};
-
-export default {
-  UIAlert,
-  UICards,
-  UIExtra,
-  UIEssentials,
-  UIIcons,
-  UIPages,
-  UIInputs,
-  UILayout,
-  UIHooks,
-  UIUtils,
 };
