@@ -1,9 +1,8 @@
-.link{
-    cursor: pointer;
-    text-decoration: underline;
-    border: 1px solid red;
+.link {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .link:hover {
-    text-decoration: none;
+  text-decoration: none;
 }

@@ -5,7 +5,7 @@
 
 .mainBox.vertical {
   max-width: 300px;
-  max-height: 500px;
+  height: 450px;
 }
 
 .mainBox.square {
@@ -37,35 +37,37 @@
 
 /* CARD COMPONENT */
 .card {
-  display: grid;
-  place-items: center;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
   width: 100%;
   height: 100%;
   overflow: hidden;
   box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
 }
 
-.card img {
-  width: 100%;
-}
-
-.card > * {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
-
 .cardBackground {
-  object-fit: cover;
-  max-width: 100%;
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .cardContent {
-  --flow-space: 0.9375rem;
+  position: relative;
+  z-index: 1;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  width: 100%;
   align-self: flex-end;
+
+  --flow-space: 0.9375rem;
 }
 
 .horizontal .cardContent {
@@ -109,6 +111,7 @@
   position: relative;
   width: fit-content;
   width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+  border-bottom: 2px solid var(--color);
 }
 
 .cardTitle::after {

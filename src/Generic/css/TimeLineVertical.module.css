@@ -1,0 +1,212 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  height: auto;
+}
+
+.top,
+.bottom,
+.topLeft,
+.topRight,
+.bottomLeft,
+.bottomRight {
+  height: 100%;
+  width: 50%;
+}
+
+.top,
+.bottom {
+  width: 100%;
+  display: flex;
+}
+
+.top {
+  height: 80%;
+  padding-top: 20px;
+}
+
+.bottom {
+  height: 20%;
+}
+
+.left .top,
+.right .top,
+.left .bottom,
+.right .bottom {
+  width: calc(100% - var(--radius));
+}
+
+.circle {
+  position: absolute;
+  border: 1px solid var(--colorSelf);
+  height: var(--radius);
+  width: var(--radius);
+  border-radius: 50%;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: var(--colorSelf);
+}
+
+.topLeft,
+.topRight,
+.bottomLeft,
+.bottomRight {
+  height: 100%;
+  width: 50%;
+}
+
+.border {
+  border-bottom: 1px solid var(--colorSelf);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.topRight.border {
+  align-items: start;
+  padding-left: 30px;
+}
+
+.topLeft.border {
+  align-items: end;
+  padding-right: 30px;
+}
+
+.topRight {
+  border-left: 1px solid var(--colorSelf);
+}
+
+.left .topRight {
+  width: 100%;
+}
+
+.bottomRight {
+  border-left: 1px solid var(--colorTop);
+}
+
+.topLeft {
+  border-right: 1px solid var(--colorSelf);
+}
+
+.bottomLeft {
+  border-right: 1px solid var(--colorTop);
+}
+
+.labelLeft,
+.labelRight {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(0, -50%);
+  font-weight: var(--boldL2);
+  color: var(--colorSelf);
+}
+
+.labelLeft {
+  padding-right: var(--radius);
+  transform: translate(-100%, -50%);
+}
+
+.labelRight {
+  padding-left: var(--radius);
+}
+
+.right .labelRight {
+  right: 0;
+  transform: translate(0, 50%);
+  text-align: right;
+  padding: 0;
+  padding-right: var(--radius);
+}
+
+.left .labelLeft {
+  left: 0;
+  transform: translate(0, 50%);
+  padding: 0;
+  padding-left: var(--radius);
+}
+
+.center .timeline {
+  align-items: center;
+}
+
+.left .circle {
+  left: 0;
+  transform: translate(0, -50%);
+}
+
+.left .topLeft,
+.left .bottomLeft {
+  display: none;
+}
+
+.right .circle {
+  left: 100%;
+  transform: translate(-100%, -50%);
+}
+
+.right .topRight,
+.right .bottomRight {
+  display: none;
+}
+
+.left .topLeft,
+.left .bottomLeft,
+.right .topLeft,
+.right .bottomLeft {
+  width: 100%;
+}
+
+/* Sticky Button */
+.timelineStickyButton {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 999;
+  padding: 12px 24px;
+  border-radius: var(--borderRadiusMd);
+  background: var(--colorCyan);
+  color: var(--colorBackground);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Label Panel */
+.timelineLabelPanel {
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  z-index: 999;
+  background: var(--colorBackground);
+  border-radius: var(--borderRadiusMd);
+
+  padding: 16px 5px;
+  max-height: 60vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Label Button */
+.timelineLabelItem {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-weight: var(--boldL2);
+  color: var(--colorDarkBlue);
+  text-align: left;
+  border-radius: var(--borderRadiusMd);
+}
+
+.timelineLabelItem:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

@@ -1,5 +1,6 @@
-"use client"
+"use client";
 
+import { Link } from "../../InputFields/Actions/jsx/Link.jsx";
 import { Button } from "../../InputFields/Actions/jsx/Button.jsx";
 import { getColorCode } from "../../utils/COLOR.js";
 import style from "../css/CardTextSliding.module.css";
@@ -39,11 +40,12 @@ export const CardTextSliding = ({
   img,
   productName,
   desc,
-  setResult = "#",
+  link = "#",
   productID = null,
-  colorName,
+  colorLink = "var(--colorCyan)",
   orientation = "V",
   borderRadius = "10px",
+  linkLabel,
 }) => {
   const cardContentCss = `${style.cardContent} ${style.flow}`;
   const cardContentContainerCss = `${style.cardContentContainer} ${style.flow}`;
@@ -54,10 +56,8 @@ export const CardTextSliding = ({
       ? "horizontal"
       : "square";
 
-  const color = getColorCode(colorName);
-
   const cssVariable = {
-    "--color": color,
+    "--color": colorLink,
   };
 
   return (
@@ -83,13 +83,11 @@ export const CardTextSliding = ({
               <h2 className={`${style.cardTitle}`}>{productName}</h2>
               <p className={style.cardDescription}>{desc}</p>
             </div>
-            <div className={style.cardButton}>
-              <Button
-                text={"Get Expert View"}
-                setResult={setResult}
-                color={color}
-              />
-            </div>
+            {linkLabel && (
+              <div className={style.cardButton}>
+                <Link text={linkLabel} url={link} color={colorLink} />
+              </div>
+            )}
           </div>
         </article>
 
@@ -97,7 +95,7 @@ export const CardTextSliding = ({
         {productID == null ? (
           <></>
         ) : (
-          <p className={style.productID}>~ Product ID: {productID}</p>
+          <p className={style.productID}>{productID}</p>
         )}
       </div>
     </>

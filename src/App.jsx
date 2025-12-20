@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import IconGallery from "./Usecases/Misc/IconGallery.jsx";
 import { ErrorPage } from "./SpecialPages/js/ErrorPage.jsx";
 import { CardShowcase } from "./Usecases/Misc/CardGallery.jsx";
+import { UseTimeLineExample } from "./Usecases/Misc/UseTimeLineExample.jsx";
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
           }
           responseCode={"DFRD895"}
         /> */}
-        <CardShowcase />
+        {/* <CardShowcase /> */}
+        <UseTimeLineExample />
       </div>
     </BrowserRouter>
   );

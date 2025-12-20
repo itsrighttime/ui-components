@@ -1,4 +1,3 @@
-import { getColorCode } from "../../utils/COLOR.js";
 import style from "../css/CardSimpleInfo.module.css";
 
 /**
@@ -36,7 +35,7 @@ export const CardSimpleInfo = ({
   colorName = "cyan",
   borderRadius = "10px",
 }) => {
-  const finalColor = getColorCode(colorName);
+  const finalColor = colorName;
 
   //   Making Inage Grayscale if user pass gray color of the border
   const imgCss =

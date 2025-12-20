@@ -1,4 +1,3 @@
-import { getColorCode } from "../../utils/COLOR.js";
 import style from "../css/CardTextOn.module.css";
 
 /**
@@ -39,7 +38,8 @@ export const CardTextOn = ({
   desc,
   productID = null,
   orientation = "H",
-  colorName = "white",
+  colorText = "white",
+  colorTitle = "white",
   borderRadius = "10px",
 }) => {
   const orientCss =
@@ -49,20 +49,18 @@ export const CardTextOn = ({
       ? "horizontal"
       : "square";
 
-  const color = getColorCode(colorName);
-
   return (
     <>
       <div className={`${style.mainBox}  ${style[orientCss]}`}>
         <div className={style.articleCard} style={{ borderRadius }}>
           <div className={style.content}>
-            <p style={{ color }} className={style.date}>
+            <p style={{ color: colorText }} className={style.date}>
               {date}
             </p>
-            <p style={{ color }} className={style.title}>
+            <p style={{ color: colorTitle }} className={style.title}>
               {authorName}
             </p>
-            <p style={{ color }} className={style.desc}>
+            <p style={{ color: colorText }} className={style.desc}>
               {desc}
             </p>
           </div>
@@ -73,7 +71,7 @@ export const CardTextOn = ({
         {productID == null ? (
           <></>
         ) : (
-          <p className={style.productID}>~ Product ID: {productID}</p>
+          <p className={style.productID}>{productID}</p>
         )}
       </div>
     </>

@@ -148,6 +148,11 @@ const { Alert } = UIAlert;
 ## UIEssentials
 
 - `IndiaMap`
+- [`VerticalTimeline`](./docs/extra/vertical-timeline.md)
+
+
+## UIEssentials
+
 - [`Tooltip`](./docs/tooltip.md)
 - [`Table`](./docs/table.md)
 
@@ -173,6 +178,7 @@ const { Alert } = UIAlert;
 - [`toKebabCase`](./docs/utils.md#tokebabcasestr)
 - [`fromKebabCase`](./docs/utils.md#fromkebabcasestr-format)
 - [`getColorCode`](./docs/utils.md#getcolorcodecolorname)
+- [`BRAND_COLORS`](./docs/utils.md#brand_colors)
 - [`delay`](./docs/utils.md#delayms)
 - [`redirectURL`](./docs/utils.md#redirecturltarget)
 - [`redirectUrlWithBack`](./docs/utils.md#redirecttourlwithback-to-from-)
@@ -196,6 +202,12 @@ const { Alert } = UIAlert;
 ## [Context]
 
 - [`DynamicContext`](./docs/context/dynamic.md)
+
+## [Showcase]
+
+- `Timeline`
+- `CardGallery`
+- `IconGallery`
 
 ## License
 

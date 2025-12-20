@@ -1,4 +1,4 @@
-import { CardAchievement } from "../../../Cards/js/Achievement.jsx";
+import { CardAchievement } from "../../../Cards/js/CardAchievement.jsx";
 import { CardDecision } from "../../../Cards/js/CardDecision.jsx";
 import { CardEvent } from "../../../Cards/js/CardEvent.jsx";
 import { CardExperience } from "../../../Cards/js/CardExperience.jsx";

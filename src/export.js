@@ -71,7 +71,7 @@ import { useUserPresentOnTab } from "./Hooks/useUserPresentOnTab.js";
 import { Workspace } from "./Layout/Workspace/jsx/Workspace.jsx";
 import { LockScreen } from "./Layout/Workspace/jsx/LockScreen.jsx";
 import { fromKebabCase, toKebabCase } from "./utils/caseConverter.js";
-import { getColorCode } from "./utils/COLOR.js";
+import { BRAND_COLORS, getColorCode } from "./utils/COLOR.js";
 import { delay } from "./utils/delay.js";
 import {
   getRedirectBackUrl,
@@ -117,11 +117,20 @@ import { CardMilestone } from "./Cards/js/CardMilestone.jsx";
 import { CardPhase } from "./Cards/js/CardPhase.jsx";
 import { CardProduct } from "./Cards/js/CardProduct.jsx";
 import { CardShowcase } from "./Usecases/Misc/CardGallery.jsx";
+import { CardAchievement } from "./Cards/js/CardAchievement.jsx";
+import { VerticalTimeline } from "./Generic/jsx/VerticalTimeline.jsx";
+import { UseTimeLineExample } from "./Usecases/Misc/UseTimeLineExample.jsx";
 
 export const UIAlert = {
   Alert,
   AlertContainer,
   useAlerts,
+};
+
+export const UIShowcase = {
+  Timeline: UseTimeLineExample,
+  CardGallery: CardShowcase,
+  IconGallery: IconGallery,
 };
 
 export const UICards = {
@@ -136,11 +145,12 @@ export const UICards = {
   CardMilestone,
   CardPhase,
   CardProduct,
-  CardGallery: CardShowcase,
+  CardAchievement,
 };
 
 export const UIExtra = {
   IndiaMap,
+  VerticalTimeline,
 };
 
 export const UIEssentials = {
@@ -249,6 +259,7 @@ export const UIUtils = {
   codeTypes: UtilsLogger.codeTypes,
   getTrackingCode: UtilsLogger.getTrackingCode,
   setAllowedTypes: UtilsLogger.setAllowedTypes,
+  BRAND_COLORS,
   fromKebabCase,
   toKebabCase,
   getColorCode,

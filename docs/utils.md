@@ -91,6 +91,35 @@ getColorCode("blue"); // Returns COLOR.blue
 getColorCode("unknown"); // Returns COLOR.cyan
 ```
 
+#### `BRAND_COLORS`
+
+```js
+export const BRAND_COLORS = {
+  BLUE: "#00b0f0",
+  DARK_BLUE: "#5b9bd5",
+  YELLOW: "#dbac2b",
+  RED: "#ff5969",
+  CYAN: "#52c9bd",
+  GREEN: "#92d050",
+  SKY_BLUE: "#05e1e7",
+  GRAY1: "#f7f7f7",
+  GRAY2: "#f2f2f2",
+  GRAY3: "#d9d9d9",
+  GRAY4: "#bbb9b9",
+  GRAY5: "#7f7f7f",
+  GRAY6: "#404040",
+  WHITE: "#fff",
+
+  V_BLUE: "var(--colorBlue)",
+  V_DARK_BLUE: "var(--colorDarkBlue)",
+  V_YELLOW: "var(--colorYellow)",
+  V_RED: "var(--colorRed)",
+  V_CYAN: "var(--colorCyan)",
+  V_GREEN: "var(--colorGreen)",
+  V_SKY_BLUE: "var(--colorSkyBlue)",
+};
+```
+
 ---
 
 ### 3. **Async Utility**

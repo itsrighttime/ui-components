@@ -101,7 +101,8 @@ Text-over-image card for articles, authors, and blog content.
 | `desc`         | `string` | required  | Summary/description                                    |
 | `productID`    | `string` | `null`    | Optional product ID or tag                             |
 | `orientation`  | `string` | `"H"`     | Layout: `H` (horizontal), `V` (vertical), `S` (square) |
-| `colorName`    | `string` | `"white"` | Text color from theme palette                          |
+| `colorText`    | `string` | `"white"` | Text color from theme palette                          |
+| `colorTitle`   | `string` | `"white"` | Text color from theme palette                          |
 | `borderRadius` | `string` | `"10px"`  | Optional border radius                                 |
 
 ### Usage
@@ -114,7 +115,7 @@ Text-over-image card for articles, authors, and blog content.
   desc="An in-depth view of how AI is shaping design decisions globally."
   productID="AI-UX-22"
   orientation="H"
-  colorName="blue"
+  colorTitle="blue"
 />
 ```
 
@@ -124,16 +125,17 @@ Animated card with image background and a CTA button.
 
 ### Props
 
-| Prop           | Type                 | Default   | Description                 |
-| -------------- | -------------------- | --------- | --------------------------- |
-| `img`          | `string`             | required  | Background image            |
-| `productName`  | `string`             | required  | Product or title            |
-| `desc`         | `string`             | required  | Description or pitch        |
-| `setResult`    | `Function or string` | `"#"`     | Callback function for CTA   |
-| `productID`    | `string`             | `null`    | Optional product identifier |
-| `orientation`  | `string`             | `"V"`     | Layout: `H`, `V`, or `S`    |
-| `colorName`    | `string`             | `"white"` | Theme color                 |
-| `borderRadius` | `string`             | `"10px"`  | Optional border radius      |
+| Prop           | Type     | Default    | Description                 |
+| -------------- | -------- | ---------- | --------------------------- |
+| `img`          | `string` | required   | Background image            |
+| `productName`  | `string` | required   | Product or title            |
+| `desc`         | `string` | required   | Description or pitch        |
+| `link`         | `string` | `"#"`      | link                        |
+| `productID`    | `string` | `null`     | Optional product identifier |
+| `orientation`  | `string` | `"V"`      | Layout: `H`, `V`, or `S`    |
+| `colorLink`    | `string` | `"white"`  | Theme color                 |
+| `borderRadius` | `string` | `"10px"`   | Optional border radius      |
+| `linkLabel`    | `string` | `undefine` | Button label                |
 
 ### Usage
 
@@ -142,10 +144,10 @@ Animated card with image background and a CTA button.
   img={img2}
   productName="Smart Home Kit"
   desc="Automate your living with our AI-driven devices."
-  setResult={() => console.log("Expert view requested")}
+  link={"#"}
   productID="SHK-2025"
   orientation="H"
-  colorName="green"
+  colorLink="green"
 />
 ```
 
