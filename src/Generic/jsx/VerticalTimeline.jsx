@@ -8,7 +8,40 @@ import { useMediaQuery } from "../../Hooks/useMediaQuery.js";
 import { useScrollPoints } from "../../Hooks/useScrollPoints.js";
 import { useOutsideClick } from "../../Hooks/useOutsideClick.js";
 
-// const { useMediaQuery } = MyHooks;
+/**
+ * VerticalTimeline Component
+ *
+ * Renders a configurable vertical timeline with optional alternating sides,
+ * responsive layout handling, scroll-based navigation, and a sticky label panel.
+ *
+ * @component
+ *
+ * @param {Object} props
+ * @param {Object} props.config - Configuration object for the timeline
+ * @param {"left"|"right"|"center"|"custom"} [props.config.layout="center"]
+ *        Determines the base layout of the timeline.
+ *        - "center": Alternates items left/right (default)
+ *        - "left": All items appear on the right
+ *        - "right": All items appear on the left
+ *        - "custom": Each item controls its own side
+ * @param {boolean} [props.config.alternate=true]
+ *        Whether items should alternate sides when layout is "center"
+ * @param {Array<Object>} props.config.data
+ *        Timeline items to render
+ * @param {string} props.config.data[].label - Label shown beside the timeline node
+ * @param {React.ReactNode|Object} props.config.data[].component
+ *        Content rendered inside the timeline item
+ * @param {"left"|"right"} [props.config.data[].side]
+ *        Used only when layout is "custom"
+ * @param {string} [props.config.data[].radius]
+ *        Custom radius for the timeline node
+ * @param {Object} [props.config.meta]
+ *        Metadata configuration
+ * @param {string} [props.config.meta.timeLineBtnLabel]
+ *        Label for the sticky timeline button
+ *
+ * @returns {JSX.Element} Rendered VerticalTimeline component
+ */
 
 export const VerticalTimeline = ({ config = {} }) => {
   const {
