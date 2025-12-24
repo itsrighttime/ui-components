@@ -1,13 +1,26 @@
 "use client";
 
 import styles from "../css/Markdown.module.css";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import {
-  oneDark,
-  coy,
-  materialLight,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
+// import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+// import {
+//   oneDark,
+//   coy,
+//   materialLight,
+// } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { MarkdownTable } from "../jsx/MarkdownTable.jsx";
+
+const SyntaxHighlighter = dynamic(
+  () => import("react-syntax-highlighter").then((mod) => mod.Prism),
+  { ssr: false }
+);
+
+const materialLight = dynamic(
+  () =>
+    import("react-syntax-highlighter/dist/esm/styles/prism").then(
+      (mod) => mod.materialLight
+    ),
+  { ssr: false }
+);
 
 export const markdownComponents = {
   h1: ({ children }) => <h1 className={styles.h1}>{children}</h1>,
