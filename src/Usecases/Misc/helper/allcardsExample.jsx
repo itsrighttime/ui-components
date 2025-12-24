@@ -60,10 +60,11 @@ export const allCardsExample = [
         img={img}
         productName="Smart Home Kit"
         desc="Automate your living with our AI-driven devices."
-        setResult={() => console.log("Expert view requested")}
+        link={"#"}
         productID="SHK-2025"
         orientation="H"
         colorName="green"
+        linkLabel="Explore"
       />
     ),
   },

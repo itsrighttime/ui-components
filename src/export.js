@@ -120,6 +120,7 @@ import { CardShowcase } from "./Usecases/Misc/CardGallery.jsx";
 import { CardAchievement } from "./Cards/js/CardAchievement.jsx";
 import { VerticalTimeline } from "./Generic/jsx/VerticalTimeline.jsx";
 import { UseTimeLineExample } from "./Usecases/Misc/UseTimeLineExample.jsx";
+import { MarkdownRenderer } from "./Layout/markdown/jsx/MarkdownRenderer.jsx";
 
 export const UIAlert = {
   Alert,
@@ -235,6 +236,7 @@ export const UILayout = {
   Footer,
   WebStructure,
   KEYS: { FORM_FIELDS_TYPE, OPERATORS, FOOTER_BRANDS_KEYS, FIELDS_PROPS },
+  MarkdownRenderer,
 };
 
 export const UIHooks = {

@@ -29,11 +29,12 @@ import style from "../css/CardTextSliding.module.css";
  *   img="https://example.com/product.jpg"
  *   productName="Smart Gadget"
  *   desc="A high-tech gadget with innovative features."
- *   setResult={() => console.log('Get Expert View clicked')}
+ *   link={"#"}
  *   productID="PROD456"
  *   colorName="blue"
  *   orientation="H"
  *   borderRadius="12px"
+ *   linkLabel
  * />
  */
 export const CardTextSliding = ({

@@ -1,6 +1,6 @@
 {
   "name": "@itsrighttime/ui-components",
-  "version": "0.0.92",
+  "version": "0.0.93",
   "description": "A reusable and customizable React UI components library including inputs, buttons, notifications, cards, icons, and more.",
   "author": {
     "name": "Danishan",
@@ -62,8 +62,11 @@
   "dependencies": {
     "axios": "^1.10.0",
     "lodash.throttle": "^4.1.1",
+    "react-markdown": "^10.1.0",
     "react-router": "^7.6.3",
-    "react-router-dom": "^7.6.3"
+    "react-router-dom": "^7.6.3",
+    "react-syntax-highlighter": "^16.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",

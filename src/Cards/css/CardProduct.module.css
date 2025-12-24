@@ -70,6 +70,9 @@
 
   border: 1px solid;
   white-space: nowrap;
+
+  color: var(--colorGreen);
+  border-color: var(--colorGreen);
 }
 
 /* Status variants */
