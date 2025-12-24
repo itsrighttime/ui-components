@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "../css/MarkdownTable.module.css";
 
 export function MarkdownTable({ node }) {

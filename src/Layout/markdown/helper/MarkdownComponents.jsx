@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "../css/Markdown.module.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
