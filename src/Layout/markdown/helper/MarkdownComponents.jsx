@@ -1,5 +1,6 @@
 "use client";
 
+import { lazy, Suspense } from "react";
 import styles from "../css/Markdown.module.css";
 // import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import {
@@ -9,18 +10,13 @@ import styles from "../css/Markdown.module.css";
 // } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { MarkdownTable } from "../jsx/MarkdownTable.jsx";
 
-const SyntaxHighlighter = dynamic(
-  () => import("react-syntax-highlighter").then((mod) => mod.Prism),
-  { ssr: false }
+// Lazy load components
+const SyntaxHighlighter = lazy(() =>
+  import("react-syntax-highlighter").then((mod) => ({ default: mod.Prism }))
 );
 
-const materialLight = dynamic(
-  () =>
-    import("react-syntax-highlighter/dist/esm/styles/prism").then(
-      (mod) => mod.materialLight
-    ),
-  { ssr: false }
-);
+// For the style, we'll import it directly since it's just data
+import { materialLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export const markdownComponents = {
   h1: ({ children }) => <h1 className={styles.h1}>{children}</h1>,
